@@ -25,6 +25,12 @@ For these kind of studies to reflect reality, the problems to be solved need to
 be representative of the real-world code.
 Having artificial problems may lead to invalid conclusions.
 
+The work by \cite{Wu:2017:TEF:3152284.3133929,Wu:2017:LUF:3152284.3133930} goes towards this direction.
+They have examined programs written by students to understand real debugging conditions.
+Their focus is on ill-typed programs written in \haskell{}.
+Unfortunately, these dataset does not correspond to real-world code.
+Our focus is to analyze code by experienced programmers.
+
 Therefore, it is important to study how casts are used in real-world code.
 Having a deep understanding of actual usage of casts can led to
 Informed decisions when designing these kind of experiments.
@@ -34,24 +40,11 @@ Informed decisions when designing these kind of experiments.
 In the same direction to our plan, \cite{Callau:2011:DUD:1985441.1985448} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{Richards:2011:EML:2032497.2032503} made a similar study, but in this case targeting \javascript{}'s \eval{} function.
 
+Going one step forward, \cite{Ray:2017:LSP:3144574.3126905} 
 
 These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
 
-Gregor Richards eval's
-
-
-Related Work, updated/Ideally Survey Paper
-Write Proposal within the next few Months
-Studying Language Features in the Wild
-Languages Features due to Bugs
-
 https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext
-
-
-
-
-
-
 
 
 
@@ -70,13 +63,20 @@ Empirical Studies on subjects need to be correlated with real world use cases, e
 
 
 
+Spencer: Interactive Heap Analysis for the Masses
+\cite{DBLP:journals/corr/BrandauerW17}
+
+
+\subsection{Collections and Generics}
+
 Empirical Study of Usage and Performance of Java Collections
 Mining GitHub corpus to study the use of collections, and how these usages can be improved.
 \cite{Costa:2017:ESU:3030207.3030221}
 
-Spencer: Interactive Heap Analysis for the Masses
-\cite{DBLP:journals/corr/BrandauerW17}
+Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~\cite{Parnin:2011:JGA:1985441.1985446}
 
+
+\subsection*{Exceptions}
 
 Examining Programmer Practices for Locally Handling Exceptions
 \cite{Kery:2016:EPP:2901739.2903497}
@@ -91,13 +91,6 @@ How Developers Use Exception Handling in Java?
 Unveiling Exception Handling Bug Hazards in Android based on GitHub and Google Code Issues
 Study of exception stack traces.
 
-Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~\cite{Parnin:2011:JGA:1985441.1985446}
-
-how type error and what students did?
-\cite{Wu:2017:TEF:3152284.3133929}
-
-learning type error messages
-\cite{Wu:2017:LUF:3152284.3133930}
 
 
 \section{Pattern Discovery}
