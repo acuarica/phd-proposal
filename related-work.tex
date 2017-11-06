@@ -1,0 +1,138 @@
+
+\chapter{Related Work}
+
+Understanding how language features and \api{}s are being used is a quite broad topic.
+There are several directions of research which are directly or indirecly related.
+
+\section{Empirical Studies on Casting}
+
+The closest work to our casting study is by~\cite{Winther:2011:GTP:2076674.2076680}.
+Study of type casts in several project.
+Quite similar to what we want to do.
+Focus on Guarded Type casts.
+
+
+\section{Impact of using Static Type systems}
+
+Several authors~\cite{Stuchlik:2011:SVD:2047849.2047861,Mayer:2012:ESI:2384616.2384666,7911881} measure whether using a static-type system improves programmers productivity.
+They compare how a static and a dynamic type system impact on productivity.
+The common setting for these studies is to have a set of programming problems.
+Then, let a group of developers solve them in both a static and dynamic languages.
+
+For these kind of studies to reflect reality, the problems to be solved need to
+be representative of the real-world code.
+Having artificial problems may lead to invalid conclusions.
+
+Therefore, it is important to study how casts are used in real-world code.
+Having a deep understanding of actual usage of casts can led to
+Informed decisions when designing these kind of experiments.
+
+\section{Large-scale Codebase Empirical Studies}
+
+In the same direction to our plan, \cite{Callau:2011:DUD:1985441.1985448} perform a study of the dynamic features of \smalltalk{}.
+Analogously, \cite{Richards:2011:EML:2032497.2032503} made a similar study, but in this case targeting \javascript{}'s \eval{} function.
+
+
+These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
+
+Gregor Richards eval's
+
+
+Related Work, updated/Ideally Survey Paper
+Write Proposal within the next few Months
+Studying Language Features in the Wild
+Languages Features due to Bugs
+
+https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext
+
+
+
+
+
+
+
+
+
+Contracts in the Wild: A Study of Java Programs
+Investigate 25 fix contract patterns.
+Section 2.3: Come up with new Contract Patterns.
+\cite{dietrich_et_al:LIPIcs:2017:7259}
+
+\cite{Landman:2017:CSA:3097368.3097429}
+Challenges for Static Analysis of Java Reflection -- Literature Review and Empirical Study
+They also have done a study on Casts.
+But only for a small curated sets of projects.
+They analyze the relevance of static analysis tools w.r.t reflection.
+We want to study Reflection in the Wild.
+Empirical Studies on subjects need to be correlated with real world use cases, e.g. Maven Repository.
+
+
+
+Empirical Study of Usage and Performance of Java Collections
+Mining GitHub corpus to study the use of collections, and how these usages can be improved.
+\cite{Costa:2017:ESU:3030207.3030221}
+
+Spencer: Interactive Heap Analysis for the Masses
+\cite{DBLP:journals/corr/BrandauerW17}
+
+
+Examining Programmer Practices for Locally Handling Exceptions
+\cite{Kery:2016:EPP:2901739.2903497}
+
+Analysis of Exception Handling Patterns in Java Projects: An Empirical Study
+\cite{Nakshatri:2016:AEH:2901739.2903499}
+
+How Developers Use Exception Handling in Java? 
+\cite{Asaduzzaman:2016:DUE:2901739.2903500}
+
+\cite{7180074}
+Unveiling Exception Handling Bug Hazards in Android based on GitHub and Google Code Issues
+Study of exception stack traces.
+
+Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~\cite{Parnin:2011:JGA:1985441.1985446}
+
+how type error and what students did?
+\cite{Wu:2017:TEF:3152284.3133929}
+
+learning type error messages
+\cite{Wu:2017:LUF:3152284.3133930}
+
+
+\section{Pattern Discovery}
+
+\cite{5463349} have extended \asm{}~\cite{Bruneton02asm:a,Kuleshov07} to implement symbolic execution and recognize call sites.
+However, this is only a meta-pattern detector, and not a pattern discovery.
+For our study on \smu{}, we needed to discover usage patterns.
+Given its a singleton class, we have collected call sites,
+and proceed with a semi-automatic analysis.
+On the other hand, our study related to casts involved a much more complex analysis.
+Therefore we have decided to implement it with manual inspection.
+
+\section{Mining Software Repositories}
+
+When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
+Usually doing so requires several engineering but challenging tasks.
+The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
+In this scenario, there are several tools that allows a reseacher or developer to query information about software repositories.
+
+\cite{Dyer-Nguyen-Rajan-Nguyen-13, Dyer-Rajan-Nguyen-13} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}} to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
+
+The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{Dyer-Rajan-Nguyen-Nguyen-14}.
+This study is based \sourceforge{} data.
+The current problem with \sourceforge{} is that is outdated.
+For our study on \smu{}, we first tried using \boa{} with sourceforge{}.
+We found out that only few projects were using \smu{}.
+In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
+\cite{Lopes:2017:DMC:3152284.3133908} made a study to measure code duplicity in \github{}.
+They found out that much of the code there is actually duplicated.
+This raises a flag when consider which projects analyze when doing mining software repositories.
+
+Similar to \boa{}, \lgtm{}\footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
+It works by querying repositories from \github{}.
+But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
+Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinov_et_al:LIPIcs:2016:6096}.
+
+On top of \boa{}, \cite{7962355} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
+Although it is not a mining software repository \emph{per se}, it eases the creation of mining applications.

@@ -1,0 +1,76 @@
+
+\documentclass{usiinfdocprop}
+
+\include{prelude}
+
+\begin{committee}
+	\advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
+	\coadvisor{Prof.}{Nathaniel Nystrom}{\USI, Switzerland}
+	\internalmember{Prof.}{\tbd{Robert Soul\'e}}
+	\internalmember{Prof.}{\tbd{Walter Binder}}
+	\internalmember{Prof.}{\tbd{Antonio Carzaniga}}
+	\internalmember{Prof.}{\tbd{Gabriele Boveta}}
+	\externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{(Boa)}}
+	\externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{(Uppsala)}}
+\end{committee}
+\phddirector{Prof.}{Walter Binder}
+\phddirector{Prof.}{Michael Bronstein}
+\author{Luis Mastrangelo}
+
+\title{What Do We Write?}
+\subtitle{Understanding How \java{} Developers Make Use of the Language Features at Large-scale by Empirical-based Patterns}
+
+%\usepackage{color}
+
+\usepackage{tikz}
+%\usetikzlibrary{automata}
+
+\usepackage{listings}
+
+\usepackage{framed}
+\usepackage{cleveref}
+
+\crefname{section}{\S}{faafd}
+
+\definecolor{shadecolor}{rgb}{1,0.8,0.3}
+\newcommand{\hlbox}[1]{
+\begin{shaded}
+#1
+\end{shaded}
+}
+
+
+%change 'sl' to 'bf' for bold, or 'normalfont' for no special
+%formatting
+%\captionsetup{labelfont={sl,sf}}
+
+\lstdefinelanguage{algebra}
+{morekeywords={import,sort,constructors,observers,transformers,axioms,if,
+else,end},
+sensitive=false,
+morecomment=[l]{//s},
+}
+
+\include{abstract}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\include{introduction}
+\include{related-work}
+\include{phd-timeline}
+
+%\backmatter
+\bibliographystyle{plainnat}
+\bibliography{biblio}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
