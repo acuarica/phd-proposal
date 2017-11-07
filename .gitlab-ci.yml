@@ -3,8 +3,9 @@ pages:
   image: aergus/latex
   script:
     - latexmk -pdf main.tex
+    - cp main.pdf public/proposal.pdf
   artifacts:
     paths:
-      - public
+      - public/proposal.pdf
   only:
-    - master 
+    - master
