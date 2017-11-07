@@ -79,22 +79,15 @@ Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~
 
 \subsection*{Exceptions}
 
-The exceptions mechanism is orthogonal to the features we proposed for 
-As a complement for our study
+\cite{Kery:2016:EPP:2901739.2903497,Asaduzzaman:2016:DUE:2901739.2903500} focus on exceptions.
+They made empirical studies on how programmers handle exceptions in \java{} code.
+The work done by~\cite{Nakshatri:2016:AEH:2901739.2903499} categorized them in patterns.
+Whether~\cite{7180074} used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
-Examining Programmer Practices for Locally Handling Exceptions
-\cite{Kery:2016:EPP:2901739.2903497}
-
-Analysis of Exception Handling Patterns in Java Projects: An Empirical Study
-\cite{Nakshatri:2016:AEH:2901739.2903499}
-
-\cite{7180074}
-Unveiling Exception Handling Bug Hazards in Android based on GitHub and Google Code Issues
-Study of exception stack traces.
-
-How Developers Use Exception Handling in Java?
-\cite{Asaduzzaman:2016:DUE:2901739.2903500}
-
+The exceptions mechanism is orthogonal to the features we target in this proposal.
+For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
+Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research. They can help us to understand how programmers handle exceptions in these scenarios.
 
 
 \section{Pattern Discovery}
