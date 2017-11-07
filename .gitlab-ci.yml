@@ -1,0 +1,13 @@
+image: alpine
+
+pages:
+  before_script:
+    - apk update
+    - apk add texlive
+  script:
+    - latexmk
+  artifacts:
+    paths:
+      - public
+  only:
+    - master 
