@@ -1,11 +1,8 @@
-image: alpine
 
 pages:
-  before_script:
-    - apk update
-    - apk add texlive
+  image: aergus/latex
   script:
-    - latexmk
+    - latexmk -pdf main.tex
   artifacts:
     paths:
       - public
