@@ -4,31 +4,15 @@
 Understanding how language features and \api{}s are being used is a broad topic.
 There is plenty of research in computer science literature about empirical studies of programs;
 which involves several directions directly or indirecly related.
- 
+
 Along the last decades, researchers always has been interested in understading what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
 
 Already \cite{Knuth:1971jv} started to study \fortran{} programs.
-By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore being more effective.
+By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
 Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{Hammond:1977dq} has to study a representative dataset of programs.
 
-
-
-
-
-
-More deep Related work
-Flexible Research Question
-According to Related Work
-RW provides motivation for my introduction
-RW uses methodology I can reuse, it is commonly do in this way
-What did the other papers didn't do?
-Design Pattern detection papers
-Look at external committee papers
-Come up w/Research Question
-Adoption of Language Features: Generics, Lambdas, Try w/Resources
-Writing functional style decrease number bugs
-Might shift research question
+\cite{Stefik:2014cb}
 
 
 \section{Empirical Studies on Casting}
@@ -37,7 +21,7 @@ The closest work to our casting study is by~\cite{Winther:2011:GTP:2076674.20766
 Study of type casts in several project.
 Quite similar to what we want to do.
 Focus on Guarded Type casts.
-
+\cite{Winther:2011hz}
 
 \section{Impact of using Static Type systems}
 
@@ -149,9 +133,9 @@ This raises a flag when consider which projects analyze when doing mining softwa
 Similar to \boa{}, \lgtm{}\footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
 It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
-Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinov_et_al:LIPIcs:2016:6096}.
+Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{Avgustinov:2016ho}.
 
-On top of \boa{}, \cite{7962355} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
+On top of \boa{}, \cite{Tiwari:2017bs} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
 Although it is not a mining software repository \emph{per se}, it eases the creation of mining applications.
 
 %%% Local Variables:
