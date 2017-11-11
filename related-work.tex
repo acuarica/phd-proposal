@@ -12,8 +12,9 @@ The motivation behind these studies is quite broad and --- together with the evo
 
 Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{hammond_basic_1977} has to study a representative dataset of programs.
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{hammond_basic_1977} has studied a representative dataset of programs.
 Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
+Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs.
 
 \section{Empirical Studies on Casting}
 
@@ -124,6 +125,10 @@ The current problem with \sourceforge{} is that is outdated.
 For our study on \smu{}, we first tried using \boa{} with sourceforge{}.
 We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+\cite{gousios_ghtorent_2013}
+provides an offline mirror of \github{} that allows researchers to query any kind of that data.
+Later on, \cite{gousios_lean_2014} published the dataset construction process of \github{}.
 
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 \cite{lopes_dejavu:_2017} made a study to measure code duplicity in \github{}.
