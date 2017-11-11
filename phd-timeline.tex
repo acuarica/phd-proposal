@@ -73,7 +73,7 @@ To overcome this problem, we have created \jnif{}\footnote{\url{https://gitlab.c
 With JNIF, the programmer can decode, analyze, edit, and encode Java class files.
 \jnif{} is able to generate stack maps, required by split-time verifiers of moderns \jvm{}s.
 
-The results of this work took shape in an article accepted in an international conference~\cite{Mastrangelo:2014:JJN:2647508.2647516}.
+The results of this work took shape in an article accepted in an international conference~\cite{mastrangelo_jnif:_2014}.
 
 \subsection*{How actually safe is the Java ecosystem?}
 
@@ -82,7 +82,7 @@ Java contains an undocumented\footnote{\url{http://www.oracle.com/technetwork/ja
 We wanted to provide a solid understanding on why and how this undocumented class is used.
 To that end, we have analyzed a large code-base of real-world Java applications.
 
-This work led to an accepted article in an international conference~\cite{Mastrangelo:2015ep}.
+This work led to an accepted article in an international conference~\cite{mastrangelo_use_2015}.
 We hope that this paper could serve as an starting point to provide a foundation for the design of new languages features to regain safety in Java.
 
 \subsection*{Supercompilation}
@@ -92,7 +92,7 @@ Before switching back to our empirical studies,
 we have planed to carry-on our research based on our Supercompiler.
 We have implemented a minimal Supercompiler for a functional language\footnote{\url{https://gitlab.com/acuarica/hsc}}, similar to GHC Core, with unrestricted recursive lets.
 
-The reason why we have built our own Supercompiler instead of working with a previous built one like, e.g., Supero\footnote{\url{https://github.com/ndmitchell/supero}}~\cite{Mitchell:2007ki,Mitchell:2010ih}, or CHSC\footnote{\url{https://github.com/batterseapower/chsc}}~\cite{Bolingbroke:2010is} is two-fold.
+The reason why we have built our own Supercompiler instead of working with a previous built one like, e.g., Supero\footnote{\url{https://github.com/ndmitchell/supero}}~\cite{mitchell_supercompiler_2007,mitchell_rethinking_2010}, or CHSC\footnote{\url{https://github.com/batterseapower/chsc}}~\cite{bolingbroke_supercompilation_2010} is two-fold.
 First, by building our supercompiler we faced in first-hand the real problems the Supercompilation suffer. This was a key point to our goal of improving supercompilation.
 Second, it is much easier to modify and extend our own Supercompiler instead of working with a third-party one.
 
@@ -102,7 +102,7 @@ Another direction that we have tried is to understand how rewrite tules compare 
 Our plan was to understand to what extent manually-written rules can be automatically deduced by Supercompilation.
 We have published our partial infrastructure online\footnote{\url{https://gitlab.com/acuarica/rewrite-rules}}$^{,}$\footnote{\url{https://gitlab.com/acuarica/hsc-rules-analysis}}.
 
-All this work led to an article by the Research Co-Advisor in an international symposium~\cite{Nystrom:2017bp}.
+All this work led to an article by the Research Co-Advisor in an international symposium~\cite{nystrom_scala_2017}.
 
 \subsection*{Maven Repository Analysis Framework}
 
@@ -124,4 +124,4 @@ I was selected --- under the recommendation of my Advisor --- to be a reviewer o
 As an Artifact Evaluation reviewer, my task was to review three companion artifacts selected for evaluation.
 I had to understand the selected papers, so then I could evaluate the attached artifact.
 
-The three artifacts I was appointed to --- \cite{Ancona:2016km,DiLorenzo:2016dd,Stefanescu:2016bq} --- were finally accepted.
+The three artifacts I was appointed to --- \cite{ancona_semantic_2016,dilorenzo_incremental_2016,stefanescu_semantics-based_2016} --- were finally accepted.

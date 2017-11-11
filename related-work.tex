@@ -8,24 +8,24 @@ which involves several directions directly or indirecly related.
 Along the last decades, researchers always has been interested in understading what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
 
-Already \cite{Knuth:1971jv} started to study \fortran{} programs.
+\section{Compilers Writers}
+
+Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{Hammond:1977dq} has to study a representative dataset of programs.
-
-\cite{Stefik:2014cb}
-
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{hammond_basic_1977} has to study a representative dataset of programs.
+Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
 
 \section{Empirical Studies on Casting}
 
-The closest work to our casting study is by~\cite{Winther:2011:GTP:2076674.2076680}.
+The closest work to our casting study is by~\cite{winther_guarded_2011}.
 Study of type casts in several project.
 Quite similar to what we want to do.
 Focus on Guarded Type casts.
-\cite{Winther:2011hz}
+
 
 \section{Impact of using Static Type systems}
 
-Several authors~\cite{Stuchlik:2011:SVD:2047849.2047861,Mayer:2012:ESI:2384616.2384666,7911881} measure whether using a static-type system improves programmers productivity.
+Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
 They compare how a static and a dynamic type system impact on productivity.
 The common setting for these studies is to have a set of programming problems.
 Then, let a group of developers solve them in both a static and dynamic languages.
@@ -34,7 +34,7 @@ For these kind of studies to reflect reality, the problems to be solved need to
 be representative of the real-world code.
 Having artificial problems may lead to invalid conclusions.
 
-The work by \cite{Wu:2017:TEF:3152284.3133929,Wu:2017:LUF:3152284.3133930} goes towards this direction.
+The work by \cite{wu_how_2017,wu_learning_2017} goes towards this direction.
 They have examined programs written by students to understand real debugging conditions.
 Their focus is on ill-typed programs written in \haskell{}.
 Unfortunately, these dataset does not correspond to real-world code.
@@ -46,10 +46,10 @@ Informed decisions when designing these kind of experiments.
 
 \section{Large-scale Codebase Empirical Studies}
 
-In the same direction to our plan, \cite{Callau:2011:DUD:1985441.1985448} perform a study of the dynamic features of \smalltalk{}.
-Analogously, \cite{Richards:2011:EML:2032497.2032503} made a similar study, but in this case targeting \javascript{}'s \eval{} function.
+In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
+Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
 
-Going one step forward, \cite{Ray:2017:LSP:3144574.3126905} 
+Going one step forward, \cite{ray_large-scale_2017} 
 
 These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
 
@@ -60,9 +60,9 @@ https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming
 Contracts in the Wild: A Study of Java Programs
 Investigate 25 fix contract patterns.
 Section 2.3: Come up with new Contract Patterns.
-\cite{dietrich_et_al:LIPIcs:2017:7259}
+\cite{dietrich_contracts_2017,dietrich_contracts_2017-1}
 
-\cite{Landman:2017:CSA:3097368.3097429}
+\cite{landman_challenges_2017}
 Challenges for Static Analysis of Java Reflection -- Literature Review and Empirical Study
 They also have done a study on Casts.
 But only for a small curated sets of projects.
@@ -73,7 +73,7 @@ Empirical Studies on subjects need to be correlated with real world use cases, e
 
 
 Spencer: Interactive Heap Analysis for the Masses
-\cite{DBLP:journals/corr/BrandauerW17}
+\cite{brandauer_spencer:_2017}
 
 
 \subsection*{Collections and Generics}
@@ -81,17 +81,17 @@ Spencer: Interactive Heap Analysis for the Masses
 The inclusion of generics in \java{} is closely related to collections.
 Empirical Study of Usage and Performance of Java Collections
 Mining GitHub corpus to study the use of collections, and how these usages can be improved.
-\cite{Costa:2017:ESU:3030207.3030221}
+\cite{costa_empirical_2017}
 
-Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~\cite{Parnin:2011:JGA:1985441.1985446}
+Java Generics Adoption: How New Features are Introduced, Championed, or Ignored~\cite{parnin_java_2011,parnin_adoption_2013}
 
 
 \subsection*{Exceptions}
 
-\cite{Kery:2016:EPP:2901739.2903497,Asaduzzaman:2016:DUE:2901739.2903500} focus on exceptions.
+\cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
-The work done by~\cite{Nakshatri:2016:AEH:2901739.2903499} categorized them in patterns.
-Whether~\cite{7180074} used a more dynamic approach by analysing stack traces and code issues in \github{}.
+The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns.
+Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
 The exceptions mechanism is orthogonal to the features we target in this proposal.
 For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
@@ -101,7 +101,7 @@ Therefore, we believe that these kind of studies can be complementary for our re
 
 \section{Pattern Discovery}
 
-\cite{5463349} have extended \asm{}~\cite{Bruneton02asm:a,Kuleshov07} to implement symbolic execution and recognize call sites.
+\cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
 For our study on \smu{}, we needed to discover usage patterns.
 Given its a singleton class, we have collected call sites,
@@ -116,9 +116,9 @@ Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
 In this scenario, there are several tools that allows a reseacher or developer to query information about software repositories.
 
-\cite{Dyer-Nguyen-Rajan-Nguyen-13, Dyer-Rajan-Nguyen-13} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}} to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
+\cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}} to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
 
-The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{Dyer-Rajan-Nguyen-Nguyen-14}.
+The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyer_mining_2014}.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
 For our study on \smu{}, we first tried using \boa{} with sourceforge{}.
@@ -126,16 +126,16 @@ We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
-\cite{Lopes:2017:DMC:3152284.3133908} made a study to measure code duplicity in \github{}.
+\cite{lopes_dejavu:_2017} made a study to measure code duplicity in \github{}.
 They found out that much of the code there is actually duplicated.
 This raises a flag when consider which projects analyze when doing mining software repositories.
 
 Similar to \boa{}, \lgtm{}\footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
 It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
-Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{Avgustinov:2016ho}.
+Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinov_ql:_2016}.
 
-On top of \boa{}, \cite{Tiwari:2017bs} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
+On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
 Although it is not a mining software repository \emph{per se}, it eases the creation of mining applications.
 
 %%% Local Variables:
