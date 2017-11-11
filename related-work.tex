@@ -16,6 +16,12 @@ Alternatively, to measure the advantages between compilation and interpretation 
 Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
 Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs.
 
+But there is more than empirical studies at the source coude level.
+A machine instruction set is effectively another kind of language.
+Therefore, its design of a can be affected by how compilers generate machine code.
+Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}, and \lilith{}~\cite{cook_empirical_1989}
+
+
 \section{Empirical Studies on Casting}
 
 The closest work to our casting study is by~\cite{winther_guarded_2011}.
@@ -49,6 +55,8 @@ Informed decisions when designing these kind of experiments.
 
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
+\cite{reboucas_empirical_2016} made an empirical study on the \swift{} programming language.
+
 
 Going one step forward, \cite{ray_large-scale_2017} 
 
@@ -117,8 +125,8 @@ Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
 In this scenario, there are several tools that allows a reseacher or developer to query information about software repositories.
 
-\cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}} to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
-
+\cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}}.
+It is used to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
 The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyer_mining_2014}.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
