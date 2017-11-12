@@ -75,6 +75,11 @@ With JNIF, the programmer can decode, analyze, edit, and encode Java class files
 
 The results of this work took shape in an article accepted in an international conference~\cite{mastrangelo_jnif:_2014}.
 
+At first, we try to implement our cast analysis automatically.
+Therefore, we have added to \jnif{} partial support to do program slicing~
+\cite{tip_survey_1995,weiser_program_1981}.
+We have included it to be able to make more detail analysis.
+
 \subsection*{How actually safe is the Java ecosystem?}
 
 Following our work on \jnif{}, I started to study how unsafe is the Java ecosystem.

@@ -1,4 +1,81 @@
 
+@inproceedings{arcelli_design_2008,
+	series = {Communications in {Computer} and {Information} {Science}},
+	title = {Design {Pattern} {Detection} in {Java} {Systems}: {A} {Dynamic} {Analysis} {Based} {Approach}},
+	isbn = {978-3-642-14818-7 978-3-642-14819-4},
+	shorttitle = {Design {Pattern} {Detection} in {Java} {Systems}},
+	url = {https://link.springer.com/chapter/10.1007/978-3-642-14819-4_12},
+	doi = {10.1007/978-3-642-14819-4_12},
+	abstract = {In the context of reverse engineering, the recognition of design patterns provides additional information related to the rationale behind the design. This paper presents our approach to the recognition of the behavioral design patterns based on dynamic analysis of Java software systems. The idea behind our solution is to identify a set of rules capturing information necessary to identify a design pattern instance. Rules are characterized by weights indicating their importance in the detection of a specific design pattern. The core behavior of each design pattern may be described through a subset of these rules forming a macrorule. Macrorules define the main traits of a pattern. JADEPT (JAva DEsign Pattern deTector) is our software for design pattern identification based on this idea. It captures static and dynamic aspects through a dynamic analysis of the software by exploiting the JPDA (Java Platform Debugger Architecture). The extracted information is stored in a database. Queries to the database implement the rules defined to recognize the design patterns. The tool has been validated with positive results on different implementations of design patterns and on systems such as JADEPT itself.},
+	language = {en},
+	urldate = {2017-11-12},
+	booktitle = {Evaluation of {Novel} {Approaches} to {Software} {Engineering}},
+	publisher = {Springer, Berlin, Heidelberg},
+	author = {Arcelli, Francesca and Perin, Fabrizio and Raibulet, Claudia and Ravani, Stefano},
+	month = may,
+	year = {2008},
+	pages = {163--179},
+	file = {Snapshot:/Volumes/Data/work/zotero/storage/KS9GYNA3/978-3-642-14819-4_12.html:text/html}
+}
+
+@inproceedings{hu_dynamic_2008,
+	title = {Dynamic {Analysis} and {Design} {Pattern} {Detection} in {Java} {Programs}.},
+	abstract = {Identifying design patterns within an existing software system can support understandability and reuse of the system's core functionality. In this context, incorporating behavioral features into the design pattern recovery would enhance the scalability of the process. The main advantage of the new approach in this paper over the existing approaches is incorporating dynamic analysis and feature localization in source code. This allows us to perform a goal-driven design pattern detection and focus ourselves on patterns that implement specific software functionality, as opposed to conducting a general pattern detection which is susceptible to high complexity problem. Using a new pattern description language and a matching process we identify the instances of these patterns within the obtained classes and interactions. We use a two-phase matching process: i) an approximate matching of class attributes generates a list of candidate patterns; and ii) a structural matching of classes identifies exact matched patterns. One target application domain can be software product line which emphasizes on reusing core software artifacts to construct a reference architecture for several similar products. Finally, we present the result of a case study.},
+	booktitle = {20th {International} {Conference} on {Software} {Engineering} and {Knowledge} {Engineering}, {SEKE} 2008},
+	author = {Hu, Lei and Sartipi, Kamran},
+	month = jan,
+	year = {2008},
+	pages = {842--846},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/J7BRZ7SC/Hu and Sartipi - Dynamic Analysis and Design Pattern Detection in J.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/3UVHHRUH/221391328_Dynamic_Analysis_and_Design_Pattern_Detection_in_Java_Programs.html:text/html}
+}
+
+@inproceedings{weiser_program_1981,
+	address = {Piscataway, NJ, USA},
+	series = {{ICSE} '81},
+	title = {Program {Slicing}},
+	isbn = {978-0-89791-146-7},
+	url = {http://dl.acm.org/citation.cfm?id=800078.802557},
+	abstract = {Program slicing is a method used by experienced computer programmers for abstracting from programs. Starting from a subset of a program's behavior, slicing reduces that program to a minimal form which still produces that behavior. The reduced program, called a “slice”, is an independent program guaranteed to faithfully represent the original program within the domain of the specified subset of behavior. Finding a slice is in general unsolvable. A dataflow algorithm is presented for approximating slices when the behavior subset is specified as the values of a set of variables at a statement. Experimental evidence is presented that these slices are used by programmers during debugging. Experience with two automatic slicing tools is summarized. New measures of program complexity are suggested based on the organization of a program's slices.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 5th {International} {Conference} on {Software} {Engineering}},
+	publisher = {IEEE Press},
+	author = {Weiser, Mark},
+	year = {1981},
+	keywords = {Data flow analysis, Debugging, Human factors, Program maintenance, Program metrics, Software tools},
+	pages = {439--449},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/YY44SUIU/Weiser - 1981 - Program Slicing.pdf:application/pdf}
+}
+
+@article{tip_survey_1995,
+	title = {A {Survey} of {Program} {Slicing} {Techniques}},
+	volume = {3},
+	abstract = {A program slice consists of the parts of a program that (potentially) affect the  values computed at some point of interest, referred to as a slicing criterion. The task  of computing program slices is called program slicing. The original definition of a  program slice was presented by Weiser in 1979. Since then, various slightly different  notions of program slices have been proposed, as well as a number of methods to  compute them. An important distinction is that between a static and a dynamic slice.  The former notion is computed without making assumptions regarding a program's  input, whereas the latter relies on some specific test case.  Procedures, arbitrary control flow, composite datatypes and pointers, and interprocess  communication each require a specific solution. We classify static and dynamic  slicing methods for each of these features, and compare their accuracy and efficiency.  Moreover, the possibilities for combining solutions for different features are investigated....},
+	journal = {Journal of Programming Languages},
+	author = {Tip, F.},
+	year = {1995},
+	pages = {121--189},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/D9S2386I/Tip - 1995 - A Survey of Program Slicing Techniques.pdf:application/pdf;Citeseer - Snapshot:/Volumes/Data/work/zotero/storage/E8HSKQXM/summary.html:text/html}
+}
+
+@inproceedings{blackburn_dacapo_2006,
+	address = {New York, NY, USA},
+	series = {{OOPSLA} '06},
+	title = {The {DaCapo} {Benchmarks}: {Java} {Benchmarking} {Development} and {Analysis}},
+	isbn = {978-1-59593-348-5},
+	shorttitle = {The {DaCapo} {Benchmarks}},
+	url = {http://doi.acm.org/10.1145/1167473.1167488},
+	doi = {10.1145/1167473.1167488},
+	abstract = {Since benchmarks drive computer science research and industry product development, which ones we use and how we evaluate them are key questions for the community. Despite complex runtime tradeoffs due to dynamic compilation and garbage collection required for Java programs, many evaluations still use methodologies developed for C, C++, and Fortran. SPEC, the dominant purveyor of benchmarks, compounded this problem by institutionalizing these methodologies for their Java benchmark suite. This paper recommends benchmarking selection and evaluation methodologies, and introduces the DaCapo benchmarks, a set of open source, client-side Java benchmarks. We demonstrate that the complex interactions of (1) architecture, (2) compiler, (3) virtual machine, (4) memory management, and (5) application require more extensive evaluation than C, C++, and Fortran which stress (4) much less, and do not require (3). We use and introduce new value, time-series, and statistical metrics for static and dynamic properties such as code complexity, code size, heap composition, and pointer mutations. No benchmark suite is definitive, but these metrics show that DaCapo improves over SPEC Java in a variety of ways, including more complex code, richer object behaviors, and more demanding memory system requirements. This paper takes a step towards improving methodologies for choosing and evaluating benchmarks to foster innovation in system design and implementation for Java and other managed languages.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 21st {Annual} {ACM} {SIGPLAN} {Conference} on {Object}-oriented {Programming} {Systems}, {Languages}, and {Applications}},
+	publisher = {ACM},
+	author = {Blackburn, Stephen M. and Garner, Robin and Hoffmann, Chris and Khang, Asjad M. and McKinley, Kathryn S. and Bentzur, Rotem and Diwan, Amer and Feinberg, Daniel and Frampton, Daniel and Guyer, Samuel Z. and Hirzel, Martin and Hosking, Antony and Jump, Maria and Lee, Han and Moss, J. Eliot B. and Phansalkar, Aashish and Stefanović, Darko and VanDrunen, Thomas and von Dincklage, Daniel and Wiedermann, Ben},
+	year = {2006},
+	keywords = {benchmark, DaCapo, Java, methodology, SPEC},
+	pages = {169--190},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/GCUIDM8X/Blackburn et al. - 2006 - The DaCapo Benchmarks Java Benchmarking Developme.pdf:application/pdf}
+}
+
 @inproceedings{madsen_string_2014,
 	series = {Lecture {Notes} in {Computer} {Science}},
 	title = {String {Analysis} for {Dynamic} {Field} {Access}},

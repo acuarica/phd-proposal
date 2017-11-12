@@ -21,6 +21,17 @@ A machine instruction set is effectively another kind of language.
 Therefore, its design of a can be affected by how compilers generate machine code.
 Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}, and \lilith{}~\cite{cook_empirical_1989}
 
+
+\section{Benchmarking}
+
+Benchmarks are crucial to properly evaluate and measure product developement.
+This is key for both research and industry.
+One popular benchmark suite for \java{} is DaCapo~\cite{blackburn_dacapo_2006}.
+This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
+
+For any benchmark to be useful and reliable, it must faithfully represent real world code.
+Therefore, we argue how important it is to make empirical studies about what programmers write.
+
 \section{Empirical Studies on Casting}
 
 The closest work to our casting study is by~\cite{winther_guarded_2011}.
@@ -111,6 +122,8 @@ Therefore, we believe that these kind of studies can be complementary for our re
 
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
+\cite{hu_dynamic_2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelli_design_2008} used only dynamic.
+
 For our study on \smu{}, we needed to discover usage patterns.
 Given its a singleton class, we have collected call sites,
 and proceed with a semi-automatic analysis.
@@ -149,6 +162,7 @@ Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific lan
 
 On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
 Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
+
 
 %%% Local Variables:
 %%% mode: latex
