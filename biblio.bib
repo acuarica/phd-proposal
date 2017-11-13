@@ -1,99 +1,4 @@
 
-@inproceedings{arcelli_design_2008,
-	series = {Communications in {Computer} and {Information} {Science}},
-	title = {Design {Pattern} {Detection} in {Java} {Systems}: {A} {Dynamic} {Analysis} {Based} {Approach}},
-	isbn = {978-3-642-14818-7 978-3-642-14819-4},
-	shorttitle = {Design {Pattern} {Detection} in {Java} {Systems}},
-	url = {https://link.springer.com/chapter/10.1007/978-3-642-14819-4_12},
-	doi = {10.1007/978-3-642-14819-4_12},
-	abstract = {In the context of reverse engineering, the recognition of design patterns provides additional information related to the rationale behind the design. This paper presents our approach to the recognition of the behavioral design patterns based on dynamic analysis of Java software systems. The idea behind our solution is to identify a set of rules capturing information necessary to identify a design pattern instance. Rules are characterized by weights indicating their importance in the detection of a specific design pattern. The core behavior of each design pattern may be described through a subset of these rules forming a macrorule. Macrorules define the main traits of a pattern. JADEPT (JAva DEsign Pattern deTector) is our software for design pattern identification based on this idea. It captures static and dynamic aspects through a dynamic analysis of the software by exploiting the JPDA (Java Platform Debugger Architecture). The extracted information is stored in a database. Queries to the database implement the rules defined to recognize the design patterns. The tool has been validated with positive results on different implementations of design patterns and on systems such as JADEPT itself.},
-	language = {en},
-	urldate = {2017-11-12},
-	booktitle = {Evaluation of {Novel} {Approaches} to {Software} {Engineering}},
-	publisher = {Springer, Berlin, Heidelberg},
-	author = {Arcelli, Francesca and Perin, Fabrizio and Raibulet, Claudia and Ravani, Stefano},
-	month = may,
-	year = {2008},
-	pages = {163--179},
-	file = {Snapshot:/Volumes/Data/work/zotero/storage/KS9GYNA3/978-3-642-14819-4_12.html:text/html}
-}
-
-@inproceedings{hu_dynamic_2008,
-	title = {Dynamic {Analysis} and {Design} {Pattern} {Detection} in {Java} {Programs}.},
-	abstract = {Identifying design patterns within an existing software system can support understandability and reuse of the system's core functionality. In this context, incorporating behavioral features into the design pattern recovery would enhance the scalability of the process. The main advantage of the new approach in this paper over the existing approaches is incorporating dynamic analysis and feature localization in source code. This allows us to perform a goal-driven design pattern detection and focus ourselves on patterns that implement specific software functionality, as opposed to conducting a general pattern detection which is susceptible to high complexity problem. Using a new pattern description language and a matching process we identify the instances of these patterns within the obtained classes and interactions. We use a two-phase matching process: i) an approximate matching of class attributes generates a list of candidate patterns; and ii) a structural matching of classes identifies exact matched patterns. One target application domain can be software product line which emphasizes on reusing core software artifacts to construct a reference architecture for several similar products. Finally, we present the result of a case study.},
-	booktitle = {20th {International} {Conference} on {Software} {Engineering} and {Knowledge} {Engineering}, {SEKE} 2008},
-	author = {Hu, Lei and Sartipi, Kamran},
-	month = jan,
-	year = {2008},
-	pages = {842--846},
-	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/J7BRZ7SC/Hu and Sartipi - Dynamic Analysis and Design Pattern Detection in J.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/3UVHHRUH/221391328_Dynamic_Analysis_and_Design_Pattern_Detection_in_Java_Programs.html:text/html}
-}
-
-@inproceedings{weiser_program_1981,
-	address = {Piscataway, NJ, USA},
-	series = {{ICSE} '81},
-	title = {Program {Slicing}},
-	isbn = {978-0-89791-146-7},
-	url = {http://dl.acm.org/citation.cfm?id=800078.802557},
-	abstract = {Program slicing is a method used by experienced computer programmers for abstracting from programs. Starting from a subset of a program's behavior, slicing reduces that program to a minimal form which still produces that behavior. The reduced program, called a “slice”, is an independent program guaranteed to faithfully represent the original program within the domain of the specified subset of behavior. Finding a slice is in general unsolvable. A dataflow algorithm is presented for approximating slices when the behavior subset is specified as the values of a set of variables at a statement. Experimental evidence is presented that these slices are used by programmers during debugging. Experience with two automatic slicing tools is summarized. New measures of program complexity are suggested based on the organization of a program's slices.},
-	urldate = {2017-11-12},
-	booktitle = {Proceedings of the 5th {International} {Conference} on {Software} {Engineering}},
-	publisher = {IEEE Press},
-	author = {Weiser, Mark},
-	year = {1981},
-	keywords = {Data flow analysis, Debugging, Human factors, Program maintenance, Program metrics, Software tools},
-	pages = {439--449},
-	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/YY44SUIU/Weiser - 1981 - Program Slicing.pdf:application/pdf}
-}
-
-@article{tip_survey_1995,
-	title = {A {Survey} of {Program} {Slicing} {Techniques}},
-	volume = {3},
-	abstract = {A program slice consists of the parts of a program that (potentially) affect the  values computed at some point of interest, referred to as a slicing criterion. The task  of computing program slices is called program slicing. The original definition of a  program slice was presented by Weiser in 1979. Since then, various slightly different  notions of program slices have been proposed, as well as a number of methods to  compute them. An important distinction is that between a static and a dynamic slice.  The former notion is computed without making assumptions regarding a program's  input, whereas the latter relies on some specific test case.  Procedures, arbitrary control flow, composite datatypes and pointers, and interprocess  communication each require a specific solution. We classify static and dynamic  slicing methods for each of these features, and compare their accuracy and efficiency.  Moreover, the possibilities for combining solutions for different features are investigated....},
-	journal = {Journal of Programming Languages},
-	author = {Tip, F.},
-	year = {1995},
-	pages = {121--189},
-	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/D9S2386I/Tip - 1995 - A Survey of Program Slicing Techniques.pdf:application/pdf;Citeseer - Snapshot:/Volumes/Data/work/zotero/storage/E8HSKQXM/summary.html:text/html}
-}
-
-@inproceedings{blackburn_dacapo_2006,
-	address = {New York, NY, USA},
-	series = {{OOPSLA} '06},
-	title = {The {DaCapo} {Benchmarks}: {Java} {Benchmarking} {Development} and {Analysis}},
-	isbn = {978-1-59593-348-5},
-	shorttitle = {The {DaCapo} {Benchmarks}},
-	url = {http://doi.acm.org/10.1145/1167473.1167488},
-	doi = {10.1145/1167473.1167488},
-	abstract = {Since benchmarks drive computer science research and industry product development, which ones we use and how we evaluate them are key questions for the community. Despite complex runtime tradeoffs due to dynamic compilation and garbage collection required for Java programs, many evaluations still use methodologies developed for C, C++, and Fortran. SPEC, the dominant purveyor of benchmarks, compounded this problem by institutionalizing these methodologies for their Java benchmark suite. This paper recommends benchmarking selection and evaluation methodologies, and introduces the DaCapo benchmarks, a set of open source, client-side Java benchmarks. We demonstrate that the complex interactions of (1) architecture, (2) compiler, (3) virtual machine, (4) memory management, and (5) application require more extensive evaluation than C, C++, and Fortran which stress (4) much less, and do not require (3). We use and introduce new value, time-series, and statistical metrics for static and dynamic properties such as code complexity, code size, heap composition, and pointer mutations. No benchmark suite is definitive, but these metrics show that DaCapo improves over SPEC Java in a variety of ways, including more complex code, richer object behaviors, and more demanding memory system requirements. This paper takes a step towards improving methodologies for choosing and evaluating benchmarks to foster innovation in system design and implementation for Java and other managed languages.},
-	urldate = {2017-11-12},
-	booktitle = {Proceedings of the 21st {Annual} {ACM} {SIGPLAN} {Conference} on {Object}-oriented {Programming} {Systems}, {Languages}, and {Applications}},
-	publisher = {ACM},
-	author = {Blackburn, Stephen M. and Garner, Robin and Hoffmann, Chris and Khang, Asjad M. and McKinley, Kathryn S. and Bentzur, Rotem and Diwan, Amer and Feinberg, Daniel and Frampton, Daniel and Guyer, Samuel Z. and Hirzel, Martin and Hosking, Antony and Jump, Maria and Lee, Han and Moss, J. Eliot B. and Phansalkar, Aashish and Stefanović, Darko and VanDrunen, Thomas and von Dincklage, Daniel and Wiedermann, Ben},
-	year = {2006},
-	keywords = {benchmark, DaCapo, Java, methodology, SPEC},
-	pages = {169--190},
-	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/GCUIDM8X/Blackburn et al. - 2006 - The DaCapo Benchmarks Java Benchmarking Developme.pdf:application/pdf}
-}
-
-@inproceedings{madsen_string_2014,
-	series = {Lecture {Notes} in {Computer} {Science}},
-	title = {String {Analysis} for {Dynamic} {Field} {Access}},
-	isbn = {978-3-642-54806-2 978-3-642-54807-9},
-	url = {https://link.springer.com/chapter/10.1007/978-3-642-54807-9_12},
-	doi = {10.1007/978-3-642-54807-9_12},
-	abstract = {In JavaScript, and scripting languages in general, dynamic field access is a commonly used feature. Unfortunately, current static analysis tools either completely ignore dynamic field access or use overly conservative approximations that lead to poor precision and scalability.We present new string domains to reason about dynamic field access in a static analysis tool. A key feature of the domains is that the equal, concatenate and join operations take O{\textbackslash}mathcal\{O\}(1) time.Experimental evaluation on four common JavaScript libraries, including jQuery and Prototype, shows that traditional string domains are insufficient. For instance, the commonly used constant string domain can only ensure that at most 21\% dynamic field accesses are without false positives. In contrast, our string domain H{\textbackslash}mathcal\{H\} ensures no false positives for up to 90\% of all dynamic field accesses.We demonstrate that a dataflow analysis equipped with the H{\textbackslash}mathcal\{H\} domain gains significant precision resulting in an analysis speedup of more than 1.5x for 7 out of 10 benchmark programs.},
-	language = {en},
-	urldate = {2017-11-12},
-	booktitle = {Compiler {Construction}},
-	publisher = {Springer, Berlin, Heidelberg},
-	author = {Madsen, Magnus and Andreasen, Esben},
-	month = apr,
-	year = {2014},
-	pages = {197--217},
-	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/I28CW7EC/Madsen and Andreasen - 2014 - String Analysis for Dynamic Field Access.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/LT2L58YF/978-3-642-54807-9_12.html:text/html}
-}
-
 @inproceedings{mastrangelo_jnif:_2014,
 	address = {New York, NY, USA},
 	series = {{PPPJ} '14},
@@ -677,23 +582,6 @@
 	keywords = {Conflict reduction, Multi-version concurrency control, Software transactional memory, Transactions},
 	pages = {172--185},
 	file = {ScienceDirect Full Text PDF:/Volumes/Data/work/zotero/storage/77L9QTGT/Cachopo and Rito-Silva - 2006 - Versioned boxes as the basis for memory transactio.pdf:application/pdf;ScienceDirect Snapshot:/Volumes/Data/work/zotero/storage/HLH3QHIB/S0167642306001171.html:text/html}
-}
-
-@inproceedings{mckinna_why_2006,
-	address = {New York, NY, USA},
-	series = {{POPL} '06},
-	title = {Why {Dependent} {Types} {Matter}},
-	isbn = {978-1-59593-027-9},
-	url = {http://doi.acm.org/10.1145/1111037.1111038},
-	doi = {10.1145/1111037.1111038},
-	abstract = {Language designers have in recent years proposed a wealth of richer type systems for programming which seek to extend the range of statically enforced guarantees on data and code. Most such proposals have been evolutionary extensions of ML or Haskell, offering programmers a balanced compromise between expressive strength and existing well-understood technology. Typically they revolve around type- or kind-indexed types such as GADTs, supported by limited equality reasoning at the type-checking level, thus separating the dynamic behaviour of programs from the (simpler) static behaviour of indexing information occurring in their types.I want to argue in this talk for a more radical departure from such practice by examining full spectrum type dependency, lifting such restrictions on the data upon which types may depend. Conor McBride and I designed the language EPIGRAM for experiments in programming with inductive families of data (of which GADTs are a special case). Using it for illustration, I will explore some of the possibilities and challenges afforded by full spectrum type dependency at the static and dynamic level: types directly support modelling complex invariants in terms of other data (rather than their types), with a Curry-Howard flavour of data-as-evidence; such complexity is on a 'pay-as-you-go' basis, while keeping type annotations and other syntactic overheads to a minimum; data decomposition steps, e.g. case analysis, furnish more informative interactions between types and values during typechecking; such steps may moreover be abstractly specified by their types, and thus user definable; this supports a style of programming embracing 'learning by testing', views, and Burstall's 'hand simulation plus a little induction'; the absence of a rigid phase distinction need not lead to type-passing or excessive run-time overhead; effectful computation, in particular partiality, can be incorporated via variations on existing ideas such as monads.This talk is based on joint work with Conor McBride, Edwin Brady and Thorsten Altenkirch.},
-	urldate = {2017-11-11},
-	booktitle = {Conference {Record} of the 33rd {ACM} {SIGPLAN}-{SIGACT} {Symposium} on {Principles} of {Programming} {Languages}},
-	publisher = {ACM},
-	author = {McKinna, James},
-	year = {2006},
-	pages = {1--1},
-	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/KVVEIQ6A/McKinna - 2006 - Why Dependent Types Matter.pdf:application/pdf}
 }
 
 @article{fahndrich_language_2006,
@@ -2217,7 +2105,7 @@
 	author = {Cook, R. P.},
 	month = jan,
 	year = {1989},
-	keywords = {code generation strategies, Computer aided instruction, Computer architecture, Hardware, High level languages, instruction sets, language usage, Lilith instruction set, Lilith software environment, Mesa instruction set architecture, Modula, opcode statistics, Operating systems, Packaging machines, Performance analysis, Software packages, static analysis, Statistics, system software, System software, systems software},
+	keywords = {Operating systems, Performance analysis, Computer architecture, Hardware, Statistics, code generation strategies, Computer aided instruction, High level languages, instruction sets, language usage, Lilith instruction set, Lilith software environment, Mesa instruction set architecture, Modula, opcode statistics, Packaging machines, Software packages, static analysis, system software, System software, systems software},
 	pages = {156--158},
 	file = {IEEE Xplore Abstract Record:/Volumes/Data/work/zotero/storage/SFFJIB9S/8740.html:text/html;IEEE Xplore Full Text PDF:/Volumes/Data/work/zotero/storage/6R6EB6W8/Cook - 1989 - An empirical analysis of the Lilith instruction se.pdf:application/pdf}
 }
@@ -2280,7 +2168,7 @@ scope here.},
 	author = {Li, L. and Bissyand{\'e}, T. F. and Traon, Y. L. and Klein, J.},
 	month = oct,
 	year = {2016},
-	keywords = {Android (operating system), Android programming model, Androids, API-based functionality, application program interface, application program interfaces, authorisation, Ecosystems, Google, Humanoid robots, inaccessible Android API, Libraries, mobile app risk, mobile computing, risk management, Runtime, SDK, smart phones, Software, software development kit, software engineering, source code (software), source code base, unsafe},
+	keywords = {Runtime, Libraries, application program interfaces, Software, software engineering, source code (software), Ecosystems, unsafe, Android (operating system), Android programming model, Androids, API-based functionality, application program interface, authorisation, Google, Humanoid robots, inaccessible Android API, mobile app risk, mobile computing, risk management, SDK, smart phones, software development kit, source code base},
 	pages = {411--422},
 	file = {IEEE Xplore Abstract Record:/Volumes/Data/work/zotero/storage/4C4Q9XKX/7816486.html:text/html;IEEE Xplore Full Text PDF:/Volumes/Data/work/zotero/storage/QFQSUX6L/Li et al. - 2016 - Accessing Inaccessible Android APIs An Empirical .pdf:application/pdf}
 }
@@ -2298,7 +2186,7 @@ scope here.},
 	publisher = {ACM},
 	author = {Hora, Andr{\'e} and Valente, Marco Tulio and Robbes, Romain and Anquetil, Nicolas},
 	year = {2016},
-	keywords = {API Usage, Internal Interface Analysis, Software Evolution, unsafe},
+	keywords = {unsafe, API Usage, Internal Interface Analysis, Software Evolution},
 	pages = {278--289},
 	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/5N3TT5YR/Hora et al. - 2016 - When Should Internal Interfaces Be Promoted to Pub.pdf:application/pdf}
 }
@@ -2311,7 +2199,7 @@ scope here.},
 	author = {Saied, M. A. and Sahraoui, H.},
 	month = may,
 	year = {2016},
-	keywords = {API Documentation, API Usage, application program interfaces, application programming interfaces, client programs, client-based API usage pattern mining, client-based technique, Context, cooperative usage pattern mining technique, COUPminer, data mining, Digital signatures, Documentation, Java, Libraries, library source code, library-based API usage pattern mining, library-based techniques, Semantics, Software Clustering, software developers, software libraries, source code (software), unsafe, Usage Pattern},
+	keywords = {Java, Libraries, software libraries, data mining, application program interfaces, Semantics, source code (software), unsafe, API Usage, API Documentation, application programming interfaces, client programs, client-based API usage pattern mining, client-based technique, Context, cooperative usage pattern mining technique, COUPminer, Digital signatures, Documentation, library source code, library-based API usage pattern mining, library-based techniques, Software Clustering, software developers, Usage Pattern},
 	pages = {1--10},
 	file = {IEEE Xplore Abstract Record:/Volumes/Data/work/zotero/storage/N2Y6FBVG/7503717.html:text/html;IEEE Xplore Full Text PDF:/Volumes/Data/work/zotero/storage/JDFHH96C/Saied and Sahraoui - 2016 - A cooperative approach for combining client-based .pdf:application/pdf}
 }
@@ -2330,7 +2218,7 @@ scope here.},
 	publisher = {ACM},
 	author = {Bruno, Rodrigo and Oliveira, Lu{\'i}s Picciochi and Ferreira, Paulo},
 	year = {2017},
-	keywords = {Big Data, Garbage Collection, Latency, unsafe},
+	keywords = {unsafe, Big Data, Garbage Collection, Latency},
 	pages = {2--13},
 	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/PWDU74BA/Bruno et al. - 2017 - NG2C Pretenuring Garbage Collection with Dynamic .pdf:application/pdf}
 }
@@ -2348,7 +2236,7 @@ scope here.},
 	publisher = {ACM},
 	author = {Holzinger, Philipp and Triller, Stefan and Bartel, Alexandre and Bodden, Eric},
 	year = {2016},
-	keywords = {access control, exploits, java security, security analysis, unsafe},
+	keywords = {unsafe, access control, exploits, java security, security analysis},
 	pages = {779--790},
 	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/VDLLXUBH/Holzinger et al. - 2016 - An In-Depth Study of More Than Ten Years of Java E.pdf:application/pdf}
 }
@@ -2362,7 +2250,7 @@ scope here.},
 	author = {Rebou{\c c}as, M. and Pinto, G. and Ebert, F. and Torres, W. and Serebrenik, A. and Castor, F.},
 	month = mar,
 	year = {2016},
-	keywords = {compiler, computational linguistics, Computer languages, Interviews, libraries, Libraries, Programming, programming languages, Software, StackOverflow, Standards, Swift developers, Swift programming languages, Testing, unsafe, Xcode},
+	keywords = {computational linguistics, Computer languages, Libraries, Programming, Software, programming languages, unsafe, Testing, compiler, Interviews, libraries, StackOverflow, Standards, Swift developers, Swift programming languages, Xcode},
 	pages = {634--638},
 	file = {IEEE Xplore Abstract Record:/Volumes/Data/work/zotero/storage/JY8EQ5RC/7476687.html:text/html;IEEE Xplore Full Text PDF:/Volumes/Data/work/zotero/storage/8WTKH9YQ/Rebou{\c c}as et al. - 2016 - An Empirical Study on the Usage of the Swift Progr.pdf:application/pdf}
 }
@@ -2380,7 +2268,7 @@ scope here.},
 	publisher = {ACM},
 	author = {Zhang, Yizhou and Salvaneschi, Guido and Beightol, Quinn and Liskov, Barbara and Myers, Andrew C.},
 	year = {2016},
-	keywords = {exception handling, Exception tunneling, Genus, unsafe},
+	keywords = {exception handling, unsafe, Exception tunneling, Genus},
 	pages = {281--295},
 	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/JQTY67XV/Zhang et al. - 2016 - Accepting Blame for Safe Tunneled Exceptions.pdf:application/pdf}
 }
@@ -2398,7 +2286,7 @@ scope here.},
 	publisher = {IEEE Press},
 	author = {Jiang, He and Zhang, Jingxuan and Ren, Zhilei and Zhang, Tao},
 	year = {2017},
-	keywords = {application programming interface, pagerank algorithm, topic model, unsafe, unsupervised approaches},
+	keywords = {application programming interface, unsafe, pagerank algorithm, topic model, unsupervised approaches},
 	pages = {38--48},
 	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/DK8GYWNG/Jiang et al. - 2017 - An Unsupervised Approach for Discovering Relevant .pdf:application/pdf}
 }
@@ -2414,4 +2302,258 @@ scope here.},
 	year = {2017},
 	keywords = {unsafe},
 	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/GLMVIEMT/Staicu et al. - 2017 - Understanding and Automatically Preventing Injecti.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/JFUQJN4L/understanding-automatically-preventing-injection-attacks-node-js.html:text/html}
+}
+
+@article{diaconescu_logical_2002,
+	series = {Rewriting {Logic} and its {Applications}},
+	title = {Logical foundations of {CafeOBJ}},
+	volume = {285},
+	issn = {0304-3975},
+	url = {http://www.sciencedirect.com/science/article/pii/S0304397501003619},
+	doi = {10.1016/S0304-3975(01)00361-9},
+	abstract = {This paper surveys the logical and mathematical foundations of CafeOBJ, which is a successor of the famous algebraic specification language OBJ but adds to it several new primitive paradigms such as behavioural concurrent specification and rewriting logic. We first give a concise overview of CafeOBJ. Then we focus on the actual logical foundations of the language at two different levels: basic specification and structured specification, including also the definition of the CafeOBJ institution. We survey some novel or more classical theoretical concepts supporting the logical foundations of CafeOBJ, pointing out the main results but without giving proofs and without discussing all mathematical details. Novel theoretical concepts include the coherent hidden algebra formalism and its combination with rewriting logic, and Grothendieck (or fibred) institutions. However, for proofs and for some of the mathematical details not discussed here we give pointers to relevant publications. The logical foundations of CafeOBJ are structured by the concept of institution. Moreover, the design of CafeOBJ emerged from its logical foundations, and institution concepts played a crucial r{\^o}le in structuring the language design.},
+	number = {2},
+	urldate = {2017-11-12},
+	journal = {Theoretical Computer Science},
+	author = {Diaconescu, R{\u a}zvan and Futatsugi, Kokichi},
+	month = aug,
+	year = {2002},
+	keywords = {Algebraic specification, Behavioural specification, Institutions},
+	pages = {289--318},
+	file = {ScienceDirect Full Text PDF:/Volumes/Data/work/zotero/storage/57XXM964/Diaconescu and Futatsugi - 2002 - Logical foundations of CafeOBJ.pdf:application/pdf;ScienceDirect Snapshot:/Volumes/Data/work/zotero/storage/DZSU2EG9/S0304397501003619.html:text/html}
+}
+
+@article{fruhwirth_theory_1998,
+	title = {Theory and practice of constraint handling rules},
+	volume = {37},
+	issn = {0743-1066},
+	url = {http://www.sciencedirect.com/science/article/pii/S0743106698100055},
+	doi = {10.1016/S0743-1066(98)10005-5},
+	abstract = {Constraint Handling Rules (CHR) are our proposal to allow more flexibility and application-oriented customization of constraint systems. CHR are a declarative language extension especially designed for writing user-defined constraints. CHR are essentially a committed-choice language consisting of multi-headed guarded rules that rewrite constraints into simpler ones until they are solved. In this broad survey we aim at covering all aspects of CHR as they currently present themselves. Going from theory to practice, we will define syntax and semantics for CHR, introduce an important decidable property, confluence, of CHR programs and define a tight integration of CHR with constraint logic programming languages. This survey then describes implementations of the language before we review several constraint solvers {\textendash} both traditional and nonstandard ones {\textendash} written in the CHR language. Finally we introduce two innovative applications that benefited from using CHR.},
+	number = {1},
+	urldate = {2017-11-12},
+	journal = {The Journal of Logic Programming},
+	author = {Fr{\"u}hwirth, Thom},
+	month = oct,
+	year = {1998},
+	pages = {95--138},
+	file = {ScienceDirect Full Text PDF:/Volumes/Data/work/zotero/storage/UCH4KIFM/Fr{\"u}hwirth - 1998 - Theory and practice of constraint handling rules.pdf:application/pdf;ScienceDirect Snapshot:/Volumes/Data/work/zotero/storage/U72YJZ6F/S0743106698100055.html:text/html}
+}
+
+@book{gluck_roadmap_1996,
+	title = {A {Roadmap} to {Metacomputation} by {Supercompilation}},
+	abstract = {This paper gives a gentle introduction to Turchin's supercompilation and its applications in metacomputation with an emphasis on recent developments. First, a complete supercompiler, including positive driving and generalization, is defined for a functional language and illustrated with examples. Then a taxonomy of related transformers is given and compared to the supercompiler. Finally, we put supercompilation into the larger perspective of metacomputation and consider three metacomputation tasks: specialization, composition, and inversion.},
+	author = {Gl{\"u}ck, Robert and S{\o}rensen, Morten Heine},
+	year = {1996},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/G53PFBYS/Gl{\"u}ck and S{\o}rensen - 1996 - A Roadmap to Metacomputation by Supercompilation.pdf:application/pdf;Citeseer - Snapshot:/Volumes/Data/work/zotero/storage/EPQP6QQF/summary.html:text/html}
+}
+
+@inproceedings{coutts_stream_2007,
+	address = {New York, NY, USA},
+	series = {{ICFP} '07},
+	title = {Stream {Fusion}: {From} {Lists} to {Streams} to {Nothing} at {All}},
+	isbn = {978-1-59593-815-2},
+	shorttitle = {Stream {Fusion}},
+	url = {http://doi.acm.org/10.1145/1291151.1291199},
+	doi = {10.1145/1291151.1291199},
+	abstract = {This paper presents an automatic deforestation system, stream fusion, based on equational transformations, that fuses a wider range of functions than existing short-cut fusion systems. In particular, stream fusion is able to fuse zips, left folds and functions over nested lists, including list comprehensions. A distinguishing feature of the framework is its simplicity: by transforming list functions to expose their structure, intermediate values are eliminated by general purpose compiler optimisations. We have reimplemented the Haskell standard List library on top of our framework, providing stream fusion for Haskell lists. By allowing a wider range of functions to fuse, we see an increase in the number of occurrences of fusion in typical Haskell programs. We present benchmarks documenting time and space improvements.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 12th {ACM} {SIGPLAN} {International} {Conference} on {Functional} {Programming}},
+	publisher = {ACM},
+	author = {Coutts, Duncan and Leshchinskiy, Roman and Stewart, Don},
+	year = {2007},
+	keywords = {program transformation, functional programming, deforestation, program fusion, program optimisation},
+	pages = {315--326},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/NRDHG6ZW/Coutts et al. - 2007 - Stream Fusion From Lists to Streams to Nothing at.pdf:application/pdf}
+}
+
+@inproceedings{altenkirch_why_2005,
+	title = {Why {Dependent} {Types} {Matter}},
+	abstract = {We exhibit the rationale behind the design of Epigram, a dependently typed programming language and interactive program development system, using refinements of a well known program{\textemdash}merge sort{\textemdash}as a running example. We discuss its relationship with other proposals to introduce aspects of dependent types into functional programming languages and sketch some topics for further work in this area. 1.},
+	booktitle = {In preparation, http://www.e-pig.org/downloads/ydtm.pdf},
+	author = {Altenkirch, Thorsten and Mcbride, Conor and Mckinna, James},
+	year = {2005},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/F7Z66P8B/Altenkirch et al. - 2005 - Why dependent types matter.pdf:application/pdf;Citeseer - Snapshot:/Volumes/Data/work/zotero/storage/Y4KDBFCK/summary.html:text/html}
+}
+
+@inproceedings{yang_survey_2006,
+	address = {New York, NY, USA},
+	series = {{AST} '06},
+	title = {A {Survey} of {Coverage} {Based} {Testing} {Tools}},
+	isbn = {978-1-59593-408-6},
+	url = {http://doi.acm.org/10.1145/1138929.1138949},
+	doi = {10.1145/1138929.1138949},
+	abstract = {Test coverage is sometimes used as a way to measure how thoroughly software is tested. Coverage is used by software developers and sometimes by vendors to indicate their confidence in the readiness of their software. This survey studies and compares 17 coverage-based testing tools focusing on, but not restricted to coverage measurement. We also survey additional features, including program prioritization for testing, assistance in debugging, automatic generation of test cases, and customization of test reports. Such features make tools more useful and practical, especially for large-scale, real-life commercial software applications. Our initial motivations were both to understand the available test coverage tools and to compare them to a tool that we have developed, called eXVantage1 (a tool suite that includes code coverage testing, debugging, performance profiling, and reporting). Our study shows that each tool has its unique features tailored to its application domains. Therefore this study can be used to pick the right coverage testing tools depending on various requirements.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 2006 {International} {Workshop} on {Automation} of {Software} {Test}},
+	publisher = {ACM},
+	author = {Yang, Qian and Li, J. Jenny and Weiss, David},
+	year = {2006},
+	keywords = {automate test case generation, code coverage, coverage-based testing tool, dominator analysis, eXVantage, prioritization},
+	pages = {99--103},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/NQXDWMNJ/Yang et al. - 2006 - A Survey of Coverage Based Testing Tools.pdf:application/pdf}
+}
+
+@inproceedings{madsen_string_2014,
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {String {Analysis} for {Dynamic} {Field} {Access}},
+	isbn = {978-3-642-54806-2 978-3-642-54807-9},
+	url = {https://link.springer.com/chapter/10.1007/978-3-642-54807-9_12},
+	doi = {10.1007/978-3-642-54807-9_12},
+	abstract = {In JavaScript, and scripting languages in general, dynamic field access is a commonly used feature. Unfortunately, current static analysis tools either completely ignore dynamic field access or use overly conservative approximations that lead to poor precision and scalability.We present new string domains to reason about dynamic field access in a static analysis tool. A key feature of the domains is that the equal, concatenate and join operations take ?O{\textbackslash}mathcal\{O\}(1) time.Experimental evaluation on four common JavaScript libraries, including jQuery and Prototype, shows that traditional string domains are insufficient. For instance, the commonly used constant string domain can only ensure that at most 21\% dynamic field accesses are without false positives. In contrast, our string domain ?H{\textbackslash}mathcal\{H\} ensures no false positives for up to 90\% of all dynamic field accesses.We demonstrate that a dataflow analysis equipped with the ?H{\textbackslash}mathcal\{H\} domain gains significant precision resulting in an analysis speedup of more than 1.5x for 7 out of 10 benchmark programs.},
+	language = {en},
+	urldate = {2017-11-12},
+	booktitle = {Compiler {Construction}},
+	publisher = {Springer, Berlin, Heidelberg},
+	author = {Madsen, Magnus and Andreasen, Esben},
+	month = apr,
+	year = {2014},
+	pages = {197--217},
+	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/I28CW7EC/Madsen and Andreasen - 2014 - String Analysis for Dynamic Field Access.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/LT2L58YF/978-3-642-54807-9_12.html:text/html}
+}
+
+@inproceedings{blackburn_dacapo_2006,
+	address = {New York, NY, USA},
+	series = {{OOPSLA} '06},
+	title = {The {DaCapo} {Benchmarks}: {Java} {Benchmarking} {Development} and {Analysis}},
+	isbn = {978-1-59593-348-5},
+	shorttitle = {The {DaCapo} {Benchmarks}},
+	url = {http://doi.acm.org/10.1145/1167473.1167488},
+	doi = {10.1145/1167473.1167488},
+	abstract = {Since benchmarks drive computer science research and industry product development, which ones we use and how we evaluate them are key questions for the community. Despite complex runtime tradeoffs due to dynamic compilation and garbage collection required for Java programs, many evaluations still use methodologies developed for C, C++, and Fortran. SPEC, the dominant purveyor of benchmarks, compounded this problem by institutionalizing these methodologies for their Java benchmark suite. This paper recommends benchmarking selection and evaluation methodologies, and introduces the DaCapo benchmarks, a set of open source, client-side Java benchmarks. We demonstrate that the complex interactions of (1) architecture, (2) compiler, (3) virtual machine, (4) memory management, and (5) application require more extensive evaluation than C, C++, and Fortran which stress (4) much less, and do not require (3). We use and introduce new value, time-series, and statistical metrics for static and dynamic properties such as code complexity, code size, heap composition, and pointer mutations. No benchmark suite is definitive, but these metrics show that DaCapo improves over SPEC Java in a variety of ways, including more complex code, richer object behaviors, and more demanding memory system requirements. This paper takes a step towards improving methodologies for choosing and evaluating benchmarks to foster innovation in system design and implementation for Java and other managed languages.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 21st {Annual} {ACM} {SIGPLAN} {Conference} on {Object}-oriented {Programming} {Systems}, {Languages}, and {Applications}},
+	publisher = {ACM},
+	author = {Blackburn, Stephen M. and Garner, Robin and Hoffmann, Chris and Khang, Asjad M. and McKinley, Kathryn S. and Bentzur, Rotem and Diwan, Amer and Feinberg, Daniel and Frampton, Daniel and Guyer, Samuel Z. and Hirzel, Martin and Hosking, Antony and Jump, Maria and Lee, Han and Moss, J. Eliot B. and Phansalkar, Aashish and Stefanovi{\'c}, Darko and VanDrunen, Thomas and von Dincklage, Daniel and Wiedermann, Ben},
+	year = {2006},
+	keywords = {Java, benchmark, DaCapo, methodology, SPEC},
+	pages = {169--190},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/GCUIDM8X/Blackburn et al. - 2006 - The DaCapo Benchmarks Java Benchmarking Developme.pdf:application/pdf}
+}
+
+@article{brady_hints_1977,
+	title = {Hints on proofs by recursion induction},
+	volume = {20},
+	issn = {0010-4620},
+	url = {https://academic.oup.com/comjnl/article/20/4/353/393896},
+	doi = {10.1093/comjnl/20.4.353},
+	abstract = {In 1963 John McCarthy proposed a formalism based on conditional expression and recursion for use in the emergent theory of computation. Included in his proposals was a proof technique, known as recursive induction, which could be used to establish the equivalence of recursively defined functions. This paper shows that the discovery of an equations to serve in a proof by recursive induction does not have to rely on luck or inspiration, but can be developed rationally hand in hand with the development of the proof.},
+	number = {4},
+	urldate = {2017-11-12},
+	journal = {The Computer Journal},
+	author = {Brady, J. M.},
+	month = jan,
+	year = {1977},
+	pages = {353--355},
+	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/CZ7CGRRC/Brady - 1977 - Hints on proofs by recursion induction.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/7KNADDWH/Hints-on-proofs-by-recursion-induction.html:text/html}
+}
+
+@inproceedings{jhala_structural_2006,
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {Structural {Invariants}},
+	isbn = {978-3-540-37756-6 978-3-540-37758-0},
+	url = {https://link.springer.com/chapter/10.1007/11823230_6},
+	doi = {10.1007/11823230_6},
+	abstract = {We present structural invariants (SI), a new technique for incrementally overapproximating the verification condition of a program in static single assignment form by making a linear pass over the dominator tree of the program. The 1-level SI at a program location is the conjunction of all dominating program statements viewed as constraints. For any k, we define a k-level SI by recursively strengthening the dominating join points of the 1-level SI with the (k {\textendash} 1)-level SI of the predecessors of the join point, thereby providing a tunable selector to add path-sensitivity incrementally. By ignoring program paths, the size of the SI and correspondingly the time to discharge the validity query remains small, allowing the technique to scale to large programs. We show experimentally that even with k <=2, for a set of open-source programs totaling 570K lines and properties for which specialized analyses have been previously devised, our method provides an automatic and scalable algorithm with a low false positive rate.},
+	language = {en},
+	urldate = {2017-11-12},
+	booktitle = {Static {Analysis}},
+	publisher = {Springer, Berlin, Heidelberg},
+	author = {Jhala, Ranjit and Majumdar, Rupak and Xu, Ru-Gang},
+	month = aug,
+	year = {2006},
+	pages = {71--87},
+	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/HZ9JIP9B/Jhala et al. - 2006 - Structural Invariants.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/IQKXKB4E/11823230_6.html:text/html}
+}
+
+@article{lamport_state_1978,
+	title = {State the {Problem} {Before} {Describing} the {Solution}},
+	volume = {3},
+	issn = {0163-5948},
+	url = {http://doi.acm.org/10.1145/1010734.1010737},
+	doi = {10.1145/1010734.1010737},
+	number = {1},
+	urldate = {2017-11-12},
+	journal = {SIGSOFT Softw. Eng. Notes},
+	author = {Lamport, Leslie},
+	month = jan,
+	year = {1978},
+	pages = {26--26},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/5D2JKFWN/Lamport - 1978 - State the Problem Before Describing the Solution.pdf:application/pdf}
+}
+
+@inproceedings{weiser_program_1981,
+	address = {Piscataway, NJ, USA},
+	series = {{ICSE} '81},
+	title = {Program {Slicing}},
+	isbn = {978-0-89791-146-7},
+	url = {http://dl.acm.org/citation.cfm?id=800078.802557},
+	abstract = {Program slicing is a method used by experienced computer programmers for abstracting from programs. Starting from a subset of a program's behavior, slicing reduces that program to a minimal form which still produces that behavior. The reduced program, called a {\textquotedblleft}slice{\textquotedblright}, is an independent program guaranteed to faithfully represent the original program within the domain of the specified subset of behavior. Finding a slice is in general unsolvable. A dataflow algorithm is presented for approximating slices when the behavior subset is specified as the values of a set of variables at a statement. Experimental evidence is presented that these slices are used by programmers during debugging. Experience with two automatic slicing tools is summarized. New measures of program complexity are suggested based on the organization of a program's slices.},
+	urldate = {2017-11-12},
+	booktitle = {Proceedings of the 5th {International} {Conference} on {Software} {Engineering}},
+	publisher = {IEEE Press},
+	author = {Weiser, Mark},
+	year = {1981},
+	keywords = {Debugging, Data flow analysis, Human factors, Program maintenance, Program metrics, Software tools},
+	pages = {439--449},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/YY44SUIU/Weiser - 1981 - Program Slicing.pdf:application/pdf}
+}
+
+@article{tip_survey_1995,
+	title = {A {Survey} of {Program} {Slicing} {Techniques}},
+	volume = {3},
+	abstract = {A program slice consists of the parts of a program that (potentially) affect the  values computed at some point of interest, referred to as a slicing criterion. The task  of computing program slices is called program slicing. The original definition of a  program slice was presented by Weiser in 1979. Since then, various slightly different  notions of program slices have been proposed, as well as a number of methods to  compute them. An important distinction is that between a static and a dynamic slice.  The former notion is computed without making assumptions regarding a program's  input, whereas the latter relies on some specific test case.  Procedures, arbitrary control flow, composite datatypes and pointers, and interprocess  communication each require a specific solution. We classify static and dynamic  slicing methods for each of these features, and compare their accuracy and efficiency.  Moreover, the possibilities for combining solutions for different features are investigated....},
+	journal = {Journal of Programming Languages},
+	author = {Tip, F.},
+	year = {1995},
+	pages = {121--189},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/D9S2386I/Tip - 1995 - A Survey of Program Slicing Techniques.pdf:application/pdf;Citeseer - Snapshot:/Volumes/Data/work/zotero/storage/E8HSKQXM/summary.html:text/html}
+}
+
+@inproceedings{hu_dynamic_2008,
+	title = {Dynamic {Analysis} and {Design} {Pattern} {Detection} in {Java} {Programs}.},
+	abstract = {Identifying design patterns within an existing software system can support understandability and reuse of the system's core functionality. In this context, incorporating behavioral features into the design pattern recovery would enhance the scalability of the process. The main advantage of the new approach in this paper over the existing approaches is incorporating dynamic analysis and feature localization in source code. This allows us to perform a goal-driven design pattern detection and focus ourselves on patterns that implement specific software functionality, as opposed to conducting a general pattern detection which is susceptible to high complexity problem. Using a new pattern description language and a matching process we identify the instances of these patterns within the obtained classes and interactions. We use a two-phase matching process: i) an approximate matching of class attributes generates a list of candidate patterns; and ii) a structural matching of classes identifies exact matched patterns. One target application domain can be software product line which emphasizes on reusing core software artifacts to construct a reference architecture for several similar products. Finally, we present the result of a case study.},
+	booktitle = {20th {International} {Conference} on {Software} {Engineering} and {Knowledge} {Engineering}, {SEKE} 2008},
+	author = {Hu, Lei and Sartipi, Kamran},
+	month = jan,
+	year = {2008},
+	pages = {842--846},
+	file = {Citeseer - Full Text PDF:/Volumes/Data/work/zotero/storage/J7BRZ7SC/Hu and Sartipi - Dynamic Analysis and Design Pattern Detection in J.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/3UVHHRUH/221391328_Dynamic_Analysis_and_Design_Pattern_Detection_in_Java_Programs.html:text/html}
+}
+
+@inproceedings{arcelli_design_2008,
+	series = {Communications in {Computer} and {Information} {Science}},
+	title = {Design {Pattern} {Detection} in {Java} {Systems}: {A} {Dynamic} {Analysis} {Based} {Approach}},
+	isbn = {978-3-642-14818-7 978-3-642-14819-4},
+	shorttitle = {Design {Pattern} {Detection} in {Java} {Systems}},
+	url = {https://link.springer.com/chapter/10.1007/978-3-642-14819-4_12},
+	doi = {10.1007/978-3-642-14819-4_12},
+	abstract = {In the context of reverse engineering, the recognition of design patterns provides additional information related to the rationale behind the design. This paper presents our approach to the recognition of the behavioral design patterns based on dynamic analysis of Java software systems. The idea behind our solution is to identify a set of rules capturing information necessary to identify a design pattern instance. Rules are characterized by weights indicating their importance in the detection of a specific design pattern. The core behavior of each design pattern may be described through a subset of these rules forming a macrorule. Macrorules define the main traits of a pattern. JADEPT (JAva DEsign Pattern deTector) is our software for design pattern identification based on this idea. It captures static and dynamic aspects through a dynamic analysis of the software by exploiting the JPDA (Java Platform Debugger Architecture). The extracted information is stored in a database. Queries to the database implement the rules defined to recognize the design patterns. The tool has been validated with positive results on different implementations of design patterns and on systems such as JADEPT itself.},
+	language = {en},
+	urldate = {2017-11-12},
+	booktitle = {Evaluation of {Novel} {Approaches} to {Software} {Engineering}},
+	publisher = {Springer, Berlin, Heidelberg},
+	author = {Arcelli, Francesca and Perin, Fabrizio and Raibulet, Claudia and Ravani, Stefano},
+	month = may,
+	year = {2008},
+	pages = {163--179},
+	file = {Snapshot:/Volumes/Data/work/zotero/storage/KS9GYNA3/978-3-642-14819-4_12.html:text/html}
+}
+
+@inproceedings{jang_empirical_2010,
+	address = {New York, NY, USA},
+	series = {{CCS} '10},
+	title = {An {Empirical} {Study} of {Privacy}-violating {Information} {Flows} in {JavaScript} {Web} {Applications}},
+	isbn = {978-1-4503-0245-6},
+	url = {http://doi.acm.org/10.1145/1866307.1866339},
+	doi = {10.1145/1866307.1866339},
+	abstract = {The dynamic nature of JavaScript web applications has given rise to the possibility of privacy violating information flows. We present an empirical study of the prevalence of such flows on a large number of popular websites. We have (1) designed an expressive, fine-grained information flow policy language that allows us to specify and detect different kinds of privacy-violating flows in JavaScript code,(2) implemented a new rewriting-based JavaScript information flow engine within the Chrome browser, and (3) used the enhanced browser to conduct a large-scale empirical study over the Alexa global top 50,000 websites of four privacy-violating flows: cookie stealing, location hijacking, history sniffing, and behavior tracking. Our survey shows that several popular sites, including Alexa global top-100 sites, use privacy-violating flows to exfiltrate information about users' browsing behavior. Our findings show that steps must be taken to mitigate the privacy threat from covert flows in browsers.},
+	urldate = {2017-11-13},
+	booktitle = {Proceedings of the 17th {ACM} {Conference} on {Computer} and {Communications} {Security}},
+	publisher = {ACM},
+	author = {Jang, Dongseok and Jhala, Ranjit and Lerner, Sorin and Shacham, Hovav},
+	year = {2010},
+	keywords = {dynamic analysis, history sniffing, information flow, JavaScript, privacy, rewriting, web application, web security},
+	pages = {270--283},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/G2QBZDRK/Jang et al. - 2010 - An Empirical Study of Privacy-violating Informatio.pdf:application/pdf}
 }
