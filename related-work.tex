@@ -1,5 +1,7 @@
 
-\chapter{Related Work}
+% !TEX root = main.tex
+
+\chapter{Literature Review} \label{cha:literature-review} 
 
 Understanding how language features and \api{}s are being used is a broad topic.
 There is plenty of research in computer science literature about empirical studies of programs;
@@ -7,6 +9,8 @@ which involves several directions directly or indirecly related.
 
 Along the last decades, researchers always has been interested in understading what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
+
+In \cref{sec:msr}, we give an overview of what tools are available to extract information from a software repository.
 
 \section{Compilers Writers}
 
@@ -16,11 +20,10 @@ Alternatively, to measure the advantages between compilation and interpretation 
 Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
 Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs.
 
-But there is more than empirical studies at the source coude level.
+But there is more than empirical studies at the source code level.
 A machine instruction set is effectively another kind of language.
 Therefore, its design of a can be affected by how compilers generate machine code.
 Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}, and \lilith{}~\cite{cook_empirical_1989}
-
 
 \section{Benchmarking}
 
@@ -68,7 +71,7 @@ Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar stu
 \cite{reboucas_empirical_2016} made an empirical study on the \swift{} programming language.
 Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privay violations.
 
-Going one step forward, \cite{ray_large-scale_2017} 
+Going one step forward, \cite{ray_large-scale_2017}
 
 These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
 
@@ -118,7 +121,7 @@ Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is in
 Therefore, we believe that these kind of studies can be complementary for our research. They can help us to understand how programmers handle exceptions in these scenarios.
 
 
-\section{Pattern Discovery}
+\section{Code Patterns Discovery} \label{sec:pattern-discovery}
 
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
@@ -130,19 +133,19 @@ and proceed with a semi-automatic analysis.
 On the other hand, our study related to casts involved a much more complex analysis.
 Therefore we have decided to implement it with manual inspection.
 
-\section{Mining Software Repositories}
+\section{Tools for Mining Software Repositories} \label{sec:msr}
 
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
-In this scenario, there are several tools that allows a reseacher or developer to query information about software repositories.
+In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
 
 \cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}}.
 It is used to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
 The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyer_mining_2014}.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
-For our study on \smu{}, we first tried using \boa{} with sourceforge{}.
+For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
 We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
@@ -164,7 +167,6 @@ On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia{}\footnote{\url{htt
 Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
 
 \cite{latoza_developers_2010} developers ask reachability questions.
-
 \cite{dietrich_broken_2014} broken promises.
 
 %%% Local Variables:
