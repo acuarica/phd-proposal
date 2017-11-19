@@ -9,22 +9,28 @@ or parametric polymorphism in \java{} 5\footnote{\url{https://docs.oracle.com/ja
 Adding new features to a language should --- \emph{in theory} --- increase programmers productivity.
 But once a language feature is released, little is known about how it is actually used by the developer community.
 Therefore, it is extremely difficult to assess how features in a language impact on programmers productivity.
-\cite{hanenberg_faith_2010,hanenberg_why_2014} argue that human behavior should be applied to programming language usage and design.
+\cite{hanenberg_faith_2010,hanenberg_why_2014} argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
+With this approach, it should be possible to understand to what degree a language feature impacts on programming productivity.
+However, for any kind of controlled experiment to be valid, it must reflect reality.
+Likewise, \cite{livshits_defense_2015} claim that in order to understand how the limit of analysis tools impact software,
+first we need to understand the what kind of code is being written in the real world.
 
 Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and~\cite{uesbeck_empirical_2016}
 studied how developers use lambdas in \java{} and \cpp{} respectively; while \cite{parnin_java_2011,parnin_adoption_2013} did the same for generics in \java{}.
-This kind of studies give an insight of the adoption of language features that can drive future direction for the language.
+This kind of studies give an insight of the adoption of language features that can drive future direction for the language and provide .
 
-We believe that if we (as a research community) understand what kinds of programs are written, we can use this information to improve several aspect of the software development process.
-But how to test it?
+Therefore we argue that if we (as a research community) understand what kinds of programs are written in real codebases,
+we can use this information to improve several aspect of the software development process.
+This fact opens the door for empirical studies about language features and their use in
+software repositories, e.g., Maven Central.
 
-\researchquestion{Understanding Java in the Wild?}
 
 \section{What do we want to provide?}
 
+\researchquestion{Understanding Java in the Wild?}
+
 As its core, we believe that understanding how actually language features are
 used is paramount.
-
 
 researchers miss opportunities to improve the state of the art
 tool builders use unrealistic assumptions
@@ -59,9 +65,6 @@ Methodological Contribution, to evolve your language
 Motivate the umbrella that put together those 3 pillars
 
 
-
-
-
 \section{Proposal Outline}
 
 In our research proposal we investigate the feasibility of 
@@ -84,70 +87,3 @@ Because it contains a high-level of composability, supercompilation is the ideal
 \item Chapter~\ref{cha:unsafe} discusses about the link between Dependent types and Supercompilation.
 
 \end{itemize}
-
-
-Empirical Analysis
-
-
-In the article, *In Defense of Soundiness: A Manifesto*,
-
-https://cacm.acm.org/magazines/2015/2/182650-in-defense-of-soundiness
-
-the authors claim that in order to understand how the limit of analysis tools impact software,
-first we need to understand the what kind of code is being written in the real world.
-This fact opens the door for empirical studies about language features and their use in
-software repositories, e.g., Maven Central.
-
-
-Platform for Deep Mining Analysis at big scale -- Empirical Deep Analysis
-With a DSL?
-It is costly in infrastucture
-No research, just a tool paper
-
-Studies of Casts in Java
-Cast it at Your Own Risk: Java Casts in the Wild????
-Use our casts empirical study to support more studies on subjects
-Instead of using arbitrary experiments (tasks) use real world examples
-Re-cast Reflection Empirical Study to the whole Maven repository
-Hoogle for Java at big scale -- Not only signatures, but also deep code patterns
-
-Improper use of catch exceptions, e.g., NullPointerException
-Detect improper bug fixes
-
-
-Reimplement the pattern search w/ static analysis?
-Manual inspection does not scale up
-Redo manual inspection
-Is it possible to write an analysis to detect a single pattern?
-Relate each pattern w/ alternatives in another languages
-Criticize of language features/API design
-Language for Serialization paper POPL 2006
-The next 700 data description languages
-Cast Patterns
-Time Restrictions/Thesis Schedule
-Find Concrete Thesis Statement
-
-
-Graph (PDG) Comparison
-Sink/Source
-Linear Comparison
-Code Search
-Jungloid Mining
-
-Code Pattern Search (particular for casts)
-Coercion
-
-https://www.juliasoft.com/
-What are the cast patterns?
-Abuses of cast
-Is it code or data?
-
-Use or not use of parametrized types?
-
-Dominators/Immediate Dominators
-A Simple, Fast Dominance Algorithm paper
-
-
-
-Slices/Dominators \& Post-Dominators for Control Dependencies
-Slices as a tree in JNIF
