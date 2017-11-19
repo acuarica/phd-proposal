@@ -10,80 +10,53 @@ Adding new features to a language should --- \emph{in theory} --- increase progr
 But once a language feature is released, little is known about how it is actually used by the developer community.
 Therefore, it is extremely difficult to assess how features in a language impact on programmers productivity.
 \cite{hanenberg_faith_2010,hanenberg_why_2014} argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
-With this approach, it should be possible to understand to what degree a language feature impacts on programming productivity.
+With this approach, it should be possible --- in principle --- to understand to what degree a language feature impacts on programming productivity.
 However, for any kind of controlled experiment to be valid, it must reflect reality.
-Likewise, \cite{livshits_defense_2015} claim that in order to understand how the limit of analysis tools impact software,
-first we need to understand the what kind of code is being written in the real world.
+Otherwise, any conjecture derived from a controlled experiment can be considered truthful but useless.
+
+Understanding what developers write is not only useful in the field of controlled experiments.
+For instance, \cite{livshits_defense_2015} argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \jni{}\footnote{\url{https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html}}, \eval{}, \etc{}, from their analyses.
+They claim that in order to understand how the limits of analysis tools impact software,
+we also need to understand what kind of code is being written in the real world.
 
 Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and~\cite{uesbeck_empirical_2016}
 studied how developers use lambdas in \java{} and \cpp{} respectively; while \cite{parnin_java_2011,parnin_adoption_2013} did the same for generics in \java{}.
-This kind of studies give an insight of the adoption of language features that can drive future direction for the language and provide .
-
-Therefore we argue that if we (as a research community) understand what kinds of programs are written in real codebases,
-we can use this information to improve several aspect of the software development process.
-This fact opens the door for empirical studies about language features and their use in
-software repositories, e.g., Maven Central.
+This kind of studies give an insight of the adoption of lambdas;
+which can drive future direction for language designers and tool builders,
+while providing developers with best practices to the effective use of lambdas.
 
 
-\section{What do we want to provide?}
+\section{Research Statement}
 
-\researchquestion{Understanding Java in the Wild?}
+We believe that we (as a research community) should understand what kinds of programs are written in real codebases.
+We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
+This fact opens the door for empirical studies about language features, and their use in source code repositories, \eg{}, \github{}, \gitlab{} or \bitbucket{}, and package managers repositories, \eg{}, \mavencentral{}\footnote{\url{http://central.sonatype.org/}} or
+\npm{}\footnote{\url{https://www.npmjs.com/}}.
 
-As its core, we believe that understanding how actually language features are
-used is paramount.
+Since any kind of language study must be language-specific, our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
+At its core, what we want to provide is the
 
-researchers miss opportunities to improve the state of the art
-tool builders use unrealistic assumptions
-language designers fail to improve upon their designs
-developers are unable to explore efficient and effective use of lambdas.
+\researchstatement{Understanding of how features in the \java{} language are used in the wild}
 
-Understanding how developers make use of language features can be helpful to a broad range audience.
-It can aid language designers to improve their languages;
-tool builders can make real assumptions;
-researchers to better improve the state of the art;
-developers can benefit from are unable to explore efficient and effective.
-
-Language designers add features to their languages based
-We believe
-three specific features, namely
-We have divised and we plan to divise language and \api{} patterns in order to properly assess this driving forces.
-To understand patterns
-
-In this proposal, we plan to explore
-Understanding the Use of Language Features in Java
-Supporting informed decisions for these driving forces.
-Exploring the usability and feasibility of creating new languages based on empirical studies
-
-
-
-Evidence-based language as a long term goal
-
-Mining language features thesis
-Title: *Understanding Java in the Wild*
-Research Question: Is Java Safe?
-Methodological Contribution, to evolve your language
-Motivate the umbrella that put together those 3 pillars
+In this proposal, we plan to target four specific \java{} features, namely, \emph{casting}, \emph{reflection}, \emph{exception handling}, and the \emph{unsafe \api{}}.
+We have divised --- for the \emph{unsafe} \api{} --- and we plan to divise language and \api{} usage patterns.
+We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
 
 \section{Proposal Outline}
 
-In our research proposal we investigate the feasibility of 
+Understanding what programmers write is a broad topic involving several sub-fields.
+Chapter~\ref{cha:literature-review} gives a review of the literature in the state-of-the-art of the different aspects related to our goal. 
 
-Supercompilation for specific domains.
+The following four chapters introduce our proposal plan for the selected features:
+Chapter~\ref{cha:casts} presents our \emph{casting} study;
+while Chapter~\ref{cha:reflection} does the same for reflection and
+Chapter~\ref{cha:exceptions} for \emph{exception handling}.
+Chapter~\ref{cha:unsafe} shows the study we already made on the unsafe \api{} in \java{}.
 
-Whether it is worth it
-
-\begin{itemize}
-
-\item Chapter~\ref{cha:literature-review} gives an overview of the state-of-the-art literature.
-
-\item Chapter~\ref{cha:casts} we present how supercompilation can be understood from a visual perspective.
-
-\item Chapter~\ref{cha:reflection} Parser combinators are high level description on how to parse a given language.
-Because it contains a high-level of composability, supercompilation is the ideal mecanisn to exploit its essence.
-
-\item Chapter~\ref{cha:exceptions} shows how the link between Rewrite Rules and Supercompilation.
-
-\item Chapter~\ref{cha:unsafe} discusses about the link between Dependent types and Supercompilation.
-
-\end{itemize}
+%Understanding the Use of Language Features in Java.
+%To understand patterns.Mining language features thesis.
+%Research Question: Is Java Safe?
+%Methodological Contribution, to evolve your language.
+%Motivate the umbrella that put together those 3 pillars.
+%In our research proposal we investigate the feasibility of 

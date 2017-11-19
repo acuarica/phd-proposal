@@ -1,11 +1,20 @@
 
+\newcommand{\hlbox}[2]{
+\begin{mdframed}[backgroundcolor=#2!50]
+\centering
+#1
+\end{mdframed}
+}
+
 \newcommand{\tbd}[1]{{\color{violet} #1\footnotesize ?}}
 \newcommand{\todo}[1]{{\color{todo} #1\footnotesize !}}
 
-\newcommand{\researchquestion}[1]{\hlbox{#1}}
+\newcommand{\researchstatement}[1]{\hlbox{#1}{yellow}}
+\newcommand{\researchquestion}[1]{\hlbox{#1}{orange}}
 
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\ie}{\textit{i.e.}}
+\newcommand{\etc}{\textit{etc.}}
 \newcommand{\perse}{\textit{per se}}
 
 \newcommand{\phd}{Ph.D.}
@@ -32,6 +41,7 @@
 
 \newcommand{\jvm}{JVM}
 \newcommand{\jvmti}{JVMTI}
+\newcommand{\jni}{JNI}
 \newcommand{\lilith}{Lilith}
 
 \newcommand{\smu}{\code{sun.misc.Unsafe}}
@@ -45,8 +55,12 @@
 \newcommand{\eval}{\code{eval}}
 
 \newcommand{\github}{\host{GitHub}}
+\newcommand{\gitlab}{\host{GitLab}}
+\newcommand{\bitbucket}{\host{Bitbucket}}
 \newcommand{\sourceforge}{\host{SourceForge}}
 \newcommand{\maven}{\host{Maven}}
+\newcommand{\mavencentral}{\host{Maven Central}}
+\newcommand{\npm}{\host{npm}}
 \newcommand{\boa}{\host{Boa}}
 \newcommand{\candoia}{\host{Candoia}}
 \newcommand{\lgtm}{\host{lgtm}}
