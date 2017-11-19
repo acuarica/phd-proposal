@@ -20,60 +20,37 @@ Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_s
 
 But there is more than empirical studies at the source code level.
 A machine instruction set is effectively another kind of language.
-Therefore, its design of a can be affected by how compilers generate machine code.
-Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}, and \lilith{}~\cite{cook_empirical_1989}
+Therefore, its design can be affected by how compilers generate machine code.
+Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
 
-\section{Benchmarking}
+\section{Benchmarks and Corpuses}
 
 Benchmarks are crucial to properly evaluate and measure product developement.
 This is key for both research and industry.
 One popular benchmark suite for \java{} is DaCapo~\cite{blackburn_dacapo_2006}.
 This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
 
-For any benchmark to be useful and reliable, it must faithfully represent real world code.
+Another suite is given in \cite{tempero_qualitas_2010}.
+They provide a corpus of curated open source systems to facilitate empirical studies on source code.
+
+For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Therefore, we argue how important it is to make empirical studies about what programmers write.
 
-\section{Empirical Studies on Casting}
-
-The closest work to our casting study is by~\cite{winther_guarded_2011}.
-Study of type casts in several project.
-Quite similar to what we want to do.
-Focus on Guarded Type casts.
-
-
-\section{Impact of using Static Type systems}
-
-Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
-They compare how a static and a dynamic type system impact on productivity.
-The common setting for these studies is to have a set of programming problems.
-Then, let a group of developers solve them in both a static and dynamic languages.
-
-For these kind of studies to reflect reality, the problems to be solved need to
-be representative of the real-world code.
-Having artificial problems may lead to invalid conclusions.
-
-The work by \cite{wu_how_2017,wu_learning_2017} goes towards this direction.
-They have examined programs written by students to understand real debugging conditions.
-Their focus is on ill-typed programs written in \haskell{}.
-Unfortunately, these dataset does not correspond to real-world code.
-Our focus is to analyze code by experienced programmers.
-
-Therefore, it is important to study how casts are used in real-world code.
-Having a deep understanding of actual usage of casts can led to
-Informed decisions when designing these kind of experiments.
 
 \section{Large-scale Codebase Empirical Studies}
 
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
 \cite{reboucas_empirical_2016} made an empirical study on the \swift{} programming language.
-Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privay violations.
+Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privacy violations.
+Similar studies were done for \php{}~
+\cite{hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011}.
 
 Going one step forward, \cite{ray_large-scale_2017}
 
-These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
+https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext
 
-%https://cacm.acm.org/magazines/2017/10/221326-a-large-scale-study-of-programming-languages-and-code-quality-in-github/fulltext
+These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
 
 
 
@@ -120,9 +97,39 @@ For instance, we have detected a \smu{} pattern to \throw{} undeclared exception
 Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
 Therefore, we believe that these kind of studies can be complementary for our research. They can help us to understand how programmers handle exceptions in these scenarios.
 
-\subsection{Software Evolution}
+\subsection*{Software Evolution}
 
 \cite{dietrich_broken_2014} broken promises.
+
+
+\section{Empirical Studies on Casting}
+
+The closest work to our casting study is by~\cite{winther_guarded_2011}.
+Study of type casts in several project.
+Quite similar to what we want to do.
+Focus on Guarded Type casts.
+
+
+\section{Impact of using Static Type systems}
+
+Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
+They compare how a static and a dynamic type system impact on productivity.
+The common setting for these studies is to have a set of programming problems.
+Then, let a group of developers solve them in both a static and dynamic languages.
+
+For these kind of studies to reflect reality, the problems to be solved need to
+be representative of the real-world code.
+Having artificial problems may lead to invalid conclusions.
+
+The work by \cite{wu_how_2017,wu_learning_2017} goes towards this direction.
+They have examined programs written by students to understand real debugging conditions.
+Their focus is on ill-typed programs written in \haskell{}.
+Unfortunately, these dataset does not correspond to real-world code.
+Our focus is to analyze code by experienced programmers.
+
+Therefore, it is important to study how casts are used in real-world code.
+Having a deep understanding of actual usage of casts can led to
+Informed decisions when designing these kind of experiments.
 
 
 \section{Code Patterns Discovery} \label{sec:pattern-discovery}
@@ -157,11 +164,6 @@ In contrast, our final study using \maven{} found that an order of magnitude mor
 provides an offline mirror of \github{} that allows researchers to query any kind of that data.
 Later on, \cite{gousios_lean_2014} published the dataset construction process of \github{}.
 
-Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
-\cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
-They found out that much of the code there is actually duplicated.
-This raises a flag when consider which projects analyze when doing mining software repositories.
-
 Similar to \boa{}, \lgtm{}\footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
 It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
@@ -181,4 +183,10 @@ Jurgen Vinju paper,
 http://homepages.cwi.nl/~storm/publications/visitor.pdf
 
 
-\section{How to select good representatives?}
+\subsection*{Selecting Good Representatives}
+
+Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
+\cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
+
+They found out that much of the code there is actually duplicated.
+This raises a flag when consider which projects analyze when doing mining software repositories.
