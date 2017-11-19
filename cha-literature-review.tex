@@ -8,9 +8,13 @@ which involves several directions directly or indirecly related.
 Along the last decades, researchers always has been interested in understading what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
 
+The organization of this chapter is as follows:
+In \cref{sec:compilers-writers} we present empirical studies regarding compilers writers.
+How benchmarks and corpuses relate to this kind of studies is presented in \cref{sec:benchmarks}.
+
 In \cref{sec:msr} we give an overview of what tools are available to extract information from a software repository.
 
-\section{Compilers Writers}
+\section{Compilers Writers} \label{sec:compilers-writers}
 
 Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
@@ -23,7 +27,7 @@ A machine instruction set is effectively another kind of language.
 Therefore, its design can be affected by how compilers generate machine code.
 Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
 
-\section{Benchmarks and Corpuses}
+\section{Benchmarks and Corpuses} \label{sec:benchmarks}
 
 Benchmarks are crucial to properly evaluate and measure product developement.
 This is key for both research and industry.
