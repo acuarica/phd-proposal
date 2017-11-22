@@ -4,18 +4,20 @@
 Programming language design has been always a hot topic in computer science literature.
 It has been extensively studied in the past decades.
 For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg{}, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview_topic7}};
-or parametric polymorphism in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}$^{,}$\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
+or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}$^{,}$\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
 
 Adding new features to a language should --- \emph{in theory} --- increase programmers productivity.
 But once a language feature is released, little is known about how it is actually used by the developer community.
-Therefore, it is extremely difficult to assess how features in a language impact on programmers productivity.
+Therefore, it is extremely difficult to assess how features in a programming language impact on programmers productivity.
+We argue that this information is of great value, because can give many insights to drive the future of any programming language.
+
 \cite{hanenberg_faith_2010,hanenberg_why_2014} argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
 With this approach, it should be possible --- in principle --- to understand to what degree a language feature impacts on programming productivity.
 However, for any kind of controlled experiment to be valid, it must reflect reality.
 Otherwise, any conjecture derived from a controlled experiment can be considered truthful but useless.
 
-Understanding what developers write is not only useful in the field of controlled experiments.
-For instance, \cite{livshits_defense_2015} argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \jni{}\footnote{\url{https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html}}, \eval{}, \etc{}, from their analyses.
+Understanding what developers write is not only useful in the field of language design and controlled experiments.
+For instance, \cite{livshits_defense_2015} argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \setjmp{}/\longjmp{}, \jni{}\footnote{\url{https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html}}, \eval{}, \etc{}, from their analyses.
 They claim that in order to understand how the limits of analysis tools impact software,
 we also need to understand what kind of code is being written in the real world.
 
@@ -42,7 +44,6 @@ In this proposal, we plan to target four specific \java{} features, namely, \emp
 We have divised --- for the \emph{unsafe} \api{} --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
-
 \section{Proposal Outline}
 
 Understanding what programmers write is a broad topic involving several sub-fields.
@@ -56,7 +57,6 @@ Finally, Chapter~\ref{cha:unsafe} shows the study we already made on the unsafe 
 While the literature review gives a broad overview in the field,
 each of the following chapters have their own ``Related Work'' section.
 The rationale behind this organization is that we prefer to show how we improve over the state-of-the-art after having presented our plan for each feature.
-
 
 %Understanding the Use of Language Features in Java.
 %To understand patterns.Mining language features thesis.
