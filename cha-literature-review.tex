@@ -10,8 +10,10 @@ The motivation behind these studies is quite broad and --- together with the evo
 The organization of this chapter is as follows:
 In \cref{sec:compilers-writers} we present empirical studies regarding compilers writers.
 How benchmarks and corpuses relate to this kind of studies is presented in \cref{sec:benchmarks}.
-
-In \cref{sec:msr} we give an overview of what tools are available to extract information from a software repository.
+\cref{sec:large-scale} gives an overview of other large-scale studies either in \java{} or in other languages.
+Related to our cast study, in \cref{sec:controlled-experiments} we show studies on how static type systems impact on programmers productivity.
+Code Patterns discovery is presented in \cref{sec:pattern-discovery}.
+Finally, \cref{sec:msr} gives an overview of what tools are available to extract information from a software repository.
 
 \section{Compilers Writers} \label{sec:compilers-writers}
 
@@ -42,48 +44,23 @@ Therefore, we argue how important it is to make empirical studies about what pro
 
 \section{Large-scale Codebase Empirical Studies}
 
+\label{sec:large-scale}
+
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
-\cite{reboucas_empirical_2016} made an empirical study on the \swift{} programming language.
 Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privacy violations.
-Similar studies were done for \php{}~
-\cite{hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011}.
+Similar empirical studies were done for \php{}~
+\cite{hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011} and \swift{}~\cite{reboucas_empirical_2016}.
 
-Going one step forward, \cite{ray_large-scale_2017}
+Going one step forward, \cite{ray_large-scale_2017} studied the correlation between programming languages and defects.
+One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
+We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
 
-These results are useful to make informed decisions about which features to consider when designing language extensions or tool support.
-
-
-
-Contracts in the Wild: A Study of Java Programs
-Investigate 25 fix contract patterns.
-Section 2.3: Come up with new Contract Patterns.
-\cite{dietrich_contracts_2017,dietrich_contracts_2017-1}
-
-\cite{landman_challenges_2017}
-Challenges for Static Analysis of Java Reflection -- Literature Review and Empirical Study
-They also have done a study on Casts.
-But only for a small curated sets of projects.
-They analyze the relevance of static analysis tools w.r.t reflection.
-We want to study Reflection in the Wild.
-Empirical Studies on subjects need to be correlated with real world use cases, e.g. Maven Repository.
-
-
-
-Spencer: Interactive Heap Analysis for the Masses
-\cite{brandauer_spencer:_2017}
-
-
-\subsection*{Collections and Generics}
-
-The inclusion of generics in \java{} is closely related to collections.
-Empirical Study of Usage and Performance of Java Collections
-Mining GitHub corpus to study the use of collections, and how these usages can be improved.
-\cite{costa_empirical_2017}
-
-Java Generics Adoption: How New Features are Introduced, Championed,
-
-or Ignored~\cite{parnin_java_2011,parnin_adoption_2013}
+For \java{}, \cite{dietrich_contracts_2017-1} made a study about how programmers use contracts in \mavencentral{}.
+\cite{landman_challenges_2017} have analyzed the relevance of static analysis tools with respect to reflection.
+They made an empirical study to check how often the reflection \api{} is used in real-world code.
+They argue, as we do, that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
+\cite{winther_guarded_2011}~have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
 
 
 \subsection*{Exceptions}
@@ -98,20 +75,29 @@ For instance, we have detected a \smu{} pattern to \throw{} undeclared exception
 Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
 Therefore, we believe that these kind of studies can be complementary for our research. They can help us to understand how programmers handle exceptions in these scenarios.
 
+
+\subsection*{Collections and Generics}
+
+The inclusion of generics in \java{} is closely related to collections.
+\cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers.
+They found that the use of generics do not significantly reduce the number of type casts.
+
+\cite{costa_empirical_2017}~have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
+They have found out that in most cases there is an alternative usage that improves performance.
+
+
 \subsection*{Software Evolution}
 
-\cite{dietrich_broken_2014} broken promises.
+\cite{dietrich_broken_2014}~have studied how changes in \api{} library impact in \java{} programs.
+Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study.
 
+\section{Controlled Experiments on Subjects}
 
-\section{Empirical Studies on Casting}
+\label{sec:controlled-experiments}
 
-The closest work to our casting study is by~\cite{winther_guarded_2011}.
-Study of type casts in several project.
-Quite similar to what we want to do.
-Focus on Guarded Type casts.
+\cite{latoza_developers_2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
 
-
-\section{Impact of using Static Type systems}
+\subsection*{Impact of using Static Type systems}
 
 Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
 They compare how a static and a dynamic type system impact on productivity.
@@ -133,7 +119,9 @@ Having a deep understanding of actual usage of casts can led to
 Informed decisions when designing these kind of experiments.
 
 
-\section{Code Patterns Discovery} \label{sec:pattern-discovery}
+\section{Code Patterns Discovery}
+
+\label{sec:pattern-discovery}
 
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
@@ -145,7 +133,10 @@ and proceed with a semi-automatic analysis.
 On the other hand, our study related to casts involved a much more complex analysis.
 Therefore we have decided to implement it with manual inspection.
 
-\section{Tools for Mining Software Repositories} \label{sec:msr}
+
+\section{Tools for Mining Software Repositories}
+
+\label{sec:msr}
 
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
@@ -173,15 +164,9 @@ Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific lan
 On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
 Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
 
-\cite{latoza_developers_2010} developers ask reachability questions.
-
-
-
-
-Implicits in Scala
-Users/Compilers Java/Scala generated bytecode
-Jurgen Vinju paper,
-http://homepages.cwi.nl/~storm/publications/visitor.pdf
+Another tool to analyze large software repositories is presented in~\cite{brandauer_spencer:_2017}.
+In this case, the analysis is dynamic, based on program traces.
+At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing.
 
 
 \subsection*{Selecting Good Representatives}
@@ -191,3 +176,14 @@ Another dimension to consider when analyzing large codebases, is how relevant th
 
 They found out that much of the code there is actually duplicated.
 This raises a flag when consider which projects analyze when doing mining software repositories.
+
+
+
+
+
+
+
+%Implicits in Scala
+%Users/Compilers Java/Scala generated bytecode
+%Jurgen Vinju paper,
+%http://homepages.cwi.nl/~storm/publications/visitor.pdf
