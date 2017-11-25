@@ -28,7 +28,19 @@ which can drive future direction for language designers and tool builders,
 while providing developers with best practices to the effective use of lambdas.
 
 
-\section{Research Statement}
+\section{Research Question}
+
+We have arguments to believe that statically-typed languages restrict developers expressiveness.
+That is, there 
+
+This leads to our trigger research question:
+
+\rquestion{Do developers who use statically-typed languages require circumventing the --- \emph{static} --- type system?}
+
+We have arguments to believe
+
+Usually the lack of expressiveness translates in workarounds made by the developers as a \emph{escape-hatch} to achieve the desired solution.
+
 
 We believe that we (as a research community) should understand what kinds of programs are written in real codebases.
 We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
@@ -38,9 +50,8 @@ This fact opens the door for empirical studies about language features, and thei
 Since any kind of language study must be language-specific, our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
 At its core, what we want to understand is
 
-\researchquestion{Do developers who use statically-typed languages require circumventing the --- \emph{static} --- type system?}
 
-\researchquestion{Why --- \emph{and how} --- features and \api{}s in a statically-typed language are \emph{actually} being used to circumvent the \emph{static} type system?}
+\rquestion{Why --- \emph{and how} --- features and \api{}s in a statically-typed language are \emph{actually} being used to circumvent the \emph{static} type system?}
 
 In this proposal, we plan to target four specific \java{} features, namely, \emph{casting}, \emph{reflection}, \emph{exception handling}, and the \emph{unsafe \api{}}.
 We have divised --- for the \emph{unsafe} \api{} --- and we plan to divise language and \api{} usage patterns.

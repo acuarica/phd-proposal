@@ -1,8 +1,8 @@
 
-\newcommand{\hlbox}[2]{
+\newcommand{\hlbox}[3]{
 \begin{mdframed}[backgroundcolor=#2!50]
 
-\rightline{ \footnotesize \emph{Research Question} }
+\rightline{ \footnotesize \emph{#3} }
 
 \centering
 #1
@@ -12,7 +12,10 @@
 \newcommand{\tbd}[1]{{\color{violet} #1\footnotesize ?}}
 \newcommand{\todo}[1]{{\color{todo} #1\footnotesize !}}
 
-\newcommand{\researchquestion}[1]{\hlbox{#1}{yellow}}
+\newcommand{\rquestion}[1]
+	{\hlbox{#1}{yellow}{Research Question}}
+%\newcommand{\rhypothesis}[1]
+%	{\hlbox{#1}{orange}{Research Hypothesis}}
 
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\ie}{\textit{i.e.}}
