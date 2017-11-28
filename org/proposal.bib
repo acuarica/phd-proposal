@@ -1,0 +1,49 @@
+
+
+
+
+@phdthesis{livshits_improving_2006,
+	address = {Stanford, California},
+	title = {Improving {Software} {Security} with {Precise} {Static} and {Runtime} {Analysis}},
+	school = {Stanford University},
+	author = {Livshits, Benjamin},
+	year = {2006},
+	file = {thesis.pdf:/Volumes/Data/work/zotero/storage/SAMQZDXG/thesis.pdf:application/pdf}
+}
+
+@inproceedings{livshits_reflection_2005,
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {Reflection {Analysis} for {Java}},
+	isbn = {978-3-540-29735-2 978-3-540-32247-4},
+	url = {https://link.springer.com/chapter/10.1007/11575467_11},
+	doi = {10.1007/11575467_11},
+	abstract = {Reflection has always been a thorn in the side of Java static analysis tools. Without a full treatment of reflection, static analysis tools are both incomplete because some parts of the program may not be included in the application call graph, and unsound because the static analysis does not take into account reflective features of Java that allow writes to object fields and method invocations. However, accurately analyzing reflection has always been difficult, leading to most static analysis tools treating reflection in an unsound manner or just ignoring it entirely. This is unsatisfactory as many modern Java applications make significant use of reflection.In this paper we propose a static analysis algorithm that uses points-to information to approximate the targets of reflective calls as part of call graph construction. Because reflective calls may rely on input to the application, in addition to performing reflection resolution, our algorithm also discovers all places in the program where user-provided specifications are necessary to fully resolve reflective targets. As an alternative to user-provided specifications, we also propose a reflection resolution approach based on type cast information that reduces the need for user input, but typically results in a less precise call graph.We have implemented the reflection resolution algorithms described in this paper and applied them to a set of six large, widely-used benchmark applications consisting of more than 600,000 lines of code combined. Experiments show that our technique is effective for resolving most reflective calls without any user input. Certain reflective calls, however, cannot be resolved at compile time precisely. Relying on a user-provided specification to obtain a conservative call graph results in graphs that contain 1.43 to 6.58 times more methods that the original. In one case, a conservative call graph has 7,047 more methods than a call graph that does not interpret reflective calls. In contrast, ignoring reflection leads to missing substantial portions of the application call graph.},
+	language = {en},
+	urldate = {2017-11-26},
+	booktitle = {Programming {Languages} and {Systems}},
+	publisher = {Springer, Berlin, Heidelberg},
+	author = {Livshits, Benjamin and Whaley, John and Lam, Monica S.},
+	month = nov,
+	year = {2005},
+	pages = {139--160},
+	file = {Full Text PDF:/Volumes/Data/work/zotero/storage/NXVAYMZH/Livshits et al. - 2005 - Reflection Analysis for Java.pdf:application/pdf;Snapshot:/Volumes/Data/work/zotero/storage/RJE4DL2I/11575467_11.html:text/html}
+}
+
+@inproceedings{mastrangelo_use_2015,
+	address = {New York, NY, USA},
+	series = {{OOPSLA} 2015},
+	title = {Use at {Your} {Own} {Risk}: {The} {Java} {Unsafe} {API} in the {Wild}},
+	isbn = {978-1-4503-3689-5},
+	shorttitle = {Use at {Your} {Own} {Risk}},
+	url = {http://doi.acm.org/10.1145/2814270.2814313},
+	doi = {10.1145/2814270.2814313},
+	abstract = {Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees---for a large fraction of today's Java code. Unbeknownst to many application developers, the Java runtime includes a "backdoor" that allows expert library and framework developers to circumvent Java's safety guarantees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance "systems-level" code in Java. For much the same reasons that safe languages are preferred over unsafe languages, these powerful---but unsafe---capabilities in Java should be restricted. They should be made safe by changing the language, the runtime system, or the libraries. At the very least, their use should be restricted. This paper is a step in that direction. We analyzed 74 GB of compiled Java code, spread over 86,479 Java archives, to determine how Java's unsafe capabilities are used in real-world libraries and applications. We found that 25\% of Java bytecode archives depend on unsafe third-party Java code, and thus Java's safety guarantees cannot be trusted. We identify 14 different usage patterns of Java's unsafe capabilities, and we provide supporting evidence for why real-world code needs these capabilities. Our long-term goal is to provide a foundation for the design of new language features to regain safety in Java.},
+	urldate = {2017-11-11},
+	booktitle = {Proceedings of the 2015 {ACM} {SIGPLAN} {International} {Conference} on {Object}-{Oriented} {Programming}, {Systems}, {Languages}, and {Applications}},
+	publisher = {ACM},
+	author = {Mastrangelo, Luis and Ponzanelli, Luca and Mocci, Andrea and Lanza, Michele and Hauswirth, Matthias and Nystrom, Nathaniel},
+	year = {2015},
+	keywords = {Java, patterns, mining, Maven Central, Stack Overflow, unsafe},
+	pages = {695--710},
+	file = {ACM Full Text PDF:/Volumes/Data/work/zotero/storage/SKY5CYFY/Mastrangelo et al. - 2015 - Use at Your Own Risk The Java Unsafe API in the W.pdf:application/pdf}
+}

@@ -1,0 +1,94 @@
+
+#+TODO: TODO(t) DRAFT(f@/!) IN-THE-BOOK(i!) | DONE(d!) CANCELED(c)
+
+#+TITLE: Ph.D. Proposal
+#+latex_header: \usepackage{float}
+
+
+* DRAFT Introduction
+
+- State "DRAFT"      from              [2017-11-27 Mon 11:40] \\
+  Start
+* Literature Review
+
+cite:livshits_reflection_2005
+
+cite:livshits_improving_2006
+
+cite:mastrangelo_use_2015
+
+asdf
+
+
+* Reflection
+
+** Specifying Application Extensions
+*** Description
+
+B
+*** Citation: cite:livshits_improving_2006
+*** Found-in: =columba=, =jedit=, =tomcat=
+*** Snippet
+
+#+BEGIN_SRC java
+public void addHandlers(String path) {
+        XmlIO xmlFile = new XmlIO(DiskIO.getResourceURL(path));
+        xmlFile.load();
+        XmlElement list = xmlFile.getRoot().getElement("handlerlist");
+        Iterator it = list.getElements().iterator();
+        while (it.hasNext()) {
+            XmlElement child = (XmlElement) it.next();
+            String id = child.getAttribute("id");
+            String clazz = child.getAttribute("class");
+            AbstractPluginHandler handler = null;
+            try {
+                Class c = Class.forName(clazz);
+                handler = (AbstractPluginHandler) c.newInstance();
+                registerHandler(handler);
+            } catch (ClassNotFoundException e) {
+                if (Main.DEBUG) e.printStackTrace();
+            } catch (InstantiationException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+            } catch (IllegalAccessException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+        }
+    }
+}
+#+END_SRC
+
+** Custom-made Object Serialization Scheme  
+*** Citation: cite:livshits_improving_2006
+
+** Improving Portability Using Reflection   
+*** Citation: cite:livshits_improving_2006
+
+** Code Unavailable Until Deployment        
+*** Citation: cite:livshits_improving_2006
+
+** Using ~Class.forName~ for its Side-effects 
+*** Citation: cite:livshits_improving_2006
+
+** Getting Around Static Type Checking      
+*** Description
+
+
+*** Citation: cite:livshits_improving_2006
+*** Found In: =columba=
+
+** Providing a Built-in Interpreter         
+*** Description
+
+Implementing an interpreter, scripting language as a ~Java~ extension
+
+*** Citation: cite:livshits_improving_2006
+*** Found In: =jedit=
+*** +Snippet+
+
+* Unsafe
+* Casts
+* Exceptions
+
+
+
+bibliographystyle:unsrt
+bibliography:proposal.bib
