@@ -17,15 +17,13 @@ cite:livshits_improving_2006
 
 cite:mastrangelo_use_2015
 
-asdf
-
 
 * Reflection
 
+This list of patterns are more of semantic patterns.
+
 ** Specifying Application Extensions
 *** Description
-
-B
 *** Citation: cite:livshits_improving_2006
 *** Found-in: =columba=, =jedit=, =tomcat=
 *** Snippet
@@ -56,24 +54,147 @@ public void addHandlers(String path) {
 }
 #+END_SRC
 
-** Custom-made Object Serialization Scheme  
+*** Discussion
+
+This pattern is not clear.
+It would be interesting to see how these extensions are used,
+and what is the rationale of being of using these extensions as plug-ins.
+
+** Custom-made Object Serialization Scheme
+*** Description
+
+Using reflection to serialize/deserialize objects.
+
 *** Citation: cite:livshits_improving_2006
+*** Found In: =jgap=
+*** Snippet
+
+#+BEGIN_SRC java
+String geneClassName = thisGeneElement.
+           getAttribute(CLASS_ATTRIBUTE);
+Gene thisGeneObject = (Gene) Class.forName(
+             geneClassName).newInstance();
+#+END_SRC
+
+*** Discussion
+
+~Unsafe~ can be used to serialize/deserialze objects as well.
+Actually, some unsafe implementations have a fallback to reflection in case
+unsafe is not available.
 
 ** Improving Portability Using Reflection   
+*** Description
+
+Sometimes reflection is used as a mechanism to dead with
+incompatibility issues across different platforms.
+
 *** Citation: cite:livshits_improving_2006
 
+*** Found In: =gruntspud=, =jfreechart=
+*** Snippet
+
+#+BEGIN_SRC java
+try {
+            Class macOS  = Class.forName("gruntspud.standalone.os.MacOSX");
+            Class argC[] = {ViewManager.class};
+            Object arg[] = {context.getViewManager()};
+            Method init = macOS.getMethod("init", argC);
+            Object obj  = macOS.newInstance();
+            init.invoke(obj, arg);
+        } catch (Throwable t) {
+            // not on macos
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Method m = c.getMethod("clone", null);
+if (Modifier.isPublic(m.getModifiers())) {
+    try {
+        result = m.invoke(object, null);
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+try {
+    //  Test for being run under JDK 1.4+
+    Class.forName("javax.imageio.ImageIO");
+    //  Test for JFreeChart being compiled
+    //  under JDK 1.4+
+    Class.forName("org.jfree.chart.encoders.SunPNGEncoderAdapter");
+} catch (ClassNotFoundException e) {
+    // ...
+}
+#+END_SRC
 ** Code Unavailable Until Deployment        
+*** Description
+
+This pattern uses reflection to load and query a class that is not available
+at compile-time.
+
 *** Citation: cite:livshits_improving_2006
+*** Found In: =columba=
+*** Snippet
+
+#+BEGIN_SRC java
+Method getVersionMethod =
+    Class.forName("org.columba.core.main.ColumbaVersionInfo").
+        getMethod("getVersion", new Class[0]);
+return (String) getVersionMethod.invoke(null,new Object[0]);
+#+END_SRC
+
+*** Discussion
+
+How could be solve this problem by using information available
+at compile-time?
 
 ** Using ~Class.forName~ for its Side-effects 
+*** Description
+
+By using this pattern one can call the class constructor,
+which might be needed independently by a later call-site.
+
 *** Citation: cite:livshits_improving_2006
+*** Found In: =jfreechart=
+*** Snippet
+
+#+BEGIN_SRC java
+public JDBCCategoryDataset(String url, String driverName,
+                           String user, String passwd)
+    throws ClassNotFoundException, SQLException
+{
+    Class.forName(driverName);
+    this.connection = DriverManager.getConnection(url, user, passwd);
+}
+#+END_SRC
+
+*** Discussion
+
+Commonly used by ~JDBC~ API to load database drivers.
 
 ** Getting Around Static Type Checking      
 *** Description
 
+This pattern allows to circumvent safety features of the language.
 
 *** Citation: cite:livshits_improving_2006
 *** Found In: =columba=
+*** Snippet
+
+#+BEGIN_SRC java
+fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+fieldSysPath.setAccessible(true);
+if (fieldSysPath != null) {
+    fieldSysPath.set(System.class.getClassLoader(), null);
+}
+#+END_SRC
+
+*** Discussion
+
+Is it possible to achieve the same effect using =sun.misc.Unsafe=?
 
 ** Providing a Built-in Interpreter         
 *** Description
@@ -82,13 +203,128 @@ Implementing an interpreter, scripting language as a ~Java~ extension
 
 *** Citation: cite:livshits_improving_2006
 *** Found In: =jedit=
-*** +Snippet+
+*** Snippet
+*** Discussion
 
-* Unsafe
+This pattern seems too much like a high level pattern.
+Although having ~semantic~ patterns is what we want,
+a pattern without a ~snippet~ is too high level and application-specific.
+
 * Casts
-* Exceptions
 
+cite:winther_guarded_2011 proposes a flow-sensitive analysis to eliminate
+redundant casts in ~Java~.
+He presents some casts patterns that he needs to deal with in his analysis.
+Notice that these patterns are structural ones.
+
+It does not show the purpose of casts, neither the rationale.
+What we are trying to understand is why developers use casts,
+and how could we avoid them, if we have to.
+
+** Guarded Casts
+*** Description
+*** Citation: cite:winther_guarded_2011 
+*** Found In: -
+*** Snippet
+
+#+BEGIN_SRC java
+if (o instanceof Foo) {
+    Foo foo = (Foo)o;
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+if (o instanceof Foo && ((Foo)o).isBar()) {
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Bar bar = o instanceof Foo ? ((Foo)o).getBar() : null;
+#+END_SRC
+
+=dead-if-guarded= cast version
+
+#+BEGIN_SRC java
+if (!(o instanceof Foo)) {
+    return;
+}
+Foo foo = (Foo)o;
+#+END_SRC
+
+=ensure-guarded= casts
+
+#+BEGIN_SRC java
+if (!(o instanceof Foo)) {
+    o = new Foo();
+}
+Foo foo = (Foo)o; 
+#+END_SRC
+
+=while-guarded= cast
+
+#+BEGIN_SRC java
+while (o != null && !(o instanceof Foo)) {
+    o = o.parent();
+}
+Foo foo = (Foo)o;
+#+END_SRC
+
+** Semi-guarded Casts
+*** Description
+
+This casts are provided at an application-level instead of with runtime 
+information.
+
+*** Citation: cite:winther_guarded_2011 
+*** Snippet
+
+#+BEGIN_SRC java
+Foo foo = ...
+if (foo.isBar()) {
+    Bar bar = (Bar)foo;
+    // ...
+}
+#+END_SRC
+
+** Unguarded Casts
+*** Description
+*** Citation: cite:winther_guarded_2011 
+*** Snippet
+
+#+BEGIN_SRC java
+List list = ...{ // a list of Foo elements
+for (Object o : list) {
+    Foo foo = (Foo)o;
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Calendar copy = (Calendar)calendar.clone();
+#+END_SRC
+
+** Safe Casts
+*** Description
+
+Primitive conversions, just for the sake of completeness.
+
+*** Citation: cite:winther_guarded_2011 
+*** Snippet
+
+#+BEGIN_SRC java
+(char)42
+#+END_SRC
+
+#+BEGIN_SRC java
+(Integer)42
+#+END_SRC
+
+* Exceptions
+* Unsafe
 
 
 bibliographystyle:unsrt
 bibliography:proposal.bib
+
