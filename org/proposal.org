@@ -1,14 +1,64 @@
 
+# #+STARTUP: indent showeverything logdrawer
+#+STARTUP: logdrawer
 #+TODO: TODO(t) DRAFT(f@/!) IN-THE-BOOK(i!) | DONE(d!) CANCELED(c)
 
+#+begin_src emacs-lisp :results silent :exports none
+    (add-to-list 'org-latex-classes
+             '("usiinfdocprop"
+                "\\documentclass{usiinfdocprop}
+                [NO-DEFAULT-PACKAGES]
+                [EXTRA]"
+                ("\\chapter{%s}" . "\\chapter*{%s}")
+                ("\\section{%s}" . "\\section*{%s}")
+                ("\\subsection{%s}" . "\\subsection*{%s}")
+                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  ;; org-latex-subtitle-separate
+  ;; (setq org-export-latex-listings t)
+  (setq org-latex-listings t)
+  (add-to-list 'org-latex-packages-alist '("" "listings"))
+  (add-to-list 'org-latex-packages-alist '("" "color"))
+
+#+end_src
+
 #+TITLE: Ph.D. Proposal
-#+latex_header: \usepackage{float}
+#+LATEX_CLASS: usiinfdocprop
+#+LATEX_HEADER: \subtitle{asdfasdfsdaf 1111}
+#+AUTHOR: Luis Mastrangelo
+#+LATEX_HEADER: \begin{committee}
+#+LATEX_HEADER:   \advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
+#+LATEX_HEADER:   \coadvisor{Prof.}{Nathaniel Nystrom}{\USI, Switzerland}
+#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Walter Binder}}
+#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Antonio Carzaniga}}
+#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Gabriele Bavota}}
+#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Patrick Eugster}}
+#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{Iowa State University, United States}}
+#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{Uppsala University, Sweden}}
+#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
+#+LATEX_HEADER: \end{committee}
+#+LATEX_HEADER: \phddirector{Prof.}{Walter Binder}
+#+LATEX_HEADER: \phddirector{Prof.}{Michael Bronstein}
+#+LATEX_HEADER: \abstract{The abstract goes here}
+#+OPTIONS: toc:nil
 
+# +latex_header: \usepackage{float}
+# #+TOC: headlines 2
 
-* DRAFT Introduction
+\frontmatter
+\tableofcontents
+\mainmatter
 
-- State "DRAFT"      from              [2017-11-27 Mon 11:40] \\
-  Start
+* DONE Introduction
+CLOSED: [2017-11-29 Wed 19:37]
+:LOGBOOK:
+- State "DONE"       from "DRAFT"      [2017-11-29 Wed 19:37]
+- State "DRAFT"      from "TODO"       [2017-11-29 Wed 19:37] \\
+  asdfasdf
+- State "TODO"       from "DRAFT"      [2017-11-29 Wed 19:37]
+:END:
+
 * Literature Review
 
 cite:livshits_reflection_2005
@@ -17,8 +67,11 @@ cite:livshits_improving_2006
 
 cite:mastrangelo_use_2015
 
+* Unsafe API
 
-* Reflection
+Our study on unsafe we have divised several usage patterns.
+
+* Reflection Patterns
 
 This list of patterns are more of semantic patterns.
 
@@ -322,9 +375,7 @@ Primitive conversions, just for the sake of completeness.
 #+END_SRC
 
 * Exceptions
-* Unsafe
 
-
-bibliographystyle:unsrt
+bibliographystyle:plainnat
 bibliography:proposal.bib
 
