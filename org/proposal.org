@@ -27,6 +27,7 @@
 #+LATEX_CLASS: usiinfdocprop
 #+LATEX_HEADER: \subtitle{asdfasdfsdaf 1111}
 #+AUTHOR: Luis Mastrangelo
+#+LATEX_HEADER: \include{prelude}
 #+LATEX_HEADER: \begin{committee}
 #+LATEX_HEADER:   \advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
 #+LATEX_HEADER:   \coadvisor{Prof.}{Nathaniel Nystrom}{\USI, Switzerland}
@@ -41,6 +42,7 @@
 #+LATEX_HEADER: \phddirector{Prof.}{Walter Binder}
 #+LATEX_HEADER: \phddirector{Prof.}{Michael Bronstein}
 #+LATEX_HEADER: \abstract{The abstract goes here}
+#+LATEX_HEADER: \usepackage{tikz}
 #+OPTIONS: toc:nil
 
 # +latex_header: \usepackage{float}
@@ -378,4 +380,3 @@ Primitive conversions, just for the sake of completeness.
 
 bibliographystyle:plainnat
 bibliography:proposal.bib
-
