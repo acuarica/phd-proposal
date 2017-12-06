@@ -5,32 +5,31 @@
 
 #+begin_src emacs-lisp :results silent :exports none
 
-(setq org-latex-pdf-process
-    '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+  (setq org-latex-pdf-process
+      '("latexmk -pdflatex='pdflatex -interaction nonstopmode -synctex=1' -pdf -bibtex -f %f"))
 
-    (add-to-list 'org-latex-classes
-             '("usiinfdocprop"
-                "\\documentclass{usiinfdocprop}
-                [NO-DEFAULT-PACKAGES]
-                [EXTRA]"
-                ("\\chapter{%s}" . "\\chapter*{%s}")
-                ("\\section{%s}" . "\\section*{%s}")
-                ("\\subsection{%s}" . "\\subsection*{%s}")
-                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-  ;; org-latex-subtitle-separate
-  ;; (setq org-export-latex-listings t)
-  (setq org-latex-listings t)
-  (add-to-list 'org-latex-packages-alist '("" "listings"))
-  (add-to-list 'org-latex-packages-alist '("" "color"))
-  (add-to-list 'org-latex-packages-alist '("" "cleverref"))
-
+      (add-to-list 'org-latex-classes
+               '("usiinfdocprop"
+                  "\\documentclass{usiinfdocprop}
+                  [NO-DEFAULT-PACKAGES]
+                  [EXTRA]"
+                  ("\\chapter{%s}" . "\\chapter*{%s}")
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    ;; org-latex-subtitle-separate
+    ;; (setq org-export-latex-listings t)
+    (setq org-latex-listings t)
+    ;; (add-to-list 'org-latex-packages-alist '("" "listings"))
+    ;; (add-to-list 'org-latex-packages-alist '("" "color"))
+    ;; (add-to-list 'org-latex-packages-alist '("" "cleverref"))
 #+end_src
 
-#+TITLE: Ph.D. Proposal
+#+TITLE: What Do We write?
 #+LATEX_CLASS: usiinfdocprop
-#+LATEX_HEADER: \subtitle{asdfasdfsdaf 1111}
+#+LATEX_HEADER: \subtitle{Understanding How Developers Make Use of Language Features at Large-scale by Empirical-based Patterns}
 #+AUTHOR: Luis Mastrangelo
 #+LATEX_HEADER: \include{prelude}
 #+LATEX_HEADER: \begin{committee}
@@ -48,11 +47,13 @@
 #+LATEX_HEADER: \phddirector{Prof.}{Michael Bronstein}
 #+LATEX_HEADER: \abstract{The abstract goes here}
 #+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{cleveref}
 #+LATEX_HEADER: \crefname{section}{\S}{faafd}
 #+OPTIONS: toc:nil
 # #+OPTIONS: todo:nil
 
-# +latex_header: \usepackage{float}
 # #+TOC: headlines 2
 
 \frontmatter
@@ -96,10 +97,9 @@ while providing developers with best practices to the effective use of lambdas.
 
 This triggers our research question:
 
-\rquestion{How --- \emph{and why} --- features in a statically-typed language are used to circumvent the \emph{static} type system?}
+\rquestion{How --- /and why/ --- features in a statically-typed language are used to circumvent the /static/ type system?}
 
-\rquestion{How --- \emph{and why} --- statically-typed languages constraints circumvent the \emph{static} type system?}
-
+\rquestion{How --- /and why/ --- statically-typed languages constraints circumvent the /static/ type system?}
 
 We have arguments to believe that statically-typed languages restrict developers expressiveness.
 That is, there 
@@ -130,12 +130,12 @@ Finally, Chapter\nbsp{}[[cha:unsafe]] shows the study we already made on the uns
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
 The rationale behind this organization is that we prefer to show how we improve over the /state-of-the-art/ after having presented our plan for each feature.
 
-%Understanding the Use of Language Features in Java.
-%To understand patterns.Mining language features thesis.
-%Research Question: Is Java Safe?
-%Methodological Contribution, to evolve your language.
-%Motivate the umbrella that put together those 3 pillars.
-%In our research proposal we investigate the feasibility of
+# Understanding the Use of Language Features in Java.
+# To understand patterns.Mining language features thesis.
+# Research Question: Is Java Safe?
+# Methodological Contribution, to evolve your language.
+# Motivate the umbrella that put together those 3 pillars.
+# In our research proposal we investigate the feasibility of
 
 * Literature Review <<cha:literature-review>>
 
@@ -156,101 +156,104 @@ Finally, \S{}[[sec:msr]] gives an overview of what tools are available to extrac
 
 Already cite:knuth_empirical_1971 started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, ~\cite{hammond_basic_1977} has studied a representative dataset of programs.
-Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
-Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs.
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, cite:hammond_basic_1977 has studied a representative dataset of programs.
+Adding to Knuth's work, cite:shen_empirical_1990 made an empirical study for parallelizing compilers.
+Similar works have been done for \cobol{}\nbsp{}cite:salvadori_static_1975,chevance_static_1978, \pascal{}\nbsp{}cite:cook_contextual_1982, and \apl{}\nbsp{}cite:saal_properties_1975,saal_empirical_1977 programs.
 
 But there is more than empirical studies at the source code level.
 A machine instruction set is effectively another kind of language.
 Therefore, its design can be affected by how compilers generate machine code.
-Several studies targetted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
+Several studies targeted the \jvm{}\nbsp{}cite:collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998; while\nbsp{}cite:cook_empirical_1989 did a similar study for \lilith{} in the past.
 
-\section{Benchmarks and Corpuses} \label{sec:benchmarks}
+** Benchmarks and Corpuses <<sec:benchmarks>>
 
 Benchmarks are crucial to properly evaluate and measure product developement.
 This is key for both research and industry.
-One popular benchmark suite for \java{} is DaCapo~\cite{blackburn_dacapo_2006}.
+One popular benchmark suite for \java{} is DaCapo\nbsp{}cite:blackburn_dacapo_2006.
 This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
 
-Another suite is given in \cite{tempero_qualitas_2010}.
+Another suite is given in\nbsp{}cite:tempero_qualitas_2010.
 They provide a corpus of curated open source systems to facilitate empirical studies on source code.
 
 For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Therefore, we argue how important it is to make empirical studies about what programmers write.
 
+** Large-scale Codebase Empirical Studies <<sec:large-scale>>
 
-\section{Large-scale Codebase Empirical Studies}
+In the same direction to our plan, cite:callau_how_2013 perform a study of the dynamic features of \smalltalk{}.
+Analogously, cite:richards_analysis_2010,richards_eval_2011 made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
+Also for \javascript{}, cite:madsen_string_2014 analyzed how fields are accessed via strings, while\nbsp{}cite:jang_empirical_2010 analyzed privacy violations.
+Similar empirical studies were done for \php{}\nbsp{}cite:hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011 and \swift{}\nbsp{}cite:reboucas_empirical_2016. 
 
-\label{sec:large-scale}
-
-In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
-Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
-Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privacy violations.
-Similar empirical studies were done for \php{}~
-\cite{hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011} and \swift{}~\cite{reboucas_empirical_2016}.
-
-Going one step forward, \cite{ray_large-scale_2017} studied the correlation between programming languages and defects.
+Going one step forward, cite:ray_large-scale_2017 studied the correlation between programming languages and defects.
 One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
-We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
+We argue that it is more important to analyse projects that are /representative/, not /popular/.
 
-For \java{}, \cite{dietrich_contracts_2017-1} made a study about how programmers use contracts in \mavencentral{}.
-\cite{landman_challenges_2017} have analyzed the relevance of static analysis tools with respect to reflection.
+For \java{}, cite:dietrich_contracts_2017-1 made a study about how programmers use contracts in \mavencentral{}.
+cite:landman_challenges_2017 have analyzed the relevance of static analysis tools with respect to reflection.
 They made an empirical study to check how often the reflection \api{} is used in real-world code.
 They argue, as we do, that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
-\cite{winther_guarded_2011}~have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
+cite:winther_guarded_2011 \nbsp{}have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
 
+*** Exceptions
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
 
-\subsection*{Exceptions}
-
-\cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions.
+cite:kery_examining_2016,asaduzzaman_how_2016 focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
-The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns.
-Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
+The work done by\nbsp{}cite:nakshatri_analysis_2016 categorized them in patterns.
+Whether\nbsp{}cite:coelho_unveiling_2015 used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
 The exceptions mechanism is orthogonal to the features we target in this proposal.
 For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
-Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
-Therefore, we believe that these kind of studies can be complementary for our research. They can help us to understand how programmers handle exceptions in these scenarios.
+Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research.
+They can help us to understand how programmers handle exceptions in these scenarios.
 
-
-\subsection*{Collections and Generics}
+*** Collections and Generics
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
 
 The inclusion of generics in \java{} is closely related to collections.
-\cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers.
+cite:parnin_java_2011,parnin_adoption_2013 studied how generics were adopted by \java{} developers.
 They found that the use of generics do not significantly reduce the number of type casts.
 
-\cite{costa_empirical_2017}~have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
+cite:costa_empirical_2017 have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
 They have found out that in most cases there is an alternative usage that improves performance.
 
+*** Software Evolution
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
 
-\subsection*{Software Evolution}
+cite:dietrich_broken_2014 have studied how changes in \api{} library impact in \java{} programs.
+Notice that they have used the Qualitas Corpus\nbsp{}cite:tempero_qualitas_2010 mentioned above for their study.
 
-\cite{dietrich_broken_2014}~have studied how changes in \api{} library impact in \java{} programs.
-Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study.
-
-\section{Controlled Experiments on Subjects}
-
-\label{sec:controlled-experiments}
+** Controlled Experiments on Subjects <<sec:controlled-experiments>>
 
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
-For instance, \cite{soloway_empirical_1984} tried to understand the how expert programmers face problem solving.
-\cite{budd_theoretical_1980} made a empirical study on how effective is mutation testing.
-\cite{prechelt_empirical_2000} compared how a given --- fixed --- task was implemented in several programming languages.
+For instance, cite:soloway_empirical_1984 tried to understand the how expert programmers face problem solving.
+cite:budd_theoretical_1980 made a empirical study on how effective is mutation testing.
+cite:prechelt_empirical_2000 compared how a given --- fixed --- task was implemented in several programming languages.
 
-\cite{latoza_developers_2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
+cite:latoza_developers_2010 realize that, in essence, programmers need to answer reachability questions to understand large codebases.
 
-\subsection*{Impact of using Static Type systems}
+*** Impact of using Static Type systems
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
 
-Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
+Several authors\nbsp{}cite:stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017 measure whether using a static-type system improves programmers productivity.
 They compare how a static and a dynamic type system impact on productivity.
 The common setting for these studies is to have a set of programming problems.
 Then, let a group of developers solve them in both a static and dynamic languages.
 
-For these kind of studies to reflect reality, the problems to be solved need to
-be representative of the real-world code.
+For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
 Having artificial problems may lead to invalid conclusions.
 
-The work by \cite{wu_how_2017,wu_learning_2017} goes towards this direction.
+The work by\nbsp{}cite:wu_how_2017,wu_learning_2017 goes towards this direction.
 They have examined programs written by students to understand real debugging conditions.
 Their focus is on ill-typed programs written in \haskell{}.
 Unfortunately, these dataset does not correspond to real-world code.
@@ -260,78 +263,68 @@ Therefore, it is important to study how casts are used in real-world code.
 Having a deep understanding of actual usage of casts can led to
 Informed decisions when designing these kind of experiments.
 
+** DRAFT Code Patterns Discovery <<sec:pattern-discovery>>
+:LOGBOOK:
+- State "DRAFT"      from "DRAFT"      [2017-12-05 Tue 15:18] \\
+  How the pattern discovery relate to static analysis, how powerful they are?
+- State "DRAFT"      from "TODO"       [2017-12-05 Tue 15:17] \\
+  Need to add Rascal
+:END:
 
-\section{Code Patterns Discovery}
-
-\label{sec:pattern-discovery}
-
-\cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
+cite:posnett_thex:_2010 have extended \asm{}\nbsp{}cite:bruneton_asm:_2002,kuleshov_using_2007 to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
-\cite{hu_dynamic_2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelli_design_2008} used only dynamic.
+cite:hu_dynamic_2008 used both dynamic and static analysis to discover design patterns, while cite:arcelli_design_2008 used only dynamic.
 
 For our study on \smu{}, we needed to discover usage patterns.
-Given its a singleton class, we have collected call sites,
-and proceed with a semi-automatic analysis.
+Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
 On the other hand, our study related to casts involved a much more complex analysis.
 Therefore we have decided to implement it with manual inspection.
 
-
-\section{Tools for Mining Software Repositories}
-
-\label{sec:msr}
+** Tools for Mining Software Repositories <<sec:msr>>
 
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
 In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
 
-\cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and a online platform\footnote{\url{http://boa.cs.iastate.edu/}}.
-It is used to query software repositories on two popular hosting services, \github{}\footnote{\url{https://github.com/}} and \sourceforge{}\footnote{\url{https://sourceforge.net/}}.
-The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyer_mining_2014}.
+cite:dyer_boa:_2013,dyer_declarative_2013 built \boa{}, both a domain-specific language and an online platform[fn::http://boa.cs.iastate.edu/].
+It is used to query software repositories on two popular hosting services, \github [fn::https://github.com/] and \sourceforge [fn::https://sourceforge.net/].
+The same authors of \boa{} made a study on how new features in \java{} were adopted by developers\nbsp{}cite:dyer_mining_2014.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
 For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
 We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
-\cite{gousios_ghtorent_2013}
-provides an offline mirror of \github{} that allows researchers to query any kind of that data.
-Later on, \cite{gousios_lean_2014} published the dataset construction process of \github{}.
+cite:gousios_ghtorent_2013 provides an offline mirror of \github{} that allows researchers to query any kind of that data.
+Later on, cite:gousios_lean_2014 published the dataset construction process of \github{}.
 
-Similar to \boa{}, \lgtm{}\footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
+Similar to \boa{}, \lgtm [fn::https://lgtm.com/] is a platform to query software projects properties.
 It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
-Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinov_ql:_2016}.
+Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures\nbsp{}cite:avgustinov_ql:_2016.
 
-On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia{}\footnote{\url{http://candoia.github.io/}}, ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
+On top of \boa{}, cite:tiwari_candoia:_2017 built \candoia{}[fn::http://candoia.github.io/], ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
 Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
 
-Another tool to analyze large software repositories is presented in~\cite{brandauer_spencer:_2017}.
+Another tool to analyze large software repositories is presented in\nbsp{}cite:brandauer_spencer:_2017.
 In this case, the analysis is dynamic, based on program traces.
-At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing.
+At the time of this writing, the service[fn::http://www.spencer-t.racing/datasets] was unavailable for testing.
 
-
-\subsection*{Selecting Good Representatives}
+*** Selecting Good Representatives
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
 
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
-\cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
+cite:lopes_dejavu:_2017 made a study to measure code duplication in \github{}.
 
 They found out that much of the code there is actually duplicated.
-This raises a flag when consider which projects analyze when doing mining software repositories.
+This raises a flag when consider which projects analyze when doing mining software repositories. 
 
-
-
-
-
-
-
-%Implicits in Scala
-%Users/Compilers Java/Scala generated bytecode
-%Jurgen Vinju paper,
-%http://homepages.cwi.nl/~storm/publications/visitor.pdf
-
-
-
+# Implicits in Scala
+# Users/Compilers Java/Scala generated bytecode
+# Jurgen Vinju paper: http://homepages.cwi.nl/~storm/publications/visitor.pdf
 
 * Patterns <<cha:patterns>>
 
@@ -368,9 +361,7 @@ redundant casts in ~Java~.
 He presents some casts patterns that he needs to deal with in his analysis.
 Notice that these patterns are structural ones.
 
-
 cite:staicu_understanding_2017
-
 
 cite:buse_synthesizing_2012
 
@@ -672,6 +663,7 @@ a pattern without a ~snippet~ is too high level and application-specific.
 
 * Exceptions <<cha:exceptions>>
 
+Here we talk about exceptions.
 
 * Unsafe API <<cha:unsafe>>
 
