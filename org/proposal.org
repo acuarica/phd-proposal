@@ -26,10 +26,9 @@
     (add-to-list 'org-entities-user '("rascal" "\\host{Rascal}"))
 #+END_SRC
 
-#+TITLE: What Do We write?
+#+TITLE: What Do We Write?
 #+LATEX_CLASS: usiinfdocprop
-# #+LATEX_HEADER: \subtitle{Understanding How Developers Make Use of Language Features at Large-scale by Empirical-based Patterns}
-#+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usage at Large-Scale by Empirical-based Patterns}
+#+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
 #+AUTHOR: Luis Mastrangelo
 #+LATEX_HEADER: \include{prelude}
 #+LATEX_HEADER: \begin{committee}
@@ -62,6 +61,8 @@
 
 * DRAFT Introduction
 :LOGBOOK:
+- State "DRAFT"      from "DRAFT"      [2017-12-10 Sun 21:52] \\
+  Prev \subtitle{Understanding How Developers Make Use of Language Features at Large-scale by Empirical-based Patterns}
 - State "DRAFT"      from "IN-THE-BOOK" [2017-12-04 Mon 16:59] \\
   Come back to draft
 - State "IN-THE-BOOK" from "DRAFT"      [2017-12-04 Mon 16:07]
@@ -348,10 +349,11 @@ Diversity dimensions considered include total lines of code, project age, activi
   Demote patterns into literature review
 :END:
 
-#+BEGIN: columnview :hlines 1 :maxlevel 2 :id local
+#+CAPTION: hola q tal
+# #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
+#+BEGIN: columnview :hlines 1 :maxlevel 3 :id local :skip-empty-rows t
 | Name                                       | Citation                     | Found-In                     |
 |--------------------------------------------+------------------------------+------------------------------|
-| Patterns                                   |                              |                              |
 | Specifying Application Extensions          | cite:livshits_improving_2006 | =columba=, =jedit=, =tomcat= |
 | Custom-made Object Serialization Scheme    | cite:livshits_improving_2006 | =jgap=                       |
 | Improving Portability Using Reflection     | cite:livshits_improving_2006 | =gruntspud=, =jfreechart=    |
