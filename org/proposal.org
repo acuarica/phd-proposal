@@ -17,41 +17,15 @@
                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-    ;; org-latex-subtitle-separate
-    ;; (setq org-export-latex-listings t)
     (setq org-latex-listings t)
-    ;; (add-to-list 'org-latex-packages-alist '("" "listings"))
-    ;; (add-to-list 'org-latex-packages-alist '("" "color"))
-    ;; (add-to-list 'org-latex-packages-alist '("" "cleverref"))
-    (add-to-list 'org-entities-user '("rascal" "\\host{Rascal}"))
 #+END_SRC
 
 #+TITLE: What Do We Write?
 #+LATEX_CLASS: usiinfdocprop
 #+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
 #+AUTHOR: Luis Mastrangelo
-#+SELECT_TAGS: :unsafe:
+#+EXCLUDE_TAGS: unsafe
 #+LATEX_HEADER: \include{prelude}
-#+LATEX_HEADER: \begin{committee}
-#+LATEX_HEADER:   \advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
-#+LATEX_HEADER:   \coadvisor{Prof.}{Nathaniel Nystrom}{\USI, Switzerland}
-#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Walter Binder}}
-#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Antonio Carzaniga}}
-#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Gabriele Bavota}}
-#+LATEX_HEADER:   \internalmember{Prof.}{\tbd{Patrick Eugster}}
-#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{Iowa State University, United States}}
-#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{Uppsala University, Sweden}}
-#+LATEX_HEADER:   \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
-#+LATEX_HEADER: \end{committee}
-#+LATEX_HEADER: \phddirector{Prof.}{Walter Binder}
-#+LATEX_HEADER: \phddirector{Prof.}{Michael Bronstein}
-#+LATEX_HEADER: \include{abstract}
-#+LATEX_HEADER: \usepackage{tikz}
-#+LATEX_HEADER: \usepackage{listings}
-#+LATEX_HEADER: \usepackage{color}
-#+LATEX_HEADER: \usepackage{cleveref}
-#+LATEX_HEADER: \usepackage{mdframed}
-#+LATEX_HEADER: \crefname{section}{\S}{faafd}
 #+OPTIONS: toc:nil
 #+OPTIONS: todo:nil
 #+OPTIONS: tags:nil
@@ -142,6 +116,8 @@ The rationale behind this organization is that we prefer to show how we improve 
 
 * DRAFT Introduction                                                 :unsafe:
 :LOGBOOK:
+- State "DRAFT"      from "DRAFT"      [2017-12-14 Thu 20:13] \\
+  Disco
 - State "DRAFT"      from "TODO"       [2017-12-13 Wed 15:55] \\
   New headline for safety/unsafe
 :END:
@@ -154,6 +130,10 @@ Thus we believe that by understanding how developers use these dynamic or extra 
 
 We argue that using or abusing reflection can lead to less efficient software.
 Some languages use reflection in a unsafe way
+
+Study what are the implications of using reflection.
+
+When using a cast can 
 
 * DRAFT Literature Review <<cha:literature-review>> :patterns:
 :LOGBOOK:
@@ -757,10 +737,12 @@ This list of patterns are more of semantic patterns.
 
 Here we talk about exceptions.
 
-* Unsafe API <<cha:unsafe>> :patterns:
+* The \java{} Unsafe API <<cha:unsafe>>                            :patterns:
+
+The material in this chapter is based on our previously published paper citep:mastrangelo_use_2015.
 
 Our study on unsafe we have divised several usage patterns.
-
+Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
 
 bibliographystyle:plainnat
 bibliography:proposal.bib
