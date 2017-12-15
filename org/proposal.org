@@ -24,7 +24,6 @@
 #+LATEX_CLASS: usiinfdocprop
 #+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
 #+AUTHOR: Luis Mastrangelo
-#+EXCLUDE_TAGS: unsafe
 #+LATEX_HEADER: \include{prelude}
 #+OPTIONS: toc:nil
 #+OPTIONS: todo:nil
@@ -65,11 +64,8 @@ Understanding what developers write is not only useful in the field of language 
 For instance, cite:livshits_defense_2015 argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \setjmp{}/\longjmp{}, \jni [fn::https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html], \eval{}, \etc{}, from their analyses.
 They claim that in order to understand how the limits of analysis tools impact software, we also need to understand what kind of code is being written in the real world.
 
-Looking at the aforementioned examples, cite:mazinanian_understanding_2017 and cite:uesbeck_empirical_2016
-studied how developers use lambdas in \java{} and \cpp{} respectively; while cite:parnin_java_2011,parnin_adoption_2013 did the same for generics in \java{}.
-This kind of studies give an insight of the adoption of lambdas;
-which can drive future direction for language designers and tool builders,
-while providing developers with best practices to the effective use of lambdas.
+Looking at the aforementioned examples, cite:mazinanian_understanding_2017 and cite:uesbeck_empirical_2016 studied how developers use lambdas in \java{} and \cpp{} respectively; while cite:parnin_java_2011,parnin_adoption_2013 did the same for generics in \java{}.
+This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
 ** DRAFT Research Question
 :LOGBOOK:
@@ -86,11 +82,10 @@ This triggers our research question:
 \rquestion{Are there \emph{unexpected usages of language features} in-the-wild that can give new insights to language designers, tools builders, researchers and developers?}
 #+END_EXPORT
 
-We believe that we (as a research community) should understand what kinds of programs are written in real codebases.
+We believe that we --- as a research community --- should understand what kinds of programs are written in real codebases.
 We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
 This fact opens the door for empirical studies about language features, and their use in source code repositories, \eg{}, \github{}, \gitlab{} or \bitbucket{}, and package managers repositories, \eg{}, \mavencentral [fn::http:/central.sonatype.org/] or \npm [fn::https://www.npmjs.com/]. 
 Since any kind of language study must be language-specific, our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
-At its core, what we want to understand is
 
 In this proposal, we plan to target four specific \java{} features, namely, /casting/, /reflection/, /exception handling/, and the /unsafe \api{}/.
 We have divised --- for the /unsafe \api{}/ --- and we plan to divise language and \api{} usage patterns.
@@ -98,10 +93,13 @@ We believe that having usage patterns can help us to better categorize features 
 
 ** Proposal Outline
 
-Understanding what programmers write is a broad topic involving several sub-fields.
-To cover what has been already done in the sub-fields, Chapter\nbsp{}[[cha:literature-review]] gives a review of the literature in the /state-of-the-art/ of the different aspects related to our goal.
+# Understanding what programmers write is a broad topic involving several sub-fields.
+# To cover what has been already done,
+The rest of this proposal is organized as follows:
+Chapter\nbsp{}[[cha:literature-review]] gives a review of the literature in the /state-of-the-art/ of the different aspects related to our goal.
+More specifically, \S{}[[cha:patterns]] presents already existing code patterns related to the language features we plan to analyze.
 The following four chapters introduce our proposal plan for the selected features:
-Chapter\nbsp{}[[cha:casts]] presents our /casting/ study; while Chapter\nbsp{}[[cha:reflection]] does the same for reflection and Chapter\nbsp{}[[cha:exceptions]] for /exception handling/.
+Chapters\nbsp{}[[cha:casts]], [[cha:reflection]], [[cha:exceptions]] presents our /casting/, /reflection/ and /exception handling/ study respectively.
 Finally, Chapter\nbsp{}[[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
 
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
@@ -114,7 +112,7 @@ The rationale behind this organization is that we prefer to show how we improve 
 # Motivate the umbrella that put together those 3 pillars.
 # In our research proposal we investigate the feasibility of
 
-* DRAFT Introduction                                                 :unsafe:
+* DRAFT Introduction                                                 :noexport:
 :LOGBOOK:
 - State "DRAFT"      from "DRAFT"      [2017-12-14 Thu 20:13] \\
   Disco
@@ -196,6 +194,8 @@ cite:landman_challenges_2017 have analyzed the relevance of static analysis tool
 They made an empirical study to check how often the reflection \api{} is used in real-world code.
 They argue, as we do, that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
 cite:winther_guarded_2011 \nbsp{}have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
+cite:dietrich_broken_2014 have studied how changes in \api{} library impact in \java{} programs.
+Notice that they have used the Qualitas Corpus\nbsp{}cite:tempero_qualitas_2010 mentioned above for their study.
 
 *** Exceptions
 :PROPERTIES:
@@ -206,12 +206,6 @@ cite:kery_examining_2016,asaduzzaman_how_2016 focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
 The work done by\nbsp{}cite:nakshatri_analysis_2016 categorized them in patterns.
 Whether\nbsp{}cite:coelho_unveiling_2015 used a more dynamic approach by analysing stack traces and code issues in \github{}.
-
-The exceptions mechanism is orthogonal to the features we target in this proposal.
-For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
-Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
-Therefore, we believe that these kind of studies can be complementary for our research.
-They can help us to understand how programmers handle exceptions in these scenarios.
 
 *** Collections and Generics
 :PROPERTIES:
@@ -225,15 +219,11 @@ They found that the use of generics do not significantly reduce the number of ty
 cite:costa_empirical_2017 have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
 They have found out that in most cases there is an alternative usage that improves performance.
 
-*** Software Evolution
-:PROPERTIES:
-:UNNUMBERED: t
+** DRAFT Controlled Experiments on Subjects <<sec:controlled-experiments>>
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-15 Fri 16:58] \\
+  Removed "Impact of using Static Type systems" sub-headline
 :END:
-
-cite:dietrich_broken_2014 have studied how changes in \api{} library impact in \java{} programs.
-Notice that they have used the Qualitas Corpus\nbsp{}cite:tempero_qualitas_2010 mentioned above for their study.
-
-** Controlled Experiments on Subjects <<sec:controlled-experiments>>
 
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
 For instance, cite:soloway_empirical_1984 tried to understand the how expert programmers face problem solving.
@@ -241,11 +231,6 @@ cite:budd_theoretical_1980 made a empirical study on how effective is mutation t
 cite:prechelt_empirical_2000 compared how a given --- fixed --- task was implemented in several programming languages.
 
 cite:latoza_developers_2010 realize that, in essence, programmers need to answer reachability questions to understand large codebases.
-
-*** Impact of using Static Type systems
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
 
 Several authors\nbsp{}cite:stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017 measure whether using a static-type system improves programmers productivity.
 They compare how a static and a dynamic type system impact on productivity.
@@ -281,12 +266,11 @@ cite:hu_dynamic_2008 used both dynamic and static analysis to discover design pa
 
 Trying to unify analysis and transformation tools\nbsp{}cite:vinju_how_2006, cite:klint_rascal:_2009 built \rascal a DSL that aims to bring them together. 
 
-For our study on \smu{}, we needed to discover usage patterns.
-Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
-On the other hand, our study related to casts involved a much more complex analysis.
-Therefore we have decided to implement it with manual inspection.
-
-** TODO Tools for Mining Software Repositories <<sec:msr>> :boa:lgtm:candoia:
+** DRAFT Tools for Mining Software Repositories <<sec:msr>> :boa:lgtm:candoia:
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-15 Fri 17:02] \\
+  Removed title ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps'' (already in the citation)
+:END:
 
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
@@ -298,11 +282,8 @@ It is used to query software repositories on two popular hosting services, \gith
 The same authors of \boa{} made a study on how new features in \java{} were adopted by developers\nbsp{}cite:dyer_mining_2014.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
-For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
-We found out that only few projects were using \smu{}.
-In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
-cite:gousios_ghtorent_2013 provides an offline mirror of \github{} that allows researchers to query any kind of that data.
+To this end, cite:gousios_ghtorent_2013 provides an offline mirror of \github{} that allows researchers to query any kind of that data.
 Later on, cite:gousios_lean_2014 published the dataset construction process of \github{}.
 
 Similar to \boa{}, \lgtm [fn::https://lgtm.com/] is a platform to query software projects properties.
@@ -310,7 +291,7 @@ It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
 Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures\nbsp{}cite:avgustinov_ql:_2016.
 
-On top of \boa{}, cite:tiwari_candoia:_2017 built \candoia [fn::http://candoia.github.io/], ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps''.
+On top of \boa{}, cite:tiwari_candoia:_2017 built \candoia [fn::http://candoia.github.io/].
 Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
 
 Another tool to analyze large software repositories is presented in\nbsp{}cite:brandauer_spencer:_2017.
@@ -325,7 +306,6 @@ At the time of this writing, the service[fn::http://www.spencer-t.racing/dataset
 
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 cite:lopes_dejavu:_2017 made a study to measure code duplication in \github{}.
-
 They found out that much of the code there is actually duplicated.
 This raises a flag when consider which projects analyze when doing mining software repositories. 
 
@@ -337,8 +317,13 @@ Diversity dimensions considered include total lines of code, project age, activi
 # Users/Compilers Java/Scala generated bytecode
 # Jurgen Vinju paper: http://homepages.cwi.nl/~storm/publications/visitor.pdf
 
-** Code Recommenders
-** DRAFT Existing Patterns <<cha:patterns>>
+** DRAFT Code Recommenders Systems :noexport:
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-15 Fri 16:08] \\
+  Shall I add this Code Recommenders systems section?
+:END:
+
+* DRAFT Existing Code Patterns <<cha:patterns>>
 :PROPERTIES:
 :COLUMNS:  %ITEM(Name) %Citation %10Found-In
 :END:
@@ -346,6 +331,10 @@ Diversity dimensions considered include total lines of code, project age, activi
 - State "DRAFT"      from "TODO"       [2017-12-10 Sun 17:47] \\
   Demote patterns into literature review
 :END:
+
+#+BEGIN_SRC emacs-lisp :results silent :exports none
+(org-entry-properties)
+#+END_SRC
 
 #+CAPTION: hola q tal
 # #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
@@ -743,6 +732,21 @@ The material in this chapter is based on our previously published paper citep:ma
 
 Our study on unsafe we have divised several usage patterns.
 Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
+
+For our study on \smu{}, we needed to discover usage patterns.
+Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
+On the other hand, our study related to casts involved a much more complex analysis.
+Therefore we have decided to implement it with manual inspection.
+
+The exceptions mechanism is orthogonal to the features we target in this proposal.
+For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
+Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research.
+They can help us to understand how programmers handle exceptions in these scenarios.
+
+For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
+We found out that only few projects were using \smu{}.
+In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
 bibliographystyle:plainnat
 bibliography:proposal.bib
