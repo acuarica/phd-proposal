@@ -55,12 +55,12 @@ But once a language feature is released, little is known about how it is actuall
 Therefore, it is extremely difficult to assess how features in a programming language impact on programmers productivity.
 We argue that this information is of great value, because can give many insights to drive the future of any programming language.
 
-cite:hanenberg_faith_2010,hanenberg_why_2014 argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
+On the other hand, cite:hanenberg_faith_2010,hanenberg_why_2014 argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
 With this approach, it should be possible --- in principle --- to understand to what degree a language feature impacts on programming productivity.
 However, for any kind of controlled experiment to be valid, it must reflect reality.
 Otherwise, any conjecture derived from a controlled experiment can be considered truthful but useless.
 
-Understanding what developers write is not only useful in the field of language design and controlled experiments.
+Finally, understanding what developers write is not only useful in the field of language design and controlled experiments.
 For instance, cite:livshits_defense_2015 argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \setjmp{}/\longjmp{}, \jni [fn::https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html], \eval{}, \etc{}, from their analyses.
 They claim that in order to understand how the limits of analysis tools impact software, we also need to understand what kind of code is being written in the real world.
 
@@ -91,13 +91,15 @@ In this proposal, we plan to target four specific \java{} features, namely, /cas
 We have divised --- for the /unsafe \api{}/ --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
-** Proposal Outline
+** DRAFT Proposal Outline
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-19 Tue 16:38] \\
+  Old start: Understanding what programmers write is a broad topic involving several sub-fields. To cover what has been already done,
+:END:
 
-# Understanding what programmers write is a broad topic involving several sub-fields.
-# To cover what has been already done,
 The rest of this proposal is organized as follows:
 Chapter\nbsp{}[[cha:literature-review]] gives a review of the literature in the /state-of-the-art/ of the different aspects related to our goal.
-More specifically, \S{}[[cha:patterns]] presents already existing code patterns related to the language features we plan to analyze.
+More specifically, Chapter\nbsp{}[[cha:patterns]] presents already existing code patterns related to the language features we plan to analyze.
 The following four chapters introduce our proposal plan for the selected features:
 Chapters\nbsp{}[[cha:casts]], [[cha:reflection]], [[cha:exceptions]] presents our /casting/, /reflection/ and /exception handling/ study respectively.
 Finally, Chapter\nbsp{}[[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
@@ -264,7 +266,7 @@ cite:posnett_thex:_2010 have extended \asm{}\nbsp{}cite:bruneton_asm:_2002,kules
 However, this is only a meta-pattern detector, and not a pattern discovery.
 cite:hu_dynamic_2008 used both dynamic and static analysis to discover design patterns, while cite:arcelli_design_2008 used only dynamic.
 
-Trying to unify analysis and transformation tools\nbsp{}cite:vinju_how_2006, cite:klint_rascal:_2009 built \rascal a DSL that aims to bring them together. 
+Trying to unify analysis and transformation tools\nbsp{}cite:vinju_how_2006, cite:klint_rascal:_2009 built \rascal, a DSL that aims to bring them together. 
 
 ** DRAFT Tools for Mining Software Repositories <<sec:msr>> :boa:lgtm:candoia:
 :LOGBOOK:
