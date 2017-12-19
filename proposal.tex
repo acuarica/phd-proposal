@@ -1,0 +1,632 @@
+% Created 2017-12-19 Tue 16:53
+% Intended LaTeX compiler: pdflatex
+\documentclass{usiinfdocprop}
+                \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
+\include{prelude}
+\author{Luis Mastrangelo}
+\date{\today}
+\title{What Do We Write?}
+\hypersetup{
+ pdfauthor={Luis Mastrangelo},
+ pdftitle={What Do We Write?},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.3.1 (Org mode 9.1.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\frontmatter
+\setcounter{tocdepth}{1}
+\tableofcontents
+\mainmatter
+
+\chapter{Introduction}
+\label{sec:org89919b5}
+Programming language design has been always a hot topic in computer science literature.
+It has been extensively studied in the past decades.
+For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
+
+Adding new features to a language should --- \emph{in theory} --- increase programmers productivity.
+But once a language feature is released, little is known about how it is actually used by the developer community.
+Therefore, it is extremely difficult to assess how features in a programming language impact on programmers productivity.
+We argue that this information is of great value, because can give many insights to drive the future of any programming language.
+
+On the other hand, \cite{hanenberg_faith_2010,hanenberg_why_2014} argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
+With this approach, it should be possible --- in principle --- to understand to what degree a language feature impacts on programming productivity.
+However, for any kind of controlled experiment to be valid, it must reflect reality.
+Otherwise, any conjecture derived from a controlled experiment can be considered truthful but useless.
+
+Finally, understanding what developers write is not only useful in the field of language design and controlled experiments.
+For instance, \cite{livshits_defense_2015} argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \setjmp{}/\longjmp{}, \jni \footnote{\url{https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html}}, \eval{}, \etc{}, from their analyses.
+They claim that in order to understand how the limits of analysis tools impact software, we also need to understand what kind of code is being written in the real world.
+
+Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and \cite{uesbeck_empirical_2016} studied how developers use lambdas in \java{} and \cpp{} respectively; while \cite{parnin_java_2011,parnin_adoption_2013} did the same for generics in \java{}.
+This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
+
+\section{Research Question}
+\label{sec:org2a96af8}
+Understanding how language features are used can give many insights to language designers, tools builders, researchers and developers.
+This triggers our research question:
+
+\rquestion{Are there \emph{unexpected usages of language features} in-the-wild that can give new insights to language designers, tools builders, researchers and developers?}
+
+We believe that we --- as a research community --- should understand what kinds of programs are written in real codebases.
+We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
+This fact opens the door for empirical studies about language features, and their use in source code repositories, \eg{}, \github{}, \gitlab{} or \bitbucket{}, and package managers repositories, \eg{}, \mavencentral \footnote{\url{http:/central.sonatype.org/}} or \npm \footnote{\url{https://www.npmjs.com/}}. 
+Since any kind of language study must be language-specific, our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
+
+In this proposal, we plan to target four specific \java{} features, namely, \emph{casting}, \emph{reflection}, \emph{exception handling}, and the \emph{unsafe \api{}}.
+We have divised --- for the \emph{unsafe \api{}} --- and we plan to divise language and \api{} usage patterns.
+We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
+
+\section{Proposal Outline}
+\label{sec:org3dfa4a5}
+The rest of this proposal is organized as follows:
+Chapter~\ref{org1823abf} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
+More specifically, Chapter~\ref{orgf594f15} presents already existing code patterns related to the language features we plan to analyze.
+The following four chapters introduce our proposal plan for the selected features:
+Chapters~\ref{orgaef2673}, \ref{orgf7d189c}, \ref{org601f15a} presents our \emph{casting}, \emph{reflection} and \emph{exception handling} study respectively.
+Finally, Chapter~\ref{org10050e6} shows the study we already made on the unsafe \api{} in \java{}.
+
+While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
+The rationale behind this organization is that we prefer to show how we improve over the \emph{state-of-the-art} after having presented our plan for each feature.
+
+\chapter{Literature Review \label{org1823abf}}
+\label{sec:org07d47a6}
+Understanding how language features and \api{}s are being used is a broad topic.
+There is plenty of research in computer science literature about empirical studies of programs; which involves several directions directly or indirecly related.
+Along the last decades, researchers always has been interested in understanding what kind of programs programmers write.
+The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
+
+The organization of this chapter is as follows:
+In \S\ref{org3fc4622} we present empirical studies regarding compilers writers.
+How benchmarks and corpuses relate to this kind of studies is presented in \S\ref{org915ed7f}.
+\S\ref{org17a821c} gives an overview of other large-scale studies either in \java{} or in other languages.
+Related to our cast study, in \S\ref{org7313da4} we show studies on how static type systems impact on programmers productivity.
+Code Patterns discovery is presented in \S\ref{org1f4d4e8}.
+Finally, \S\ref{org9efd57b} gives an overview of what tools are available to extract information from a software repository, while \S\ref{orgc8f89c6} of how to select good candidates projects.
+
+\section{Compilers Writers \label{org3fc4622}}
+\label{sec:org8aae3f1}
+
+Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
+By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammond_basic_1977} has studied a representative dataset of programs.
+Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
+Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs.
+
+But there is more than empirical studies at the source code level.
+A machine instruction set is effectively another kind of language.
+Therefore, its design can be affected by how compilers generate machine code.
+Several studies targeted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
+
+\section{Benchmarks and Corpuses \label{org915ed7f}}
+\label{sec:org70f55a6}
+
+Benchmarks are crucial to properly evaluate and measure product developement.
+This is key for both research and industry.
+One popular benchmark suite for \java{} is DaCapo~\cite{blackburn_dacapo_2006}.
+This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
+
+Another suite is given in~\cite{tempero_qualitas_2010}.
+They provide a corpus of curated open source systems to facilitate empirical studies on source code.
+
+For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
+Therefore, we argue how important it is to make empirical studies about what programmers write.
+
+\section{Large-scale Codebase Empirical Studies \label{org17a821c}}
+\label{sec:org3e712ff}
+
+In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
+Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
+Also for \javascript{}, \cite{madsen_string_2014} analyzed how fields are accessed via strings, while~\cite{jang_empirical_2010} analyzed privacy violations.
+Similar empirical studies were done for \php{}~\cite{hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011} and \swift{}~\cite{reboucas_empirical_2016}. 
+
+Going one step forward, \cite{ray_large-scale_2017} studied the correlation between programming languages and defects.
+One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
+We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
+
+For \java{}, \cite{dietrich_contracts_2017-1} made a study about how programmers use contracts in \mavencentral{}.
+\cite{landman_challenges_2017} have analyzed the relevance of static analysis tools with respect to reflection.
+They made an empirical study to check how often the reflection \api{} is used in real-world code.
+They argue, as we do, that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
+\cite{winther_guarded_2011} ~have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
+\cite{dietrich_broken_2014} have studied how changes in \api{} library impact in \java{} programs.
+Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study.
+
+\subsection*{Exceptions}
+\label{sec:org340d20f}
+\cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions.
+They made empirical studies on how programmers handle exceptions in \java{} code.
+The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns.
+Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
+
+\subsection*{Collections and Generics}
+\label{sec:org3344249}
+The inclusion of generics in \java{} is closely related to collections.
+\cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers.
+They found that the use of generics do not significantly reduce the number of type casts.
+
+\cite{costa_empirical_2017} have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
+They have found out that in most cases there is an alternative usage that improves performance.
+
+\section{Controlled Experiments on Subjects \label{org7313da4}}
+\label{sec:org72305a5}
+There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
+For instance, \cite{soloway_empirical_1984} tried to understand the how expert programmers face problem solving.
+\cite{budd_theoretical_1980} made a empirical study on how effective is mutation testing.
+\cite{prechelt_empirical_2000} compared how a given --- fixed --- task was implemented in several programming languages.
+
+\cite{latoza_developers_2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
+
+Several authors~\cite{stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017} measure whether using a static-type system improves programmers productivity.
+They compare how a static and a dynamic type system impact on productivity.
+The common setting for these studies is to have a set of programming problems.
+Then, let a group of developers solve them in both a static and dynamic languages.
+
+For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
+Having artificial problems may lead to invalid conclusions.
+
+The work by~\cite{wu_how_2017,wu_learning_2017} goes towards this direction.
+They have examined programs written by students to understand real debugging conditions.
+Their focus is on ill-typed programs written in \haskell{}.
+Unfortunately, these dataset does not correspond to real-world code.
+Our focus is to analyze code by experienced programmers.
+
+Therefore, it is important to study how casts are used in real-world code.
+Having a deep understanding of actual usage of casts can led to
+Informed decisions when designing these kind of experiments.
+
+\section{Code Patterns Discovery \label{org1f4d4e8}}
+\label{sec:org3b7cfce}
+\cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
+However, this is only a meta-pattern detector, and not a pattern discovery.
+\cite{hu_dynamic_2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelli_design_2008} used only dynamic.
+
+Trying to unify analysis and transformation tools~\cite{vinju_how_2006}, \cite{klint_rascal:_2009} built \rascal, a DSL that aims to bring them together. 
+
+\section{Tools for Mining Software Repositories \label{org9efd57b}}
+\label{sec:org28660c9}
+When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
+Usually doing so requires several engineering but challenging tasks.
+The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
+In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
+
+\cite{dyer_boa:_2013,dyer_declarative_2013} built \boa{}, both a domain-specific language and an online platform\footnote{\url{http://boa.cs.iastate.edu/}}.
+It is used to query software repositories on two popular hosting services, \github \footnote{\url{https://github.com/}} and \sourceforge \footnote{\url{https://sourceforge.net/}}.
+The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyer_mining_2014}.
+This study is based \sourceforge{} data.
+The current problem with \sourceforge{} is that is outdated.
+
+To this end, \cite{gousios_ghtorent_2013} provides an offline mirror of \github{} that allows researchers to query any kind of that data.
+Later on, \cite{gousios_lean_2014} published the dataset construction process of \github{}.
+
+Similar to \boa{}, \lgtm \footnote{\url{https://lgtm.com/}} is a platform to query software projects properties.
+It works by querying repositories from \github{}.
+But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
+Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinov_ql:_2016}.
+
+On top of \boa{}, \cite{tiwari_candoia:_2017} built \candoia \footnote{\url{http://candoia.github.io/}}.
+Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
+
+Another tool to analyze large software repositories is presented in~\cite{brandauer_spencer:_2017}.
+In this case, the analysis is dynamic, based on program traces.
+At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing.
+
+\section{Selecting Good Representatives \label{orgc8f89c6}}
+\label{sec:orgada6646}
+Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
+\cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
+They found out that much of the code there is actually duplicated.
+This raises a flag when consider which projects analyze when doing mining software repositories. 
+
+\cite{nagappan_diversity_2013} have developed the Software Projects Sampling (SPS) tool.
+SPS tries to find a maximal set of projects based on representativeness and diversity.
+Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
+
+\chapter{Existing Code Patterns \label{orgf594f15}}
+\label{sec:org352e005}
+\begin{center}
+\begin{tabular}{lll}
+Name & Citation & Found-In\\
+\hline
+Specifying Application Extensions & \cite{livshits_improving_2006} & \texttt{columba}, \texttt{jedit}, \texttt{tomcat}\\
+Custom-made Object Serialization Scheme & \cite{livshits_improving_2006} & \texttt{jgap}\\
+Improving Portability Using Reflection & \cite{livshits_improving_2006} & \texttt{gruntspud}, \texttt{jfreechart}\\
+Code Unavailable Until Deployment & \cite{livshits_improving_2006} & \texttt{columba}\\
+Using \texttt{Class.forName} for its Side-effects & \cite{livshits_improving_2006} & \texttt{jfreechart}\\
+Getting Around Static Type Checking & \cite{livshits_improving_2006} & \texttt{columba}\\
+Providing a Built-in Interpreter & \cite{livshits_improving_2006} & \texttt{jedit}\\
+Guarded Casts & \cite{winther_guarded_2011} & -\\
+Semi-guarded Casts & \cite{winther_guarded_2011} & -\\
+Unguarded Casts & \cite{winther_guarded_2011} & -\\
+Safe Casts & \cite{winther_guarded_2011} & -\\
+CorrectCasts & \cite{landman_challenges_2017} & \\
+WellBehavedClassLoaders & \cite{landman_challenges_2017} & \\
+IgnoringExceptions1 & \cite{landman_challenges_2017} & \\
+IgnoringExceptions2 & \cite{landman_challenges_2017} & \\
+IndexedCollections & \cite{landman_challenges_2017} & \\
+MetaObjectsInTables & \cite{landman_challenges_2017} & \\
+MultipleMetaObjects & \cite{landman_challenges_2017} & \\
+EnvironmentStrings & \cite{landman_challenges_2017} & \\
+UndecidableFiltering & \cite{landman_challenges_2017} & \\
+NoProxy & \cite{landman_challenges_2017} & \\
+\end{tabular}
+\end{center}
+
+\subsection{Specifying Application Extensions}
+\label{sec:orgd6a5687}
+\begin{enumerate}
+\item Snippet
+\label{sec:orgc41351f}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+public void addHandlers(String path) {
+        XmlIO xmlFile = new XmlIO(DiskIO.getResourceURL(path));
+        xmlFile.load();
+        XmlElement list = xmlFile.getRoot().getElement("handlerlist");
+        Iterator it = list.getElements().iterator();
+        while (it.hasNext()) {
+            XmlElement child = (XmlElement) it.next();
+            String id = child.getAttribute("id");
+            String clazz = child.getAttribute("class");
+            AbstractPluginHandler handler = null;
+            try {
+                Class c = Class.forName(clazz);
+                handler = (AbstractPluginHandler) c.newInstance();
+                registerHandler(handler);
+            } catch (ClassNotFoundException e) {
+                if (Main.DEBUG) e.printStackTrace();
+            } catch (InstantiationException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+            } catch (IllegalAccessException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+        }
+    }
+}
+\end{lstlisting}
+
+\item Discussion
+\label{sec:org642a864}
+
+This pattern is not clear.
+It would be interesting to see how these extensions are used,
+and what is the rationale of being of using these extensions as plug-ins.
+\end{enumerate}
+
+\subsection{Custom-made Object Serialization Scheme}
+\label{sec:org4044068}
+\begin{enumerate}
+\item Snippet
+\label{sec:org40082df}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+String geneClassName = thisGeneElement.
+           getAttribute(CLASS_ATTRIBUTE);
+Gene thisGeneObject = (Gene) Class.forName(
+             geneClassName).newInstance();
+\end{lstlisting}
+
+\item Discussion
+\label{sec:org770759e}
+
+\texttt{Unsafe} can be used to serialize/deserialze objects as well.
+Actually, some unsafe implementations have a fallback to reflection in case
+unsafe is not available.
+\end{enumerate}
+
+\subsection{Improving Portability Using Reflection}
+\label{sec:org0f49425}
+\begin{enumerate}
+\item Snippet
+\label{sec:orgd92a66f}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+try {
+            Class macOS  = Class.forName("gruntspud.standalone.os.MacOSX");
+            Class argC[] = {ViewManager.class};
+            Object arg[] = {context.getViewManager()};
+            Method init = macOS.getMethod("init", argC);
+            Object obj  = macOS.newInstance();
+            init.invoke(obj, arg);
+        } catch (Throwable t) {
+            // not on macos
+}
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Method m = c.getMethod("clone", null);
+if (Modifier.isPublic(m.getModifiers())) {
+    try {
+        result = m.invoke(object, null);
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+try {
+    //  Test for being run under JDK 1.4+
+    Class.forName("javax.imageio.ImageIO");
+    //  Test for JFreeChart being compiled
+    //  under JDK 1.4+
+    Class.forName("org.jfree.chart.encoders.SunPNGEncoderAdapter");
+} catch (ClassNotFoundException e) {
+    // ...
+}
+\end{lstlisting}
+\item Discussion
+\label{sec:orgf0ba08f}
+
+What can we say?
+\end{enumerate}
+
+\subsection{Code Unavailable Until Deployment}
+\label{sec:org77b88d3}
+\begin{enumerate}
+\item Snippet
+\label{sec:org7eed6e8}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Method getVersionMethod =
+    Class.forName("org.columba.core.main.ColumbaVersionInfo").
+        getMethod("getVersion", new Class[0]);
+return (String) getVersionMethod.invoke(null,new Object[0]);
+\end{lstlisting}
+
+\item Discussion
+\label{sec:org2ddceda}
+
+How could be solve this problem by using information available
+at compile-time?
+\end{enumerate}
+
+\subsection{Using \texttt{Class.forName} for its Side-effects}
+\label{sec:orgf4a1f63}
+\begin{enumerate}
+\item Snippet
+\label{sec:org295b080}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+public JDBCCategoryDataset(String url, String driverName,
+                           String user, String passwd)
+    throws ClassNotFoundException, SQLException
+{
+    Class.forName(driverName);
+    this.connection = DriverManager.getConnection(url, user, passwd);
+}
+\end{lstlisting}
+
+\item Discussion
+\label{sec:orgcc814ae}
+
+Commonly used by \texttt{JDBC} API to load database drivers.
+\end{enumerate}
+
+\subsection{Getting Around Static Type Checking}
+\label{sec:orgf154835}
+\begin{enumerate}
+\item Snippet
+\label{sec:org834a23c}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+fieldSysPath.setAccessible(true);
+if (fieldSysPath != null) {
+    fieldSysPath.set(System.class.getClassLoader(), null);
+}
+\end{lstlisting}
+
+\item Discussion
+\label{sec:orga0d1092}
+
+Is it possible to achieve the same effect using \texttt{sun.misc.Unsafe}?
+\end{enumerate}
+
+\subsection{Providing a Built-in Interpreter}
+\label{sec:org283c3e2}
+\begin{enumerate}
+\item Snippet
+\label{sec:orgc26851c}
+\item Discussion
+\label{sec:org87a08f6}
+
+This pattern seems too much like a high level pattern.
+Although having \texttt{semantic} patterns is what we want, a pattern without a \texttt{snippet} is too high level and application-specific.
+\end{enumerate}
+
+\subsection{Guarded Casts}
+\label{sec:org378dd8a}
+\begin{enumerate}
+\item Snippet
+\label{sec:orga9cdc90}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+if (o instanceof Foo) {
+    Foo foo = (Foo)o;
+    // ...
+}
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+if (o instanceof Foo && ((Foo)o).isBar()) {
+    // ...
+}
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Bar bar = o instanceof Foo ? ((Foo)o).getBar() : null;
+\end{lstlisting}
+
+\texttt{dead-if-guarded} cast version
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+if (!(o instanceof Foo)) {
+    return;
+}
+Foo foo = (Foo)o;
+\end{lstlisting}
+
+\texttt{ensure-guarded} casts
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+if (!(o instanceof Foo)) {
+    o = new Foo();
+}
+Foo foo = (Foo)o; 
+\end{lstlisting}
+
+\texttt{while-guarded} cast
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+while (o != null && !(o instanceof Foo)) {
+    o = o.parent();
+}
+Foo foo = (Foo)o;
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{Semi-guarded Casts}
+\label{sec:org17b5842}
+\begin{enumerate}
+\item Snippet
+\label{sec:org321c1d3}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Foo foo = ...
+if (foo.isBar()) {
+    Bar bar = (Bar)foo;
+    // ...
+}
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{Unguarded Casts}
+\label{sec:org48fe1a5}
+\begin{enumerate}
+\item Snippet
+\label{sec:org1746101}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+List list = ...{ // a list of Foo elements
+for (Object o : list) {
+    Foo foo = (Foo)o;
+    // ...
+}
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Calendar copy = (Calendar)calendar.clone();
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{Safe Casts}
+\label{sec:orgb0b57ed}
+\begin{enumerate}
+\item Snippet
+\label{sec:org3fc2f88}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+(char)42
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+(Integer)42
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{CorrectCasts}
+\label{sec:org3482398}
+\subsection{WellBehavedClassLoaders}
+\label{sec:org6994626}
+\subsection{IgnoringExceptions1}
+\label{sec:org644b1d5}
+\subsection{IgnoringExceptions2}
+\label{sec:orgd533c15}
+\subsection{IndexedCollections}
+\label{sec:orgdacd184}
+\subsection{MetaObjectsInTables}
+\label{sec:orgddd614b}
+\subsection{MultipleMetaObjects}
+\label{sec:org8166883}
+\subsection{EnvironmentStrings}
+\label{sec:org09ca357}
+\subsection{UndecidableFiltering}
+\label{sec:org5488d52}
+\subsection{NoProxy}
+\label{sec:org8184e2a}
+
+\chapter{Casts \label{orgaef2673}}
+\label{sec:org4e84fd7}
+
+\cite{winther_guarded_2011} proposes a flow-sensitive analysis to eliminate
+redundant casts in \texttt{Java}.
+He presents some casts patterns that he needs to deal with in his analysis.
+Notice that these patterns are structural ones.
+
+\cite{staicu_understanding_2017}
+
+\cite{buse_synthesizing_2012}
+
+It does not show the purpose of casts, neither the rationale.
+What we are trying to understand is why developers use casts,
+and how could we avoid them, if we have to.
+
+\chapter{Reflection Patterns \label{orgf7d189c}}
+\label{sec:orgdef996c}
+
+This list of patterns are more of semantic patterns.
+
+\chapter{Exceptions \label{org601f15a}}
+\label{sec:org20c3dba}
+
+Here we talk about exceptions.
+
+\chapter{The \java{} Unsafe API \label{org10050e6}}
+\label{sec:orgdcd7031}
+
+The material in this chapter is based on our previously published paper \citep{mastrangelo_use_2015}.
+
+Our study on unsafe we have divised several usage patterns.
+Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
+
+For our study on \smu{}, we needed to discover usage patterns.
+Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
+On the other hand, our study related to casts involved a much more complex analysis.
+Therefore we have decided to implement it with manual inspection.
+
+The exceptions mechanism is orthogonal to the features we target in this proposal.
+For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
+Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research.
+They can help us to understand how programmers handle exceptions in these scenarios.
+
+For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
+We found out that only few projects were using \smu{}.
+In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+\bibliographystyle{plainnat}
+\bibliography{proposal}
+\end{document}

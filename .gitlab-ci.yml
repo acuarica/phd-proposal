@@ -1,9 +1,10 @@
 
+# - latexmk -pdf main.tex
+
 pages:
   image: aergus/latex
   script:
-    - latexmk -pdf main.tex
-    - cp main.pdf public/proposal.pdf
+    - cp proposal.pdf public/proposal.pdf
   artifacts:
     paths:
       - public/proposal.pdf
