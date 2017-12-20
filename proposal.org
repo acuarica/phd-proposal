@@ -91,6 +91,14 @@ In this proposal, we plan to target four specific \java{} features, namely, /cas
 We have divised --- for the /unsafe \api{}/ --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
+#+CAPTION: Holasd que tal
+| Feature             | Research Question       |
+|---------------------+-------------------------|
+| Unsafe API          | Is Java Safe?           |
+| Casting             | Dynamic Features        |
+| Reflection API      | Is Java someting?       |
+| Exception Mechanism | Are they used properly? |
+
 ** DRAFT Proposal Outline
 :LOGBOOK:
 - State "DRAFT"      from "TODO"       [2017-12-19 Tue 16:38] \\
@@ -102,38 +110,10 @@ Chapter\nbsp{}[[cha:literature-review]] gives a review of the literature in the 
 More specifically, Chapter\nbsp{}[[cha:patterns]] presents already existing code patterns related to the language features we plan to analyze.
 The following four chapters introduce our proposal plan for the selected features:
 Chapters\nbsp{}[[cha:casts]], [[cha:reflection]], [[cha:exceptions]] presents our /casting/, /reflection/ and /exception handling/ study respectively.
-Finally, Chapter\nbsp{}[[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
+Finally, Chapter\nbsp{}[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
 
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
 The rationale behind this organization is that we prefer to show how we improve over the /state-of-the-art/ after having presented our plan for each feature.
-
-# Understanding the Use of Language Features in Java.
-# To understand patterns.Mining language features thesis.
-# Research Question: Is Java Safe?
-# Methodological Contribution, to evolve your language.
-# Motivate the umbrella that put together those 3 pillars.
-# In our research proposal we investigate the feasibility of
-
-* DRAFT Introduction                                                 :noexport:
-:LOGBOOK:
-- State "DRAFT"      from "DRAFT"      [2017-12-14 Thu 20:13] \\
-  Disco
-- State "DRAFT"      from "TODO"       [2017-12-13 Wed 15:55] \\
-  New headline for safety/unsafe
-:END:
-
-Static type systems were added to improve programmers productivity.
-But --- given the growing complexity of applications --- sometimes developers need to circumvent the \static\ type systems to satisfy todays systems needs.
-Usually --- but not neccesarly --- those needs are related to the dynamic features of a language.
-
-Thus we believe that by understanding how developers use these dynamic or extra features we can regain safety in the language.
-
-We argue that using or abusing reflection can lead to less efficient software.
-Some languages use reflection in a unsafe way
-
-Study what are the implications of using reflection.
-
-When using a cast can 
 
 * DRAFT Literature Review <<cha:literature-review>> :patterns:
 :LOGBOOK:
@@ -325,7 +305,7 @@ Diversity dimensions considered include total lines of code, project age, activi
   Shall I add this Code Recommenders systems section?
 :END:
 
-* DRAFT Existing Code Patterns <<cha:patterns>>
+** DRAFT Existing Code Patterns <<cha:patterns>>
 :PROPERTIES:
 :COLUMNS:  %ITEM(Name) %Citation %10Found-In
 :END:
@@ -366,14 +346,14 @@ Diversity dimensions considered include total lines of code, project age, activi
 | NoProxy                                    | cite:landman_challenges_2017 |                              |
  #+END:
 
-*** Specifying Application Extensions
+**** Specifying Application Extensions
 :PROPERTIES:
 :Description: Unclear pattern
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=, =jedit=, =tomcat=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 public void addHandlers(String path) {
@@ -401,20 +381,20 @@ public void addHandlers(String path) {
 }
 #+END_SRC
 
-**** Discussion
+***** Discussion
 
 This pattern is not clear.
 It would be interesting to see how these extensions are used,
 and what is the rationale of being of using these extensions as plug-ins.
 
-*** Custom-made Object Serialization Scheme
+**** Custom-made Object Serialization Scheme
 :PROPERTIES:
 :Description: Using reflection to serialize/deserialize objects.
 :Citation: cite:livshits_improving_2006
 :Found-In: =jgap=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 String geneClassName = thisGeneElement.
@@ -423,20 +403,20 @@ Gene thisGeneObject = (Gene) Class.forName(
              geneClassName).newInstance();
 #+END_SRC
 
-**** Discussion
+***** Discussion
 
 ~Unsafe~ can be used to serialize/deserialze objects as well.
 Actually, some unsafe implementations have a fallback to reflection in case
 unsafe is not available.
 
-*** Improving Portability Using Reflection   
+**** Improving Portability Using Reflection   
 :PROPERTIES:
 :Description: Sometimes reflection is used as a mechanism to dead with incompatibility issues across different platforms.
 :Citation: cite:livshits_improving_2006
 :Found-In: =gruntspud=, =jfreechart=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 try {
@@ -474,18 +454,18 @@ try {
     // ...
 }
 #+END_SRC
-**** Discussion
+***** Discussion
 
 What can we say?
 
-*** Code Unavailable Until Deployment        
+**** Code Unavailable Until Deployment        
 :PROPERTIES:
 :Description: This pattern uses reflection to load and query a class that is not available at compile-time.
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 Method getVersionMethod =
@@ -494,19 +474,19 @@ Method getVersionMethod =
 return (String) getVersionMethod.invoke(null,new Object[0]);
 #+END_SRC
 
-**** Discussion
+***** Discussion
 
 How could be solve this problem by using information available
 at compile-time?
 
-*** Using ~Class.forName~ for its Side-effects 
+**** Using ~Class.forName~ for its Side-effects 
 :PROPERTIES:
 :Description: By using this pattern one can call the class constructor, which might be needed independently by a later call-site.
 :Citation: cite:livshits_improving_2006
 :Found-In: =jfreechart=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 public JDBCCategoryDataset(String url, String driverName,
@@ -518,18 +498,18 @@ public JDBCCategoryDataset(String url, String driverName,
 }
 #+END_SRC
 
-**** Discussion
+***** Discussion
 
 Commonly used by ~JDBC~ API to load database drivers.
 
-*** Getting Around Static Type Checking      
+**** Getting Around Static Type Checking      
 :PROPERTIES:
 :Description: This pattern allows to circumvent safety features of the language.
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=
 :Category: reflection
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
@@ -539,31 +519,31 @@ if (fieldSysPath != null) {
 }
 #+END_SRC
 
-**** Discussion
+***** Discussion
 
 Is it possible to achieve the same effect using =sun.misc.Unsafe=?
 
-*** Providing a Built-in Interpreter         
+**** Providing a Built-in Interpreter         
 :PROPERTIES:
 :Description: Implementing an interpreter, scripting language as a ~Java~ extension
 :Citation: cite:livshits_improving_2006
 :Found-In: =jedit=
 :Category: reflection
 :END:
-**** Snippet
-**** Discussion
+***** Snippet
+***** Discussion
 
 This pattern seems too much like a high level pattern.
 Although having ~semantic~ patterns is what we want, a pattern without a ~snippet~ is too high level and application-specific.
 
-*** Guarded Casts
+**** Guarded Casts
 :PROPERTIES:
 :Description: Cast guarded
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 if (o instanceof Foo) {
@@ -609,14 +589,14 @@ while (o != null && !(o instanceof Foo)) {
 Foo foo = (Foo)o;
 #+END_SRC
 
-*** Semi-guarded Casts
+**** Semi-guarded Casts
 :PROPERTIES:
 :Description: This casts are provided at an application-level instead of with runtime information.
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 Foo foo = ...
@@ -626,14 +606,14 @@ if (foo.isBar()) {
 }
 #+END_SRC
 
-*** Unguarded Casts
+**** Unguarded Casts
 :PROPERTIES:
 :Description: Non guarded
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 List list = ...{ // a list of Foo elements
@@ -647,14 +627,14 @@ for (Object o : list) {
 Calendar copy = (Calendar)calendar.clone();
 #+END_SRC
 
-*** Safe Casts
+**** Safe Casts
 :PROPERTIES:
 :Description: Primitive conversions, just for the sake of completeness.
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-**** Snippet
+***** Snippet
 
 #+BEGIN_SRC java
 (char)42
@@ -664,71 +644,70 @@ Calendar copy = (Calendar)calendar.clone();
 (Integer)42
 #+END_SRC
 
-*** CorrectCasts
+**** CorrectCasts
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** WellBehavedClassLoaders
+**** WellBehavedClassLoaders
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** IgnoringExceptions1
+**** IgnoringExceptions1
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** IgnoringExceptions2
+**** IgnoringExceptions2
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** IndexedCollections
+**** IndexedCollections
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** MetaObjectsInTables
+**** MetaObjectsInTables
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** MultipleMetaObjects
+**** MultipleMetaObjects
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** EnvironmentStrings
+**** EnvironmentStrings
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** UndecidableFiltering
+**** UndecidableFiltering
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-*** NoProxy
+**** NoProxy
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
 
-* Casts <<cha:casts>> :patterns:
+* DRAFT Understanding How \java{} Language Features Are Used
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-20 Wed 17:32] \\
+  What do we want to do?
+:END:
 
-cite:winther_guarded_2011 proposes a flow-sensitive analysis to eliminate
-redundant casts in ~Java~.
-He presents some casts patterns that he needs to deal with in his analysis.
-Notice that these patterns are structural ones.
+Understanding the Use of Language Features in Java.
+To understand patterns.Mining language features thesis.
+Methodological Contribution, to evolve your language.
+Motivate the umbrella that put together those 3 pillars.
+In our research proposal we investigate the feasibility of
 
-cite:staicu_understanding_2017
+To this date, there is no clear study on how and /why/ language features are used.
+We want to study how /casts/ and /reflection/ are used within the \java{} language.
+We believe that we can leverage this information
+understanding how these features are used
 
-cite:buse_synthesizing_2012
+We begin this chapter presenting our already published work on the Unsafe API in [[sec:unsafe]].
 
-It does not show the purpose of casts, neither the rationale.
-What we are trying to understand is why developers use casts,
-and how could we avoid them, if we have to.
+With the Unsafe API we answer the sub-research question:
 
-* Reflection Patterns <<cha:reflection>> :patterns:
 
-This list of patterns are more of semantic patterns.
-
-* Exceptions <<cha:exceptions>> :patterns:
-
-Here we talk about exceptions.
-
-* The \java{} Unsafe API <<cha:unsafe>>                            :patterns:
+** The Unsafe API <<sec:unsafe>>                                  :patterns:
 
 The material in this chapter is based on our previously published paper citep:mastrangelo_use_2015.
 
@@ -749,6 +728,48 @@ They can help us to understand how programmers handle exceptions in these scenar
 For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
 We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+** Casts <<cha:casts>>                                            :patterns:
+
+In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety.
+There is an increasing literature on how casting affects development productivity.
+This is done usually by doing empirical studies on development groups, which are given programming tasks they have to solve.
+
+However, those programming tasks are usually artificial.
+And it is unclear whether or not they reflect the kind of code that it is actually written in the ``real'' world.
+To properly assess this kind of studies, it is needed to understand how the type cast operators are actually used.
+
+Thus, we try to answer the question: How and why are casts being used in ``real'' Java code?
+This paper studies the casts operator in a large Java repository.
+
+To study how are they used, and most importantly, why are they used, we have analyzed 88GB of compressed .jar files on a mainstream Java repository.
+We have discovered several cast patterns.
+We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
+
+*** Related Work
+cite:winther_guarded_2011 proposes a flow-sensitive analysis to eliminate
+redundant casts in ~Java~.
+He presents some casts patterns that he needs to deal with in his analysis.
+Notice that these patterns are structural ones.
+
+cite:staicu_understanding_2017
+
+cite:buse_synthesizing_2012
+
+It does not show the purpose of casts, neither the rationale.
+What we are trying to understand is why developers use casts,
+and how could we avoid them, if we have to.
+
+** Reflection Patterns <<cha:reflection>>                         :patterns:
+
+This list of patterns are more of semantic patterns.
+
+When reflection and metaprogramming can be used.
+
+*** Related Work
+** Exceptions <<cha:exceptions>>                                  :patterns:
+
+
 
 bibliographystyle:plainnat
 bibliography:proposal.bib
