@@ -91,13 +91,18 @@ In this proposal, we plan to target four specific \java{} features, namely, /cas
 We have divised --- for the /unsafe \api{}/ --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
+** CANCELED Table of Research Question                            :noexport:
+CLOSED: [2017-12-21 Thu 14:43]
+
 #+CAPTION: Holasd que tal
-| Feature             | Research Question       |
 |---------------------+-------------------------|
-| Unsafe API          | Is Java Safe?           |
+| Feature             | Sub Research Question   |
+|---------------------+-------------------------|
+| Unsafe API          | Is \java{} Safe?        |
 | Casting             | Dynamic Features        |
 | Reflection API      | Is Java someting?       |
 | Exception Mechanism | Are they used properly? |
+|---------------------+-------------------------|
 
 ** DRAFT Proposal Outline
 :LOGBOOK:
@@ -305,7 +310,7 @@ Diversity dimensions considered include total lines of code, project age, activi
   Shall I add this Code Recommenders systems section?
 :END:
 
-** DRAFT Existing Code Patterns <<cha:patterns>>
+* DRAFT Existing Code Patterns <<cha:patterns>>
 :PROPERTIES:
 :COLUMNS:  %ITEM(Name) %Citation %10Found-In
 :END:
@@ -318,9 +323,9 @@ Diversity dimensions considered include total lines of code, project age, activi
 (org-entry-properties)
 #+END_SRC
 
-#+CAPTION: hola q tal
 # #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
 #+BEGIN: columnview :hlines 1 :maxlevel 3 :id local :skip-empty-rows t
+#+CAPTION: Existing Patterns
 | Name                                       | Citation                     | Found-In                     |
 |--------------------------------------------+------------------------------+------------------------------|
 | Specifying Application Extensions          | cite:livshits_improving_2006 | =columba=, =jedit=, =tomcat= |
@@ -346,14 +351,14 @@ Diversity dimensions considered include total lines of code, project age, activi
 | NoProxy                                    | cite:landman_challenges_2017 |                              |
  #+END:
 
-**** Specifying Application Extensions
+*** Specifying Application Extensions
 :PROPERTIES:
 :Description: Unclear pattern
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=, =jedit=, =tomcat=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 public void addHandlers(String path) {
@@ -381,20 +386,20 @@ public void addHandlers(String path) {
 }
 #+END_SRC
 
-***** Discussion
+**** Discussion
 
 This pattern is not clear.
 It would be interesting to see how these extensions are used,
 and what is the rationale of being of using these extensions as plug-ins.
 
-**** Custom-made Object Serialization Scheme
+*** Custom-made Object Serialization Scheme
 :PROPERTIES:
 :Description: Using reflection to serialize/deserialize objects.
 :Citation: cite:livshits_improving_2006
 :Found-In: =jgap=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 String geneClassName = thisGeneElement.
@@ -403,20 +408,20 @@ Gene thisGeneObject = (Gene) Class.forName(
              geneClassName).newInstance();
 #+END_SRC
 
-***** Discussion
+**** Discussion
 
 ~Unsafe~ can be used to serialize/deserialze objects as well.
 Actually, some unsafe implementations have a fallback to reflection in case
 unsafe is not available.
 
-**** Improving Portability Using Reflection   
+*** Improving Portability Using Reflection   
 :PROPERTIES:
 :Description: Sometimes reflection is used as a mechanism to dead with incompatibility issues across different platforms.
 :Citation: cite:livshits_improving_2006
 :Found-In: =gruntspud=, =jfreechart=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 try {
@@ -454,18 +459,18 @@ try {
     // ...
 }
 #+END_SRC
-***** Discussion
+**** Discussion
 
 What can we say?
 
-**** Code Unavailable Until Deployment        
+*** Code Unavailable Until Deployment        
 :PROPERTIES:
 :Description: This pattern uses reflection to load and query a class that is not available at compile-time.
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 Method getVersionMethod =
@@ -474,19 +479,19 @@ Method getVersionMethod =
 return (String) getVersionMethod.invoke(null,new Object[0]);
 #+END_SRC
 
-***** Discussion
+**** Discussion
 
 How could be solve this problem by using information available
 at compile-time?
 
-**** Using ~Class.forName~ for its Side-effects 
+*** Using ~Class.forName~ for its Side-effects 
 :PROPERTIES:
 :Description: By using this pattern one can call the class constructor, which might be needed independently by a later call-site.
 :Citation: cite:livshits_improving_2006
 :Found-In: =jfreechart=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 public JDBCCategoryDataset(String url, String driverName,
@@ -498,18 +503,18 @@ public JDBCCategoryDataset(String url, String driverName,
 }
 #+END_SRC
 
-***** Discussion
+**** Discussion
 
 Commonly used by ~JDBC~ API to load database drivers.
 
-**** Getting Around Static Type Checking      
+*** Getting Around Static Type Checking      
 :PROPERTIES:
 :Description: This pattern allows to circumvent safety features of the language.
 :Citation: cite:livshits_improving_2006
 :Found-In: =columba=
 :Category: reflection
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
@@ -519,31 +524,31 @@ if (fieldSysPath != null) {
 }
 #+END_SRC
 
-***** Discussion
+**** Discussion
 
 Is it possible to achieve the same effect using =sun.misc.Unsafe=?
 
-**** Providing a Built-in Interpreter         
+*** Providing a Built-in Interpreter         
 :PROPERTIES:
 :Description: Implementing an interpreter, scripting language as a ~Java~ extension
 :Citation: cite:livshits_improving_2006
 :Found-In: =jedit=
 :Category: reflection
 :END:
-***** Snippet
-***** Discussion
+**** Snippet
+**** Discussion
 
 This pattern seems too much like a high level pattern.
 Although having ~semantic~ patterns is what we want, a pattern without a ~snippet~ is too high level and application-specific.
 
-**** Guarded Casts
+*** Guarded Casts
 :PROPERTIES:
 :Description: Cast guarded
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 if (o instanceof Foo) {
@@ -589,14 +594,14 @@ while (o != null && !(o instanceof Foo)) {
 Foo foo = (Foo)o;
 #+END_SRC
 
-**** Semi-guarded Casts
+*** Semi-guarded Casts
 :PROPERTIES:
 :Description: This casts are provided at an application-level instead of with runtime information.
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 Foo foo = ...
@@ -606,14 +611,14 @@ if (foo.isBar()) {
 }
 #+END_SRC
 
-**** Unguarded Casts
+*** Unguarded Casts
 :PROPERTIES:
 :Description: Non guarded
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 List list = ...{ // a list of Foo elements
@@ -627,14 +632,14 @@ for (Object o : list) {
 Calendar copy = (Calendar)calendar.clone();
 #+END_SRC
 
-**** Safe Casts
+*** Safe Casts
 :PROPERTIES:
 :Description: Primitive conversions, just for the sake of completeness.
 :Citation: cite:winther_guarded_2011 
 :Found-In: -
 :Category: cast
 :END:
-***** Snippet
+**** Snippet
 
 #+BEGIN_SRC java
 (char)42
@@ -644,43 +649,43 @@ Calendar copy = (Calendar)calendar.clone();
 (Integer)42
 #+END_SRC
 
-**** CorrectCasts
+*** CorrectCasts
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** WellBehavedClassLoaders
+*** WellBehavedClassLoaders
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** IgnoringExceptions1
+*** IgnoringExceptions1
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** IgnoringExceptions2
+*** IgnoringExceptions2
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** IndexedCollections
+*** IndexedCollections
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** MetaObjectsInTables
+*** MetaObjectsInTables
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** MultipleMetaObjects
+*** MultipleMetaObjects
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** EnvironmentStrings
+*** EnvironmentStrings
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** UndecidableFiltering
+*** UndecidableFiltering
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:
-**** NoProxy
+*** NoProxy
 :PROPERTIES:
 :Citation: cite:landman_challenges_2017 
 :END:

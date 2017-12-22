@@ -1,4 +1,4 @@
-% Created 2017-12-20 Wed 18:11
+% Created 2017-12-21 Thu 14:44
 % Intended LaTeX compiler: pdflatex
 \documentclass{usiinfdocprop}
                 \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
@@ -22,7 +22,7 @@
 \mainmatter
 
 \chapter{Introduction}
-\label{sec:org3e8cc74}
+\label{sec:org4e10888}
 Programming language design has been always a hot topic in computer science literature.
 It has been extensively studied in the past decades.
 For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
@@ -45,7 +45,7 @@ Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
 \section{Research Question}
-\label{sec:org5b56b9d}
+\label{sec:org468b016}
 Understanding how language features are used can give many insights to language designers, tools builders, researchers and developers.
 This triggers our research question:
 
@@ -60,48 +60,35 @@ In this proposal, we plan to target four specific \java{} features, namely, \emp
 We have divised --- for the \emph{unsafe \api{}} --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
-\begin{table}[htbp]
-\caption{Holasd que tal}
-\centering
-\begin{tabular}{ll}
-Feature & Research Question\\
-\hline
-Unsafe API & Is Java Safe?\\
-Casting & Dynamic Features\\
-Reflection API & Is Java someting?\\
-Exception Mechanism & Are they used properly?\\
-\end{tabular}
-\end{table}
-
 \section{Proposal Outline}
-\label{sec:orgf947de3}
+\label{sec:orgca4d190}
 The rest of this proposal is organized as follows:
-Chapter~\ref{org58b54c2} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
-More specifically, Chapter~\ref{orga85c8f2} presents already existing code patterns related to the language features we plan to analyze.
+Chapter~\ref{org4e53664} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
+More specifically, Chapter~\ref{orgdcea899} presents already existing code patterns related to the language features we plan to analyze.
 The following four chapters introduce our proposal plan for the selected features:
-Chapters~\ref{org0d0df0a}, \ref{org4544f1f}, \ref{orgb12fbf3} presents our \emph{casting}, \emph{reflection} and \emph{exception handling} study respectively.
+Chapters~\ref{org2670758}, \ref{org78e1991}, \ref{orgd722532} presents our \emph{casting}, \emph{reflection} and \emph{exception handling} study respectively.
 Finally, Chapter~[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
 
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
 The rationale behind this organization is that we prefer to show how we improve over the \emph{state-of-the-art} after having presented our plan for each feature.
 
-\chapter{Literature Review \label{org58b54c2}}
-\label{sec:org9f6cea0}
+\chapter{Literature Review \label{org4e53664}}
+\label{sec:orgde7676b}
 Understanding how language features and \api{}s are being used is a broad topic.
 There is plenty of research in computer science literature about empirical studies of programs; which involves several directions directly or indirecly related.
 Along the last decades, researchers always has been interested in understanding what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
 
 The organization of this chapter is as follows:
-In \S\ref{org80206db} we present empirical studies regarding compilers writers.
-How benchmarks and corpuses relate to this kind of studies is presented in \S\ref{orgf46fd3e}.
-\S\ref{org8388133} gives an overview of other large-scale studies either in \java{} or in other languages.
-Related to our cast study, in \S\ref{orgc6ecd85} we show studies on how static type systems impact on programmers productivity.
-Code Patterns discovery is presented in \S\ref{org9d32469}.
-Finally, \S\ref{org4cf73ba} gives an overview of what tools are available to extract information from a software repository, while \S\ref{orgcaba978} of how to select good candidates projects.
+In \S\ref{org2e56c30} we present empirical studies regarding compilers writers.
+How benchmarks and corpuses relate to this kind of studies is presented in \S\ref{org9c243c1}.
+\S\ref{org0c73e55} gives an overview of other large-scale studies either in \java{} or in other languages.
+Related to our cast study, in \S\ref{org255d33b} we show studies on how static type systems impact on programmers productivity.
+Code Patterns discovery is presented in \S\ref{orge57b351}.
+Finally, \S\ref{org714e5b6} gives an overview of what tools are available to extract information from a software repository, while \S\ref{orgb962d69} of how to select good candidates projects.
 
-\section{Compilers Writers \label{org80206db}}
-\label{sec:org33f2cd4}
+\section{Compilers Writers \label{org2e56c30}}
+\label{sec:org49d2ed6}
 
 Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
@@ -114,8 +101,8 @@ A machine instruction set is effectively another kind of language.
 Therefore, its design can be affected by how compilers generate machine code.
 Several studies targeted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
 
-\section{Benchmarks and Corpuses \label{orgf46fd3e}}
-\label{sec:org47a856d}
+\section{Benchmarks and Corpuses \label{org9c243c1}}
+\label{sec:orgbc15760}
 
 Benchmarks are crucial to properly evaluate and measure product developement.
 This is key for both research and industry.
@@ -128,8 +115,8 @@ They provide a corpus of curated open source systems to facilitate empirical stu
 For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Therefore, we argue how important it is to make empirical studies about what programmers write.
 
-\section{Large-scale Codebase Empirical Studies \label{org8388133}}
-\label{sec:org1cb8bbe}
+\section{Large-scale Codebase Empirical Studies \label{org0c73e55}}
+\label{sec:org8e192f5}
 
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
@@ -149,14 +136,14 @@ They argue, as we do, that controlled experiments on subjects need to be correla
 Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study.
 
 \subsection*{Exceptions}
-\label{sec:org42b70c8}
+\label{sec:org513f67b}
 \cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
 The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns.
 Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
 \subsection*{Collections and Generics}
-\label{sec:org01c5e48}
+\label{sec:org699ef7c}
 The inclusion of generics in \java{} is closely related to collections.
 \cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers.
 They found that the use of generics do not significantly reduce the number of type casts.
@@ -164,8 +151,8 @@ They found that the use of generics do not significantly reduce the number of ty
 \cite{costa_empirical_2017} have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
 They have found out that in most cases there is an alternative usage that improves performance.
 
-\section{Controlled Experiments on Subjects \label{orgc6ecd85}}
-\label{sec:org0f2a85f}
+\section{Controlled Experiments on Subjects \label{org255d33b}}
+\label{sec:org7c13592}
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
 For instance, \cite{soloway_empirical_1984} tried to understand the how expert programmers face problem solving.
 \cite{budd_theoretical_1980} made a empirical study on how effective is mutation testing.
@@ -191,16 +178,16 @@ Therefore, it is important to study how casts are used in real-world code.
 Having a deep understanding of actual usage of casts can led to
 Informed decisions when designing these kind of experiments.
 
-\section{Code Patterns Discovery \label{org9d32469}}
-\label{sec:orgd58ee84}
+\section{Code Patterns Discovery \label{orge57b351}}
+\label{sec:org7a7a856}
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
 \cite{hu_dynamic_2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelli_design_2008} used only dynamic.
 
 Trying to unify analysis and transformation tools~\cite{vinju_how_2006}, \cite{klint_rascal:_2009} built \rascal, a DSL that aims to bring them together. 
 
-\section{Tools for Mining Software Repositories \label{org4cf73ba}}
-\label{sec:org5b530e6}
+\section{Tools for Mining Software Repositories \label{org714e5b6}}
+\label{sec:orgc0d924c}
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
@@ -227,8 +214,8 @@ Another tool to analyze large software repositories is presented in~\cite{branda
 In this case, the analysis is dynamic, based on program traces.
 At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing.
 
-\section{Selecting Good Representatives \label{orgcaba978}}
-\label{sec:org4e00da3}
+\section{Selecting Good Representatives \label{orgb962d69}}
+\label{sec:orgb5e8243}
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 \cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
 They found out that much of the code there is actually duplicated.
@@ -238,9 +225,11 @@ This raises a flag when consider which projects analyze when doing mining softwa
 SPS tries to find a maximal set of projects based on representativeness and diversity.
 Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
 
-\section{Existing Code Patterns \label{orga85c8f2}}
-\label{sec:orga9ed75f}
-\begin{center}
+\chapter{Existing Code Patterns \label{orgdcea899}}
+\label{sec:orgecb3834}
+\begin{table}[htbp]
+\caption{Existing Patterns}
+\centering
 \begin{tabular}{lll}
 Name & Citation & Found-In\\
 \hline
@@ -266,14 +255,13 @@ EnvironmentStrings & \cite{landman_challenges_2017} & \\
 UndecidableFiltering & \cite{landman_challenges_2017} & \\
 NoProxy & \cite{landman_challenges_2017} & \\
 \end{tabular}
-\end{center}
+\end{table}
 
-\begin{enumerate}
-\item Specifying Application Extensions
-\label{sec:orgf7a82b0}
+\subsection{Specifying Application Extensions}
+\label{sec:org995d9c4}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgf07c4e1}
+\label{sec:orgab0c21e}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -303,18 +291,18 @@ public void addHandlers(String path) {
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org3661bce}
+\label{sec:org3428388}
 
 This pattern is not clear.
 It would be interesting to see how these extensions are used,
 and what is the rationale of being of using these extensions as plug-ins.
 \end{enumerate}
 
-\item Custom-made Object Serialization Scheme
-\label{sec:org94e2353}
+\subsection{Custom-made Object Serialization Scheme}
+\label{sec:org3a39744}
 \begin{enumerate}
 \item Snippet
-\label{sec:org1ca2f68}
+\label{sec:org8983ad3}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -325,18 +313,18 @@ Gene thisGeneObject = (Gene) Class.forName(
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org69c2815}
+\label{sec:orgb4e097a}
 
 \texttt{Unsafe} can be used to serialize/deserialze objects as well.
 Actually, some unsafe implementations have a fallback to reflection in case
 unsafe is not available.
 \end{enumerate}
 
-\item Improving Portability Using Reflection
-\label{sec:orgf61878b}
+\subsection{Improving Portability Using Reflection}
+\label{sec:org159b904}
 \begin{enumerate}
 \item Snippet
-\label{sec:org7511c1d}
+\label{sec:org7dcefbd}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -378,16 +366,16 @@ try {
 }
 \end{lstlisting}
 \item Discussion
-\label{sec:orgf12e107}
+\label{sec:org0ab5798}
 
 What can we say?
 \end{enumerate}
 
-\item Code Unavailable Until Deployment
-\label{sec:orgf6e482d}
+\subsection{Code Unavailable Until Deployment}
+\label{sec:orgddebf1b}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgf3d5b3a}
+\label{sec:org51d5006}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -398,17 +386,17 @@ return (String) getVersionMethod.invoke(null,new Object[0]);
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org6b09bbd}
+\label{sec:org0e028c0}
 
 How could be solve this problem by using information available
 at compile-time?
 \end{enumerate}
 
-\item Using \texttt{Class.forName} for its Side-effects
-\label{sec:orgf3a7957}
+\subsection{Using \texttt{Class.forName} for its Side-effects}
+\label{sec:org4386abe}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgc848732}
+\label{sec:orga6a1e9b}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -422,16 +410,16 @@ public JDBCCategoryDataset(String url, String driverName,
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org10bd0e2}
+\label{sec:orgb4222a5}
 
 Commonly used by \texttt{JDBC} API to load database drivers.
 \end{enumerate}
 
-\item Getting Around Static Type Checking
-\label{sec:orgd4eb045}
+\subsection{Getting Around Static Type Checking}
+\label{sec:org32498be}
 \begin{enumerate}
 \item Snippet
-\label{sec:org3e1a30d}
+\label{sec:org7a4cdf3}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -443,28 +431,28 @@ if (fieldSysPath != null) {
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org18b3045}
+\label{sec:org3d71978}
 
 Is it possible to achieve the same effect using \texttt{sun.misc.Unsafe}?
 \end{enumerate}
 
-\item Providing a Built-in Interpreter
-\label{sec:org787fbb8}
+\subsection{Providing a Built-in Interpreter}
+\label{sec:orgce2d1a8}
 \begin{enumerate}
 \item Snippet
-\label{sec:org913950c}
+\label{sec:org90d6b76}
 \item Discussion
-\label{sec:org661db8c}
+\label{sec:org7b2fd42}
 
 This pattern seems too much like a high level pattern.
 Although having \texttt{semantic} patterns is what we want, a pattern without a \texttt{snippet} is too high level and application-specific.
 \end{enumerate}
 
-\item Guarded Casts
-\label{sec:orga3a0e49}
+\subsection{Guarded Casts}
+\label{sec:orga12d5d9}
 \begin{enumerate}
 \item Snippet
-\label{sec:org2fdca46}
+\label{sec:orgb0ee139}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -517,11 +505,11 @@ Foo foo = (Foo)o;
 \end{lstlisting}
 \end{enumerate}
 
-\item Semi-guarded Casts
-\label{sec:org0abbf31}
+\subsection{Semi-guarded Casts}
+\label{sec:org34bbdc6}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgd0f6bec}
+\label{sec:orgd16bf04}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -533,11 +521,11 @@ if (foo.isBar()) {
 \end{lstlisting}
 \end{enumerate}
 
-\item Unguarded Casts
-\label{sec:org91d3c39}
+\subsection{Unguarded Casts}
+\label{sec:org5422bf1}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgb235d81}
+\label{sec:org4a634fb}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -554,11 +542,11 @@ Calendar copy = (Calendar)calendar.clone();
 \end{lstlisting}
 \end{enumerate}
 
-\item Safe Casts
-\label{sec:org8077f47}
+\subsection{Safe Casts}
+\label{sec:org25017bd}
 \begin{enumerate}
 \item Snippet
-\label{sec:org63820a1}
+\label{sec:orgcbb3d90}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -571,30 +559,29 @@ Calendar copy = (Calendar)calendar.clone();
 \end{lstlisting}
 \end{enumerate}
 
-\item CorrectCasts
-\label{sec:org29d7203}
-\item WellBehavedClassLoaders
-\label{sec:org8098fc3}
-\item IgnoringExceptions1
-\label{sec:org9742508}
-\item IgnoringExceptions2
-\label{sec:org9666d59}
-\item IndexedCollections
-\label{sec:org059a89d}
-\item MetaObjectsInTables
-\label{sec:org49db556}
-\item MultipleMetaObjects
-\label{sec:orgddd7522}
-\item EnvironmentStrings
-\label{sec:orgcc83e6c}
-\item UndecidableFiltering
-\label{sec:orgb40ec4e}
-\item NoProxy
-\label{sec:org48478b7}
-\end{enumerate}
+\subsection{CorrectCasts}
+\label{sec:orgadc930b}
+\subsection{WellBehavedClassLoaders}
+\label{sec:org5765ab0}
+\subsection{IgnoringExceptions1}
+\label{sec:orgcf2fedd}
+\subsection{IgnoringExceptions2}
+\label{sec:org1c59b67}
+\subsection{IndexedCollections}
+\label{sec:org88d3385}
+\subsection{MetaObjectsInTables}
+\label{sec:orge958027}
+\subsection{MultipleMetaObjects}
+\label{sec:orgf2d4ecc}
+\subsection{EnvironmentStrings}
+\label{sec:org6c8a85c}
+\subsection{UndecidableFiltering}
+\label{sec:orgc8c9cde}
+\subsection{NoProxy}
+\label{sec:org54438da}
 
 \chapter{Understanding How \java{} Language Features Are Used}
-\label{sec:org7a9bc4b}
+\label{sec:orgf3b1a4e}
 Understanding the Use of Language Features in Java.
 To understand patterns.Mining language features thesis.
 Methodological Contribution, to evolve your language.
@@ -606,13 +593,13 @@ We want to study how \emph{casts} and \emph{reflection} are used within the \jav
 We believe that we can leverage this information
 understanding how these features are used
 
-We begin this chapter presenting our already published work on the Unsafe API in \ref{org0db986b}.
+We begin this chapter presenting our already published work on the Unsafe API in \ref{orgafcb77c}.
 
 With the Unsafe API we answer the sub-research question:
 
 
-\section{The Unsafe API \label{org0db986b}}
-\label{sec:org9e623ce}
+\section{The Unsafe API \label{orgafcb77c}}
+\label{sec:orgb936615}
 
 The material in this chapter is based on our previously published paper \citep{mastrangelo_use_2015}.
 
@@ -634,8 +621,8 @@ For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
 We found out that only few projects were using \smu{}.
 In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
-\section{Casts \label{org0d0df0a}}
-\label{sec:orge92888a}
+\section{Casts \label{org2670758}}
+\label{sec:org509ae04}
 
 In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety.
 There is an increasing literature on how casting affects development productivity.
@@ -653,7 +640,7 @@ We have discovered several cast patterns.
 We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
 
 \subsection{Related Work}
-\label{sec:orga09dbc0}
+\label{sec:org9d7eff7}
 \cite{winther_guarded_2011} proposes a flow-sensitive analysis to eliminate
 redundant casts in \texttt{Java}.
 He presents some casts patterns that he needs to deal with in his analysis.
@@ -667,17 +654,17 @@ It does not show the purpose of casts, neither the rationale.
 What we are trying to understand is why developers use casts,
 and how could we avoid them, if we have to.
 
-\section{Reflection Patterns \label{org4544f1f}}
-\label{sec:org1701a5b}
+\section{Reflection Patterns \label{org78e1991}}
+\label{sec:org915b4b5}
 
 This list of patterns are more of semantic patterns.
 
 When reflection and metaprogramming can be used.
 
 \subsection{Related Work}
-\label{sec:org28f5e96}
-\section{Exceptions \label{orgb12fbf3}}
-\label{sec:orgd00c4d9}
+\label{sec:org90ab091}
+\section{Exceptions \label{orgd722532}}
+\label{sec:org734b5cd}
 
 
 
