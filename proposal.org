@@ -120,6 +120,89 @@ Finally, Chapter\nbsp{}[cha:unsafe]] shows the study we already made on the unsa
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
 The rationale behind this organization is that we prefer to show how we improve over the /state-of-the-art/ after having presented our plan for each feature.
 
+* DRAFT Understanding How \java{} Language Features Are Used
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-20 Wed 17:32] \\
+  What do we want to do?
+:END:
+
+Understanding the Use of Language Features in Java.
+To understand patterns.Mining language features thesis.
+Methodological Contribution, to evolve your language.
+Motivate the umbrella that put together those 3 pillars.
+In our research proposal we investigate the feasibility of
+
+To this date, there is no clear study on how and /why/ language features are used.
+We want to study how /casts/ and /reflection/ are used within the \java{} language.
+We believe that we can leverage this information
+understanding how these features are used
+
+We begin this chapter presenting our already published work on the Unsafe API in [[sec:unsafe]].
+
+With the Unsafe API we answer the sub-research question:
+
+** The Unsafe API <<sec:unsafe>>                                  :patterns:
+
+The material in this chapter is based on our previously published paper citep:mastrangelo_use_2015.
+
+Our study on unsafe we have divised several usage patterns.
+Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
+
+For our study on \smu{}, we needed to discover usage patterns.
+Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
+On the other hand, our study related to casts involved a much more complex analysis.
+Therefore we have decided to implement it with manual inspection.
+
+The exceptions mechanism is orthogonal to the features we target in this proposal.
+For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
+Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research.
+They can help us to understand how programmers handle exceptions in these scenarios.
+
+For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
+We found out that only few projects were using \smu{}.
+In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+** Casts <<cha:casts>>                                            :patterns:
+
+In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety.
+There is an increasing literature on how casting affects development productivity.
+This is done usually by doing empirical studies on development groups, which are given programming tasks they have to solve.
+
+However, those programming tasks are usually artificial.
+And it is unclear whether or not they reflect the kind of code that it is actually written in the ``real'' world.
+To properly assess this kind of studies, it is needed to understand how the type cast operators are actually used.
+
+Thus, we try to answer the question: How and why are casts being used in ``real'' Java code?
+This paper studies the casts operator in a large Java repository.
+
+To study how are they used, and most importantly, why are they used, we have analyzed 88GB of compressed .jar files on a mainstream Java repository.
+We have discovered several cast patterns.
+We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
+
+*** Related Work
+cite:winther_guarded_2011 proposes a flow-sensitive analysis to eliminate
+redundant casts in ~Java~.
+He presents some casts patterns that he needs to deal with in his analysis.
+Notice that these patterns are structural ones.
+
+cite:staicu_understanding_2017
+
+cite:buse_synthesizing_2012
+
+It does not show the purpose of casts, neither the rationale.
+What we are trying to understand is why developers use casts,
+and how could we avoid them, if we have to.
+
+** Reflection Patterns <<cha:reflection>>                         :patterns:
+
+This list of patterns are more of semantic patterns.
+
+When reflection and metaprogramming can be used.
+
+*** Related Work
+** Exceptions <<cha:exceptions>>                                  :patterns:
+
 * DRAFT Literature Review <<cha:literature-review>> :patterns:
 :LOGBOOK:
 - State "DRAFT"      from              [2017-12-10 Sun 17:33] \\
@@ -138,6 +221,388 @@ How benchmarks and corpuses relate to this kind of studies is presented in \S{}[
 Related to our cast study, in \S{}[[sec:controlled-experiments]] we show studies on how static type systems impact on programmers productivity.
 Code Patterns discovery is presented in \S{}[[sec:pattern-discovery]].
 Finally, \S{}[[sec:msr]] gives an overview of what tools are available to extract information from a software repository, while \S{}[[sec:selection]] of how to select good candidates projects.
+
+cite:meyerovich_empirical_2013
+
+** DRAFT Existing Code Patterns <<cha:patterns>>
+:PROPERTIES:
+:COLUMNS:  %ITEM(Name) %Citation %10Found-In
+:END:
+:LOGBOOK:
+- State "DRAFT"      from "TODO"       [2017-12-10 Sun 17:47] \\
+  Demote patterns into literature review
+:END:
+
+#+BEGIN_SRC emacs-lisp :results silent :exports none
+(org-entry-properties)
+#+END_SRC
+
+# #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
+#+BEGIN: columnview :hlines 1 :maxlevel 3 :id local :skip-empty-rows t
+#+CAPTION: Existing Patterns
+| Name                                       | Citation                     | Found-In                     |
+|--------------------------------------------+------------------------------+------------------------------|
+| Specifying Application Extensions          | cite:livshits_improving_2006 | =columba=, =jedit=, =tomcat= |
+| Custom-made Object Serialization Scheme    | cite:livshits_improving_2006 | =jgap=                       |
+| Improving Portability Using Reflection     | cite:livshits_improving_2006 | =gruntspud=, =jfreechart=    |
+| Code Unavailable Until Deployment          | cite:livshits_improving_2006 | =columba=                    |
+| Using ~Class.forName~ for its Side-effects | cite:livshits_improving_2006 | =jfreechart=                 |
+| Getting Around Static Type Checking        | cite:livshits_improving_2006 | =columba=                    |
+| Providing a Built-in Interpreter           | cite:livshits_improving_2006 | =jedit=                      |
+| Guarded Casts                              | cite:winther_guarded_2011    | -                            |
+| Semi-guarded Casts                         | cite:winther_guarded_2011    | -                            |
+| Unguarded Casts                            | cite:winther_guarded_2011    | -                            |
+| Safe Casts                                 | cite:winther_guarded_2011    | -                            |
+| CorrectCasts                               | cite:landman_challenges_2017 |                              |
+| WellBehavedClassLoaders                    | cite:landman_challenges_2017 |                              |
+| IgnoringExceptions1                        | cite:landman_challenges_2017 |                              |
+| IgnoringExceptions2                        | cite:landman_challenges_2017 |                              |
+| IndexedCollections                         | cite:landman_challenges_2017 |                              |
+| MetaObjectsInTables                        | cite:landman_challenges_2017 |                              |
+| MultipleMetaObjects                        | cite:landman_challenges_2017 |                              |
+| EnvironmentStrings                         | cite:landman_challenges_2017 |                              |
+| UndecidableFiltering                       | cite:landman_challenges_2017 |                              |
+| NoProxy                                    | cite:landman_challenges_2017 |                              |
+ #+END:
+
+**** Specifying Application Extensions
+:PROPERTIES:
+:Description: Unclear pattern
+:Citation: cite:livshits_improving_2006
+:Found-In: =columba=, =jedit=, =tomcat=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+public void addHandlers(String path) {
+        XmlIO xmlFile = new XmlIO(DiskIO.getResourceURL(path));
+        xmlFile.load();
+        XmlElement list = xmlFile.getRoot().getElement("handlerlist");
+        Iterator it = list.getElements().iterator();
+        while (it.hasNext()) {
+            XmlElement child = (XmlElement) it.next();
+            String id = child.getAttribute("id");
+            String clazz = child.getAttribute("class");
+            AbstractPluginHandler handler = null;
+            try {
+                Class c = Class.forName(clazz);
+                handler = (AbstractPluginHandler) c.newInstance();
+                registerHandler(handler);
+            } catch (ClassNotFoundException e) {
+                if (Main.DEBUG) e.printStackTrace();
+            } catch (InstantiationException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+            } catch (IllegalAccessException e1) {
+                if (Main.DEBUG) e1.printStackTrace();
+        }
+    }
+}
+#+END_SRC
+
+***** Discussion
+
+This pattern is not clear.
+It would be interesting to see how these extensions are used,
+and what is the rationale of being of using these extensions as plug-ins.
+
+**** Custom-made Object Serialization Scheme
+:PROPERTIES:
+:Description: Using reflection to serialize/deserialize objects.
+:Citation: cite:livshits_improving_2006
+:Found-In: =jgap=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+String geneClassName = thisGeneElement.
+           getAttribute(CLASS_ATTRIBUTE);
+Gene thisGeneObject = (Gene) Class.forName(
+             geneClassName).newInstance();
+#+END_SRC
+
+***** Discussion
+
+~Unsafe~ can be used to serialize/deserialze objects as well.
+Actually, some unsafe implementations have a fallback to reflection in case
+unsafe is not available.
+
+**** Improving Portability Using Reflection   
+:PROPERTIES:
+:Description: Sometimes reflection is used as a mechanism to dead with incompatibility issues across different platforms.
+:Citation: cite:livshits_improving_2006
+:Found-In: =gruntspud=, =jfreechart=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+try {
+            Class macOS  = Class.forName("gruntspud.standalone.os.MacOSX");
+            Class argC[] = {ViewManager.class};
+            Object arg[] = {context.getViewManager()};
+            Method init = macOS.getMethod("init", argC);
+            Object obj  = macOS.newInstance();
+            init.invoke(obj, arg);
+        } catch (Throwable t) {
+            // not on macos
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Method m = c.getMethod("clone", null);
+if (Modifier.isPublic(m.getModifiers())) {
+    try {
+        result = m.invoke(object, null);
+    }
+    catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+try {
+    //  Test for being run under JDK 1.4+
+    Class.forName("javax.imageio.ImageIO");
+    //  Test for JFreeChart being compiled
+    //  under JDK 1.4+
+    Class.forName("org.jfree.chart.encoders.SunPNGEncoderAdapter");
+} catch (ClassNotFoundException e) {
+    // ...
+}
+#+END_SRC
+***** Discussion
+
+What can we say?
+
+**** Code Unavailable Until Deployment        
+:PROPERTIES:
+:Description: This pattern uses reflection to load and query a class that is not available at compile-time.
+:Citation: cite:livshits_improving_2006
+:Found-In: =columba=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+Method getVersionMethod =
+    Class.forName("org.columba.core.main.ColumbaVersionInfo").
+        getMethod("getVersion", new Class[0]);
+return (String) getVersionMethod.invoke(null,new Object[0]);
+#+END_SRC
+
+***** Discussion
+
+How could be solve this problem by using information available
+at compile-time?
+
+**** Using ~Class.forName~ for its Side-effects 
+:PROPERTIES:
+:Description: By using this pattern one can call the class constructor, which might be needed independently by a later call-site.
+:Citation: cite:livshits_improving_2006
+:Found-In: =jfreechart=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+public JDBCCategoryDataset(String url, String driverName,
+                           String user, String passwd)
+    throws ClassNotFoundException, SQLException
+{
+    Class.forName(driverName);
+    this.connection = DriverManager.getConnection(url, user, passwd);
+}
+#+END_SRC
+
+***** Discussion
+
+Commonly used by ~JDBC~ API to load database drivers.
+
+**** Getting Around Static Type Checking      
+:PROPERTIES:
+:Description: This pattern allows to circumvent safety features of the language.
+:Citation: cite:livshits_improving_2006
+:Found-In: =columba=
+:Category: reflection
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+fieldSysPath.setAccessible(true);
+if (fieldSysPath != null) {
+    fieldSysPath.set(System.class.getClassLoader(), null);
+}
+#+END_SRC
+
+***** Discussion
+
+Is it possible to achieve the same effect using =sun.misc.Unsafe=?
+
+**** Providing a Built-in Interpreter         
+:PROPERTIES:
+:Description: Implementing an interpreter, scripting language as a ~Java~ extension
+:Citation: cite:livshits_improving_2006
+:Found-In: =jedit=
+:Category: reflection
+:END:
+***** Snippet
+***** Discussion
+
+This pattern seems too much like a high level pattern.
+Although having ~semantic~ patterns is what we want, a pattern without a ~snippet~ is too high level and application-specific.
+
+**** Guarded Casts
+:PROPERTIES:
+:Description: Cast guarded
+:Citation: cite:winther_guarded_2011 
+:Found-In: -
+:Category: cast
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+if (o instanceof Foo) {
+    Foo foo = (Foo)o;
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+if (o instanceof Foo && ((Foo)o).isBar()) {
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Bar bar = o instanceof Foo ? ((Foo)o).getBar() : null;
+#+END_SRC
+
+=dead-if-guarded= cast version
+
+#+BEGIN_SRC java
+if (!(o instanceof Foo)) {
+    return;
+}
+Foo foo = (Foo)o;
+#+END_SRC
+
+=ensure-guarded= casts
+
+#+BEGIN_SRC java
+if (!(o instanceof Foo)) {
+    o = new Foo();
+}
+Foo foo = (Foo)o; 
+#+END_SRC
+
+=while-guarded= cast
+
+#+BEGIN_SRC java
+while (o != null && !(o instanceof Foo)) {
+    o = o.parent();
+}
+Foo foo = (Foo)o;
+#+END_SRC
+
+**** Semi-guarded Casts
+:PROPERTIES:
+:Description: This casts are provided at an application-level instead of with runtime information.
+:Citation: cite:winther_guarded_2011 
+:Found-In: -
+:Category: cast
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+Foo foo = ...
+if (foo.isBar()) {
+    Bar bar = (Bar)foo;
+    // ...
+}
+#+END_SRC
+
+**** Unguarded Casts
+:PROPERTIES:
+:Description: Non guarded
+:Citation: cite:winther_guarded_2011 
+:Found-In: -
+:Category: cast
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+List list = ...{ // a list of Foo elements
+for (Object o : list) {
+    Foo foo = (Foo)o;
+    // ...
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+Calendar copy = (Calendar)calendar.clone();
+#+END_SRC
+
+**** Safe Casts
+:PROPERTIES:
+:Description: Primitive conversions, just for the sake of completeness.
+:Citation: cite:winther_guarded_2011 
+:Found-In: -
+:Category: cast
+:END:
+***** Snippet
+
+#+BEGIN_SRC java
+(char)42
+#+END_SRC
+
+#+BEGIN_SRC java
+(Integer)42
+#+END_SRC
+
+**** CorrectCasts
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** WellBehavedClassLoaders
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** IgnoringExceptions1
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** IgnoringExceptions2
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** IndexedCollections
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** MetaObjectsInTables
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** MultipleMetaObjects
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** EnvironmentStrings
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** UndecidableFiltering
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
+**** NoProxy
+:PROPERTIES:
+:Citation: cite:landman_challenges_2017 
+:END:
 
 ** Compilers Writers <<sec:compilers-writers>>
 
@@ -310,471 +775,14 @@ Diversity dimensions considered include total lines of code, project age, activi
   Shall I add this Code Recommenders systems section?
 :END:
 
-* DRAFT Existing Code Patterns <<cha:patterns>>
-:PROPERTIES:
-:COLUMNS:  %ITEM(Name) %Citation %10Found-In
-:END:
+* DONE Bibliography                                                  :ignore:
+CLOSED: [2017-12-23 Sat 20:29]
 :LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-10 Sun 17:47] \\
-  Demote patterns into literature review
+- State "DONE"       from "IN-THE-BOOK" [2017-12-23 Sat 20:29]
+- State "IN-THE-BOOK" from "DRAFT"      [2017-12-23 Sat 20:29]
+- State "DRAFT"      from "TODO"       [2017-12-23 Sat 20:28] \\
+  Added ignore tag to have it in its own subtree
 :END:
-
-#+BEGIN_SRC emacs-lisp :results silent :exports none
-(org-entry-properties)
-#+END_SRC
-
-# #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
-#+BEGIN: columnview :hlines 1 :maxlevel 3 :id local :skip-empty-rows t
-#+CAPTION: Existing Patterns
-| Name                                       | Citation                     | Found-In                     |
-|--------------------------------------------+------------------------------+------------------------------|
-| Specifying Application Extensions          | cite:livshits_improving_2006 | =columba=, =jedit=, =tomcat= |
-| Custom-made Object Serialization Scheme    | cite:livshits_improving_2006 | =jgap=                       |
-| Improving Portability Using Reflection     | cite:livshits_improving_2006 | =gruntspud=, =jfreechart=    |
-| Code Unavailable Until Deployment          | cite:livshits_improving_2006 | =columba=                    |
-| Using ~Class.forName~ for its Side-effects | cite:livshits_improving_2006 | =jfreechart=                 |
-| Getting Around Static Type Checking        | cite:livshits_improving_2006 | =columba=                    |
-| Providing a Built-in Interpreter           | cite:livshits_improving_2006 | =jedit=                      |
-| Guarded Casts                              | cite:winther_guarded_2011    | -                            |
-| Semi-guarded Casts                         | cite:winther_guarded_2011    | -                            |
-| Unguarded Casts                            | cite:winther_guarded_2011    | -                            |
-| Safe Casts                                 | cite:winther_guarded_2011    | -                            |
-| CorrectCasts                               | cite:landman_challenges_2017 |                              |
-| WellBehavedClassLoaders                    | cite:landman_challenges_2017 |                              |
-| IgnoringExceptions1                        | cite:landman_challenges_2017 |                              |
-| IgnoringExceptions2                        | cite:landman_challenges_2017 |                              |
-| IndexedCollections                         | cite:landman_challenges_2017 |                              |
-| MetaObjectsInTables                        | cite:landman_challenges_2017 |                              |
-| MultipleMetaObjects                        | cite:landman_challenges_2017 |                              |
-| EnvironmentStrings                         | cite:landman_challenges_2017 |                              |
-| UndecidableFiltering                       | cite:landman_challenges_2017 |                              |
-| NoProxy                                    | cite:landman_challenges_2017 |                              |
- #+END:
-
-*** Specifying Application Extensions
-:PROPERTIES:
-:Description: Unclear pattern
-:Citation: cite:livshits_improving_2006
-:Found-In: =columba=, =jedit=, =tomcat=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-public void addHandlers(String path) {
-        XmlIO xmlFile = new XmlIO(DiskIO.getResourceURL(path));
-        xmlFile.load();
-        XmlElement list = xmlFile.getRoot().getElement("handlerlist");
-        Iterator it = list.getElements().iterator();
-        while (it.hasNext()) {
-            XmlElement child = (XmlElement) it.next();
-            String id = child.getAttribute("id");
-            String clazz = child.getAttribute("class");
-            AbstractPluginHandler handler = null;
-            try {
-                Class c = Class.forName(clazz);
-                handler = (AbstractPluginHandler) c.newInstance();
-                registerHandler(handler);
-            } catch (ClassNotFoundException e) {
-                if (Main.DEBUG) e.printStackTrace();
-            } catch (InstantiationException e1) {
-                if (Main.DEBUG) e1.printStackTrace();
-            } catch (IllegalAccessException e1) {
-                if (Main.DEBUG) e1.printStackTrace();
-        }
-    }
-}
-#+END_SRC
-
-**** Discussion
-
-This pattern is not clear.
-It would be interesting to see how these extensions are used,
-and what is the rationale of being of using these extensions as plug-ins.
-
-*** Custom-made Object Serialization Scheme
-:PROPERTIES:
-:Description: Using reflection to serialize/deserialize objects.
-:Citation: cite:livshits_improving_2006
-:Found-In: =jgap=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-String geneClassName = thisGeneElement.
-           getAttribute(CLASS_ATTRIBUTE);
-Gene thisGeneObject = (Gene) Class.forName(
-             geneClassName).newInstance();
-#+END_SRC
-
-**** Discussion
-
-~Unsafe~ can be used to serialize/deserialze objects as well.
-Actually, some unsafe implementations have a fallback to reflection in case
-unsafe is not available.
-
-*** Improving Portability Using Reflection   
-:PROPERTIES:
-:Description: Sometimes reflection is used as a mechanism to dead with incompatibility issues across different platforms.
-:Citation: cite:livshits_improving_2006
-:Found-In: =gruntspud=, =jfreechart=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-try {
-            Class macOS  = Class.forName("gruntspud.standalone.os.MacOSX");
-            Class argC[] = {ViewManager.class};
-            Object arg[] = {context.getViewManager()};
-            Method init = macOS.getMethod("init", argC);
-            Object obj  = macOS.newInstance();
-            init.invoke(obj, arg);
-        } catch (Throwable t) {
-            // not on macos
-}
-#+END_SRC
-
-#+BEGIN_SRC java
-Method m = c.getMethod("clone", null);
-if (Modifier.isPublic(m.getModifiers())) {
-    try {
-        result = m.invoke(object, null);
-    }
-    catch (Exception e) {
-        e.printStackTrace();
-    }
-}
-#+END_SRC
-
-#+BEGIN_SRC java
-try {
-    //  Test for being run under JDK 1.4+
-    Class.forName("javax.imageio.ImageIO");
-    //  Test for JFreeChart being compiled
-    //  under JDK 1.4+
-    Class.forName("org.jfree.chart.encoders.SunPNGEncoderAdapter");
-} catch (ClassNotFoundException e) {
-    // ...
-}
-#+END_SRC
-**** Discussion
-
-What can we say?
-
-*** Code Unavailable Until Deployment        
-:PROPERTIES:
-:Description: This pattern uses reflection to load and query a class that is not available at compile-time.
-:Citation: cite:livshits_improving_2006
-:Found-In: =columba=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-Method getVersionMethod =
-    Class.forName("org.columba.core.main.ColumbaVersionInfo").
-        getMethod("getVersion", new Class[0]);
-return (String) getVersionMethod.invoke(null,new Object[0]);
-#+END_SRC
-
-**** Discussion
-
-How could be solve this problem by using information available
-at compile-time?
-
-*** Using ~Class.forName~ for its Side-effects 
-:PROPERTIES:
-:Description: By using this pattern one can call the class constructor, which might be needed independently by a later call-site.
-:Citation: cite:livshits_improving_2006
-:Found-In: =jfreechart=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-public JDBCCategoryDataset(String url, String driverName,
-                           String user, String passwd)
-    throws ClassNotFoundException, SQLException
-{
-    Class.forName(driverName);
-    this.connection = DriverManager.getConnection(url, user, passwd);
-}
-#+END_SRC
-
-**** Discussion
-
-Commonly used by ~JDBC~ API to load database drivers.
-
-*** Getting Around Static Type Checking      
-:PROPERTIES:
-:Description: This pattern allows to circumvent safety features of the language.
-:Citation: cite:livshits_improving_2006
-:Found-In: =columba=
-:Category: reflection
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
-fieldSysPath.setAccessible(true);
-if (fieldSysPath != null) {
-    fieldSysPath.set(System.class.getClassLoader(), null);
-}
-#+END_SRC
-
-**** Discussion
-
-Is it possible to achieve the same effect using =sun.misc.Unsafe=?
-
-*** Providing a Built-in Interpreter         
-:PROPERTIES:
-:Description: Implementing an interpreter, scripting language as a ~Java~ extension
-:Citation: cite:livshits_improving_2006
-:Found-In: =jedit=
-:Category: reflection
-:END:
-**** Snippet
-**** Discussion
-
-This pattern seems too much like a high level pattern.
-Although having ~semantic~ patterns is what we want, a pattern without a ~snippet~ is too high level and application-specific.
-
-*** Guarded Casts
-:PROPERTIES:
-:Description: Cast guarded
-:Citation: cite:winther_guarded_2011 
-:Found-In: -
-:Category: cast
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-if (o instanceof Foo) {
-    Foo foo = (Foo)o;
-    // ...
-}
-#+END_SRC
-
-#+BEGIN_SRC java
-if (o instanceof Foo && ((Foo)o).isBar()) {
-    // ...
-}
-#+END_SRC
-
-#+BEGIN_SRC java
-Bar bar = o instanceof Foo ? ((Foo)o).getBar() : null;
-#+END_SRC
-
-=dead-if-guarded= cast version
-
-#+BEGIN_SRC java
-if (!(o instanceof Foo)) {
-    return;
-}
-Foo foo = (Foo)o;
-#+END_SRC
-
-=ensure-guarded= casts
-
-#+BEGIN_SRC java
-if (!(o instanceof Foo)) {
-    o = new Foo();
-}
-Foo foo = (Foo)o; 
-#+END_SRC
-
-=while-guarded= cast
-
-#+BEGIN_SRC java
-while (o != null && !(o instanceof Foo)) {
-    o = o.parent();
-}
-Foo foo = (Foo)o;
-#+END_SRC
-
-*** Semi-guarded Casts
-:PROPERTIES:
-:Description: This casts are provided at an application-level instead of with runtime information.
-:Citation: cite:winther_guarded_2011 
-:Found-In: -
-:Category: cast
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-Foo foo = ...
-if (foo.isBar()) {
-    Bar bar = (Bar)foo;
-    // ...
-}
-#+END_SRC
-
-*** Unguarded Casts
-:PROPERTIES:
-:Description: Non guarded
-:Citation: cite:winther_guarded_2011 
-:Found-In: -
-:Category: cast
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-List list = ...{ // a list of Foo elements
-for (Object o : list) {
-    Foo foo = (Foo)o;
-    // ...
-}
-#+END_SRC
-
-#+BEGIN_SRC java
-Calendar copy = (Calendar)calendar.clone();
-#+END_SRC
-
-*** Safe Casts
-:PROPERTIES:
-:Description: Primitive conversions, just for the sake of completeness.
-:Citation: cite:winther_guarded_2011 
-:Found-In: -
-:Category: cast
-:END:
-**** Snippet
-
-#+BEGIN_SRC java
-(char)42
-#+END_SRC
-
-#+BEGIN_SRC java
-(Integer)42
-#+END_SRC
-
-*** CorrectCasts
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** WellBehavedClassLoaders
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** IgnoringExceptions1
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** IgnoringExceptions2
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** IndexedCollections
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** MetaObjectsInTables
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** MultipleMetaObjects
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** EnvironmentStrings
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** UndecidableFiltering
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-*** NoProxy
-:PROPERTIES:
-:Citation: cite:landman_challenges_2017 
-:END:
-
-* DRAFT Understanding How \java{} Language Features Are Used
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-20 Wed 17:32] \\
-  What do we want to do?
-:END:
-
-Understanding the Use of Language Features in Java.
-To understand patterns.Mining language features thesis.
-Methodological Contribution, to evolve your language.
-Motivate the umbrella that put together those 3 pillars.
-In our research proposal we investigate the feasibility of
-
-To this date, there is no clear study on how and /why/ language features are used.
-We want to study how /casts/ and /reflection/ are used within the \java{} language.
-We believe that we can leverage this information
-understanding how these features are used
-
-We begin this chapter presenting our already published work on the Unsafe API in [[sec:unsafe]].
-
-With the Unsafe API we answer the sub-research question:
-
-
-** The Unsafe API <<sec:unsafe>>                                  :patterns:
-
-The material in this chapter is based on our previously published paper citep:mastrangelo_use_2015.
-
-Our study on unsafe we have divised several usage patterns.
-Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
-
-For our study on \smu{}, we needed to discover usage patterns.
-Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
-On the other hand, our study related to casts involved a much more complex analysis.
-Therefore we have decided to implement it with manual inspection.
-
-The exceptions mechanism is orthogonal to the features we target in this proposal.
-For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
-Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
-Therefore, we believe that these kind of studies can be complementary for our research.
-They can help us to understand how programmers handle exceptions in these scenarios.
-
-For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
-We found out that only few projects were using \smu{}.
-In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
-
-** Casts <<cha:casts>>                                            :patterns:
-
-In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety.
-There is an increasing literature on how casting affects development productivity.
-This is done usually by doing empirical studies on development groups, which are given programming tasks they have to solve.
-
-However, those programming tasks are usually artificial.
-And it is unclear whether or not they reflect the kind of code that it is actually written in the ``real'' world.
-To properly assess this kind of studies, it is needed to understand how the type cast operators are actually used.
-
-Thus, we try to answer the question: How and why are casts being used in ``real'' Java code?
-This paper studies the casts operator in a large Java repository.
-
-To study how are they used, and most importantly, why are they used, we have analyzed 88GB of compressed .jar files on a mainstream Java repository.
-We have discovered several cast patterns.
-We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
-
-*** Related Work
-cite:winther_guarded_2011 proposes a flow-sensitive analysis to eliminate
-redundant casts in ~Java~.
-He presents some casts patterns that he needs to deal with in his analysis.
-Notice that these patterns are structural ones.
-
-cite:staicu_understanding_2017
-
-cite:buse_synthesizing_2012
-
-It does not show the purpose of casts, neither the rationale.
-What we are trying to understand is why developers use casts,
-and how could we avoid them, if we have to.
-
-** Reflection Patterns <<cha:reflection>>                         :patterns:
-
-This list of patterns are more of semantic patterns.
-
-When reflection and metaprogramming can be used.
-
-*** Related Work
-** Exceptions <<cha:exceptions>>                                  :patterns:
-
-
 
 bibliographystyle:plainnat
 bibliography:proposal.bib
