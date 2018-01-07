@@ -1,4 +1,12 @@
 
+#+TITLE: What Do We Write?
+#+LATEX_CLASS: usiinfdocprop
+#+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
+#+AUTHOR: Luis Mastrangelo
+#+LATEX_HEADER: \include{prelude}
+#+OPTIONS: toc:nil
+#+OPTIONS: todo:nil
+#+OPTIONS: tags:nil
 #+STARTUP: logdrawer
 #+TODO: TODO(t) DRAFT(f@/!) IN-THE-BOOK(i!) | DONE(d!) CANCELED(c)
 
@@ -19,15 +27,6 @@
                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     (setq org-latex-listings t)
 #+END_SRC
-
-#+TITLE: What Do We Write?
-#+LATEX_CLASS: usiinfdocprop
-#+LATEX_HEADER: \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
-#+AUTHOR: Luis Mastrangelo
-#+LATEX_HEADER: \include{prelude}
-#+OPTIONS: toc:nil
-#+OPTIONS: todo:nil
-#+OPTIONS: tags:nil
 
 \frontmatter
 #+TOC: headlines 1
