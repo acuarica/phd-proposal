@@ -1,4 +1,4 @@
-% Created 2017-12-23 Sat 20:33
+% Created 2018-01-16 Tue 12:35
 % Intended LaTeX compiler: pdflatex
 \documentclass{usiinfdocprop}
                 \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
@@ -22,7 +22,7 @@
 \mainmatter
 
 \chapter{Introduction}
-\label{sec:org955cea7}
+\label{sec:org779bf3d}
 Programming language design has been always a hot topic in computer science literature.
 It has been extensively studied in the past decades.
 For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
@@ -45,7 +45,7 @@ Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
 \section{Research Question}
-\label{sec:orgf688833}
+\label{sec:orgb16a4cf}
 Understanding how language features are used can give many insights to language designers, tools builders, researchers and developers.
 This triggers our research question:
 
@@ -53,27 +53,42 @@ This triggers our research question:
 
 We believe that we --- as a research community --- should understand what kinds of programs are written in real codebases.
 We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
-This fact opens the door for empirical studies about language features, and their use in source code repositories, \eg{}, \github{}, \gitlab{} or \bitbucket{}, and package managers repositories, \eg{}, \mavencentral \footnote{\url{http:/central.sonatype.org/}} or \npm \footnote{\url{https://www.npmjs.com/}}. 
+This fact opens the door for empirical studies about language features and their use in source code repositories, \eg{}, \github \footnote{\url{https://github.com/}}, \gitlab \footnote{\url{https://gitlab.com/}} or \bitbucket \footnote{\url{https://bitbucket.org/}}, and package managers repositories, \eg{}, \mavencentral \footnote{\url{http:/central.sonatype.org/}} or \npm \footnote{\url{https://www.npmjs.com/}}.
 Since any kind of language study must be language-specific, our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
 
 In this proposal, we plan to target four specific \java{} features, namely, \emph{casting}, \emph{reflection}, \emph{exception handling}, and the \emph{unsafe \api{}}.
 We have divised --- for the \emph{unsafe \api{}} --- and we plan to divise language and \api{} usage patterns.
 We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
+\begin{table}[htbp]
+\caption{Per Feature Research Questions}
+\centering
+\begin{tabular}{ll}
+\hline
+Feature & Sub Research Question\\
+\hline
+Unsafe API & Is \java{} Safe?\\
+Casting & Dynamic Features\\
+Reflection API & Is Java someting?\\
+Exception Mechanism & Are they used properly?\\
+\hline
+\end{tabular}
+\end{table}
+
 \section{Proposal Outline}
-\label{sec:org4fc7549}
+\label{sec:orge74ed00}
 The rest of this proposal is organized as follows:
-Chapter~\ref{orge6349f7} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
-More specifically, Chapter~\ref{orgdc847d0} presents already existing code patterns related to the language features we plan to analyze.
+Chapter~\ref{org53ba504} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
+More specifically, Chapter~\ref{orge5480e0} presents already existing code patterns related to the language features we plan to analyze.
 The following four chapters introduce our proposal plan for the selected features:
-Chapters~\ref{org6b1a6b6}, \ref{orge95dd9f}, \ref{org4b1f052} presents our \emph{casting}, \emph{reflection} and \emph{exception handling} study respectively.
+Chapters~\ref{org686b6a5}, \ref{org7b69368}, \ref{org10d264b} presents our \emph{casting}, \emph{reflection} and \emph{exception handling} study respectively.
 Finally, Chapter~[cha:unsafe]] shows the study we already made on the unsafe \api{} in \java{}.
 
 While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
 The rationale behind this organization is that we prefer to show how we improve over the \emph{state-of-the-art} after having presented our plan for each feature.
 
 \chapter{Understanding How \java{} Language Features Are Used}
-\label{sec:org627254f}
+\label{sec:org6351c27}
 Understanding the Use of Language Features in Java.
 To understand patterns.Mining language features thesis.
 Methodological Contribution, to evolve your language.
@@ -85,97 +100,38 @@ We want to study how \emph{casts} and \emph{reflection} are used within the \jav
 We believe that we can leverage this information
 understanding how these features are used
 
-We begin this chapter presenting our already published work on the Unsafe API in \ref{orgc9d7b0a}.
+We begin this chapter presenting our already published work on the Unsafe API in \ref{orgd4a07ae}.
 
 With the Unsafe API we answer the sub-research question:
 
-\section{The Unsafe API \label{orgc9d7b0a}}
-\label{sec:orgb1b6b36}
-
-The material in this chapter is based on our previously published paper \citep{mastrangelo_use_2015}.
-
-Our study on unsafe we have divised several usage patterns.
-Java is a safe language. Its runtime environment provides strong safety guarantees that any Java application can rely on. Or so we think. We show that the runtime actually does not provide these guarantees—for a large fraction of today’s Java code. Unbeknownst to many application developers, the Java runtime includes a “backdoor” that allows expert library and framework developers to circumvent Java’s safety guar- antees. This backdoor is there by design, and is well known to experts, as it enables them to write high-performance “systems-level” code in Java.
-
-For our study on \smu{}, we needed to discover usage patterns.
-Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
-On the other hand, our study related to casts involved a much more complex analysis.
-Therefore we have decided to implement it with manual inspection.
-
-The exceptions mechanism is orthogonal to the features we target in this proposal.
-For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
-Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
-Therefore, we believe that these kind of studies can be complementary for our research.
-They can help us to understand how programmers handle exceptions in these scenarios.
-
-For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
-We found out that only few projects were using \smu{}.
-In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
-
-\section{Casts \label{org6b1a6b6}}
-\label{sec:orgbd801ef}
-
-In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety.
-There is an increasing literature on how casting affects development productivity.
-This is done usually by doing empirical studies on development groups, which are given programming tasks they have to solve.
-
-However, those programming tasks are usually artificial.
-And it is unclear whether or not they reflect the kind of code that it is actually written in the ``real'' world.
-To properly assess this kind of studies, it is needed to understand how the type cast operators are actually used.
-
-Thus, we try to answer the question: How and why are casts being used in ``real'' Java code?
-This paper studies the casts operator in a large Java repository.
-
-To study how are they used, and most importantly, why are they used, we have analyzed 88GB of compressed .jar files on a mainstream Java repository.
-We have discovered several cast patterns.
-We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
-
-\subsection{Related Work}
-\label{sec:org8aa9ad0}
-\cite{winther_guarded_2011} proposes a flow-sensitive analysis to eliminate
-redundant casts in \texttt{Java}.
-He presents some casts patterns that he needs to deal with in his analysis.
-Notice that these patterns are structural ones.
-
-\cite{staicu_understanding_2017}
-
-\cite{buse_synthesizing_2012}
-
-It does not show the purpose of casts, neither the rationale.
-What we are trying to understand is why developers use casts,
-and how could we avoid them, if we have to.
-
-\section{Reflection Patterns \label{orge95dd9f}}
-\label{sec:org599a2f4}
+\chapter{Reflection Patterns \label{org7b69368}}
+\label{sec:org2457f5d}
 
 This list of patterns are more of semantic patterns.
 
 When reflection and metaprogramming can be used.
 
-\subsection{Related Work}
-\label{sec:orga9d3212}
-\section{Exceptions \label{org4b1f052}}
-\label{sec:org6cde6d1}
+Related Work
 
-\chapter{Literature Review \label{orge6349f7}}
-\label{sec:org3dd745a}
+\chapter{Literature Review \label{org53ba504}}
+\label{sec:org8b0bad6}
 Understanding how language features and \api{}s are being used is a broad topic.
 There is plenty of research in computer science literature about empirical studies of programs; which involves several directions directly or indirecly related.
 Along the last decades, researchers always has been interested in understanding what kind of programs programmers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
 
 The organization of this chapter is as follows:
-In \S\ref{org16d1423} we present empirical studies regarding compilers writers.
-How benchmarks and corpuses relate to this kind of studies is presented in \S\ref{orgd903323}.
-\S\ref{org743adfd} gives an overview of other large-scale studies either in \java{} or in other languages.
-Related to our cast study, in \S\ref{org56d5c30} we show studies on how static type systems impact on programmers productivity.
-Code Patterns discovery is presented in \S\ref{orgbe60c55}.
-Finally, \S\ref{org6822d53} gives an overview of what tools are available to extract information from a software repository, while \S\ref{org45b0cc4} of how to select good candidates projects.
+In \S\ref{org5c25457} we present empirical studies regarding compilers writers.
+How benchmarks and corpuses relate to this kind of studies is presented in \S\ref{org6ec2931}.
+\S\ref{org86f5896} gives an overview of other large-scale studies either in \java{} or in other languages.
+Related to our cast study, in \S\ref{org754b10b} we show studies on how static type systems impact on programmers productivity.
+Code Patterns discovery is presented in \S\ref{org8e042ad}.
+Finally, \S\ref{org11375ab} gives an overview of what tools are available to extract information from a software repository, while \S\ref{org0f368d7} of how to select good candidates projects.
 
 \cite{meyerovich_empirical_2013}
 
-\section{Existing Code Patterns \label{orgdc847d0}}
-\label{sec:orgb939216}
+\section{Existing Code Patterns \label{orge5480e0}}
+\label{sec:orga63a560}
 \begin{table}[htbp]
 \caption{Existing Patterns}
 \centering
@@ -208,10 +164,10 @@ NoProxy & \cite{landman_challenges_2017} & \\
 
 \begin{enumerate}
 \item Specifying Application Extensions
-\label{sec:org3ef394e}
+\label{sec:org49d98d9}
 \begin{enumerate}
 \item Snippet
-\label{sec:org70a00ec}
+\label{sec:org5df70a1}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -241,7 +197,7 @@ public void addHandlers(String path) {
 \end{lstlisting}
 
 \item Discussion
-\label{sec:orge025183}
+\label{sec:orgaedde82}
 
 This pattern is not clear.
 It would be interesting to see how these extensions are used,
@@ -249,10 +205,10 @@ and what is the rationale of being of using these extensions as plug-ins.
 \end{enumerate}
 
 \item Custom-made Object Serialization Scheme
-\label{sec:orgc1bcea7}
+\label{sec:org096fd33}
 \begin{enumerate}
 \item Snippet
-\label{sec:orged3357a}
+\label{sec:org8ca190a}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -263,7 +219,7 @@ Gene thisGeneObject = (Gene) Class.forName(
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org8be018d}
+\label{sec:org322011b}
 
 \texttt{Unsafe} can be used to serialize/deserialze objects as well.
 Actually, some unsafe implementations have a fallback to reflection in case
@@ -271,10 +227,10 @@ unsafe is not available.
 \end{enumerate}
 
 \item Improving Portability Using Reflection
-\label{sec:orgbe88bff}
+\label{sec:org9b7a6aa}
 \begin{enumerate}
 \item Snippet
-\label{sec:org0d52691}
+\label{sec:org9630941}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -316,16 +272,16 @@ try {
 }
 \end{lstlisting}
 \item Discussion
-\label{sec:orge1b9e4d}
+\label{sec:org0540fa7}
 
 What can we say?
 \end{enumerate}
 
 \item Code Unavailable Until Deployment
-\label{sec:orgf7f0182}
+\label{sec:org3e1240e}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgbb39371}
+\label{sec:orge9fb502}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -336,17 +292,17 @@ return (String) getVersionMethod.invoke(null,new Object[0]);
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org2ffa1db}
+\label{sec:org94d682a}
 
 How could be solve this problem by using information available
 at compile-time?
 \end{enumerate}
 
 \item Using \texttt{Class.forName} for its Side-effects
-\label{sec:org801af76}
+\label{sec:org4b9c6c8}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgbd669df}
+\label{sec:org799ebef}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -360,16 +316,16 @@ public JDBCCategoryDataset(String url, String driverName,
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org4e779fc}
+\label{sec:orgb92aef2}
 
 Commonly used by \texttt{JDBC} API to load database drivers.
 \end{enumerate}
 
 \item Getting Around Static Type Checking
-\label{sec:org91bc453}
+\label{sec:orgfba5235}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgb1cfddf}
+\label{sec:org0dbd587}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -381,28 +337,28 @@ if (fieldSysPath != null) {
 \end{lstlisting}
 
 \item Discussion
-\label{sec:org83a2b21}
+\label{sec:orga2acc08}
 
 Is it possible to achieve the same effect using \texttt{sun.misc.Unsafe}?
 \end{enumerate}
 
 \item Providing a Built-in Interpreter
-\label{sec:org50910b4}
+\label{sec:org1069fed}
 \begin{enumerate}
 \item Snippet
-\label{sec:org1726561}
+\label{sec:org20d507c}
 \item Discussion
-\label{sec:org97c34a2}
+\label{sec:org1c47888}
 
 This pattern seems too much like a high level pattern.
 Although having \texttt{semantic} patterns is what we want, a pattern without a \texttt{snippet} is too high level and application-specific.
 \end{enumerate}
 
 \item Guarded Casts
-\label{sec:org551d228}
+\label{sec:orga029b97}
 \begin{enumerate}
 \item Snippet
-\label{sec:org5a91eec}
+\label{sec:orgf1f3a41}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -456,10 +412,10 @@ Foo foo = (Foo)o;
 \end{enumerate}
 
 \item Semi-guarded Casts
-\label{sec:org6cf6662}
+\label{sec:org923655c}
 \begin{enumerate}
 \item Snippet
-\label{sec:org9be03dc}
+\label{sec:org08371f4}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -472,10 +428,10 @@ if (foo.isBar()) {
 \end{enumerate}
 
 \item Unguarded Casts
-\label{sec:org20d88c1}
+\label{sec:org4046378}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgf1098a8}
+\label{sec:org258dab1}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -493,10 +449,10 @@ Calendar copy = (Calendar)calendar.clone();
 \end{enumerate}
 
 \item Safe Casts
-\label{sec:orgbf8a1fb}
+\label{sec:org96ec569}
 \begin{enumerate}
 \item Snippet
-\label{sec:orgd733a8b}
+\label{sec:org4826200}
 
 \lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
@@ -510,30 +466,29 @@ Calendar copy = (Calendar)calendar.clone();
 \end{enumerate}
 
 \item CorrectCasts
-\label{sec:orgd09c353}
+\label{sec:orga3c02fb}
 \item WellBehavedClassLoaders
-\label{sec:org9ea2c04}
+\label{sec:org3172228}
 \item IgnoringExceptions1
-\label{sec:orgd909522}
+\label{sec:org4fa3809}
 \item IgnoringExceptions2
-\label{sec:org95216d8}
+\label{sec:org0712fd1}
 \item IndexedCollections
-\label{sec:orgf7b6fb8}
+\label{sec:org59142b0}
 \item MetaObjectsInTables
-\label{sec:orgfce2b9e}
+\label{sec:org19185b9}
 \item MultipleMetaObjects
-\label{sec:org0cd7677}
+\label{sec:orgf198e33}
 \item EnvironmentStrings
-\label{sec:org49f903b}
+\label{sec:org6bc3690}
 \item UndecidableFiltering
-\label{sec:orgcb9340a}
+\label{sec:orgcd6db1e}
 \item NoProxy
-\label{sec:org521244f}
+\label{sec:org530c032}
 \end{enumerate}
 
-\section{Compilers Writers \label{org16d1423}}
-\label{sec:org57dbe33}
-
+\section{Compilers Writers \label{org5c25457}}
+\label{sec:orgf6c6dfa}
 Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
 By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
 Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammond_basic_1977} has studied a representative dataset of programs.
@@ -545,8 +500,8 @@ A machine instruction set is effectively another kind of language.
 Therefore, its design can be affected by how compilers generate machine code.
 Several studies targeted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
 
-\section{Benchmarks and Corpuses \label{orgd903323}}
-\label{sec:org0fc8078}
+\section{Benchmarks and Corpuses \label{org6ec2931}}
+\label{sec:orgc7977d5}
 
 Benchmarks are crucial to properly evaluate and measure product developement.
 This is key for both research and industry.
@@ -559,8 +514,8 @@ They provide a corpus of curated open source systems to facilitate empirical stu
 For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Therefore, we argue how important it is to make empirical studies about what programmers write.
 
-\section{Large-scale Codebase Empirical Studies \label{org743adfd}}
-\label{sec:org6dd86a2}
+\section{Large-scale Codebase Empirical Studies \label{org86f5896}}
+\label{sec:org3bbec81}
 
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}.
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
@@ -580,14 +535,14 @@ They argue, as we do, that controlled experiments on subjects need to be correla
 Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study.
 
 \subsection*{Exceptions}
-\label{sec:org84eac41}
+\label{sec:org533de47}
 \cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
 The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns.
 Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
 \subsection*{Collections and Generics}
-\label{sec:org87da6ce}
+\label{sec:orgace4ed0}
 The inclusion of generics in \java{} is closely related to collections.
 \cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers.
 They found that the use of generics do not significantly reduce the number of type casts.
@@ -595,8 +550,8 @@ They found that the use of generics do not significantly reduce the number of ty
 \cite{costa_empirical_2017} have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
 They have found out that in most cases there is an alternative usage that improves performance.
 
-\section{Controlled Experiments on Subjects \label{org56d5c30}}
-\label{sec:org7adc62b}
+\section{Controlled Experiments on Subjects \label{org754b10b}}
+\label{sec:org2d02b5e}
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
 For instance, \cite{soloway_empirical_1984} tried to understand the how expert programmers face problem solving.
 \cite{budd_theoretical_1980} made a empirical study on how effective is mutation testing.
@@ -622,16 +577,16 @@ Therefore, it is important to study how casts are used in real-world code.
 Having a deep understanding of actual usage of casts can led to
 Informed decisions when designing these kind of experiments.
 
-\section{Code Patterns Discovery \label{orgbe60c55}}
-\label{sec:org5413c86}
+\section{Code Patterns Discovery \label{org8e042ad}}
+\label{sec:orga750ac9}
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.
 \cite{hu_dynamic_2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelli_design_2008} used only dynamic.
 
 Trying to unify analysis and transformation tools~\cite{vinju_how_2006}, \cite{klint_rascal:_2009} built \rascal, a DSL that aims to bring them together. 
 
-\section{Tools for Mining Software Repositories \label{org6822d53}}
-\label{sec:org8053ab8}
+\section{Tools for Mining Software Repositories \label{org11375ab}}
+\label{sec:org29e27b8}
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
@@ -658,8 +613,8 @@ Another tool to analyze large software repositories is presented in~\cite{branda
 In this case, the analysis is dynamic, based on program traces.
 At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing.
 
-\section{Selecting Good Representatives \label{org45b0cc4}}
-\label{sec:org9939386}
+\section{Selecting Good Representatives \label{org0f368d7}}
+\label{sec:org61fe495}
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 \cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}.
 They found out that much of the code there is actually duplicated.
@@ -668,6 +623,1041 @@ This raises a flag when consider which projects analyze when doing mining softwa
 \cite{nagappan_diversity_2013} have developed the Software Projects Sampling (SPS) tool.
 SPS tries to find a maximal set of projects based on representativeness and diversity.
 Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
+
+\chapter{The Unsafe API \label{orgd4a07ae}}
+\label{sec:orgf182952}
+
+The material in this chapter is based on our previously published paper \citep{mastrangelo_use_2015}.
+
+Our study on unsafe we have divised several usage patterns.
+Java is a safe language.
+Its runtime environment provides strong safety guarantees that any Java application can rely on.
+Or so we think.
+We show that the runtime actually does not provide these guarantees for a large fraction of today's \java{} code.
+Unbeknownst to many application developers, the Java runtime includes a "backdoor" that allows expert library and framework developers to circumvent Java's safety guarantees.
+This backdoor is there by design, and is well known to experts, as it enables them to write high-performance "systems-level" code in \java{}.
+
+For our study on \smu{}, we needed to discover usage patterns.
+Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
+On the other hand, our study related to casts involved a much more complex analysis.
+Therefore we have decided to implement it with manual inspection.
+
+The exceptions mechanism is orthogonal to the features we target in this proposal.
+For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
+Similarly, closely related to \emph{casting}, \cce{} is thrown when a cast is invalid.
+Therefore, we believe that these kind of studies can be complementary for our research.
+They can help us to understand how programmers handle exceptions in these scenarios.
+
+For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
+We found out that only few projects were using \smu{}.
+In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
+
+\chapter{Casts \label{org686b6a5}}
+\label{sec:orgbdd6f24}
+\section{Abstract}
+\label{sec:org22d1770}
+
+In \java, type cast operators provide a way to fill the gap between compile time and runtime type safety. 
+There is an increasing literature on how casting affects development productivity. 
+This is done usually by doing empirical studies on development groups, which are given programming tasks they have to solve. 
+
+However, those programming tasks are usually artificial. 
+And it is unclear whether or not they reflect the kind of code that it is actually written in the ``real'' world. 
+To properly assess this kind of studies, it is needed to understand how the type cast operators are actually used. 
+
+Thus, we try to answer the question: 
+How and why are casts being used in ``real'' \java{} code? 
+This paper studies the casts operator in a large \java{} repository. 
+
+To study how are they used, and most importantly, why are they used, we have analyzed 88GB of compressed \jar{} files on a mainstream \java{} repository. 
+We have discovered several cast patterns. 
+We hope that our study gives support for more empirical studies to understand how a static type system impacts the development productivity.
+
+\section{Introduction}
+\label{sec:orgd1d4548}
+In programming language design, the goal of a type system is to prevent certain kind of errors at runtime. 
+Thus, a type system is formulated as a collections of constraints that gives any expression in the program a well defined type. 
+Type systems can be characterized in many different ways. 
+The most common being when it is either statically or dynamically checked (usually by the compiler or interpreter). 
+
+In the context of object-oriented languages, there is usually a subtype mechanism that allows the interoperability of two different, but related types. 
+In the particular case of \java{} (\emph{OO} language with static type system), the cast expression\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.16}} and the \instanceof{} operator\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.20.2}} provide a bridge between compile-time and runtime checking. 
+This is due most to the subtyping mechanism found in most of these kind of languages. 
+
+But, there is a constant struggle between the advocates of these two categories. 
+The ones for static type system claim that it help them to detect errors in advance. 
+In the contrary, the ones for dynamic type system claim that the verbosity of a static system slows down the development progress; and any error detected by a static type system should be catched easily by a well defined test suite. 
+
+Unfortunately, there is no clear response to this dilemma. 
+There are several studies that try to answer this question. 
+Harlin et. al \cite{harlin_impact_2017} test whether the use of a static type system improves development time. 
+Stuchlik and Hanenberg \cite{stuchlik_static_2011} have done an empirical study about the relationship between type casts and development time. 
+To properly assess these kind of studies, it is needed to understand what kind of casts are written, and more importantly, the rationale behind them. 
+
+Moreover, sometimes a cast indicates a design flaw in an object-oriented system. 
+\begin{description}
+\item[{\textbf{RQ1}}] Can we detect when a cast is a sign of a flaw in an object-oriented design?
+\item[{\textbf{RQ2}}] Can we improve class design by studying the use of casts?
+\end{description}
+
+This paper tries to answer these questions. 
+We have analyzed and studied a large \java{} repository looking for cast and related operators to see how and why are they used. 
+We come up with cast patterns that provide the rationale behind them. 
+
+The rest of this paper is organized as follows. 
+Section \ref{org9cc9cb6} presents an overview of casting in \java{}. 
+Section \ref{org8065fcf} discusses our research questions and introduces our study. 
+Section \ref{orgb0b4e0e} presents an overview of how casts are used. 
+Section \ref{org68b50a1} describes our methodology for finding casts usage patterns. 
+Sections \ref{org20ce513} and \ref{orgd75d6be} introduce and discuss the patterns we found. 
+Section \ref{orgaf6f25f} presents related work, and Section \ref{org1ebcdd3} concludes the paper. 
+
+\lstset{language=http,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+GET https://api.github.com/repos/zweifisch/ob-http/languages
+\end{lstlisting}
+
+\section{Related Work}
+\label{sec:org255eb70}
+\cite{winther_guarded_2011} proposes a flow-sensitive analysis to eliminate
+redundant casts in \texttt{Java}.
+He presents some casts patterns that he needs to deal with in his analysis.
+Notice that these patterns are structural ones.
+
+\cite{staicu_understanding_2017}
+
+\cite{buse_synthesizing_2012}
+
+It does not show the purpose of casts, neither the rationale.
+What we are trying to understand is why developers use casts,
+and how could we avoid them, if we have to.
+
+\section{Casts \label{org9cc9cb6}}
+\label{sec:org6ed331e}
+A \emph{cast} in \java{} serves the purpose of convert two related types. 
+As defined in the \java{} specification\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-5.html}}, there are several kinds of conversions. 
+In this context we are interested in conversion of classes. 
+
+Listing \ref{org96de858} shows how the cast operator is used to change the type of an object. 
+In this case, the target of the cast expression is the variable \code{o} (line 2), which is defined as \class{Object}. 
+Therefore, in order to use it properly, a cast is needed. 
+
+\lstset{language=java,label=org96de858,caption={Variable \code{o} is defined as \class{Object}, then casted to \class{String}.},captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+Object o = "foo"; 
+String s = (String)o; 
+\end{lstlisting}
+
+Whenever a cast fails at runtime, a \cce{} \footnote{\url{https://docs.oracle.com/javase/8/docs/api/java/lang/ClassCastException.html}} is thrown. 
+Listing \ref{org7d6dfae} shows an example where a \cce{} is thrown at runtime. 
+In this example the exception is thrown because it is not possible to conversion from \class{Integer} to \class{String}. 
+
+\lstset{language=java,label=org7d6dfae,caption={Incompatible types throwing \cce{} at runtime.},captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+Object x = new Integer(0); 
+System.out.println((String)x); 
+\end{lstlisting}
+
+As with any exception, the \cce{} can be catched to detect whenever a cast failed. 
+This is shown in listing \ref{org1f2df32}. 
+
+\lstset{language=java,label=org1f2df32,caption={Catching \cce{}},captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+try { 
+  Object x = new Integer(0); 
+  System.out.println((String)x); 
+} catch (ClassCastException e) { 
+  System.out.println(""); 
+} 
+\end{lstlisting}
+
+Sometimes it is not desired to catch an exception to test whether a cast would fail otherwise. 
+Thus, in addition to the cast operator, the \instanceof{} operator tests whether an expression can be casted properly. 
+Listing \ref{orga6b340b} shows a usage of the \instanceof{} operator together with a cast expression. 
+
+\lstset{language=java,label=orga6b340b,caption={Use of \instanceof{} operator to test whether a reference is of certain type.},captionpos=b,numbers=none}
+\begin{lstlisting}
+if (x instanceof Foo) { 
+  ((Foo)x).doFoo(); 
+} 
+\end{lstlisting}
+
+An alternative to using the \instanceof{} operator is keeping track of the 
+types at the application level, as shown in listing \ref{org985fa1c}. 
+This kind of cast is called \emph{semi guarded} casts~\cite{winther_guarded_2011}. 
+
+\lstset{language=java,label=org985fa1c,caption={Keep track of the actual types instead of \instanceof{}.},captionpos=b,numbers=none}
+\begin{lstlisting}
+if (x.isFoo()) { 
+  ((Foo)x).doFoo(); 
+} 
+\end{lstlisting}
+
+Doing an \emph{upcast} is trivial and does not require an explicit casting. 
+
+\section{Study Overview \label{org8065fcf}}
+\label{sec:orga9e9ff5}
+
+We believe we should care about how the casting operations are used in the wild if we want to properly support empirical studies related to static type systems. 
+Therefore, we want to answer the following questions: 
+
+\begin{description}
+\item[{\(Q1:\)}] \textbf{Are casting operations used in common application code?}
+\end{description}
+We want to understand to what extent third-party code actually uses casting operations. 
+
+\begin{description}
+\item[{\(Q2:\)}] \textbf{Which features of  are used?}
+\end{description}
+As provides many features, we want to understand which ones are actually used, and which ones can be ignored. 
+
+\begin{description}
+\item[{\(Q3:\)}] \textbf{Why are features used?}
+\end{description}
+We want to investigate what functionality third-party libraries require from. 
+This could point out ways in which the \java{} language and/or the \jvm{} need to be evolved to provide the same functionality, but in a safer way.   
+
+To answer the above questions, we need to determine whether and how casting operations are actually used in real-world third-party \java{} libraries. 
+To achieve our goal, several elements are needed. 
+
+\textbf{Code Repository.} 
+As a code base representative of the ``real world'', we have chosen the \mavencentral \footnote{\url{http://central.sonatype.org/}} software repository. 
+The rationale behind this decision is that a large number of well-known \java{} projects deploy to \mavencentral{} using Apache Maven\footnote{\url{http://maven.apache.org/}}. 
+Besides code written in \java{}, projects written in \scala{} are also deployed to \mavencentral{} using the Scala Build Tool (sbt)\footnote{\url{http://www.scala-sbt.org/}}. 
+Moreover, \mavencentral{} is the largest \java{} repository\footnote{\url{http://www.modulecounts.com/}}, and it contains projects from the most popular source code management repositories, like \github \footnote{\url{https://github.com/}} and \sourceforge \footnote{\url{http://sourceforge.net/}}. 
+
+\textbf{Artifacts.} 
+In Maven terminology, an artifact is the output of the build procedure of a project. 
+An artifact can be any type of file, ranging from a \ext{pdf} to a \ext{zip} file. 
+However, artifacts are usually \ext{jar} files, which archive compiled \java{} bytecode stored in \ext{class} files. 
+
+\textbf{Bytecode Analysis.} 
+We examine these kinds of artifacts to analyze how they use casting operations. 
+We use a bytecode analysis library to search for method call sites and field accesses of the \smu{} class. 
+
+\textbf{Usage Pattern Detection.} 
+After all call sites and field accesses are found, we analyze this information to discover usage patterns. 
+It is common that an artifact exhibits more than one pattern. 
+Our list of patterns is not exhaustive.  
+We have manually investigated the source code of the 100 highest-impact artifacts using \smu{} to understand why and how they are using it. 
+
+\section{Are they \emph{casts} operator used? \label{orgb0b4e0e}}
+\label{sec:orgb1d0eea}
+
+Statistics under the Maven repository. 
+These stats were collected using the Maven Bytecode Dataset. 
+
+\begin{center}
+\begin{tabular}{ll}
+Description & Value\\
+\hline
+`.jar`s size & 88GB\\
+Number of `.jar` & 134,156\\
+Number of `.jar` w/ classes & 114,495\\
+Number of classes & 24,109,857\\
+Number of methods & 222,492,323\\
+Number of bytecode instructions & 4,421,391,470\\
+Number of `checkcast` instructions & 47,622,853\\
+Number of `instanceof` instructions & 8,411,639\\
+Number of methods w/ `checkcast` & 27,019,431\\
+Number of methods w/ `instanceof` & 5,267,707\\
+\end{tabular}
+\end{center}
+
+Notice that around a 12\% of methods contain a `checkcast` instruction. 
+Which means that it is used a lot. 
+
+But there are way less `instanceof` instructions than `checkcast`. 
+What does it mean? 
+A lot of `checkcast`s are unguarded. 
+
+\begin{verbatim}
+--- Size --- 
+Total uncompressed size: 176,925 MB 
+--- Structural --- 
+Number of classes: 24,116,635 
+Number of methods: 222,525,678 
+Number of call sites: 661,713,609 
+Number of field uses: 334,462,791 
+Number of constants: 133,020,244 
+--- Instructions --- 
+Number of zeroOpCount: 833,070,650 
+Number of iincCount: 12,052,811 
+Number of multiANewArrayCount: 70,688 
+Number of intOpCount: 98,592,545 
+Number of jumpCount: 223,854,453 
+Number of varCount: 1,227,756,300 
+Number of invokeDynamicCount: 1,481,910 
+Number of lookupSwitchCount: 1,044,018 
+Number of tableSwitchCount: 1,377,260 
+--- Casts --- 
+Number of CHECKCAST: 47,947,250 
+Number of INSTANCEOF: 8,505,668 
+Number of ClassCastException: 114,049 
+Methods w/ CHECKCAST: 27,033,672 
+Methods w/ INSTANCEOF: 5,270,791 
+--- Error --- 
+Files not found: 150 
+\end{verbatim}
+
+So, yes, cast are used. 
+
+\section{Finding \emph{casts} Usage Patterns \label{org68b50a1}}
+\label{sec:orgcd146e1}
+
+One more thing: anything about Scala-specific cast patterns? 
+You clearly need to add counts, examples, explanations, reasons, consequences (in terms of the above questions). 
+Also, the patterns you have so far are (probably) straightforward to detect (instruction sits in method X, or operates on type Y). 
+I'd say you'll need to look deeper (with some program analysis) to find more interesting patterns that consist of multiple instructions. 
+
+We have analyzed 88GB of \ext{jar} files under the Maven Central Repository. 
+We have used the last version of each artifact in the Maven Repository. 
+This a representative of the artifact itself. 
+
+Then we have used ASM \cite{Bruneton02asm:a} 
+
+The \textbf{Bytecode} column refer to either an cast related instruction or exception. 
+These are the cast related bytecodes: 
+
+\textbf{checkcast} as specified by: 
+\footnote{\url{https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-6.html\\\#jvms-6.5.checkcast}} 
+
+\textbf{instanceof} as specified by: 
+\footnote{\url{https://docs.oracle.com/javase/specs/jvms/se7/html/jvms-6.html\\\#jvms-6.5.instanceof}} 
+
+\textbf{ClassCastException} as specified by: 
+\footnote{\url{https://docs.oracle.com/javase/7/docs/api/java/lang/ClassCastException.html}} 
+
+The following two columns indicates how many bytecode where found in: 
+\begin{itemize}
+\item \textbf{local}
+\end{itemize}
+My local machine. 
+This machine contains a \textbf{partial} download of a current snapshot of Maven Central. 
+Re-download all the artifacts is in progress. 
+\begin{itemize}
+\item \textbf{fermat}
+\end{itemize}
+fermat.inf.usi.ch machine. 
+This machine contains an old snapshot of Maven Central (2015)  
+
+We carry out our analysis at the bytecode level on the Maven Repository. 
+Since we are not interested in the artifacts evolution, 
+for our analysis we used the last version of each artifact. 
+In total we have analysed \textbf{88GB} of compressed `.jar` files. 
+
+\section{Preliminary Considerations}
+\label{sec:org1870116}
+
+For the bytecode analysis, we need to take into consideration certain code is being compiled. 
+This is why we need to take the following preliminary considerations. 
+
+\subsection{Simple cast}
+\label{sec:org144c36d}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+Object o = "Ciao"; 
+return (String)o; 
+\end{lstlisting}
+
+\begin{verbatim}
+0: ldc           #2                  // String Ciao 
+2: astore_0 
+3: aload_0 
+4: checkcast     #3                  // class java/lang/String 
+7: areturn 
+\end{verbatim}
+
+\subsection{Generics vs. Non-generics}
+\label{sec:org2757057}
+
+The following two Java snippets get compiled to the same bytecode instructions as showed below. 
+Notice that the two snippets only differ in the use of Generics. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+ArrayList l = new ArrayList(); 
+l.add("Ciao"); 
+return (String)l.get(0); 
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+ArrayList<String> l = new ArrayList<String>(); 
+l.add("Ciao"); 
+return l.get(0); 
+\end{lstlisting}
+
+\begin{verbatim}
+ 0: new           #2        // class java/util/ArrayList 
+ 3: dup 
+ 4: invokespecial #3        // Method java/util/ArrayList."<init>":()V 
+ 7: astore_0 
+ 8: aload_0 
+ 9: ldc           #4        // String Ciao 
+11: invokevirtual #5        // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z 
+14: pop 
+15: aload_0 
+16: iconst_0 
+17: invokevirtual #6        // Method java/util/ArrayList.get:(I)Ljava/lang/Object; 
+20: checkcast     #7        // class java/lang/String 
+23: areturn 
+\end{verbatim}
+
+\subsection{Upcast}
+\label{sec:orgdc8750a}
+
+The following snippet shows how even in the presence of a cast in the source code, 
+no actual `checkcast` is emitted. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+return (Object)"Foo"; 
+\end{lstlisting}
+
+\begin{verbatim}
+0: ldc           #2                  // String Ciao 
+2: areturn 
+\end{verbatim}
+
+\subsection{Conditional Operator}
+\label{sec:orgbeee934}
+
+Using the conditional operator produces the following bytecode. 
+[MavenDS](\url{https://bitbucket.org/acuarica/mavends}) 
+
+[JNIF](\url{https://bitbucket.org/acuarica/jnif}) 
+
+\#\#\# Queries 
+
+To retrieve the stats showed above, 
+we have used SQL queries against the bytecode database. 
+Each individual query is aimed to answer a precise question. 
+The following list presents all the SQL queries used to retrieve the stats, 
+and its respective answer (after the `;`). 
+
+\begin{enumerate}
+\item\relax [How many checkcast instructions?](sql/checkcast-count.out)
+\label{sec:org73434e9}
+\item\relax [`checkcast` most used arguments](sql/checkcast-most-used-args.out)
+\label{sec:org11f79e5}
+\item\relax [`checkcast` most used targets](sql/checkcast-most-used-target.out)
+\label{sec:org8af056a}
+\item\relax [How many classes?](sql/class-count.out)
+\label{sec:org296e0e1}
+\item\relax [How many bytecode instructions?](sql/code-count.out)
+\label{sec:org42a88b4}
+\item\relax [How many `equals` methods?](sql/equals-method-count.out)
+\label{sec:org863b025}
+\item\relax [How many `equals` methods with `checkcast`?](sql/equals-method-w-checkcast-count.out)
+\label{sec:org5d64cc5}
+\item\relax [How many `equals` methods with `instanceof`?](sql/equals-method-w-instanceof-count.out)
+\label{sec:org1f42d6e}
+\item\relax [How many `instanceof` instructions?](sql/instanceof-count.out)
+\label{sec:orgf789f5d}
+\item\relax [`instanceof` most used arguments](sql/instanceof-most-used-args.out)
+\label{sec:orga81841d}
+\item\relax [`instanceof` most used targets](sql/instanceof-most-used-target.out)
+\label{sec:org545e09b}
+\item\relax [How many `.jar` files?](sql/jar-count.out)
+\label{sec:org7bdee61}
+\item\relax [How many `.jar` files with classes?](sql/jar-w-classes-count.out)
+\label{sec:orga0de959}
+\item\relax [How many methods?](sql/method-count.out)
+\label{sec:org5b58bd8}
+\item\relax [How many methods with `checkcast` instruction?](sql/method-w-checkcast-count.out)
+\label{sec:org7d1f17e}
+\item\relax [How many methods with `instanceof` instruction?](sql/method-w-instanceof-count.out)
+\label{sec:org06bc895}
+\item\relax [How many methods with signature?](sql/methods-w-signature.out)
+\label{sec:org64899a1}
+\end{enumerate}
+
+\section{Complex Analysis}
+\label{sec:org799c82c}
+
+Now the following problem comes: How to extract code patterns? 
+The database itself is not enough, and it faces scalability problems. 
+
+\textbf{\textbf{The idea would be to use method slicing, both backward and forward. 
+In this way we can see how the casting are being used.}} 
+
+After the slicing, we could implement some sort of method equivalence to detect 
+different patterns. 
+\section{Preliminary}
+\label{sec:org641dec0}
+
+I started by downloading github projects. 
+I grabbed all Java projects with more than 10,000 stars. 
+This was 35 projects. 
+They range in size from 992 lines of code to 588,302. 
+I don't think this approach is necessarily representative since most of these projects seem to be libraries or frameworks (hence many stars), but I had to start somewhere. 
+
+I then searched for casts and instanceofs in the projects. 
+I ignored primitive casts. 
+I found 33788 casts, 14828 instanceof. 
+Nb. we should also look at calls to getClass since these are sometimes used instead of instanceof (particularly often in equals()). 
+
+I then started to go through the source by hand, inspecting each cast. 
+For each cast (instanceof), I put a comment trying to classify the cast into some sort of pattern. 
+Most are easily classifiable, others require inspecting other code to see the type hierarchy. 
+I then looked at all the commented casts again and tried to lump them together into more general patterns. 
+I only managed to inspect 12 of the smaller projects (including one with 0 casts, one with just 1, and one with just 2). 
+The largest project I looked at had 149 casts. 
+The remaining projects have from 115 to 11,617 casts (spring-framework). 
+My approach clearly doesn't scale, but I wanted to see what I could do manually. 
+All in all, I looked at 481 casts and 106 instanceofs. 
+
+First thing to note in general. 
+Most casts don't have an associated instanceof. 
+This is because of, shall we say, a lack of defensive programming. 
+I found this surprising. 
+It seems a lot of code (particularly Android GUI code) is constructed on top of frameworks that return interface types (or even Object) a lot and cast to application-specific types without checking, because presumably, the programmer knows best. 
+
+Here are the patterns I found, in order of usages. 
+The family polymorphism pattern is the most dubious, since it requires looking at the class hierarchy in more detail than I did). 
+I think some of these patterns could be restated, cleaned up, merged, split, etc. 
+
+--- 
+
+Now, what to make of this? 
+First, I'm not claiming these are all the patterns or that these patterns are the right patterns. 
+But, I think we should ask ourselves if doing a static analysis (either on bytecode or source) will find most of these patterns, and if so what kind of analysis is needed. 
+Bytecode analysis won't find, say, the redundant cast pattern or some of the patterns involving generics, because these compile into a no-op. 
+I think some of these patterns require application-specific knowledge that any static analysis would have difficulty finding. 
+
+Most of the patterns are very local: 
+you just have to look at the line of code containing the cast or a few lines before it to identify the pattern. 
+The main thing is to know where the value being cast is coming from. 
+Most of the time, you don't even have to look at the class hierarchy, but for some patterns (e.g., family polymorphism), you do have to know what is the static type of the object being cast and what is its relationship to the cast type? 
+For some of the patterns (e.g., stash), it might be useful to find matching calls: 
+for instance, one method calls setTag and another calls getTag, casting to the type of the object that set stored by setTag. 
+
+Several projects use application-specific type tags rather instanceof. 
+Sometimes, type tests are buried in other methods (e.g., the code calls a method that does an instanceof and returns boolean (see the type test pattern), then uses the boolean result to check that a cast will succeed. 
+
+I don't have a good sense yet for how many of these patterns are the result of language deficiencies. 
+Certainly typecase can be replaced with a visitor pattern (or pattern matching in a better language). 
+The family polymorphism pattern requires either type parameters or (better) abstract types. 
+Scala was designed to address this. 
+lookup by ID requires some sort of typed heterogeneous collections (like an HList), which is difficult even in Scala or Haskell. 
+
+--- 
+
+Since manual inspection is very slow, I think we need a way to speed up the inspection process. 
+I looked at only about 150 casts per hour. 
+For the projects I downloaded, at this rate, it would take about 320 hours to look at them all, i.e., 40 hours a week for 8 weeks. 
+Clearly we need to be faster, either by sampling or by scaling up the inspection process (crowd sourcing?). 
+
+We should be more careful about the choice of projects to inspect. 
+Popularity (github stars) isn't exactly representative. 
+It was just easy to do the search. 
+
+Here are some more questions I had while looking at this: 
+\begin{itemize}
+\item Are casts local? In a given project, are casts limited to just a few classes or are they widespread?
+\item How many casts are dominated by an instanceof in the same method (or in another method)?
+\item How many typecase are "real" in that there's actually more than one alternative?
+\item How often does it happen that an unguarded cast cannot possibly fail in any execution (for instance when there's really only one class implementing an interface and therefore a cast (to the class) must succeed because there are no objects of any other class). I'm not sure if this is the right why to ask the question.
+\end{itemize}
+
+\section{Casts Usage Patterns \label{org20ce513}}
+\label{sec:org97dafed}
+
+\section{Discussion \label{orgd75d6be}}
+\label{sec:orge058424}
+
+Here we discuss.
+
+\section{Related Work \label{orgaf6f25f}}
+\label{sec:org2b0e76a}
+
+Relwork.
+
+
+\section{Conclusions \label{org1ebcdd3}}
+\label{sec:orga65ac61}
+asdf
+
+\section{Latex}
+\label{sec:orga60307d}
+\begin{itemize}
+\item Guarded Type Promotion -- Eliminating Redundant Casts in Java\textasciitilde{}\cite{Winther:2011:GTP:2076674.2076680}
+\end{itemize}
+Study of type casts in several project. 
+Quite similar to what we want to do. 
+Focus on Guarded Type casts. 
+
+\begin{itemize}
+\item Contracts in the Wild: A Study of Java Programs\textasciitilde{}\cite{dietrichetal:LIPIcs:2017:7259}
+\end{itemize}
+Investigate 25 fix contract patterns. 
+Section 2.3: Come up with new Contract Patterns. 
+
+\begin{itemize}
+\item Challenges for Static Analysis of Java Reflection -- Literature Review and Empirical Study\textasciitilde{}\cite{Landman:2017:CSA:3097368.3097429}.
+\end{itemize}
+They also have done a study on Casts. 
+But only for a small curated sets of projects. 
+They analyze the relevance of static analysis tools w.r.t reflection. 
+We want to study Reflection in the Wild. 
+Empirical Studies on subjects need to be correlated with real world use cases, e.g. Maven Repository. 
+
+\begin{itemize}
+\item Static vs. Dynamic Type Systems: An Empirical Study About the Relationship between Type Casts and Development Time\textasciitilde{}\cite{Stuchlik:2011:SVD:2047849.2047861}
+\end{itemize}
+Studied the type casts in relation of development time. 
+Group study. 
+We want to Study Casts in the Wild. 
+
+\begin{itemize}
+\item An empirical study of the influence of static type systems on the usability of undocumented software
+\end{itemize}
+\cite{Mayer:2012:ESI:2384616.2384666} 
+Similar to Challenges \ldots{} 
+
+\begin{itemize}
+\item Impact of Using a Static-Type System in Computer Programming\textasciitilde{}\cite{7911881}
+\end{itemize}
+Test whether the use of a Static-Type System improves productivity. 
+Productivity in this case is measured by development time. 
+Two languages, a statically and dynamically-typed. 
+Two programming tasks, Code a program from scratch and Debug a faulty program. 
+Two program kinds, Simple program and Encryption program. 
+A static-type system does not impact coding a program form scratch. 
+Nevertheless, a static-type system does make software productivity improve when debugging a program. 
+
+\begin{itemize}
+\item Empirical Study of Usage and Performance of Java Collections\textasciitilde{}\cite{Costa:2017:ESU:3030207.3030221}.
+\end{itemize}
+Mining GitHub corpus to study the use of collections, and how these usages can be improved. 
+
+
+Mining metapatterns in Java\textasciitilde{}\cite{DBLP:conf/msr/PosnettBD10} 
+
+
+Adoption of Java Generics3\textasciitilde{}\cite{Parnin:2013:AUJ:2589712.2589717} 
+
+\subsection{Exception Handling} 
+
+Android\textasciitilde{}\cite{7180074} 
+
+How developer use exception handling in java\textasciitilde{}\cite{Asaduzzaman:2016:DUE:2901739.2903500} 
+
+Libraries java exception\textasciitilde{}\cite{Sena:2016:UEH:2901739.2901757} 
+
+bdd\textasciitilde{}\cite{Lhotak:2008:EBC:1391984.1391987} 
+
+java generics championed\textasciitilde{}\cite{Parnin:2011:JGA:1985441.1985446} 
+
+code smell\textasciitilde{}\cite{Counsell:2010:SCS:1809223.1809228} 
+
+\subsection{Evidence Languages} 
+
+Similar to our work related to \textbf{Unsafe} \cite{Mastrangelo:2015:UYO:2814270.2814313} 
+
+\chapter{Casts Discovery}
+\label{sec:org8b3b70c}
+
+\section{Select All Expressions}
+\label{sec:org03ce0ad}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+from Expr e
+select e
+\end{lstlisting}
+
+\section{All casts}
+\label{sec:org2553a4b}
+Snippet to select all cast expressions.
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+from CastExpr ce
+select ce
+\end{lstlisting}
+
+\chapter{Casts Detection}
+\label{sec:orgec63aa7}
+\section{Lookup by ID (135 casts)}
+\label{sec:orgc096c00}
+Lookup an object by ID or tag or name and cast result (used often in Android code). 
+
+\texttt{getAttribute} returns \texttt{Object}. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+AuthState authState = (AuthState) context.getAttribute(ClientContext.TARGET_AUTH_STATE); 
+\end{lstlisting}
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+AuthState authState = (AuthState) field.get(obj); 
+\end{lstlisting}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+/** Expression `e` assumes that `v` could be of type `t`. */
+predicate isLookup(Expr e, FieldAccess fa) {
+  exists (CastExpr ce | ce = e | 
+    exists (MethodAccess ma | ma = ce.getExpr() | 
+      not ma.getMethod().isStatic() and not ma.getMethod().isVarargs() and ma.getMethod().isPublic() and 
+      ma.getMethod().getNumberOfParameters() = 1 and
+      ma.getMethod().getParameterType(0).getTypeDescriptor() = "Ljava/lang/String;" and
+      ma.getMethod().getReturnType().getTypeDescriptor() = "Ljava/lang/Object;" and
+      ma.getArgument(0).getType().getTypeDescriptor() = "Ljava/lang/String;" and
+      ma.getArgument(0) = fa and
+      fa.getField().isFinal() and fa.getField().isStatic() and //fa.getField().isPublic() and
+      fa.getField().getType().getTypeDescriptor() = "Ljava/lang/String;" // Double-check
+    )
+  )
+}
+
+from Expr e, FieldAccess fa
+where isLookup(e, fa)
+select e, "Expression is " + e + " " + fa.getField().pp() 
+//+ " " + fa.getField().getAnAssignedValue()
+\end{lstlisting}
+
+
+This is known to the application, but only at runtime.
+Type-safe runtime dictionary. 
+Is it worth to change the API? 
+
+\section{Family polymorphism (56 casts + possibly 25 more [need to check better])}
+\label{sec:orga7c8f3e}
+
+\subsection{Description}
+\label{sec:orgca82bb4}
+
+Two or more mutually dependent classes are subtyped, but fields or method parameters in the base class cannot be overridden in the subtype to use the derived types. 
+Also includes casting to "internal" classes. 
+Also includes casting "context" objects to a subtype. 
+Usually unchecked (16 instanceofs classified as typecase or argument check are related to the cast in this pattern, so maybe should be reclassified). 
+Includes also some "quasi reflection" calls to the java annotation processing API. 
+
+\section{Typecase (55 instanceof, 65 casts)}
+\label{sec:org02d1e7e}
+
+instanceof + cast on known subtypes of the static type. 
+Often there's just one case and the default case (i.e., instanceof fails) does a no-op or reports an error. 
+11 of the casts here are checked against application-specific type tags rather than instanceof. 
+The one case typecase is possibly the same as family polymorphism. 
+
+\section{Factory method (26 casts, including 24 redundant)}
+\label{sec:org875caac}
+
+Cast factory method result to subtype (special case of family polymorphism) 
+Usually Logger.getLogger. 
+
+\section{equals (6 instanceof, 18 casts [12 getClass])}
+\label{sec:orgf000ab3}
+instanceof (or getClass) + cast in equals to check if argument has same type as receiver. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+@Override
+public boolean equals(@NullableDecl Object object) {
+  if (object instanceof StringConverter) {
+    StringConverter that = (StringConverter) object;
+    return sourceFormat.equals(that.sourceFormat) && targetFormat.equals(that.targetFormat);
+  }
+  return false;
+}
+\end{lstlisting}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+predicate isEquals(Method m) {
+  m.getName() = "equals" and m.getNumberOfParameters() = 1 and not m.isAbstract() and not m.isNative() and
+  m.getParameterType(0).getTypeDescriptor() = "Ljava/lang/Object;" and not m.getParameter(0).isVarargs() and
+  m.getReturnType().getTypeDescriptor() = "Z"
+}
+
+from CastExpr ce, Method m
+where ce.getEnclosingCallable() = m and isEquals(m)
+select m
+\end{lstlisting}
+
+\section{search or filter by type (9 instanceof, 11 casts)}
+\label{sec:org3623e52}
+search or filter a collection by inspecting the types (and often other properties) of the objects in the collection. Note the collection could be an ad-hoc linked list too. 
+
+\section{container object (16 casts)}
+\label{sec:orga64a7a6}
+the container or parent of an object in some composite should be a particular type, cast to it 
+
+\section{testing (13 instanceof, 3 casts)}
+\label{sec:orgbe367ed}
+instanceof in a test (did a method under test create the right object?), or uses getClass, then might cast to access fields 
+
+\section{null (11 casts)}
+\label{sec:orgfe4e962}
+
+Cast to null to resolve method overloading ambiguity 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+onSuccess(statusCode, headers, (String) null); 
+\end{lstlisting}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+from CastExpr ce, NullLiteral nl
+where ce.getExpr() = nl
+select ce
+\end{lstlisting}
+
+\section{query result (11 casts)}
+\label{sec:org0cf6a6b}
+Cast a query result (either SQL query or XPath or application-specific) 
+
+\section{Payload (10 casts)}
+\label{sec:orgfa0891e}
+Cast access to message payload (usually Object) 
+6 or 10 instances that use a type tag to check the message type and cast to the right pattern -- maybe these cases should be considered typecase. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+case FAILURE_MESSAGE: 
+    response = (Object[]) message.obj; 
+    if (response != null && response.length >= 4) { 
+        onFailure((Integer) response[0], (Header[]) response[1], (byte[]) response[2], (Throwable) response[3]); 
+    } else { 
+        AsyncHttpClient.log.e(LOG_TAG, "FAILURE_MESSAGE didn't got enough params"); 
+    } 
+    break; 
+\end{lstlisting}
+
+\section{lookup by type tag (9 casts)}
+\label{sec:orgc2859d6}
+Lookup in a collection using a application-specific type tag or a java.lang.Class 
+
+\section{Argument check (6 instanceof, 3 casts)}
+\label{sec:org777530a}
+
+Check that method argument has expected type (subtype of declared type) typically in overridden methods. 
+
+\section{Reflection field or invoke (1 instanceof, 7 casts)}
+\label{sec:orge17c719}
+
+Cast result of field access or method invocation using reflection. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+public static void endEntityViaReflection(HttpEntity entity) { 
+    if (entity instanceof HttpEntityWrapper) { 
+        try { 
+            Field f = null; 
+            Field[] fields = HttpEntityWrapper.class.getDeclaredFields(); 
+            for (Field ff : fields) { 
+                if (ff.getName().equals("wrappedEntity")) { 
+                    f = ff; 
+                    break; 
+                } 
+            } 
+            if (f != null) { 
+                f.setAccessible(true); 
+                HttpEntity wrapped = (HttpEntity) f.get(entity); 
+                if (wrapped != null) { 
+                    wrapped.consumeContent(); 
+                } 
+            } 
+        } catch (Throwable t) { 
+            log.e(LOG_TAG, "wrappedEntity consume", t); 
+        } 
+    } 
+} 
+\end{lstlisting}
+\section{Stash (8 casts)}
+\label{sec:orge078c3e}
+
+Cast access to field of type Object used to stash a value (typically a tag value in a GUI object, or a message payload) 
+
+\section{Object in collection (8 casts)}
+\label{sec:org46d12bb}
+Cast when accessing an object from a unparameterized collection object or a collection instantiated on Object rather than a more precise type. 
+
+Includes one overly complicated use of Java 8 streams. 
+
+\section{covariant field of supertype (8 casts)}
+\label{sec:org04791cf}
+cast field of supertype which has less-specific type (same as family polymorphism?). 
+Often unchecked cast to a subinterface with a presumed type. 
+
+\section{Return Type Test/instanceof (5 instanceof, 3 casts)}
+\label{sec:org5ec6c76}
+
+typically just a method wrapping an instanceof 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+private static boolean a(Exception e) {
+  return e instanceof RuntimeException;
+}
+\end{lstlisting}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+from InstanceOfExpr ie, ReturnStmt rs
+where rs.getResult() = ie
+select rs, ie
+\end{lstlisting}
+
+\section{type parameter (7 casts)}
+\label{sec:org13d3cad}
+Unchecked casts to a method type parameter (essentially cast to whatever the caller expects to be returned). Unchecked casts to class type parameter (simulating a self type). Casting to T[]. 
+
+\section{newInstance (1 instanceof, 5 casts)}
+\label{sec:orgd045c1f}
+cast result of Class or Array.newInstance 
+
+\section{Redundant cast (6 casts)}
+\label{sec:orge4a97eb}
+
+This is a cast that should always succeed based on the static type. 
+Some of these seem to be because some of the types changed during a refactoring and the cast was not removed.
+Others seem to be for documentation purposes or just paranoia. 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+final Result<List<Data>> result2 = JSON.parseObject("{\"data\":[]}", new TypeReference<Result<List<Data>>>(){});
+assertNotNull(result2.data);
+assertTrue(result2.data instanceof List);
+\end{lstlisting}
+
+\lstset{language=ql,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+import java
+
+from InstanceOfExpr ioe, RefType t, RefType ct
+where t = ioe.getExpr().getType()
+  and ct = ioe.getTypeName().getType()
+  and ct = t.getASupertype+()
+select ioe, "There is no need to test whether an instance of $@ is also an instance of $@ - it always is.",
+  t, t.getName(),
+  ct, ct.getName()
+\end{lstlisting}
+
+\section{add type parameters (6 casts)}
+\label{sec:orge3b84b3}
+add type parameters to an un-parameterized collection or wildcard collection 
+
+\section{remove type parameter (5 casts)}
+\label{sec:orgdccbc41}
+remove a type parameter from a collection (or java.lang.Class) or to replace parameter with wildcard 
+
+\section{readObject (4 casts)}
+\label{sec:org1c30fc6}
+cast result of readObject() 
+
+\section{exception for rethrow (2 instanceof, 2 casts)}
+\label{sec:orgcdb3caa}
+
+instanceof + cast an exception to RuntimeException or Error to rethrow in handler 
+
+\section{Covariant return (3 casts)}
+\label{sec:org46f23f9}
+
+Cast the result of a super call in an overridden method with covariant return 
+(see also family polymorphism) 
+
+\section{result check (2 instanceof, 1 cast)}
+\label{sec:org7367720}
+check result of a call has the right type 
+
+\section{Clone (2 casts)}
+\label{sec:org8983638}
+
+cast result of clone() 
+
+\section{Throwable.getCause (2 casts)}
+\label{sec:org2605b45}
+
+Throwable.getCause has type Throwable, cast to Exception 
+
+\section{Library method returning Object (2 casts)}
+\label{sec:orgf68c828}
+
+Cast because some library method returns Object (e.g., the version object in Apache JDO). 
+Similar to stash? 
+
+\section{method argument of type Object (1 cast)}
+\label{sec:org888d43c}
+
+overridden method takes an Object not something more specific 
+
+\section{Heterogeneous collections (1 cast)}
+\label{sec:orga4b2a0d}
+
+Accessing a collection that holds values of different types (usually a Collection<Object> or a Map<K, Object>). 
+
+Easily confused with object in collection so need to revisit usages of both 
+
+\section{URL.openConnection (1 cast)}
+\label{sec:orgdc3f871}
+
+The method is declared to return URLConnection but can return a more specific type based on the URL string. 
+Cast to that. 
+Should generalize this pattern. 
+
+\section{Result of binary operation (1 cast)}
+\label{sec:orgf0797dd}
+
+Cast result of binary operation to subtype. 
+
+\section{Type parameter resolution (1 cast)}
+\label{sec:org9cfdb15}
+
+Use reflection to get class object for a type parameter, then cast to Class<T>. 
+
+\section{Global flag (1 cast)}
+\label{sec:orgcbf8be9}
+
+Cast to a known demo subclass when running in demo mode. 
+This should be some sort of typecase I guess, but we check a global boolean flag (or a method in a configuration object) rather than a type tag or an instanceof. 
+
+\section{Singleton}
+\label{sec:orgc67407e}
+Unguarded pattern 
+
+\lstset{language=java,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+public void add(String key, String value) { 
+    if (key != null && value != null) { 
+        Object params = urlParamsWithObjects.get(key); 
+        if (params == null) { 
+            // Backward compatible, which will result in "k=v1&k=v2&k=v3" 
+            params = new HashSet<String>(); 
+            this.put(key, params); 
+        } 
+        if (params instanceof List) { 
+            ((List<Object>) params).add(value); 
+        } else if (params instanceof Set) { 
+            ((Set<Object>) params).add(value); 
+        } 
+    } 
+} 
+\end{lstlisting}
+
+\chapter{Exceptions \label{org10d264b}}
+\label{sec:orge00a277}
+
+Here we talk about exception, maybe?
 
 \bibliographystyle{plainnat}
 \bibliography{proposal}
