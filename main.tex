@@ -12,7 +12,8 @@
 \author{Luis Mastrangelo}
 \date{\today}
 \title{Escaping \java{} safety features}
-\subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
+% \subtitle{Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns}
+\subtitle{Why Developers Need to Circumvent Java safety}
 
 \begin{committee}
   \advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
@@ -23,8 +24,9 @@
   \internalmember{Prof.}{\tbd{Patrick Eugster}}
   \externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{Iowa State University, United States}}
   \externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{Uppsala University, Sweden}}
-  \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
 \end{committee}
+
+  % \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
 
 \phddirector{Prof.}{Walter Binder}
 \phddirector{Prof.}{Michael Bronstein}
@@ -35,13 +37,15 @@
 
 \maketitle
 \frontmatter
-\setcounter{tocdepth}{1}
+
+% \setcounter{tocdepth}{4}
 \tableofcontents
 \mainmatter
 
-\input{cha-introduction}
-\input{cha-casts}
-\input{cha-unsafe}
+\input{chapters/cha-introduction}
+\input{chapters/cha-casts}
+\input{chapters/cha-unsafe}
+\input{chapters/cha-literaturereview}
 
 \bibliographystyle{plainnat}
 \bibliography{main}
