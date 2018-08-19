@@ -766,32 +766,6 @@ Codota
 
 https://www.codota.com/
 
-* The Unsafe API <<sec:unsafe>>                                    :patterns:
-
-The material in this chapter is based on our previously published paper citep:mastrangelo_use_2015.
-
-Our study on unsafe we have divised several usage patterns.
-Java is a safe language.
-Its runtime environment provides strong safety guarantees that any Java application can rely on.
-Or so we think.
-We show that the runtime actually does not provide these guarantees for a large fraction of today's \java{} code.
-Unbeknownst to many application developers, the Java runtime includes a "backdoor" that allows expert library and framework developers to circumvent Java's safety guarantees.
-This backdoor is there by design, and is well known to experts, as it enables them to write high-performance "systems-level" code in \java{}.
-
-For our study on \smu{}, we needed to discover usage patterns.
-Given its a singleton class, we have collected call sites, and proceed with a semi-automatic analysis.
-On the other hand, our study related to casts involved a much more complex analysis.
-Therefore we have decided to implement it with manual inspection.
-
-The exceptions mechanism is orthogonal to the features we target in this proposal.
-For instance, we have detected a \smu{} pattern to \throw{} undeclared exceptions.
-Similarly, closely related to /casting/, \cce{} is thrown when a cast is invalid.
-Therefore, we believe that these kind of studies can be complementary for our research.
-They can help us to understand how programmers handle exceptions in these scenarios.
-
-For our study on \smu{}, we first tried using \boa{} with \sourceforge{}.
-We found out that only few projects were using \smu{}.
-In contrast, our final study using \maven{} found that an order of magnitude more were using \smu{}.
 
 * DRAFT Casts <<cha:casts>>                                        :patterns:
 :LOGBOOK:
