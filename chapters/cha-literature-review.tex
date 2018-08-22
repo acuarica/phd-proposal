@@ -1,58 +1,59 @@
 
 \chapter{Literature Review}
-
 \label{cha:literature-review}
 
-asdf
-\ql{}~\cite{schafer_algebraic_2017}
+% asdf
+% \ql{}~\cite{schafer_algebraic_2017}
+% \ql{}~\cite{schafer_algebraic_2017}
+% \cite{avgustinov_ql:_2016}
+
+% Adding new features to a language should --- /in theory/ --- increase programmers productivity.
+% But once a language feature is released, little is known about how it is actually used by the developer community.
+% Therefore, it is extremely difficult to assess how features in a programming language impact on programmers productivity.
+% We argue that this information is of great value, because can give many insights to drive the future of any programming language.
+
+% On the other hand, cite:hanenberg_faith_2010,hanenberg_why_2014 argue that human behavior, \ie{}, controlled experiments, should be applied to programming language usage and design.
+% With this approach, it should be possible --- in principle --- to understand to what degree a language feature impacts on programming productivity.
+% However, for any kind of controlled experiment to be valid, it must reflect reality.
+% Otherwise, any conjecture derived from a controlled experiment can be considered truthful but useless.
+
+% Finally, understanding what developers write is not only useful in the field of language design and controlled experiments.
+% For instance, cite:livshits_defense_2015 argue that most software analysis tools exclude certain dynamic features, \eg{}, reflection, \setjmp{}/\longjmp{}, \jni [fn::https://docs.oracle.com/javase/8/docs/technotes/guides/jni/spec/jniTOC.html], \eval{}, \etc{}, from their analyses.
+% They claim that in order to understand how the limits of analysis tools impact software, we also need to understand what kind of code is being written in the real world.
 
 
+% This kind of cast is called \emph{semi guarded} casts~\cite{winther_guarded_2011}.
 
+% * Relate null as theoretical point of view in the TAPL book.
+% * Featherweight Java is sound unless you use cast, as a motivation
+% provide a bridge between compile-time and runtime checking. 
 
-\ql{}~\cite{schafer_algebraic_2017}
-
-\cite{avgustinov_ql:_2016}
-
-
-
-Programming language design has been always a hot topic in computer science literature.
-It has been extensively studied in the past decades.
-For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
-
-
-
-
-
-
-This kind of cast is called \emph{semi guarded} casts~\cite{winther_guarded_2011}.
-
-* Relate null as theoretical point of view in the TAPL book.
-
-* Featherweight Java is sound unless you use cast, as a motivation
-provide a bridge between compile-time and runtime checking. 
-
-Notice that 
-and not on bytecode.
-We examine these kinds of artifacts to analyze how they use casting operations. 
-We use a bytecode analysis library to search for cast operations.
-\& lgtm, since it is quite powerful and efficient.
-However, there are some issues that limit us to perform a full study using your platform.
-In particular, the issues that we found are:
-This could point out ways in which the \java{} language need to be evolved to provide the same functionality, but in a safer way.
+% Notice that 
+% and not on bytecode.
+% We examine these kinds of artifacts to analyze how they use casting operations. 
+% We use a bytecode analysis library to search for cast operations.
+% \& lgtm, since it is quite powerful and efficient.
+% However, there are some issues that limit us to perform a full study using your platform.
+% In particular, the issues that we found are:
+% This could point out ways in which the \java{} language need to be evolved to provide the same functionality, but in a safer way.
 
 Understanding how language features and \api{}s are being used is a
 broad topic.
 There is plenty of research in computer science literature about
-empirical studies of programs;
-which involves several directions directly or indirectly related.
+empirical studies of programs; which involves several directions directly or indirectly related to our topic.
 Along the last decades, researchers always has been interested in
 understanding what kind of programs programmers write.
 The motivation behind these studies is quite broad and ---
 together with the evolution of computer science itself ---
 has shifted to the needs of researchers.
 
+Already~\cite{knuth_empirical_1971} started to study \fortran{} programs.
+By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammond_basic_1977} has studied a representative dataset of programs.
+Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
+Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs. 
+
 The organization of this section is as follows: 
-In~\S\ref{sec:rw:compilers} we present empirical studies regarding
 compilers writers. 
 How benchmarks and corpuses relate to this kind of studies is
 presented in \S\ref{sec:rw:benchmarks}. 
@@ -62,15 +63,8 @@ Code Patterns discovery is presented in \S\ref{sec:rw:patterns}.
 Finally, \S\ref{sec:rw:mining} gives an overview of what tools are available to extract information from a software repository,
 while \S\ref{sec:rw:selection} of how to select good candidates projects. 
 
-\subsection{Compilers Writers} \label{sec:rw:compilers}
-
-Already \cite{knuth_empirical_1971} started to study \fortran{} programs.
-By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammond_basic_1977} has studied a representative dataset of programs.
-Adding to Knuth's work, \cite{shen_empirical_1990} made an empirical study for parallelizing compilers.
-Similar works have been done for \cobol{}~\cite{salvadori_static_1975,chevance_static_1978}, \pascal{}~\cite{cook_contextual_1982}, and \apl{}~\cite{saal_properties_1975,saal_empirical_1977} programs. 
-
-\subsection{Benchmarks and Corpuses} \label{sec:rw:benchmarks}
+\section{Benchmarks and Corpora}
+\label{sec:rw:benchmarks}
 
 Benchmarks are crucial to properly evaluate and measure product development.
 This is key for both research and industry.
@@ -83,7 +77,8 @@ They provide a corpus of curated open source systems to facilitate empirical stu
 For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Therefore, we argue how important it is to make empirical studies about what programmers write.
 
-\subsection{Large-scale Codebase Empirical Studies} \label{sec:rw:largescale}
+\section{Large-scale Codebase Empirical Studies}
+\label{sec:rw:largescale}
 
 In the same direction to our plan, \cite{callau_how_2013} perform a study of the dynamic features of \smalltalk{}. 
 Analogously, \cite{richards_analysis_2010,richards_eval_2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \code{eval} function. 
@@ -104,14 +99,24 @@ They argue, as we do, that controlled experiments on subjects need to be correla
 \cite{dietrich_broken_2014} have studied how changes in \api{} library impact in \java{} programs. 
 Notice that they have used the Qualitas Corpus~\cite{tempero_qualitas_2010} mentioned above for their study. 
 
-\subsubsection*{\textbf{Exceptions}}
+\subsection*{\textbf{Exceptions}}
 
 \cite{kery_examining_2016,asaduzzaman_how_2016} focus on exceptions. 
 They made empirical studies on how programmers handle exceptions in \java{} code. 
 The work done by~\cite{nakshatri_analysis_2016} categorized them in patterns. 
 Whether~\cite{coelho_unveiling_2015} used a more dynamic approach by analysing stack traces and code issues in \github{}. 
 
-\subsubsection*{\textbf{Collections and Generics}}
+\subsection*{\textbf{Functional Programming Features}}
+
+Programming language design has been always a hot topic in computer science literature.
+It has been extensively studied in the past decades.
+For instance, there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
+
+Looking at the aforementioned examples, \cite{mazinanian_understanding_2017} and \cite{uesbeck_empirical_2016} studied how developers use lambdas in \java{} and \cpp{} respectively; while \cite{parnin_java_2011,parnin_adoption_2013} did the same for generics in \java{}.
+This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
+
+
+
 
 The inclusion of generics in \java{} is closely related to collections. 
 \cite{parnin_java_2011,parnin_adoption_2013} studied how generics were adopted by \java{} developers. 
@@ -120,7 +125,8 @@ They found that the use of generics do not significantly reduce the number of ty
 \cite{costa_empirical_2017} have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved. 
 They have found out that in most cases there is an alternative usage that improves performance. 
 
-\subsection{Controlled Experiments on Subjects} \label{sec:rw:experiments}
+\section{Controlled Experiments on Subjects}
+\label{sec:rw:experiments}
 
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages. 
 For instance, \cite{soloway_empirical_1984} tried to understand the how expert programmers face problem solving. 
@@ -147,7 +153,7 @@ Therefore, it is important to study how casts are used in real-world code.
 Having a deep understanding of actual usage of casts can led to 
 Informed decisions when designing these kind of experiments. 
 
-\subsection{Code Patterns Discovery} \label{sec:rw:patterns}
+\section{Code Patterns Discovery} \label{sec:rw:patterns}
 
 \cite{posnett_thex:_2010} have extended \asm{}~\cite{bruneton_asm:_2002,kuleshov_using_2007} to implement symbolic execution and recognize call sites. 
 However, this is only a meta-pattern detector, and not a pattern discovery. 
@@ -155,7 +161,7 @@ However, this is only a meta-pattern detector, and not a pattern discovery.
 
 Trying to unify analysis and transformation tools~\cite{vinju_how_2006}, \cite{klint_rascal:_2009} built \rascal, a DSL that aims to bring them together.  
 
-\subsection{Tools for Mining Software Repositories} \label{sec:rw:mining}
+\section{Tools for Mining Software Repositories} \label{sec:rw:mining}
 
 When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories. 
 Usually doing so requires several engineering but challenging tasks. 
@@ -183,10 +189,10 @@ Another tool to analyze large software repositories is presented in~\cite{branda
 In this case, the analysis is dynamic, based on program traces. 
 At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing. 
 
-\sourcegraph \footnote{\url{https://sourcegraph.com}} is a tool that allows regular expression and diff searches.
+\sourcegraph{}\footnote{\url{https://sourcegraph.com}} is a tool that allows regular expression and diff searches.
 It integrates with source repositories.
 
-\subsection{Selecting Good Representatives} \label{sec:rw:selection}
+\section{Selecting Good Representatives} \label{sec:rw:selection}
 
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are. 
 \cite{lopes_dejavu:_2017} made a study to measure code duplication in \github{}. 
