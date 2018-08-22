@@ -1,5 +1,5 @@
 
-\documentclass{usiinfdocprop}
+\documentclass[]{usiinfdocprop}
 
 \usepackage{tikz}
 \usepackage{listings}
@@ -24,26 +24,29 @@
   \externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{Iowa State University, United States}}
   \externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{Uppsala University, Sweden}}
 \end{committee}
-
-  % \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
-
+% \externalmember{Prof.}{\tbd{Stefan Hanenberg}}{\tbd{University Duisburg-Essen, Germany}}
 \phddirector{Prof.}{Walter Binder}
 \phddirector{Prof.}{Michael Bronstein}
+
+% \setcounter{tocdepth}{4}
 
 \input{abstract.tex}
 
 \begin{document}
-
 \maketitle
+
 \frontmatter
-% \setcounter{tocdepth}{4}
+
 \tableofcontents
+
 \mainmatter
 
 \input{chapters/cha-introduction}
 \input{chapters/cha-background}
 \input{chapters/cha-literature-review}
 \input{chapters/cha-proposal}
+
+\backmatter
 
 \bibliographystyle{plainnat}
 \bibliography{main}
