@@ -1,43 +1,25 @@
 
 \chapter{Introduction}
 
-In programming language design, the \emph{main} goal of a static type system is to prevent certain kind of errors from happening at runtime.
-Thus, a type system is formulated as a collections of constraints that gives any expression in a program a well defined type.
-Any program not satisfying all constraints imposed by the type system is simply rejected (usually implemented into compilers or linkers).
+In programming language design, the main goal of a \emph{static} type system is to prevent certain kind of errors from happening at runtime.
+A type system is formulated as a set of constraints that gives any expression or term in a program a well-defined type.
+As~\cite{pierceTypesProgrammingLanguages2002} states: ``A type system can be regarded as calculating a kind of \emph{static} approximation to the run-time behaviors of the terms in a program.''
+These constraints are enforced by a \emph{type-checker} usually at compile-time.
+Any program not satisfying the constraints stated within a type system is simply rejected by the type-checker.
 
+Nevertheless, often the static approximation provided by a type system is not expressive enough.
+This happens when the kind of analysis done by the type-checker is not powerful enough to provide a more precise approximation.
+This is why programming languages offer several mechanisms to escape the constraints imposed by a type system.
+These can take several forms: 
+Native functions, Unsafe block, Casting, and Reflection.
 
-Almost all main
-But sometimes, 
-
-\cite{milnerTheoryTypePolymorphism1978}
 
 What can go wrong with type systems?
-
-% Escaping the type 
-% Overpassing 
-% language safety
-% Circumvent Java safety features
-% type-safety and memory safety
-
-A simple search on github on \code{ClassCastException}
-
-\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
-
-\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
-
-At the time of this writing, \circa{} $150K$ commits messages were found.
-
-\footnote{\url{https://github.com/jenkinsci/extra-columns-plugin/commit/02d10bd1fcbb2e656da9b1b4ec54208b0cc1cbb2}}
-
-\footnote{\url{https://github.com/orientechnologies/orientdb/commit/ab33da5a489ca07146d9665f76b372cb9e852a7f}}
-
-\footnote{\url{https://github.com/GoldenGnu/jeveassets/commit/5f4750bc8cfa7eed8ad01efd8add2cd2cc9bd831}}
-
-\footnote{\url{https://github.com/ethereum/ethereumj/commit/224e65b9b4ddcb46198a6f8faf69edc65d34d382}}
 
 \section{Research Question}
 
 We want to understand to what degree \java{}'s type system is useful.
+This leads to our research question:
 
 \rquestion{Why Developers Need to Circumvent \java{}'s? Type System}
 
@@ -45,11 +27,10 @@ We propose two studies to help understand these issues
 
 How unsafe is isued
 How cast is being used
-% \subtitle{Why Developers Need to Circumvent \java{}'s Type System?}
-% Discovering Unexpected Language Features Usages at Large-Scale by Empirical-based Patterns
-% Empirical Usage Patterns Discovery 
 
 \section{Proposal Outline}
+
+The rest of this proposal is organized as follows:
 
 \begin{itemize}
 \item Chapter \ref{cha:background} presents what are the current issues.
