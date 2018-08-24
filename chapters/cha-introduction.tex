@@ -1,19 +1,21 @@
 
 \chapter{Introduction}
 
-In programming language design, the main goal of a \emph{static} type system is to prevent certain kind of errors from happening at runtime.
+In programming language design, the main goal of a \emph{static} type system is to prevent certain kind of errors from happening at run-time.
 A type system is formulated as a set of constraints that gives any expression or term in a program a well-defined type.
 As~\cite{pierceTypesProgrammingLanguages2002} states: ``A type system can be regarded as calculating a kind of \emph{static} approximation to the run-time behaviors of the terms in a program.''
 These constraints are enforced by the \emph{type-checker} either when compiling or linking the program.
-Any program not satisfying the constraints stated within a type system is simply rejected by the type-checker.
+Thus, any program not satisfying the constraints stated within a type system is simply rejected by the type-checker.
 
 Nevertheless, often the static approximation provided by a type system is not expressive enough.
 This situation arises when the developer has more information about the program that is too complex to explain in terms of the typing constraints.
 In other words, the analysis done by the type-checker can not detect this kind of situation.
 This is why programming languages usually offer mechanisms to escape the constraints imposed by a type system.
-These mechanisms can take essentially two forms: \emph{Unsafe code} and \emph{casting}.
+These mechanisms come essentially in two forms: \emph{Unsafe code} and \emph{casting}.
 
-Unsafe code in its more general form is the ability to bypass any kind of run-time check.
+Unsafe code is the ability to bypass any kind of run-time check.
+This includes foreign function calls, \eg{}, calling native code from within a safe environment and making unsafe calls.
+\lang{Java} includes both foreign function calls with JNI and Safe languages generally include 
 
 What can go wrong with type systems?
 \section{Research Question}
@@ -33,7 +35,7 @@ How cast is being used
 The rest of this proposal is organized as follows:
 
 \begin{itemize}
-\item Chapter \ref{cha:background} presents what are the current issues.
+\item Chapter \ref{cha:casts} presents what are the current issues.
+\item Chapter \ref{cha:unsafe} introduces our plan to answer the aforementioned research questions.
 \item Chapter \ref{cha:literature-review} gives an overview of the literature.
-\item Chapter \ref{cha:proposal} introduces our plan to answer the aforementioned research questions.
 \end{itemize}

@@ -30,6 +30,7 @@
 
 \newcommand{\java}{\lang{Java}}
 \newcommand{\cs}{\lang{C\#}}
+\newcommand{\cc}{\lang{C++}}
 \newcommand{\cpp}{\lang{C++}}
 \newcommand{\smalltalk}{\lang{Smalltalk}}
 \newcommand{\javascript}{\lang{JavaScript}}
@@ -75,3 +76,23 @@
 \newcommand{\sourcegraph}{\host{sourcegraph}}
 
 \crefname{section}{\S}{faafd}
+
+
+\definecolor{lightblue}{rgb}{0,0.4,1}
+\definecolor{gray}{rgb}{0.2,0.2,0.2}
+
+\lstdefinestyle{java}{
+	language=java,
+	tabsize=4,
+	basicstyle=\footnotesize\ttfamily,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	numbersep=4pt,
+	xleftmargin=0.2cm,
+	mathescape=true,
+	keywordstyle=\color{blue}\textbf,
+	stringstyle=\textcolor{magenta},
+	captionpos=b,
+	emph={Object, String, Integer, System, ClassCastException, Foo},
+	emphstyle={\color{lightblue}}
+}

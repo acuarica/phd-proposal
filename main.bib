@@ -11592,4 +11592,70 @@ Experimental results using the tool and manually rewriting code show average spa
   file = {/Users/luigi/work/zotero/storage/USMVR42L/Tan et al. - 2006 - Safe Java native interface.pdf;/Users/luigi/work/zotero/storage/A2TII8T4/summary.html}
 }
 
+@inproceedings{allendeCastInsertionStrategies2013,
+  address = {Indianapolis, Indiana, USA},
+  title = {Cast Insertion Strategies for Gradually-Typed Objects},
+  isbn = {978-1-4503-2433-5},
+  doi = {10.1145/2508168.2508171},
+  abstract = {Gradual typing enables a smooth and progressive integration of static and dynamic typing. The semantics of a gradually-typed program is given by translation to an intermediate language with casts: runtime type checks that control the boundaries between statically- and dynamically-typed portions of a program. This paper studies the performance of different cast insertion strategies in the context of Gradualtalk, a gradually-typed Smalltalk. We first implement the strategy specified by Siek and Taha, which inserts casts at call sites. We then study the dual approach, which consists in performing casts in callees. Based on the observation that both strategies perform well in different scenarios, we design a hybrid strategy that combines the best of each approach. We evaluate these three strategies using both micro- and macro-benchmarks. We also discuss the impact of these strategies on memory, modularity, and inheritance. The hybrid strategy constitutes a promising cast insertion strategy for adding gradual types to existing dynamicallytyped languages.},
+  language = {en},
+  booktitle = {Proceedings of the 9th Symposium on {{Dynamic}} Languages - {{DLS}} '13},
+  publisher = {{ACM Press}},
+  author = {Allende, Esteban and Fabry, Johan and Tanter, \'Eric},
+  year = {2013},
+  pages = {27-36},
+  file = {/Users/luigi/work/zotero/storage/W88RA9R8/Allende et al. - 2013 - Cast insertion strategies for gradually-typed obje.pdf}
+}
+
+@article{krishnamurthiTeachingProgrammingLanguages2008,
+  title = {Teaching Programming Languages in a Post-Linnaean Age},
+  volume = {43},
+  issn = {03621340},
+  doi = {10.1145/1480828.1480846},
+  abstract = {Programming language ``paradigms'' are a moribund and tedious legacy of a bygone age. Modern language designers pay them no respect, so why do our courses slavishly adhere to them? This paper argues that we should abandon this method of teaching languages, offers an alternative, reconciles an important split in programming language education, and describes a textbook that explores these matters.},
+  language = {en},
+  number = {11},
+  journal = {ACM SIGPLAN Notices},
+  author = {Krishnamurthi, Shriram},
+  month = nov,
+  year = {2008},
+  pages = {81},
+  file = {/Users/luigi/work/zotero/storage/J4UY2W4Q/Krishnamurthi - 2008 - Teaching programming languages in a post-linnaean .pdf}
+}
+
+@article{tanEmpiricalSecurityStudy,
+  title = {An {{Empirical Security Study}} of the {{Native Code}} in the {{JDK}}},
+  abstract = {It is well known that the use of native methods in Java defeats Java's guarantees of safety and security, which is why the default policy of Java applets, for example, does not allow loading non-local native code. However, there is already a large amount of trusted native C/C++ code that comprises a significant portion of the Java Development Kit (JDK). We have carried out an empirical security study on a portion of the native code in Sun's JDK 1.6. By applying static analysis tools and manual inspection, we have identified in this security-critical code previously undiscovered bugs. Based on our study, we describe a taxonomy to classify bugs. Our taxonomy provides guidance to construction of automated and accurate bug-finding tools. We also suggest systematic remedies that can mediate the threats posed by the native code.},
+  language = {en},
+  author = {Tan, Gang and Croft, Jason},
+  pages = {13},
+  file = {/Users/luigi/work/zotero/storage/JNNBA33D/Tan and Croft - An Empirical Security Study of the Native Code in .pdf}
+}
+
+@inproceedings{gaoTypeNotType2017,
+  address = {Buenos Aires},
+  title = {To {{Type}} or {{Not}} to {{Type}}: {{Quantifying Detectable Bugs}} in {{JavaScript}}},
+  isbn = {978-1-5386-3868-2},
+  shorttitle = {To {{Type}} or {{Not}} to {{Type}}},
+  doi = {10.1109/ICSE.2017.75},
+  abstract = {JavaScript is growing explosively and is now used in large mature projects even outside the web domain. JavaScript is also a dynamically typed language for which static type systems, notably Facebook's Flow and Microsoft's TypeScript, have been written. What benefits do these static type systems provide? Leveraging JavaScript project histories, we select a fixed bug and check out the code just prior to the fix. We manually add type annotations to the buggy code and test whether Flow and TypeScript report an error on the buggy code, thereby possibly prompting a developer to fix the bug before its public release. We then report the proportion of bugs on which these type systems reported an error.},
+  language = {en},
+  booktitle = {2017 {{IEEE}}/{{ACM}} 39th {{International Conference}} on {{Software Engineering}} ({{ICSE}})},
+  publisher = {{IEEE}},
+  author = {Gao, Zheng and Bird, Christian and Barr, Earl T.},
+  month = may,
+  year = {2017},
+  pages = {758-769},
+  file = {/Users/luigi/work/zotero/storage/DKTWE9EJ/Gao et al. - 2017 - To Type or Not to Type Quantifying Detectable Bug.pdf}
+}
+
+@article{nanevskiYnotDependentTypes,
+  title = {Ynot : {{Dependent Types}} for {{Imperative Programs}}},
+  abstract = {We describe an axiomatic extension to the Coq proof assistant, that supports writing, reasoning about, and extracting higher-order, dependently-typed programs with side-effects. Coq already includes a powerful functional language that supports dependent types, but that language is limited to pure, total functions. The key contribution of our extension, which we call Ynot, is the added support for computations that may have effects such as non-termination, accessing a mutable store, and throwing/catching exceptions.},
+  language = {en},
+  author = {Nanevski, Aleksandar and Morrisett, Greg and Shinnar, Avi and Govereau, Paul and Birkedal, Lars},
+  pages = {12},
+  file = {/Users/luigi/work/zotero/storage/RMU9P2W6/Nanevski et al. - Ynot  Dependent Types for Imperative Programs.pdf}
+}
+
 
