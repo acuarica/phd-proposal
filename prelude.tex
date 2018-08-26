@@ -77,14 +77,17 @@
 
 \crefname{section}{\S}{faafd}
 
-
 \definecolor{lightblue}{rgb}{0,0.4,1}
 \definecolor{gray}{rgb}{0.2,0.2,0.2}
+
+\definecolor{diffstart}{named}{Grey}
+\definecolor{diffincl}{named}{Green}
+\definecolor{diffrem}{named}{OrangeRed}
 
 \lstdefinestyle{java}{
 	language=java,
 	tabsize=4,
-	basicstyle=\footnotesize\ttfamily,
+	basicstyle=\scriptsize\ttfamily,
 	numbers=left,
 	numberstyle=\tiny\color{gray},
 	numbersep=4pt,
@@ -94,5 +97,8 @@
 	stringstyle=\textcolor{magenta},
 	captionpos=b,
 	emph={Object, String, Integer, System, ClassCastException, Foo},
-	emphstyle={\color{lightblue}}
+	emphstyle={\color{lightblue}},
+    morecomment=[f][\color{diffstart}]{@@},
+    morecomment=[f][\color{diffincl}]{+\ },
+    morecomment=[f][\color{diffrem}]{-\ },
 }

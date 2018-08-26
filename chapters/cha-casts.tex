@@ -1,25 +1,116 @@
 
-\chapter{Casts Usage Patterns}
+\chapter{Casting Operations in the Wild}
 \label{cha:casts}
 
-A simple search on github on \code{ClassCastException}
+A simple search for
+commits\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
+and
+issues\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
+including the term \code{ClassCastException} on \github{} returns \circa{} $150K$ and $72K$ results respectively.
+This indicates that casts represents a source of errors for developers.
+We have included here a few source code results.
+This illustrates the sort of problems developers have when applying casting conversions.
+To easily spot what the developer has changed to fix the \code{ClassCastException},
+we present each source code excerpt using the Git commit \emph{diff} as reported by \github{}.
 
-\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
+\textbf{Forgotten Guard.}
+The following listing\footnote{\url{https://github.com/jenkinsci/extra-columns-plugin/commit/02d10bd1fcbb2e656da9b1b4ec54208b0cc1cbb2}}
+shows a cast that throws \code{ClassCastException} because the developer forgot to include a guard.
+In this case, the developer fixed the error by introducing a guard on the cast with \code{instanceof}.
 
-\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
+\begin{lstlisting}[style=java]
+@@ -41,6 +41,8 @@ public SCMTypeColumn() {
+   }
+       public String getScmType(@SuppressWarnings("rawtypes") Job job) {
++        if(!(job instanceof AbstractProject<?, ?>))
++            return "";
+       AbstractProject<?, ?> project = (AbstractProject<?, ?>) job;
+       return project.getScm().getDescriptor().getDisplayName();
+   }
+\end{lstlisting}
 
-At the time of this writing, \circa{} $150K$ commits messages were found.
+\textbf{Wrong Cast Target.}
+In the next example\footnote{\url{https://github.com/GoldenGnu/jeveassets/commit/5f4750bc8cfa7eed8ad01efd8add2cd2cc9bd831}}
+the \code{CustomFileFilter} is an inner static class inside \code{JCustomFileFilter}.
+Notice the cast happens inside an \code{equals} method, where this idiom is well known.
+But the developer has used the outer --- wrong --- class to cast to.
 
-\footnote{\url{https://github.com/jenkinsci/extra-columns-plugin/commit/02d10bd1fcbb2e656da9b1b4ec54208b0cc1cbb2}}
+\begin{lstlisting}[style=java]
+@@ -156,7 +156,7 @@ public boolean equals(Object obj) {
+  if (getClass() != obj.getClass()) {
+      return false;
+  }
+- final JCustomFileChooser other = (JCustomFileChooser) obj;
++ final CustomFileFilter other = (CustomFileFilter) obj;
+  if (!Objects.equals(this.extensions, other.extensions)) {
+      return false;
+  }
+\end{lstlisting}
 
-\footnote{\url{https://github.com/orientechnologies/orientdb/commit/ab33da5a489ca07146d9665f76b372cb9e852a7f}}
+\textbf{Generic Type Inference Mismatch.}
+In the following listing\footnote{\url{https://github.com/ethereum/ethereumj/commit/224e65b9b4ddcb46198a6f8faf69edc65d34d382}}
+the \code{getProperty} method obtains a dynamic property. If it founds a value, returns it. Otherwise, returns the default value (second argument).
+In this case, the property \code{"peer.p2p.pingInterval"} has type \code{int}.
+But the return type of \code{getProperty} is a generic type inferred by the type of the default value, \code{long}.
+That is why the developer has only changed the type of the literal: from \code{long} to \code{int}.
 
-\footnote{\url{https://github.com/GoldenGnu/jeveassets/commit/5f4750bc8cfa7eed8ad01efd8add2cd2cc9bd831}}
+\begin{lstlisting}[style=java]
+@@ -281,7 +281,7 @@ private void startTimers() {
+        } catch (Throwable t) {
+            logger.error("Unhandled exception", t);
+        }
+-   }, 2, config.getProperty("peer.p2p.pingInterval", 5L), TimeUnit.SECONDS);
++   }, 2, config.getProperty("peer.p2p.pingInterval", 5), TimeUnit.SECONDS);
+}
+\end{lstlisting}
 
-\footnote{\url{https://github.com/ethereum/ethereumj/commit/224e65b9b4ddcb46198a6f8faf69edc65d34d382}}
+\textbf{Compiler Bug}
+One issue\footnote{\url{https://github.com/mockito/mockito/issues/357}} 
+shows bad things happen when abusing the type system.
+A bug in the \emph{javac} compiler\footnote{\url{https://bugs.openjdk.java.net/browse/JDK-8058199}}
+was causing \code{checkcast}\footnote{\url{https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html\#jvms-6.5.checkcast}}
+instructions to be skipped.
+This bug was fixed in JDK 9, breaking Mockito answer strategies.
 
+\section{Overview}
 
+Our study tries to answer the following question: \emph{Why developers need to escape the type system?}
+The cast operator in \java{} provides the means to view a reference as a different type as it was defined.
+Upcasts conversions are done automatically by the compiler.
+Nevertheless, if some situations a developer is forced to insert upcasts.
+In the case of downcasts, a check is inserted at run-time to verify that the conversion is sound, thus escaping the type system.
+\emph{Why is so?}
+Therefore, we believe we should care about how the casting operations are used in the wild.
+Specifically, we want to answer the following research questions:
 
-https://github.com/mockito/mockito/issues/357
+\begin{enumerate}[label=$RQ\arabic*:$,ref=$RQ\arabic*$,leftmargin=3.4\parindent]
+\item\label{enum:rq1}{\bf Is casting used in common application code?}
+We want to understand to what extent application code actually uses casting operations.
+\item\label{enum:rq2}{\bf How and why casts are used?}
+If casts are actually used in application code, we want to know how and why developers need to escape the type system.
+\item\label{enum:rq3}{\bf How recurrent are the reasons for which casts are used?}
+In addition to understand how and why casts are used, we want to measure how often developers need to resort to certain idioms to solve a particular problem.
+\end{enumerate}
 
+To answer the above questions, we need to determine whether and how casting operations are actually used in real-world third-party \java{} applications.
+To achieve our goal, several elements are needed.
 
+\textbf{Source Code Analysis.}
+We have implemented our study using the \ql{} query language:
+``a declarative, object-oriented logic programming language for querying complex, potentially recursive data structures encoded in a relational data model''~\cite{avgustinovQLObjectorientedQueries2016}.
+\ql{} allows us to analyze programs at the source code level by abstracting the code sources into a relational data model.
+Besides providing structural data for programs, \ie{}, ASTs, \ql{} has the ability to query static types and data-flow analysis.
+To run our \ql{} queries, we have used the service provided by Semmle.\footnote{\url{https://lgtm.com/}} 
+
+\textbf{Projects.} 
+As a code base representative of the ``real world'', we have chosen open-source projects hosted in the most popular source code management repositories, \ie{}, \github{}\footnote{\url{https://github.com/}}, \gitlab{}\footnote{\url{https://gitlab.com/}}, \bitbucket{}\footnote{\url{https://bitbucket.org/}}.
+% We have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
+
+\textbf{Usage Pattern Detection.}
+After all cast instances are found, we analyze this information to discover usage patterns.
+\ql{} allows us to automatically categorize cast use cases into patterns.
+This methodology is described in section~\ref{sec:methodology}.
+
+It is common that a project exhibits more than one pattern.
+Our list of patterns is not exhaustive.
+Due to the nature of the cast operator, some casts were uncategorized as they would need a whole program analysis, \eg{}, including libraries in the analysis.
