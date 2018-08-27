@@ -1,7 +1,6 @@
 
 \chapter{Introduction}
 
-
 In programming language design, the main goal of a \emph{static} type system is to prevent certain kind of errors from happening at run-time.
 A type system is formulated as a set of constraints that gives any expression or term in a program a well-defined type.
 As~\cite{pierceTypesProgrammingLanguages2002} states: ``A type system can be regarded as calculating a kind of \emph{static} approximation to the run-time behaviors of the terms in a program.''
@@ -26,9 +25,9 @@ The case of \lang{Java} is a bit different.
 \lang{Java} has an API to make unsafe operations --- the \code{sun.misc.Unsafe} class --- 
 but it is undocumented.\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}}
 
-Casting on the other hand is the mechanism that allows a developer to assert that a certain expression has a certain run-time type.
+% Casting on the other hand is the mechanism that allows a developer to assert that a certain expression has a certain run-time type.
 
-What can go wrong with type systems?
+% What can go wrong with type systems?
 
 
 
@@ -36,21 +35,52 @@ What can go wrong with type systems?
 \section{Research Question}
 
 We want to understand to what degree \java{}'s type system is useful.
-This leads to our research question:
-
-\rquestion{Why Developers Need to Circumvent \java{}'s? Type System}
-
 We propose two studies to help understand these issues
-
 How unsafe is isued
 How cast is being used
 
-\section{Proposal Outline}
+
+Understanding how language features are used can give many insights to language designers, tools builders, researchers and developers.
+This triggers our research question:
+
+\rquestion{Are there \emph{unexpected usages of language features} in-the-wild that can give new insights to language designers, tools builders, researchers and developers?}
+
+We believe that we --- as a research community --- should understand what kinds of programs are written in real code-bases.
+We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
+This fact opens the door for empirical studies about language features and their use in source code repositories, \eg{},
+\github\footnote{\url{https://github.com/}} or
+\gitlab\footnote{\url{https://gitlab.com/}},
+and package managers repositories, like
+\mavencentral\footnote{\url{http:/central.sonatype.org/}}.
+Since any kind of language study must be language-specific,
+our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
 
 Our plan is to make to empirical studies on how these features are used by developers.
+In this proposal, we plan to target two specific \java{} features, namely, casting and the unsafe \api{}.
+We have devised --- for the unsafe \api{} --- and we plan to devise language and \api{} usage patterns.
+We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
 
-\begin{itemize}
-\item Chapter \ref{cha:literature-review} gives an overview of the literature.
-\item Chapter \ref{cha:casts} presents what are the current issues.
-\item Chapter \ref{cha:unsafe} introduces our plan to answer the aforementioned research questions.
-\end{itemize}
+\begin{table}[htbp]
+\caption{\emph{Per} Feature Research Question}
+\centering
+\begin{tabular}{ll}
+\hline
+Feature     & Research Question\\
+\hline
+Casting     & Why Developers Need to Circumvent \java{}'s Type System?\\
+Unsafe API  & Is \java{} Safe?\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section{Proposal Outline}
+
+The rest of this proposal is organized as follows:
+Chapter \ref{cha:literature-review} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
+The following two chapters introduce our proposal plan for the selected features:
+Chapter \ref{cha:casts} presents our \emph{casting} study.
+Finally, Chapter \ref{cha:unsafe} shows the study we already made on the Unsafe \api{} in \java{}.
+
+While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
+The rationale behind this organization is that we prefer to show how we improve over the \emph{state-of-the-art} after having presented our plan for each feature.

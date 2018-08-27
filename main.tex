@@ -1,13 +1,20 @@
 
 \documentclass[]{usiinfdocprop}
 
-\usepackage[svgnames]{xcolor}
+\usepackage[svgnames,table]{xcolor}
 \usepackage{tikz}
 \usepackage{cleveref}
 \usepackage{mdframed}
 \usepackage{listings}
 \usepackage{inconsolata}
 \usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{pifont}
+\usepackage{multirow}
+\usepackage{multicol}
+
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
 \usetikzlibrary{shapes,arrows}
 
@@ -21,15 +28,13 @@
 \begin{committee}
   \advisor{Prof.}{Matthias Hauswirth}{\USI, Switzerland}
   \coadvisor{Prof.}{Nathaniel Nystrom}{\USI, Switzerland}
-  \internalmember{Prof.}{\tbd{Walter Binder}}
   \internalmember{Prof.}{\tbd{Antonio Carzaniga}}
   \internalmember{Prof.}{\tbd{Gabriele Bavota}}
-  \internalmember{Prof.}{\tbd{Patrick Eugster}}
-  \externalmember{Prof.}{\tbd{Hridesh Rajan}}{\tbd{Iowa State University, United States}}
-  \externalmember{Prof.}{\tbd{Tobias Wrigstad}}{\tbd{Uppsala University, Sweden}}
+  \externalmember{Prof.}{\tbd{Jurgen Vinju}}{\tbd{Centrum Wiskunde \& Informatica and TU Eindhoven, The Netherlands}}
+  \externalmember{Prof.}{\tbd{Jan Vitek}}{\tbd{Northeastern University \& CVUT}}
 \end{committee}
 \phddirector{Prof.}{Walter Binder}
-\phddirector{Prof.}{Michael Bronstein}
+\phddirector{Prof.}{Olaf Schenk}
 
 \input{abstract.tex}
 
