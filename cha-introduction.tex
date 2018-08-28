@@ -7,80 +7,83 @@ As~\cite{pierceTypesProgrammingLanguages2002} states: ``A type system can be reg
 These constraints are enforced by the \emph{type-checker} either when compiling or linking the program.
 Thus, any program not satisfying the constraints stated within a type system is simply rejected by the type-checker.
 
-Nevertheless, often the static approximation provided by a type system is not expressive enough.
-This situation arises when the developer has more information about the program that is too complex to explain in terms of the typing constraints.
-In other words, the analysis done by the type-checker can not detect this kind of situation.
-This is why programming languages usually offer mechanisms to escape the constraints imposed by a type system.
-These mechanisms come essentially in two forms: \emph{Unsafe code} and \emph{casting}.
+Nevertheless, often the static approximation provided by a type system is not precise enough.
+Being static, the analysis done by the type-checker needs to be conservative.
+It is preferably to reject programs that are valid, but their validity cannot be ensured by the type-checker,
+rather than accept some invalid programs.
+But there are situations when the developer has more information about the program that is too complex to explain in terms of the typing constraints.
+To that end, the constraints of a type system can be relaxed to permit more programs to be valid at the expense of causing more errors at run-time.
+There are essentially two mechanisms that relax the typing constraints:
+\emph{Unsafe Intrinsics} and \emph{Casting}.
 
-Unsafe code is the ability to bypass any kind of run-time check created by the compiler.
-It is a characteristic of safe languages, \eg{}, \lang{Java}, \lang{C\#} or \lang{Haskell}.
+\textbf{Unsafe Intrinsics.}
+Unsafe intrinsics is the ability to perform certain operations \emph{without} being checked by the compiler.
+They are \emph{unsafe} because any misuse made by the programmer can compromise the entire system, \eg{},
+corrupting data structures without notice, or
+crashing the run-time system.
+Unsafe intrinsics can be seen in safe languages, \eg{},
+\lang{Java},
+\lang{C\#},
+\lang{Rust}, or
+\lang{Haskell}.
 Foreign Function Interface (\emph{FFI}), \ie{}, calling native code from within a safe environment is unsafe.
 It is so because the run-time system cannot guarantee that the native code will not compromise the entire system.
-In addition to FFI, safe languages offers the so-called \emph{unsafe} blocks, \ie{}, making unsafe operations within the language itself.
+In addition to FFI, some safe languages offer so-called \emph{unsafe} blocks, \ie{}, making unsafe operations within the language itself, \eg{},
 \lang{C\#}\footnote{\url{https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/unsafe-code}}
-and \lang{Haskell}\footnote{\url{http://hackage.haskell.org/package/base-4.11.1.0/docs/System-IO-Unsafe.html}}
-provide this kind of escape-hatch.
-The case of \lang{Java} is a bit different.
-\lang{Java} has an API to make unsafe operations --- the \code{sun.misc.Unsafe} class --- 
-but it is undocumented.\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}}
+and
+\lang{Rust}\footnote{\url{https://doc.rust-lang.org/book/second-edition/ch19-01-unsafe-rust.html}}
+.
+Other languages provide an API to perform unsafe operations, \eg{},
+\lang{Haskell}\footnote{\url{http://hackage.haskell.org/package/base-4.11.1.0/docs/System-IO-Unsafe.html}}
+and
+\lang{Java}.
+But in the case of \lang{Java}, the API to make unsafe operations,
+\code{sun.misc.Unsafe},
+is unsupported\footnote{\url{http://www.oracle.com/technetwork/java/faq-sun-packages-142232.html}}
+and undocumented.
+It was originally intended for internal use within the JDK, but as we shall see later on, it is used outside the JDK as well.
 
-% Casting on the other hand is the mechanism that allows a developer to assert that a certain expression has a certain run-time type.
+\textbf{Casting.}
+Programming languages with subtyping such as \java{} or \cpp{} provide a mechanism to \emph{view} an expression as a different type as it was defined.
+This mechanism is often called \emph{casting} and takes the form \code{(T)t}.
+Casting can be in two directions: \emph{upcast} and \emph{downcast}.
+An upcast conversion happens when converting from a reference type $S$ to a reference type $T$, provided that $T$ is a \emph{supertype} of $S$.
+An upcast does not require any explicit casting operation nor compiler check.
+However, as we shall see later on, there are situations where an upcast requires an explicit casting operation.
+On the other hand, a downcast happens when converting from a reference type $S$ to a reference type $T$, provided that $T$ is a \emph{subtype} of $S$.
+Unlike upcasts, downcasts require a run-time check to verify that the conversion is indeed valid.
+This implies that downcasts provide the means to bypass the static type system.
+By avoiding the type system, downcasts can pose potential threats, because it is like the developer saying to the compiler: \emph{``Trust me here, I know what I'm doing''}.
+Being a escape-hatch to the type system, a cast is often seen as a design flaw or code smell~\cite{tufanoWhenWhyYour2015} in an object-oriented system.
 
-% What can go wrong with type systems?
-
-
-
-
-\section{Research Question}
-
-We want to understand to what degree \java{}'s type system is useful.
-We propose two studies to help understand these issues
-How unsafe is isued
-How cast is being used
-
-
-Understanding how language features are used can give many insights to language designers, tools builders, researchers and developers.
+If static type systems aim to detect certain kind of errors earlier in the development process,
+yet they provide the means to circumvent their constraints,
+why exactly does one need to do so?
+Are those mechanisms actually used in real-world code?
 This triggers our research question:
 
-\rquestion{Are there \emph{unexpected usages of language features} in-the-wild that can give new insights to language designers, tools builders, researchers and developers?}
+\rquestion{Why developers need to circumvent the static type system's constraints?}
 
-We believe that we --- as a research community --- should understand what kinds of programs are written in real code-bases.
-We can use this information to improve several aspects of the software development process and supporting informed decisions for the driving forces mentioned above.
-This fact opens the door for empirical studies about language features and their use in source code repositories, \eg{},
-\github\footnote{\url{https://github.com/}} or
-\gitlab\footnote{\url{https://gitlab.com/}},
-and package managers repositories, like
-\mavencentral\footnote{\url{http:/central.sonatype.org/}}.
 Since any kind of language study must be language-specific,
 our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
+We want to understand to what degree \java{}'s type system is useful.
+To that end,
+we plan to empirically study how the two aforementioned mechanisms
+--- the Unsafe \api{} and casting ---
+are used by developers.
+We have devised (for the Unsafe \api{}) and we plan to devise (for casting) usage patterns.
+We believe that having usage patterns can help us to better categorize use cases and thus understanding how those features are actually used.
 
-Our plan is to make to empirical studies on how these features are used by developers.
-In this proposal, we plan to target two specific \java{} features, namely, casting and the unsafe \api{}.
-We have devised --- for the unsafe \api{} --- and we plan to devise language and \api{} usage patterns.
-We believe that having usage patterns can help us to better categorize features and thus understanding how the feature is actually used.
-
-\begin{table}[htbp]
-\caption{\emph{Per} Feature Research Question}
-\centering
-\begin{tabular}{ll}
-\hline
-Feature     & Research Question\\
-\hline
-Casting     & Why Developers Need to Circumvent \java{}'s Type System?\\
-Unsafe API  & Is \java{} Safe?\\
-\hline
-\end{tabular}
-\end{table}
-
-
-\section{Proposal Outline}
+These patterns can provide an insight on how the language is being used by developers in real-world applications.
+We have confidence that this knowledge can be:
+\begin{inparaenum}[a)]
+\item useful to make informed decisions for current \& future language designers, not only \java{},
+\item a reference for tool builders, \eg{}, by providing more precise or new refactoring analyses,
+\item a guide for researchers to test new language features or to carry out controlled programming experiments, and
+\item a guide for developers for best or better practices.
+\end{inparaenum}
 
 The rest of this proposal is organized as follows:
-Chapter \ref{cha:literature-review} gives a review of the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
-The following two chapters introduce our proposal plan for the selected features:
-Chapter \ref{cha:casts} presents our \emph{casting} study.
-Finally, Chapter \ref{cha:unsafe} shows the study we already made on the Unsafe \api{} in \java{}.
-
-While the literature review gives a broad overview in the field, each of the following chapters have their own ``Related Work'' section. 
-The rationale behind this organization is that we prefer to show how we improve over the \emph{state-of-the-art} after having presented our plan for each feature.
+Chapter~\ref{cha:literature-review} reviews the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
+Chapter~\ref{cha:unsafe} summarizes the study we already made on the Unsafe \api{} in \java{}.
+Finally, Chapter \ref{cha:casts} presents our proposal plan for the \emph{casting} study, showing the results we have so far.

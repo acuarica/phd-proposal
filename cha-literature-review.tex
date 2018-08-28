@@ -178,3 +178,39 @@ This raises a flag when consider which projects analyze when doing mining softwa
 \cite{nagappanDiversitySoftwareEngineering2013} have developed the Software Projects Sampling (SPS) tool.
 SPS tries to find a maximal set of projects based on representativeness and diversity.
 Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
+
+
+
+
+\section{Unsafe API}
+\label{sec:lr:unsafe}
+
+Oracle software engineer Paul Sandoz 
+performed some informal analysis of Maven artifacts and usages in Grepcode~\cite{sandoz-personal-communication}
+and conducted a survey to study how \unsafe{} is used~\cite{psandoz14}.
+The survey consists of 7 questions\footnote{\url{http://www.infoq.com/news/2014/02/Unsafe-Survey}} 
+that help to understand what pieces of \smu{} should be mainstreamed.
+We go beyond Sandoz' work
+by performing a comprehensive study of the \mavencentral{} software repository to analyze how and why \smu{} is being used.
+
+In the remainder of this section we first describe the related work about mining software repositories to understand a specific language feature.
+Then, we show where \unsafe{} fits in the broader spectrum, i.e., how to do low-level coding in a high level language.
+
+
+\subsection{Mining Repositories to Assess Language Features}
+
+Several researchers have mined software repositories with the goal of analyzing and understanding if, how and when certain programming language features are being used.
+
+Dyer et. al.~\cite{Dyer-Rajan-Nguyen-Nguyen-14} studied the adoption of Java language features over time. Richards et. al.~\cite{Richards:2011:EML:2032497.2032503} present an in-depth study on the \texttt{eval} function in JavaScript. Mayer et. al.~\cite{Mayer:2012:ESI:2384616.2384666} studied the impact of type systems on software development. Calla\'{u} et. al.~\cite{Callau:2011:DUD:1985441.1985448} performed an empirical study to assess how much the dynamic and reflective features of Smalltalk are actually used in practice. Holkner and Harland~\cite{Holkner:2009:EDB:1862659.1862665} did a similar study on production-stage open source Python programs. Richards et. al.~\cite{Richards:2010:ADB:1806596.1806598} also did a study on the dynamic behavior but applied to JavaScript programs. Gorla et. al.~\cite{Gorla:2014:CAB:2568225.2568276} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage. Grechanik et. al.~\cite{Grechanik:2010:EIL:1852786.1852801} also mined large scale software repositories to obtain several statistics on how source code is actually written.
+
+\subsection{High-Level Language Semantics for Low-Level Coding}
+
+Oracle provides the \smu{} class for low-level programming, e.g, synchronization primitives, direct memory access methods, array manipulation and memory usage. Although the \smu{} class is not officially documented, there is literature based on it.
+
+Korland et. al.~\cite{Korl_noninvasiveconcurrency} presented a Java STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms. They chose to use \smu{} to implement fast reflection, as it proved to be vastly more efficient than the standard Java reflection mechanisms. Pukall et. al.~\cite{SPE:SPE2107} introduced a runtime update approach based on Java that offers flexible dynamic software updates with minimal performance overhead. They used the \texttt{allocateInstance} method, because it eases the creation of instances even if the class has no default constructor. Gligoric et. al.~\cite{Gligoric:2011:CFD:2001420.2001456} proposed a new approach to serialization/deserialization via code generation, using \smu{} to allocate instances and to set the fields. The Jikes RVM~\cite{Alpern:2005:JRV:1086608.1086625} is a Java Virtual Machine targeting researchers in runtime systems. It is a Java-in-Java virtual machine because is itself built in Java, a style of implementation termed meta-circular. The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework. Frampton et. al.~\cite{Frampton:2009:DMH:1508293.1508305} proposed \texttt{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
+
+
+
+\section{Casting}
+
+\cite{wintherGuardedTypePromotion2011} has implemented a path sensitive analysis that allows the developer to avoid casting once a guarded \code{instanceof} is provided.
