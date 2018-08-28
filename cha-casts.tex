@@ -197,7 +197,7 @@ We manually inspected the mentioned casts trying to understand why and how they 
 By manually inspecting several casts instances, we observe that certain characteristics appear often, \eg{}, a cast in a overridden method, or a cast guarded by an \code{instanceof}.
 We then \emph{tag} cast instances based on these observations.
 We implement a \ql{} predicate that detects them and proceed to refine our query with this new tag predicate.
-The table of tags is presented in table~\ref{table:tags}.
+% The table of tags is presented in table~\ref{table:tags}.
 After a new tag is added, the query is run again to iterate over the new results.
 
 Whenever we observe that those tags do not appear randomly, we further inspect the source code to check that is indeed a pattern.

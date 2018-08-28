@@ -16,10 +16,10 @@ Similar works have been done for \cobol{}~\cite{salvadoriStaticProfileCOBOL1975,
 The organization of the rest of this chapter is as follows: 
 How benchmarks and corpora relate to this kind of studies is presented in \S\ref{sec:lr:benchmarks}.
 In \S\ref{sec:lr:largescale} we give an overview of other large-scale studies either in \java{} or in other languages.
-Related to our cast study, in \S\ref{sec:lr:experiments} we show studies on how static type systems impact on programmers productivity.
 Code Patterns discovery is presented in \S\ref{sec:lr:patterns}.
 An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining},
 while \S\ref{sec:lr:selection} shows how to select good candidates projects from a large-base software repository.
+Finally in \S\ref{sec:lr:unsafe} and \S\ref{sec:lr:casting} we present the related work more specific to the Unsafe API and Casting respectively.
 
 \section{Benchmarks and Corpora}
 \label{sec:lr:benchmarks}
@@ -40,7 +40,7 @@ Along these lines, \cite{allamanisMiningSourceCode2013} go one step further and 
 \section{Large-scale Codebase Empirical Studies}
 \label{sec:lr:largescale}
 
-In the same direction to our plan, \cite{callauHowWhyDevelopers2013} perform a study of the dynamic features of \smalltalk{}. 
+In the same direction to our plan, \cite{callauHowWhyDevelopers2013} performed an empirical study to assess how much the dynamic and reflective features of \smalltalk{} are actually used in practice.
 Analogously, \cite{richardsAnalysisDynamicBehavior2010,richardsEvalThatMen2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \code{eval} function. 
 Also for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed how fields are accessed via strings, while~\cite{jangEmpiricalStudyPrivacyviolating2010} analyzed privacy violations. 
 Similar empirical studies were done for \php{}~\cite{hillsEmpiricalStudyPHP2013,dahseExperienceReportEmpirical2015,doyleEmpiricalStudyEvolution2011} and \swift{}~\cite{reboucasEmpiricalStudyUsage2016}.  
@@ -48,6 +48,8 @@ Similar empirical studies were done for \php{}~\cite{hillsEmpiricalStudyPHP2013,
 Going one step forward, \cite{rayLargescaleStudyProgramming2017} studied the correlation between programming languages and defects. 
 One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
 We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}. 
+\cite{gorlaCheckingAppBehavior2014} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage.
+Grechanik et. al.~\cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
 
 For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}.
 \cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
@@ -83,32 +85,6 @@ They have found out that in most cases there is an alternative usage that improv
 
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
-
-\section{Controlled Experiments on Subjects}
-\label{sec:lr:experiments}
-
-There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
-For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand the how expert programmers face problem solving.
-\cite{buddTheoreticalEmpiricalStudies1980} made a empirical study on how effective is mutation testing.
-\cite{precheltEmpiricalComparisonSeven2000} compared how a given --- fixed --- task was implemented in several programming languages.
-
-\cite{latozaDevelopersAskReachability2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
-
-Several authors~\cite{stuchlikStaticVsDynamic2011,mayerEmpiricalStudyInfluence2012,harlinImpactUsingStaticType2017} measure whether using a static-type system improves programmers productivity.
-They compare how a static and a dynamic type system impact on productivity.
-The common setting for these studies is to have a set of programming problems.
-Then, let a group of developers solve them in both a static and dynamic languages.
-
-For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
-Having artificial problems may lead to invalid conclusions.
-The work by~\cite{wuHowTypeErrors2017,wuLearningUserFriendly2017} goes towards this direction. 
-They have examined programs written by students to understand real debugging conditions. 
-Their focus is on ill-typed programs written in \haskell{}.
-Unfortunately, these dataset does not correspond to real-world code. 
-
-Therefore, it is important to study how casts are used in real-world code. 
-This can led to informed decisions when designing these kind of experiments. 
-
 \section{Code Patterns Discovery}
 \label{sec:lr:patterns}
 
@@ -143,7 +119,7 @@ In this scenario, there are several tools that allows a researcher or developer 
 
 \cite{dyerBoaLanguageInfrastructure2013,dyerDeclarativeVisitorsEase2013} built \boa{}, both a domain-specific language and an online platform\footnote{\url{http://boa.cs.iastate.edu/}}. 
 It is used to query software repositories on two popular hosting services, \github \footnote{\url{https://github.com/}} and \sourceforge \footnote{\url{https://sourceforge.net/}}.
-The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyerMiningBillionsAST2014}.
+The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyerMiningBillionsAST2014} over time.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
 
@@ -180,8 +156,6 @@ SPS tries to find a maximal set of projects based on representativeness and dive
 Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
 
 
-
-
 \section{Unsafe API}
 \label{sec:lr:unsafe}
 
@@ -193,24 +167,46 @@ that help to understand what pieces of \smu{} should be mainstreamed.
 We go beyond Sandoz' work
 by performing a comprehensive study of the \mavencentral{} software repository to analyze how and why \smu{} is being used.
 
-In the remainder of this section we first describe the related work about mining software repositories to understand a specific language feature.
-Then, we show where \unsafe{} fits in the broader spectrum, i.e., how to do low-level coding in a high level language.
+Oracle provides the \smu{} class for low-level programming, e.g, synchronization primitives, direct memory access methods, array manipulation and memory usage.
+Although the \smu{} class is not officially documented, there is literature based on it.
 
-
-\subsection{Mining Repositories to Assess Language Features}
-
-Several researchers have mined software repositories with the goal of analyzing and understanding if, how and when certain programming language features are being used.
-
-Dyer et. al.~\cite{Dyer-Rajan-Nguyen-Nguyen-14} studied the adoption of Java language features over time. Richards et. al.~\cite{Richards:2011:EML:2032497.2032503} present an in-depth study on the \texttt{eval} function in JavaScript. Mayer et. al.~\cite{Mayer:2012:ESI:2384616.2384666} studied the impact of type systems on software development. Calla\'{u} et. al.~\cite{Callau:2011:DUD:1985441.1985448} performed an empirical study to assess how much the dynamic and reflective features of Smalltalk are actually used in practice. Holkner and Harland~\cite{Holkner:2009:EDB:1862659.1862665} did a similar study on production-stage open source Python programs. Richards et. al.~\cite{Richards:2010:ADB:1806596.1806598} also did a study on the dynamic behavior but applied to JavaScript programs. Gorla et. al.~\cite{Gorla:2014:CAB:2568225.2568276} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage. Grechanik et. al.~\cite{Grechanik:2010:EIL:1852786.1852801} also mined large scale software repositories to obtain several statistics on how source code is actually written.
-
-\subsection{High-Level Language Semantics for Low-Level Coding}
-
-Oracle provides the \smu{} class for low-level programming, e.g, synchronization primitives, direct memory access methods, array manipulation and memory usage. Although the \smu{} class is not officially documented, there is literature based on it.
-
-Korland et. al.~\cite{Korl_noninvasiveconcurrency} presented a Java STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms. They chose to use \smu{} to implement fast reflection, as it proved to be vastly more efficient than the standard Java reflection mechanisms. Pukall et. al.~\cite{SPE:SPE2107} introduced a runtime update approach based on Java that offers flexible dynamic software updates with minimal performance overhead. They used the \texttt{allocateInstance} method, because it eases the creation of instances even if the class has no default constructor. Gligoric et. al.~\cite{Gligoric:2011:CFD:2001420.2001456} proposed a new approach to serialization/deserialization via code generation, using \smu{} to allocate instances and to set the fields. The Jikes RVM~\cite{Alpern:2005:JRV:1086608.1086625} is a Java Virtual Machine targeting researchers in runtime systems. It is a Java-in-Java virtual machine because is itself built in Java, a style of implementation termed meta-circular. The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework. Frampton et. al.~\cite{Frampton:2009:DMH:1508293.1508305} proposed \texttt{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
-
-
+\cite{korlandNoninvasiveConcurrencyJava2010} presented a Java STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms.
+They chose to use \smu{} to implement fast reflection, as it proved to be vastly more efficient than the standard Java reflection mechanisms.
+\cite{pukallFlexibleDynamicSoftware} introduced a runtime update approach based on Java that offers flexible dynamic software updates with minimal performance overhead.
+They used the \code{allocateInstance} method, because it eases the creation of instances even if the class has no default constructor.
+\cite{gligoricCoDeSeFastDeserialization2011} proposed a new approach to serialization/deserialization via code generation, using \smu{} to allocate instances and to set the fields.
+The Jikes RVM~\cite{alpernJikesResearchVirtual2005} is a Java Virtual Machine targeting researchers in runtime systems.
+It is a Java-in-Java virtual machine because is itself built in Java, a style of implementation termed meta-circular.
+The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework.
+\cite{framptonDemystifyingMagicHighlevel2009} proposed \code{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
 
 \section{Casting}
+\label{sec:lr:casting}
 
 \cite{wintherGuardedTypePromotion2011} has implemented a path sensitive analysis that allows the developer to avoid casting once a guarded \code{instanceof} is provided.
+
+
+\subsection*{Controlled Experiments on Subjects}
+\label{sec:lr:experiments}
+
+There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
+For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand the how expert programmers face problem solving.
+\cite{buddTheoreticalEmpiricalStudies1980} made a empirical study on how effective is mutation testing.
+\cite{precheltEmpiricalComparisonSeven2000} compared how a given --- fixed --- task was implemented in several programming languages.
+
+\cite{latozaDevelopersAskReachability2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
+
+Several authors~\cite{stuchlikStaticVsDynamic2011,mayerEmpiricalStudyInfluence2012,harlinImpactUsingStaticType2017} measure whether using a static-type system improves programmers productivity.
+They compare how a static and a dynamic type system impact on productivity.
+The common setting for these studies is to have a set of programming problems.
+Then, let a group of developers solve them in both a static and dynamic languages.
+
+For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
+Having artificial problems may lead to invalid conclusions.
+The work by~\cite{wuHowTypeErrors2017,wuLearningUserFriendly2017} goes towards this direction. 
+They have examined programs written by students to understand real debugging conditions. 
+Their focus is on ill-typed programs written in \haskell{}.
+Unfortunately, these dataset does not correspond to real-world code. 
+
+Therefore, it is important to study how casts are used in real-world code. 
+This can led to informed decisions when designing these kind of experiments. 
