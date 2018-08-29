@@ -9154,21 +9154,6 @@ Experimental results using the tool and manually rewriting code show average spa
   file = {/Users/luigi/work/zotero/storage/T6NZXKR9/Gosling - Java Intermediate Bytecodes.pdf}
 }
 
-@inproceedings{kondohFindingBugsJava2008,
-  address = {Seattle, WA, USA},
-  title = {Finding Bugs in Java Native Interface Programs},
-  isbn = {978-1-60558-050-0},
-  doi = {10.1145/1390630.1390645},
-  abstract = {In this paper, we describe static analysis techniques for finding bugs in programs using the Java Native Interface (JNI). The JNI is both tedious and error-prone because there are many JNI-specific mistakes that are not caught by a native compiler. This paper is focused on four kinds of common mistakes. First, explicit statements to handle a possible exception need to be inserted after a statement calling a Java method. However, such statements tend to be forgotten. We present a typestate analysis to detect this exception-handling mistake. Second, while the native code can allocate resources in a Java VM, those resources must be manually released, unlike Java. Mistakes in resource management cause leaks and other errors. To detect Java resource errors, we used the typestate analysis also used for detecting general memory errors. Third, if a reference to a Java resource lives across multiple native method invocations, it should be converted into a global reference. However, programmers sometimes forget this rule and, for example, store a local reference in a global variable for later uses. We provide a syntax checker that detects this bad coding practice. Fourth, no JNI function should be called in a critical region. If called there, the current thread might block and cause a deadlock. Misinterpreting the end of the critical region, programmers occasionally break this rule. We present a simple typestate analysis to detect an improper JNI function call in a critical region.},
-  language = {en},
-  booktitle = {Proceedings of the 2008 International Symposium on {{Software}} Testing and Analysis - {{ISSTA}} '08},
-  publisher = {{ACM Press}},
-  author = {Kondoh, Goh and Onodera, Tamiya},
-  year = {2008},
-  pages = {109},
-  file = {/Users/luigi/work/zotero/storage/FKT52PI8/Kondoh and Onodera - 2008 - Finding bugs in java native interface programs.pdf}
-}
-
 @inproceedings{mccabeFeelDifferentJava2013,
   address = {Stuttgart, Germany},
   title = {Feel Different on the {{Java}} Platform: The Star Programming Language},
@@ -11623,15 +11608,6 @@ Experimental results using the tool and manually rewriting code show average spa
   file = {/Users/luigi/work/zotero/storage/J4UY2W4Q/Krishnamurthi - 2008 - Teaching programming languages in a post-linnaean .pdf}
 }
 
-@article{tanEmpiricalSecurityStudy,
-  title = {An {{Empirical Security Study}} of the {{Native Code}} in the {{JDK}}},
-  abstract = {It is well known that the use of native methods in Java defeats Java's guarantees of safety and security, which is why the default policy of Java applets, for example, does not allow loading non-local native code. However, there is already a large amount of trusted native C/C++ code that comprises a significant portion of the Java Development Kit (JDK). We have carried out an empirical security study on a portion of the native code in Sun's JDK 1.6. By applying static analysis tools and manual inspection, we have identified in this security-critical code previously undiscovered bugs. Based on our study, we describe a taxonomy to classify bugs. Our taxonomy provides guidance to construction of automated and accurate bug-finding tools. We also suggest systematic remedies that can mediate the threats posed by the native code.},
-  language = {en},
-  author = {Tan, Gang and Croft, Jason},
-  pages = {13},
-  file = {/Users/luigi/work/zotero/storage/JNNBA33D/Tan and Croft - An Empirical Security Study of the Native Code in .pdf}
-}
-
 @inproceedings{gaoTypeNotType2017,
   address = {Buenos Aires},
   title = {To {{Type}} or {{Not}} to {{Type}}: {{Quantifying Detectable Bugs}} in {{JavaScript}}},
@@ -11839,6 +11815,98 @@ Experimental results using the tool and manually rewriting code show average spa
   title = {{{JEP}} 191: {{Foreign Function Interface}}},
   author = {Nutter, Charles Oliver},
   year = {2014}
+}
+
+@misc{tanEmpiricalSecurityStudy2008,
+  title = {An {{Empirical Security Study}} of the {{Native Code}} in the {{JDK}}},
+  abstract = {It is well known that the use of native methods in Java defeats Java's guarantees of safety and security, which is why the default policy of Java applets, for example, does not allow loading non-local native code. However, there is already a large amount of trusted native C/C++ code that comprises a significant portion of the Java Development Kit (JDK). We have carried out an empirical security study on a portion of the native code in Sun's JDK 1.6. By applying static analysis tools and manual inspection, we have identified in this security-critical code previously undiscovered bugs. Based on our study, we describe a taxonomy to classify bugs. Our taxonomy provides guidance to construction of automated and accurate bug-finding tools. We also suggest systematic remedies that can mediate the threats posed by the native code.},
+  howpublished = {/paper/An-Empirical-Security-Study-of-the-Native-Code-in-Tan-Croft/4c3a84729bd09db6a90a862846bb29e937ec2ced},
+  journal = {undefined},
+  author = {Tan, Gang and Croft, Jason},
+  year = {2008},
+  file = {/Users/luigi/work/zotero/storage/QL9WQR3U/Tan and Croft - 2008 - An Empirical Security Study of the Native Code in .pdf;/Users/luigi/work/zotero/storage/WLY2LCQ5/4c3a84729bd09db6a90a862846bb29e937ec2ced.html}
+}
+
+@inproceedings{kondohFindingBugsJava2008a,
+  address = {New York, NY, USA},
+  series = {ISSTA '08},
+  title = {Finding {{Bugs}} in {{Java Native Interface Programs}}},
+  isbn = {978-1-60558-050-0},
+  doi = {10.1145/1390630.1390645},
+  abstract = {In this paper, we describe static analysis techniques for finding bugs in programs using the Java Native Interface (JNI). The JNI is both tedious and error-prone because there are many JNI-specific mistakes that are not caught by a native compiler. This paper is focused on four kinds of common mistakes. First, explicit statements to handle a possible exception need to be inserted after a statement calling a Java method. However, such statements tend to be forgotten. We present a typestate analysis to detect this exception-handling mistake. Second, while the native code can allocate resources in a Java VM, those resources must be manually released, unlike Java. Mistakes in resource management cause leaks and other errors. To detect Java resource errors, we used the typestate analysis also used for detecting general memory errors. Third, if a reference to a Java resource lives across multiple native method invocations, it should be converted into a global reference. However, programmers sometimes forget this rule and, for example, store a local reference in a global variable for later uses. We provide a syntax checker that detects this bad coding practice. Fourth, no JNI function should be called in a critical region. If called there, the current thread might block and cause a deadlock. Misinterpreting the end of the critical region, programmers occasionally break this rule. We present a simple typestate analysis to detect an improper JNI function call in a critical region. We have implemented our analysis techniques in a bug-finding tool called BEAM, and executed it on opensource software including JNI code. In the experiment, our analysis techniques found 86 JNI-specific bugs without any overhead and increased the total number of bug reports by 76\%.},
+  booktitle = {Proceedings of the 2008 {{International Symposium}} on {{Software Testing}} and {{Analysis}}},
+  publisher = {{ACM}},
+  author = {Kondoh, Goh and Onodera, Tamiya},
+  year = {2008},
+  keywords = {java native interface,static analysis,typestate analysis},
+  pages = {109--118},
+  file = {/Users/luigi/work/zotero/storage/L4WM5GFV/Kondoh and Onodera - 2008 - Finding Bugs in Java Native Interface Programs.pdf}
+}
+
+@inproceedings{ogataStudyJavaNonJava2010,
+  address = {New York, NY, USA},
+  series = {OOPSLA '10},
+  title = {A {{Study}} of {{Java}}'s Non-{{Java Memory}}},
+  isbn = {978-1-4503-0203-6},
+  doi = {10.1145/1869459.1869477},
+  abstract = {A Java application sometimes raises an out-of-memory ex-ception. This is usually because it has exhausted the Java heap. However, a Java application can raise an out-of-memory exception when it exhausts the memory used by Java that is not in the Java heap. We call this area non-Java memory. For example, an out-of-memory exception in the non-Java memory can happen when the JVM attempts to load too many classes. Although it is relatively rare to ex-haust the non-Java memory compared to exhausting the Java heap, a Java application can consume a considerable amount of non-Java memory. This paper presents a quantitative analysis of non-Java memory. To the best of our knowledge, this is the first in-depth analysis of the non-Java memory. To do this we cre-ated a tool called Memory Analyzer for Redundant, Unused, and String Areas (MARUSA), which gathers memory statis-tics from both the OS and the Java virtual machine, break-ing down and visualizing the non-Java memory usage. We studied the use of non-Java memory for a wide range of Java applications, including the DaCapo benchmarks and Apache DayTrader. Our study is based on the IBM J9 Java Virtual Machine for Linux. Although some of our results may be specific to this combination, we believe that most of our observations are applicable to other platforms as well.},
+  booktitle = {Proceedings of the {{ACM International Conference}} on {{Object Oriented Programming Systems Languages}} and {{Applications}}},
+  publisher = {{ACM}},
+  author = {Ogata, Kazunori and Mikurube, Dai and Kawachiya, Kiyokuni and Trent, Scott and Onodera, Tamiya},
+  year = {2010},
+  keywords = {java,java native memory,memory footprint analysis,non-java memory},
+  pages = {191--204},
+  file = {/Users/luigi/work/zotero/storage/HECZXFUA/Ogata et al. - 2010 - A Study of Java's non-Java Memory.pdf}
+}
+
+@inproceedings{sunNativeGuardProtectingAndroid2014,
+  address = {New York, NY, USA},
+  series = {WiSec '14},
+  title = {{{NativeGuard}}: {{Protecting Android Applications}} from {{Third}}-Party {{Native Libraries}}},
+  isbn = {978-1-4503-2972-9},
+  shorttitle = {{{NativeGuard}}},
+  doi = {10.1145/2627393.2627396},
+  abstract = {Android applications often include third-party libraries written in native code. However, current native components are not well managed by Android's security architecture. We present NativeGuard, a security framework that isolates native libraries from other components in Android applications. Leveraging the process-based protection in Android, NativeGuard isolates native libraries of an Android application into a second application where unnecessary privileges are eliminated. NativeGuard requires neither modifications to Android nor access to the source code of an application. It addresses multiple technical issues to support various interfaces that Android provides to the native world. Experimental results demonstrate that our framework works well with a set of real-world applications, and incurs only modest overhead on benchmark programs.},
+  booktitle = {Proceedings of the 2014 {{ACM Conference}} on {{Security}} and {{Privacy}} in {{Wireless}} \& {{Mobile Networks}}},
+  publisher = {{ACM}},
+  author = {Sun, Mengtao and Tan, Gang},
+  year = {2014},
+  keywords = {android,java native interface,privilege isolation},
+  pages = {165--176},
+  file = {/Users/luigi/work/zotero/storage/TMVMV6SR/Sun and Tan - 2014 - NativeGuard Protecting Android Applications from .pdf}
+}
+
+@inproceedings{liFindingBugsExceptional2009,
+  address = {New York, NY, USA},
+  series = {CCS '09},
+  title = {Finding {{Bugs}} in {{Exceptional Situations}} of {{JNI Programs}}},
+  isbn = {978-1-60558-894-0},
+  doi = {10.1145/1653662.1653716},
+  abstract = {Software flaws in native methods may defeat Java's guarantees of safety and security. One common kind of flaws in native methods results from the discrepancy on how exceptions are handled in Java and in native methods. Unlike exceptions in Java, exceptions raised in the native code through the Java Native Interface (JNI) are not controlled by the Java Virtual Machine (JVM). Only after the native code finishes execution will the JVM's mechanism for exceptions take over. This discrepancy makes handling of JNI exceptions an error prone process and can cause serious security flaws in software written using the JNI. We propose a novel static analysis framework to examine exceptions and report errors in JNI programs. We have built a complete tool consisting of exception analysis, static taint analysis, and warning recovery. Experimental results demonstrated this tool allows finding of mishandling of exceptions with high accuracy (15.4\% false-positive rate on over 260k lines of code). Our framework can be easily applied to analyzing software written in other foreign function interfaces, including the Python/C interface and the OCaml/C interface.},
+  booktitle = {Proceedings of the 16th {{ACM Conference}} on {{Computer}} and {{Communications Security}}},
+  publisher = {{ACM}},
+  author = {Li, Siliang and Tan, Gang},
+  year = {2009},
+  keywords = {static analysis,java native interface,taint analysis},
+  pages = {442--452},
+  file = {/Users/luigi/work/zotero/storage/2BIIY6CS/Li and Tan - 2009 - Finding Bugs in Exceptional Situations of JNI Prog.pdf}
+}
+
+@incollection{krishnamurthiSynthesizingObjectorientedFunctional1998,
+  address = {Berlin, Heidelberg},
+  title = {Synthesizing Object-Oriented and Functional Design to Promote Re-Use},
+  volume = {1445},
+  isbn = {978-3-540-64737-9 978-3-540-69064-1},
+  abstract = {Many problems require recursively speci ed types of data and a collection of tools that operate on those data. Over time, these problems evolve so that the programmer must extend the toolkit or extend the types and adjust the existing tools accordingly. Ideally, this should be done without modifying existing code. Unfortunately, the prevailing program design strategies do not support both forms of extensibility: functional programming accommodates the addition of tools, while object-oriented programming supports either adding new tools or extending the data set, but not both. In this paper, we present a composite design pattern that synthesizes the best of both approaches and in the process resolves the tension between the two design strategies. We also show how this protocol suggests a new set of linguistic facilities for languages that support class systems.},
+  language = {en},
+  booktitle = {{{ECOOP}}'98 \textemdash{} {{Object}}-{{Oriented Programming}}},
+  publisher = {{Springer Berlin Heidelberg}},
+  author = {Krishnamurthi, Shriram and Felleisen, Matthias and Friedman, Daniel P.},
+  editor = {Goos, Gerhard and Hartmanis, Juris and {van Leeuwen}, Jan and Jul, Eric},
+  year = {1998},
+  pages = {91-113},
+  file = {/Users/luigi/work/zotero/storage/MJ9ZQEBY/Krishnamurthi et al. - 1998 - Synthesizing object-oriented and functional design.pdf},
+  doi = {10.1007/BFb0054088}
 }
 
 

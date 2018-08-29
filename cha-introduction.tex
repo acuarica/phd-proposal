@@ -56,24 +56,26 @@ This implies that downcasts provide the means to bypass the static type system.
 By avoiding the type system, downcasts can pose potential threats, because it is like the developer saying to the compiler: \emph{``Trust me here, I know what I'm doing''}.
 Being a escape-hatch to the type system, a cast is often seen as a design flaw or code smell~\cite{tufanoWhenWhyYour2015} in an object-oriented system.
 
-If static type systems aim to detect certain kind of errors earlier in the development process,
+If static type systems aim to prevent causing certain kind of errors at run-time,
 yet they provide the means to circumvent their constraints,
 why exactly does one need to do so?
-Are those mechanisms actually used in real-world code?
-This triggers our research question:
+Are these mechanisms actually used in real-world code?
+This triggers our \textbf{research question}:
 
 \rquestion{Why developers need to circumvent the static type system's constraints?}
 
+To answer it,
+we plan to empirically study how the two aforementioned mechanisms
+--- unsafe intrinsics and casting ---
+are used by developers.
 Since any kind of language study must be language-specific,
 our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
-We want to understand to what degree \java{}'s type system is useful.
-To that end,
-we plan to empirically study how the two aforementioned mechanisms
---- the Unsafe \api{} and casting ---
-are used by developers.
-We have devised (for the Unsafe \api{}) and we plan to devise (for casting) usage patterns.
-We believe that having usage patterns can help us to better categorize use cases and thus understanding how those features are actually used.
+We focus on the \java{} Unsafe API to study unsafe intrinsics.
+The Java Native Interface already has been studied in~\cite{tanSafeJavaNative2006,tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008a,sunNativeGuardProtectingAndroid2014,liFindingBugsExceptional2009}.
 
+We want to understand to what degree \java{}'s type system is useful.
+To that end, we have devised (for the Unsafe \api{}) and we plan to devise (for casting) usage patterns.
+We believe that having usage patterns can help us to better categorize use cases and thus understanding how those features are used.
 These patterns can provide an insight on how the language is being used by developers in real-world applications.
 We have confidence that this knowledge can be:
 \begin{inparaenum}[a)]
@@ -85,5 +87,5 @@ We have confidence that this knowledge can be:
 
 The rest of this proposal is organized as follows:
 Chapter~\ref{cha:literature-review} reviews the literature in the \emph{state-of-the-art} of the different aspects related to our goal.
-Chapter~\ref{cha:unsafe} summarizes the study we already made on the Unsafe \api{} in \java{}.
+Chapter~\ref{cha:unsafe} summarizes the study we already made on the Unsafe \api{} in \java{}~\cite{mastrangeloUseYourOwn2015}.
 Finally, Chapter \ref{cha:casts} presents our proposal plan for the \emph{casting} study, showing the results we have so far.

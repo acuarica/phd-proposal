@@ -51,7 +51,7 @@ We argue that it is more important to analyse projects that are \emph{representa
 \cite{gorlaCheckingAppBehavior2014} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage.
 Grechanik et. al.~\cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
 
-For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}.
+For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}\footnote{\url{http://central.sonatype.org/}}.
 \cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
 They made an empirical study to check how often the reflection \api{} is used in real-world code.
 They argue that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
@@ -184,7 +184,13 @@ The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framewo
 \label{sec:lr:casting}
 
 \cite{wintherGuardedTypePromotion2011} has implemented a path sensitive analysis that allows the developer to avoid casting once a guarded \code{instanceof} is provided.
+He proposes four cast categorizations according to their run-time type safety: \emph{Guarded Casts}, \emph{Semi-Guarded Casts}, \emph{Unguarded Casts}, and \emph{Safe Casts}.
+We propose (in Chapter \ref{cha:casts}) to refine this categorization, according to semantic patterns.
 
+\cite{livshitsImprovingSoftwareSecurity2006,livshitsReflectionAnalysisJava2005} ``describes an approach to call graph construction for \java{} programs in the presence of reflection.''
+He has devised some (seven) common usage patterns for reflection.
+Most of the patterns use casts.
+We plan to categorize all cast usages, not only where reflection is used.
 
 \subsection*{Controlled Experiments on Subjects}
 \label{sec:lr:experiments}
