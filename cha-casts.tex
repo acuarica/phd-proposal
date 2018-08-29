@@ -1,4 +1,7 @@
 
+\newcommand{\ctag}[1]{\textsl{#1}}
+\newcommand{\cpattern}[1]{\textsc{#1}}
+
 \chapter{Casting Operations in the Wild}
 \label{cha:casts}
 
@@ -72,7 +75,13 @@ was causing \code{checkcast}\footnote{\url{https://docs.oracle.com/javase/specs/
 instructions to be skipped.
 This bug was fixed in JDK 9, breaking Mockito answer strategies.
 
+We present here our partial results for the cast study.
+First we give an overview of the study in \S\ref{sec:casts:overview},
+while \S\ref{sec:casts:stats} gives an estimation of how often a cast operator is used.
+Finally, \S\ref{sec:casts:methodology} introduces the methodology we plan to use to discover cast usage patterns.
+
 \section{Overview of our Study}
+\label{sec:casts:overview}
 
 Our study tries to answer the following question: \emph{Why developers need to escape the type system?}
 The cast operator in \java{} provides the means to view a reference as a different type as it was defined.
@@ -103,13 +112,17 @@ Besides providing structural data for programs, \ie{}, ASTs, \ql{} has the abili
 To run our \ql{} queries, we have used the service provided by Semmle.\footnote{\url{https://lgtm.com/}} 
 
 \textbf{Projects.} 
-As a code base representative of the ``real world'', we have chosen open-source projects hosted in the most popular source code management repositories, \ie{}, \github{}\footnote{\url{https://github.com/}}, \gitlab{}\footnote{\url{https://gitlab.com/}}, \bitbucket{}\footnote{\url{https://bitbucket.org/}}.
-% We have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
+As a code base representative of the ``real world'',
+we have chosen open-source projects hosted in the most popular source code management repositories, \ie{},
+\github{}\footnote{\url{https://github.com/}},
+\gitlab{}\footnote{\url{https://gitlab.com/}},
+\bitbucket{}\footnote{\url{https://bitbucket.org/}}.
+We have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
 
 \textbf{Usage Pattern Detection.}
 After all cast instances are found, we analyze this information to discover usage patterns.
 \ql{} allows us to automatically categorize cast use cases into patterns.
-This methodology is described in section~\ref{sec:methodology}.
+This methodology is described in section~\ref{sec:casts:methodology}.
 
 It is common that a project exhibits more than one pattern.
 Our list of patterns is not exhaustive.
@@ -117,8 +130,7 @@ Due to the nature of the cast operator, some casts were uncategorized as they wo
 
 
 \section{Is the Cast Operator used?}
-
-\label{sec:stats}
+\label{sec:casts:stats}
 
 To answer \ref{enum:rq1} we want to know how many cast instances are used in a given project.
 To this end, we gather the following statistics using \ql{}.
@@ -169,12 +181,8 @@ The query to gather this statistics is available online.\footnote{\url{https://g
 The \lang{R} script to further analyze the query results is available online as well.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/stats.r}}
 
 
-
-
-
 \section{Finding Casts Usage Patterns}
-
-\label{sec:methodology}
+\label{sec:casts:methodology}
 
 To answer both research questions \ref{enum:rq2} and \ref{enum:rq3} we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
 As mentioned in section \ref{sec:stats}, \ql{} treats primitive conversions as casts.
@@ -212,23 +220,23 @@ The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acua
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, 
     text width=7em, text centered, rounded corners, minimum height=2em]
 \tikzstyle{line} = [draw, -latex']
-\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
-    minimum height=2em]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=4cm,
+    minimum height=2.9em]
 
 \begin{figure}[h]
 \centering
-\begin{tikzpicture}[node distance = 1.3cm, auto]
+\begin{tikzpicture}[node distance = 1.5cm, auto]
     % Place nodes
     \node [block] (run) {Run Query};
     \node [cloud, left of=run] (tags) {Tags};
     \node [cloud, right of=run] (patterns) {Patterns};
     \node [block, below of=run] (inspect) {Inspect Casts without Pattern};
     \node [decision, below of=inspect, node distance=1.6cm] (tag) {New Tag?};
-    \node [decision, below of=tag, node distance=1.8cm] (pattern) {New Pattern?};
-    \node [block, left of=tag, node distance=3cm] (update-tags) {Update Tags};
-    \node [block, right of=pattern, node distance=3cm] (update-pattern) {Update Patterns};
+    \node [decision, below of=tag, node distance=2.2cm] (pattern) {New Pattern?};
+    \node [block, left of=tag, node distance=4cm] (update-tags) {Update Tags};
+    \node [block, right of=pattern, node distance=4cm] (update-pattern) {Update Patterns};
     % \node [decision, below of=evaluate] (decide) {is best candidate better?};
-    \node [block, below of=pattern, node distance=1.5cm] (stop) {Stop};
+    \node [block, below of=pattern, node distance=1.9cm] (stop) {Stop};
     % Draw edges
     \path [line] (run) -- (inspect);
     % \path [line] (inspect) -- (evaluate);
@@ -246,17 +254,10 @@ The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acua
 \caption{Process to discover cast tags and patterns} \label{fig:process}
 \end{figure}
 
-% \definecolor{header-color}{HTML}{D1D1D1}
-% \definecolor{alt-row-color}{HTML}{ECECEC}
-
-% \newcommand{\hdr}{\rowcolor{header-color}}
-% \newcommand{\alt}{\rowcolor{alt-row-color}}
-% \newcommand{\row}{}
 % \begin{table*}[t!]
 % \centering
 % \caption{Cast tags used to discover cast patterns.}
 % \label{table:tags}
 % \input{table-tags.inc}
 % \end{table*}
-
 
