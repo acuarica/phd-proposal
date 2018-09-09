@@ -11939,4 +11939,111 @@ Experimental results using the tool and manually rewriting code show average spa
   file = {/Users/luigi/work/zotero/storage/Z5FIUELP/Tsantalis et al. - 2008 - JDeodorant Identification and Removal of Type-Che.pdf;/Users/luigi/work/zotero/storage/SLQVVJ7Q/4493342.html}
 }
 
+@article{tufanoWhenWhyYour2017,
+  title = {When and {{Why Your Code Starts}} to {{Smell Bad}} (and {{Whether}} the {{Smells Go Away}})},
+  volume = {43},
+  issn = {0098-5589, 1939-3520},
+  doi = {10.1109/TSE.2017.2653105},
+  abstract = {Technical debt is a metaphor introduced by Cunningham to indicate ``not quite right code which we postpone making it right''. One noticeable symptom of technical debt is represented by code smells, defined as symptoms of poor design and implementation choices. Previous studies showed the negative impact of code smells on the comprehensibility and maintainability of code. While the repercussions of smells on code quality have been empirically assessed, there is still only anecdotal evidence on when and why bad smells are introduced, what is their survivability, and how they are removed by developers. To empirically corroborate such anecdotal evidence, we conducted a large empirical study over the change history of 200 open source projects. This study required the development of a strategy to identify smell-introducing commits, the mining of over half a million of commits, and the manual analysis and classification of over 10K of them. Our findings mostly contradict common wisdom, showing that most of the smell instances are introduced when an artifact is created and not as a result of its evolution. At the same time, 80\% of smells survive in the system. Also, among the 20\% of removed instances, only 9\% are removed as a direct consequence of refactoring operations.},
+  language = {en},
+  number = {11},
+  journal = {IEEE Transactions on Software Engineering},
+  author = {Tufano, Michele and Palomba, Fabio and Bavota, Gabriele and Oliveto, Rocco and Penta, Massimiliano Di and De Lucia, Andrea and Poshyvanyk, Denys},
+  month = nov,
+  year = {2017},
+  pages = {1063-1088},
+  file = {/Users/luigi/work/zotero/storage/RCSXYBAB/Tufano et al. - 2017 - When and Why Your Code Starts to Smell Bad (and Wh.pdf}
+}
+
+@inproceedings{palombaDetectingBadSmells2013,
+  address = {Silicon Valley, CA, USA},
+  title = {Detecting Bad Smells in Source Code Using Change History Information},
+  isbn = {978-1-4799-0215-6},
+  doi = {10.1109/ASE.2013.6693086},
+  abstract = {Code smells represent symptoms of poor implementation choices. Previous studies found that these smells make source code more difficult to maintain, possibly also increasing its fault-proneness. There are several approaches that identify smells based on code analysis techniques. However, we observe that many code smells are intrinsically characterized by how code elements change over time. Thus, relying solely on structural information may not be sufficient to detect all the smells accurately.},
+  language = {en},
+  booktitle = {2013 28th {{IEEE}}/{{ACM International Conference}} on {{Automated Software Engineering}} ({{ASE}})},
+  publisher = {{IEEE}},
+  author = {Palomba, Fabio and Bavota, Gabriele and Di Penta, Massimiliano and Oliveto, Rocco and De Lucia, Andrea and Poshyvanyk, Denys},
+  month = nov,
+  year = {2013},
+  pages = {268-278},
+  file = {/Users/luigi/work/zotero/storage/HBG3G5I9/Palomba et al. - 2013 - Detecting bad smells in source code using change h.pdf}
+}
+
+@article{palombaTheyReallySmell,
+  title = {Do They {{Really Smell Bad}}? {{A Study}} on {{Developers}}' {{Perception}} of {{Code Bad Smells}}},
+  abstract = {In the last decade several catalogues have been defined to characterize code bad smells, i.e., symptoms of poor design and implementation choices. On top of such catalogues, researchers have defined methods and tools to automatically detect and/or remove bad smells. Nevertheless, there is an ongoing debate regarding the extent to which developers perceive bad smells as serious design problems. Indeed, there seems to be a gap between theory and practice, i.e., what is believed to be a problem (theory) and what is actually a problem (practice).},
+  language = {en},
+  author = {Palomba, Fabio and Bavota, Gabriele},
+  pages = {10},
+  file = {/Users/luigi/work/zotero/storage/58FNVZK9/Palomba and Bavota - Do they Really Smell Bad A Study on Developers’ P.pdf}
+}
+
+@article{palombaDiffusenessImpactMaintainability2018,
+  title = {On the Diffuseness and the Impact on Maintainability of Code Smells: A Large Scale Empirical Investigation},
+  volume = {23},
+  issn = {1573-7616},
+  shorttitle = {On the Diffuseness and the Impact on Maintainability of Code Smells},
+  doi = {10.1007/s10664-017-9535-z},
+  abstract = {Code smells are symptoms of poor design and implementation choices that may hinder code comprehensibility and maintainability. Despite the effort devoted by the research community in studying code smells, the extent to which code smells in software systems affect software maintainability remains still unclear. In this paper we present a large scale empirical investigation on the diffuseness of code smells and their impact on code change- and fault-proneness. The study was conducted across a total of 395 releases of 30 open source projects and considering 17,350 manually validated instances of 13 different code smell kinds. The results show that smells characterized by long and/or complex code (e.g., Complex Class) are highly diffused, and that smelly classes have a higher change- and fault-proneness than smell-free classes.},
+  language = {en},
+  number = {3},
+  journal = {Empirical Software Engineering},
+  author = {Palomba, Fabio and Bavota, Gabriele and Penta, Massimiliano Di and Fasano, Fausto and Oliveto, Rocco and Lucia, Andrea De},
+  month = jun,
+  year = {2018},
+  keywords = {Code smells,Empirical studies,Mining software repositories},
+  pages = {1188-1221},
+  file = {/Users/luigi/work/zotero/storage/Q6BGGVSL/Palomba et al. - 2018 - On the diffuseness and the impact on maintainabili.pdf}
+}
+
+@inproceedings{palombaLandfillOpenDataset2015,
+  title = {Landfill: {{An Open Dataset}} of {{Code Smells}} with {{Public Evaluation}}},
+  shorttitle = {Landfill},
+  doi = {10.1109/MSR.2015.69},
+  abstract = {Code smells are symptoms of poor design and implementation choices that may hinder code comprehension and possibly increase change- and fault-proneness of source code. Several techniques have been proposed in the literature for detecting code smells. These techniques are generally evaluated by comparing their accuracy on a set of detected candidate code smells against a manually-produced oracle. Unfortunately, such comprehensive sets of annotated code smells are not available in the literature with only few exceptions. In this paper we contribute (i) a dataset of 243 instances of five types of code smells identified from 20 open source software projects, (ii) a systematic procedure for validating code smell datasets, (iii) LANDFILL, a Web-based platform for sharing code smell datasets, and (iv) a set of APIs for programmatically accessing LANDFILL's contents. Anyone can contribute to Landfill by (i) improving existing datasets (e.g., Adding missing instances of code smells, flagging possibly incorrectly classified instances), and (ii) sharing and posting new datasets. Landfill is available at www.sesa.unisa.it/landfill/, while the video demonstrating its features in action is available at http://www.sesa.unisa.it/tools/landfill.jsp.},
+  booktitle = {2015 {{IEEE}}/{{ACM}} 12th {{Working Conference}} on {{Mining Software Repositories}}},
+  author = {Palomba, F. and Nucci, D. Di and Tufano, M. and Bavota, G. and Oliveto, R. and Poshyvanyk, D. and Lucia, A. De},
+  month = may,
+  year = {2015},
+  keywords = {Androids,Buildings,candidate code smells,History,Humanoid robots,Internet,LANDFILL,Manuals,open dataset,open source software projects,software engineering,Software systems,source code (software),systematic procedure,Web-based platform},
+  pages = {482-485},
+  file = {/Users/luigi/work/zotero/storage/HPAKNKJG/Palomba et al. - 2015 - Landfill An Open Dataset of Code Smells with Publ.pdf;/Users/luigi/work/zotero/storage/5S3KDBEG/7180123.html}
+}
+
+@article{palombaMiningVersionHistories2015,
+  title = {Mining {{Version Histories}} for {{Detecting Code Smells}}},
+  volume = {41},
+  issn = {0098-5589},
+  doi = {10.1109/TSE.2014.2372760},
+  abstract = {Code smells are symptoms of poor design and implementation choices that may hinder code comprehension, and possibly increase changeand fault-proneness. While most of the detection techniques just rely on structural information, many code smells are intrinsically characterized by how code elements change overtime. In this paper, we propose Historical Information for Smell deTection (HIST), an approach exploiting change history information to detect instances of five different code smells, namely Divergent Change, Shotgun Surgery, Parallel Inheritance, Blob, and Feature Envy. We evaluate HIST in two empirical studies. The first, conducted on 20 open source projects, aimed at assessing the accuracy of HIST in detecting instances of the code smells mentioned above. The results indicate that the precision of HIST ranges between 72 and 86 percent, and its recall ranges between 58 and 100 percent. Also, results of the first study indicate that HIST is able to identify code smells that cannot be identified by competitive approaches solely based on code analysis of a single system's snapshot. Then, we conducted a second study aimed at investigating to what extent the code smells detected by HIST (and by competitive code analysis techniques) reflect developers' perception of poor design and implementation choices. We involved 12 developers of four open source projects that recognized more than 75 percent of the code smell instances identified by HIST as actual design/implementation problems.},
+  number = {5},
+  journal = {IEEE Transactions on Software Engineering},
+  author = {Palomba, F. and Bavota, G. and Penta, M. D. and Oliveto, R. and Poshyvanyk, D. and Lucia, A. De},
+  month = may,
+  year = {2015},
+  keywords = {Accuracy,Association rules,blob,code analysis,code smell detection,Code smells,data mining,Detectors,divergent change,empirical studies,feature envy,Feature extraction,HIST,historical information for smell detection,History,mining software repositories,mining version history,open source project,parallel inheritance,program compilers,public domain software,shotgun surgery,single system snapshot,Surgery},
+  pages = {462-489},
+  file = {/Users/luigi/work/zotero/storage/AUZV6YWD/Palomba et al. - 2015 - Mining Version Histories for Detecting Code Smells.pdf;/Users/luigi/work/zotero/storage/IQNCJTN3/6963448.html}
+}
+
+@article{bavotaAreTestSmells2015,
+  title = {Are Test Smells Really Harmful? {{An}} Empirical Study},
+  volume = {20},
+  issn = {1573-7616},
+  shorttitle = {Are Test Smells Really Harmful?},
+  doi = {10.1007/s10664-014-9313-0},
+  abstract = {Bad code smells have been defined as indicators of potential problems in source code. Techniques to identify and mitigate bad code smells have been proposed and studied. Recently bad test code smells (test smells for short) have been put forward as a kind of bad code smell specific to tests such a unit tests. What has been missing is empirical investigation into the prevalence and impact of bad test code smells. Two studies aimed at providing this missing empirical data are presented. The first study finds that there is a high diffusion of test smells in both open source and industrial software systems with 86 \% of JUnit tests exhibiting at least one test smell and six tests having six distinct test smells. The second study provides evidence that test smells have a strong negative impact on program comprehension and maintenance. Highlights from this second study include the finding that comprehension is 30 \% better in the absence of test smells.},
+  language = {en},
+  number = {4},
+  journal = {Empirical Software Engineering},
+  author = {Bavota, Gabriele and Qusef, Abdallah and Oliveto, Rocco and De Lucia, Andrea and Binkley, Dave},
+  month = aug,
+  year = {2015},
+  keywords = {Controlled experiments,Mining software repositories,Test smells,Unit testing},
+  pages = {1052-1094},
+  file = {/Users/luigi/work/zotero/storage/TFQAL7FV/Bavota et al. - 2015 - Are test smells really harmful An empirical study.pdf}
+}
+
 

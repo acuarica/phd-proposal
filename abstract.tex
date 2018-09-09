@@ -4,17 +4,28 @@ The main goal of a static type system is to prevent certain kind of errors from 
 A type system is formulated as a set of constraints that gives any expression or term in a program a well-defined type.
 Yet they provide the means to circumvent their constraints through the \emph{unsafe intrinsics} and \emph{casting} mechanisms.
 
-We want to understand why and how developers need to circumvent these constraints.
+We want to understand how developers circumvent these constraints.
 To that end,
 we plan to empirically study how these two mechanisms
 --- unsafe intrinsics and casting ---
-are used by developers.
-Our study focus on how these features are used in \lang{Java},
-given its wide usage and relevance for both research and industry.
-
+are used by developers in \java{}.
+% Our study focus on how these features are used in \lang{Java}.
+% given its wide usage and relevance for both research and industry.
 We have devised (for the \java{}'s Unsafe \api{}) and we plan to devise (for casting) usage patterns.
 We believe that having usage patterns can help us to better categorize use cases and thus understanding how those features are used.
-These patterns can provide an insight on how the language is being used by developers in real-world applications.
+% These patterns can provide an insight on how the language is being used by developers in real-world applications.
+
+% We have confidence that
+This knowledge can be:
+\begin{inparaenum}[a)]
+\item useful to make informed decisions for current \& future language designers,
+% not only \java{},
+% \eg{}, the adoption of \emph{Variable Handles} in \java{} 9
+\item a reference for tool builders, \eg{}, by providing more precise or new refactoring analyses,
+\item a guide for researchers to test new language features, or to carry out programming controlled experiments, and
+\item a guide for developers for better practices.
+\end{inparaenum}
+}
 
 
 % item useful to make informed decisions for current \& future language designers, not only \java{},
@@ -32,5 +43,3 @@ These patterns can provide an insight on how the language is being used by devel
 % We give the rationale behind our decision on why we chose these features.
 % We plan to devise language and API usage patterns at large-scale to properly assess this broad audience.
 % We hope that having a better understanding on how these features are used, we can make informed decisions for these driving forces.
-
-}

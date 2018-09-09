@@ -87,7 +87,7 @@ Finally, \S\ref{sec:casts:methodology} introduces the methodology we plan to use
 \section{Overview of our Study}
 \label{sec:casts:overview}
 
-Our study tries to answer the following question: \emph{Why developers need to escape the type system?}
+Our proposal tries to answer the following question: \emph{Why developers need to escape the type system?}
 The cast operator in \java{} provides the means to view a reference as a different type as it was defined.
 Upcasts conversions are done automatically by the compiler.
 Nevertheless, if some situations a developer is forced to insert upcasts.
@@ -121,7 +121,8 @@ we have chosen open-source projects hosted in the most popular source code manag
 \github{}\footnote{\url{https://github.com/}},
 \gitlab{}\footnote{\url{https://gitlab.com/}},
 \bitbucket{}\footnote{\url{https://bitbucket.org/}}.
-We have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
+So far, we have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
+We plan to scale up our analysis to the whole \lgtm{} project database.
 
 \textbf{Usage Pattern Detection.}
 After all cast instances are found, we analyze this information to discover usage patterns.

@@ -59,6 +59,11 @@ They argue that controlled experiments on subjects need to be correlated with re
 \cite{dietrichBrokenPromisesEmpirical2014} have studied how changes in \api{} library impact in \java{} programs.
 Notice that they have used the Qualitas Corpus~\cite{temperoQualitasCorpusCurated2010} mentioned above for their study.
 
+\cite{tufanoWhenWhyYour2015,tufanoWhenWhyYour2017} studied when code smells are introduced in source code.
+\cite{palombaLandfillOpenDataset2015}
+contribute a dataset of five types of code smells together with a systematic procedure for validating code smell datasets.
+\cite{palombaDetectingBadSmells2013} propose to detect code smells using change history information.
+
 \subsection*{Exceptions}
 
 \cite{keryExaminingProgrammerPractices2016,asaduzzamanHowDevelopersUse2016} focus on exceptions.
@@ -141,7 +146,7 @@ At the time of this writing, the service\footnote{\url{http://www.spencer-t.raci
 
 \cite{bajracharyaSourcererInternetscaleSoftware2009} provide a tool to query large code bases by extracting the source code into a relational model.
 
-\sourcegraph{}\footnote{\url{https://sourcegraph.com}} is a tool that allows regular expression and diff searches.
+Sourcegraph\footnote{\url{https://sourcegraph.com}} is a tool that allows regular expression and diff searches.
 It integrates with source repositories.
 
 \section{Selecting Good Representatives}
@@ -181,6 +186,9 @@ It is a Java-in-Java virtual machine because is itself built in Java, a style of
 The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework.
 \cite{framptonDemystifyingMagicHighlevel2009} proposed \code{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
 
+The Java Native Interface already has been studied in~\cite{tanSafeJavaNative2006,tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008,sunNativeGuardProtectingAndroid2014,liFindingBugsExceptional2009}.
+
+
 \section{Casting}
 \label{sec:lr:casting}
 
@@ -193,6 +201,9 @@ He has devised some (seven) common usage patterns for reflection.
 Most of the patterns use casts.
 We plan to categorize all cast usages, not only where reflection is used.
 
+\cite{tsantalisJDeodorantIdentificationRemoval2008} present an Eclipse plug-in that identifies type-checking bad smells.
+They provide refactoring analysis to remove the detected smells.
+
 \subsection*{Controlled Experiments on Subjects}
 \label{sec:lr:experiments}
 
@@ -200,7 +211,7 @@ There is an extensive literature \perse{} in controlled experiments on subjects 
 For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand the how expert programmers face problem solving.
 \cite{buddTheoreticalEmpiricalStudies1980} made a empirical study on how effective is mutation testing.
 \cite{precheltEmpiricalComparisonSeven2000} compared how a given --- fixed --- task was implemented in several programming languages.
-
+%
 \cite{latozaDevelopersAskReachability2010} realize that, in essence, programmers need to answer reachability questions to understand large codebases.
 
 Several authors~\cite{stuchlikStaticVsDynamic2011,mayerEmpiricalStudyInfluence2012,harlinImpactUsingStaticType2017} measure whether using a static-type system improves programmers productivity.
@@ -215,5 +226,5 @@ They have examined programs written by students to understand real debugging con
 Their focus is on ill-typed programs written in \haskell{}.
 Unfortunately, these dataset does not correspond to real-world code. 
 
-Therefore, it is important to study how casts are used in real-world code. 
-This can led to informed decisions when designing these kind of experiments. 
+% Therefore, it is important to study how casts are used in real-world code. 
+% This can led to informed decisions when designing these kind of experiments. 
