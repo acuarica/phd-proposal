@@ -7,9 +7,13 @@
 
 A simple search for
 commits\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
-and
-issues\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
-including the term \code{ClassCastException} on \github{} returns \circa{} $150K$ and $72K$ results respectively.
+% and
+% issues\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
+including the term \code{ClassCastException} on \github{} returns \circa{} $150K$
+% and
+% $72K$
+results.
+% respectively.
 This indicates that casts represents a source of errors for developers.
 We have included here a few source code results.
 This illustrates the sort of problems developers have when applying casting conversions.
@@ -67,13 +71,13 @@ That is why the developer has only changed the type of the literal: from \code{l
 }
 \end{lstlisting}
 
-\textbf{Compiler Bug}
-One issue\footnote{\url{https://github.com/mockito/mockito/issues/357}} 
-shows bad things happen when abusing the type system.
-A bug in the \emph{javac} compiler\footnote{\url{https://bugs.openjdk.java.net/browse/JDK-8058199}}
-was causing \code{checkcast}\footnote{\url{https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html\#jvms-6.5.checkcast}}
-instructions to be skipped.
-This bug was fixed in JDK 9, breaking Mockito answer strategies.
+% \textbf{Compiler Bug}
+% One issue\footnote{\url{https://github.com/mockito/mockito/issues/357}} 
+% shows bad things happen when abusing the type system.
+% A bug in the \emph{javac} compiler\footnote{\url{https://bugs.openjdk.java.net/browse/JDK-8058199}}
+% was causing \code{checkcast}\footnote{\url{https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-6.html\#jvms-6.5.checkcast}}
+% instructions to be skipped.
+% This bug was fixed in JDK 9, breaking Mockito answer strategies.
 
 We present here our partial results for the cast study.
 First we give an overview of the study in \S\ref{sec:casts:overview},
@@ -92,7 +96,7 @@ In the case of downcasts, a check is inserted at run-time to verify that the con
 Therefore, we believe we should care about how the casting operations are used in the wild.
 Specifically, we want to answer the following research questions:
 
-\begin{enumerate}[label=$RQ\arabic*:$,ref=$RQ\arabic*$,leftmargin=3.4\parindent]
+\begin{enumerate}[label=$CRQ\arabic*:$,ref=$CRQ\arabic*$,leftmargin=3.4\parindent]
 \item\label{enum:rq1}{\bf Is casting used in common application code?}
 We want to understand to what extent application code actually uses casting operations.
 \item\label{enum:rq2}{\bf How and why casts are used?}
@@ -132,7 +136,7 @@ Due to the nature of the cast operator, some casts were uncategorized as they wo
 \section{Is the Cast Operator used?}
 \label{sec:casts:stats}
 
-To answer \ref{enum:rq1} we want to know how many cast instances are used in a given project.
+To answer \ref{casts:rq1} we want to know how many cast instances are used in a given project.
 To this end, we gather the following statistics using \ql{}.
 We show them here to give an estimation of the size of the code base being analized.
 
@@ -174,18 +178,18 @@ This means there is a low density of casts.
 Given the fact that generics were introduced \java{} 5, this can explain this low density.
 
 Nevertheless, casts are still used.
-We want to understand why there are casts instances (\ref{enum:rq2}) and how often the use cases that leads to casts are used (\ref{enum:rq3}).
+We want to understand why there are casts instances (\ref{casts:rq2}) and how often the use cases that leads to casts are used (\ref{casts:rq3}).
 The following sections give an answer to these questions.
 
-The query to gather this statistics is available online.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/stats.ql}}
-The \lang{R} script to further analyze the query results is available online as well.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/stats.r}}
+The query to gather this statistics is available online.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/ql/stats.ql}}
+The \lang{R} script to further analyze the query results is available online as well.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/analysis/stats.r}}
 
 
 \section{Finding Casts Usage Patterns}
 \label{sec:casts:methodology}
 
-To answer both research questions \ref{enum:rq2} and \ref{enum:rq3} we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
-As mentioned in section \ref{sec:stats}, \ql{} treats primitive conversions as casts.
+To answer both research questions \ref{casts:rq2} and \ref{casts:rq3} we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
+As mentioned in section \ref{sec:casts:stats}, \ql{} treats primitive conversions as casts.
 Thus, a preliminary step is to exclude them as cast instances.
 The following \ql{} query shows how to retrieve all relevant cast expressions:
 
@@ -213,7 +217,7 @@ We have formalize the structure of each pattern as a \ql{} predicate based on th
 Similarly with tags, after a new pattern is added, the query is run again to inspect the casts without pattern.
 To sum it up, our methodology iterates over the results until no patterns can be detected.
 % These patterns are presented in the following section.
-The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/casts.ql}}
+The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/ql/obs.ql}}
 
 \tikzstyle{decision} = [diamond, aspect=2, draw, fill=blue!20, 
     text width=6em, text badly centered, node distance=3cm, inner sep=0pt]
@@ -260,4 +264,6 @@ The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acua
 % \label{table:tags}
 % \input{table-tags.inc}
 % \end{table*}
+
+
 

@@ -36,12 +36,15 @@ We found that $25\%$ of \lang{Java} bytecode archives depend on unsafe third-par
 We identify $14$ different usage patterns of \java{}'s unsafe capabilities, and we provide supporting evidence for why real-world code needs these capabilities.
 Our long-term goal is to provide a foundation for the design of new language features to regain safety in \lang{Java}.
 
-We already have published our work on how developers use the \code{sun.misc.Unsafe} API.
+We have already published our work on how developers use the \code{sun.misc.Unsafe} API.
 For a detailed description of the methodology used to find patterns and the patterns we found please refer to~\cite{mastrangeloUseYourOwn2015}.
-In this proposal we present the overview of our study (\S\ref{sec:unsafe:overview}), followed by how the patterns we found could be implemented in a safer way (\S\ref{sec:unsafe:discussion}).
+In this proposal we present the answer to \ref{unsafe:rq1}
+in \S\ref{sec:unsafe:overview},
+followed by how the patterns we found could be implemented in a safer way \S\ref{sec:unsafe:discussion} in response to \ref{unsafe:rq2}.
 
 
-\section{Overview of Our Study}
+% \section{Overview of Our Study}
+\section{Is Unsafe Used?}
 \label{sec:unsafe:overview}
 
 We need to determine whether and how Unsafe is actually used in real-world third-party \java{} libraries,
@@ -51,19 +54,20 @@ To achieve our goal, several elements are needed.
 \textbf{Code Repository.}
 As a code base representative of the ``real world'',
 we have chosen the Maven Central software repository.
-The rationale behind this decision is that a large number of well-known \java{} projects deploy to Maven Central using Apache Maven.
-Besides code written in \java{}, projects written in \lang{Scala} are also deployed to Maven Central using the Scala Build Tool (sbt).
-Moreover, Maven Central is the largest Java repository\footnote{\url{http://www.modulecounts.com/}}
-, and it contains projects from the most popular source code management repositories, like \github{} and \sourceforge{}.
+% The rationale behind this decision is that a large number of well-known \java{} projects deploy to Maven Central using Apache Maven.
+% Besides code written in \java{}, projects written in \lang{Scala} are also deployed to Maven Central using the Scala Build Tool (sbt).
+% Moreover, Maven Central is the largest Java repository\footnote{\url{http://www.modulecounts.com/}}
+% , and it contains projects from the most popular source code management repositories, like \github{} and \sourceforge{}.
 
 \textbf{Artifacts.}
-In Maven terminology, an artifact is the output of the build procedure of a project.
-An artifact can be any type of file, ranging from a \emph{.pdf} to a \emph{.zip} file.
-However, artifacts are usually \emph{.jar} files,
+In Maven, an artifact is the output of the build procedure of a project.
+% An artifact can be any type of file, ranging from a \emph{.pdf} to a \emph{.zip} file.
+% However,
+Artifacts are usually \emph{.jar} files,
 which archive compiled \java{} bytecode stored in \emph{.class} files.
 
 \textbf{Bytecode Analysis.}
-We examine these kinds of artifacts to analyze how they use \code{sun.misc.\-Unsafe}.
+% We examine these kinds of artifacts to analyze how they use \code{sun.misc.\-Unsafe}.
 We use a bytecode analysis library to search for method call sites and field accesses of the \code{sun.misc.Unsafe} class.
 
 \textbf{Dependency Analysis.}
@@ -72,15 +76,35 @@ either directly or indirectly.
 This helps us to define the impact of artifacts that use \code{sun.misc.Unsafe},
 and thus the impact \code{sun.misc.Unsafe} has on real-world code overall.
 
-\textbf{Usage Pattern Detection.}
-After all call sites and field accesses are found,
-we analyze this information to discover usage patterns.
-It is common that an artifact exhibits more than one pattern.
-Our list of patterns is not exhaustive.
-We have manually investigated the source code of the 100 highest-impact artifacts using \code{sun.misc.Unsafe} to understand why and how they are using it.
+% \textbf{Usage Pattern Detection.}
+% After all call sites and field accesses are found,
+% we analyze this information to discover usage patterns.
+% It is common that an artifact exhibits more than one pattern.
+% Our list of patterns is not exhaustive.
+% We have manually investigated the source code of the 100 highest-impact artifacts using \code{sun.misc.Unsafe} to understand why and how they are using it.
 
 
-\section{Discussion}
+
+
+Our analysis found $48,490$ uses of \code{sun.misc.Unsafe} --- $48,139$ call sites and $351$ field accesses --- distributed over $817$ different artifacts.
+This initial result shows that Unsafe is indeed used in third-party code.
+
+We use the dependency information to determine the impact of the artifacts that use \code{sun.misc.Unsafe}.
+We rank all artifacts according to their impact (the number of artifacts that directly or indirectly depend on them).
+High-impact artifacts are important;
+a safety violation in them can affect any artifact that directly or indirectly depends on them.
+We find that while overall about $1\%$ of artifacts directly use Unsafe,
+for the top-ranked $1000$ artifacts, $3\%$ directly use Unsafe.
+Thus, Unsafe usage is particularly prevalent in high-impact artifacts, artifacts that can affect many other artifacts.
+
+Moreover, we found that $21,297$ artifacts ($47\%$ of the $47,127$ artifacts with dependency information, or $25\%$ of the $86,479$ artifacts we downloaded) directly or indirectly depend on \code{sun.misc.Unsafe}.
+Excluding language artifacts, numbers do not change much:
+Instead of $21,297$ artifacts, we found $19,173$ artifacts.
+$41\%$ of the artifacts with dependency information, or $22\%$ of artifacts downloaded.
+Thus, \code{sun.misc.Unsafe} usage in third-party code indeed impacts a large fraction of projects.
+
+
+\section{What is the Unsafe API Used for?}
 \label{sec:unsafe:discussion}
 
 Many of the patterns we found indicate that \unsafe{} is used to achieve 
@@ -112,7 +136,6 @@ implemented using reflection.
 A bullet (\exis) indicates that an
 alternative exists in the Java language or API. A check mark (\tick)
 indicates that there is a proposed alternative for Java.
-
 
 Many Java APIs already exist that provide functionality similar to \unsafe{}.
 Indeed, these APIs are often implemented using \unsafe{} under the hood, but 
@@ -151,10 +174,9 @@ However, the fences generated for volatile variables may be stronger (and
 therefore less performant) than are
 needed for a given application. Indeed, the \unsafe{} \smugroup{Put Ordered}
 and \smugroup{Fence} methods were likely introduced
-to improve performance versus volatile variables. There is currently a proposal
-for enhanced volatile support in the JVM
-(JEP 193 Enhanced Volatiles~\cite{jep193}).
-This proposal introduces \emph{variable handles}, which allow
+to improve performance versus volatile variables.
+% There is currently a proposal for enhanced volatile support in the JVM (JEP 193 Enhanced Volatiles~\cite{jep193}).
+The accepted proposal JEP 193 (Enhanced Volatiles~\cite{jep193}) introduces \emph{variable handles}, which allow
 atomic operations on fields and array elements.
 
 Many of the patterns can be implemented using the reflection API, albeit
@@ -214,15 +236,18 @@ the exceptions they throw, obviating the need for \unsafe{} in this case.
   debate\footnote{\url{http://www.ibm.com/developerworks/library/j-jtp05254/}} about the
   software-engineering benefits of checked exceptions.
 C\#, for instance, does not require that exceptions be declared in method signatures at all.
-One alternative not requiring a language change, proposed in a \stackoverflow
-discussion, is to use Java generics
-instead.\footnote{\url{http://stackoverflow.com/questions/11410042}} Because
-of type erasure, a checked exception can be coerced unsafely into an unchecked exception and thrown.
+One alternative not requiring a language change
+% , proposed in a \stackoverflow{} discussion,
+is to use Java generics
+instead.
+% \footnote{\url{http://stackoverflow.com/questions/11410042}}
+Because of type erasure, a checked exception can be coerced unsafely into an unchecked exception and thrown.
 
 Changing the language to support allocation without constructors or non-lexically-scoped monitors is feasible.
 However, implementation of these
 features must be done carefully to ensure object invariants
-are properly maintained. In particular, supporting arbitrary unconstructed
+are properly maintained.
+In particular, supporting arbitrary unconstructed
 objects can require type system changes to prevent usage of the object 
 before initialization~\cite{qiMaskedTypesSound2009}.
 Limiting the scope of this feature to support deserialization only may be a good compromise and
