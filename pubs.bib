@@ -11934,7 +11934,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Tsantalis, N. and Chaikalis, T. and Chatzigeorgiou, A.},
   month = apr,
   year = {2008},
-  keywords = {Eclipse plug-in,Employment,Gettering,Informatics,Java,Java source code,JDeodorant,Object oriented programming,polymorphism,Programming profession,refactorings,Runtime,software maintenance,Software maintenance,software quality,Software quality,source coding,Switches,type-checking bad smells},
+  keywords = {Java,Programming profession,Runtime,Software maintenance,software maintenance,Informatics,software quality,Software quality,polymorphism,Eclipse plug-in,Switches,Employment,Gettering,Java source code,JDeodorant,Object oriented programming,refactorings,source coding,type-checking bad smells},
   pages = {329-331},
   file = {/Users/luigi/work/zotero/storage/Z5FIUELP/Tsantalis et al. - 2008 - JDeodorant Identification and Removal of Type-Che.pdf;/Users/luigi/work/zotero/storage/SLQVVJ7Q/4493342.html}
 }
@@ -11993,7 +11993,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Palomba, Fabio and Bavota, Gabriele and Penta, Massimiliano Di and Fasano, Fausto and Oliveto, Rocco and Lucia, Andrea De},
   month = jun,
   year = {2018},
-  keywords = {Code smells,Empirical studies,Mining software repositories},
+  keywords = {Empirical studies,Code smells,Mining software repositories},
   pages = {1188-1221},
   file = {/Users/luigi/work/zotero/storage/Q6BGGVSL/Palomba et al. - 2018 - On the diffuseness and the impact on maintainabili.pdf}
 }
@@ -12007,7 +12007,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Palomba, F. and Nucci, D. Di and Tufano, M. and Bavota, G. and Oliveto, R. and Poshyvanyk, D. and Lucia, A. De},
   month = may,
   year = {2015},
-  keywords = {Androids,Buildings,candidate code smells,History,Humanoid robots,Internet,LANDFILL,Manuals,open dataset,open source software projects,software engineering,Software systems,source code (software),systematic procedure,Web-based platform},
+  keywords = {History,Buildings,software engineering,Internet,source code (software),Androids,Humanoid robots,Manuals,candidate code smells,LANDFILL,open dataset,open source software projects,Software systems,systematic procedure,Web-based platform},
   pages = {482-485},
   file = {/Users/luigi/work/zotero/storage/HPAKNKJG/Palomba et al. - 2015 - Landfill An Open Dataset of Code Smells with Publ.pdf;/Users/luigi/work/zotero/storage/5S3KDBEG/7180123.html}
 }
@@ -12044,6 +12044,52 @@ Experimental results using the tool and manually rewriting code show average spa
   keywords = {Controlled experiments,Mining software repositories,Test smells,Unit testing},
   pages = {1052-1094},
   file = {/Users/luigi/work/zotero/storage/TFQAL7FV/Bavota et al. - 2015 - Are test smells really harmful An empirical study.pdf}
+}
+
+@inproceedings{baxterCloneDetectionUsing1998,
+  address = {Bethesda, MD, USA},
+  title = {Clone Detection Using Abstract Syntax Trees},
+  isbn = {978-0-8186-8779-2},
+  doi = {10.1109/ICSM.1998.738528},
+  abstract = {Existing research suggests that a considerable fraction (5-10\%) of the source code of large-scale computer programs is duplicate code (``clones''). Detection and removal of such clones promises decreased software maintenance costs of possibly the same magnitude. Previous work was limited to detection of either nearmisses differing only in single lexems, or near misses only between complete functions. This paper presents simple and practical methods for detecting exact and near miss clones over arbitrary program fragments in program source code by using abstract syntax trees. Previous work also did not suggest practical means for removing detected clones. Since our methods operate in terms of the program structure, clones could be removed by mechanical methods producing in-lined procedures or standard preprocessor macros.},
+  language = {en},
+  booktitle = {Proceedings. {{International Conference}} on {{Software Maintenance}} ({{Cat}}. {{No}}. {{98CB36272}})},
+  publisher = {{IEEE Comput. Soc}},
+  author = {Baxter, I.D. and Yahin, A. and Moura, L. and Sant'Anna, M. and Bier, L.},
+  year = {1998},
+  pages = {368-377},
+  file = {/Users/luigi/work/zotero/storage/CV5ZFVVG/Baxter et al. - 1998 - Clone detection using abstract syntax trees.pdf}
+}
+
+@article{chenReplicationReproductionCode,
+  title = {A {{Replication}} and {{Reproduction}} of {{Code Clone Detection Studies}}},
+  abstract = {Code clones, fragments of code that are similar in some way, are regarded as costly. In order to understand the level of threat and opportunity of clones, we need to be able to efficiently detect clones in existing code. Recently, a new clone detection technique, CMCD, has been proposed. Our goal is to evaluate it and, if possible, improve on the original. We replicate the original study to evaluate the effectiveness of basic CMCD technique, improve it based on our experience with the replication, and apply it to a 43 open-source Java code from the Qualitas Corpus. We find the original technique is quite effective. Applying our improved technique we find that that 1 in 2 systems had at least 10\% cloned code, not counting the original, indicating that cloned code is quite common. We believe the CMCD technique provides a very promising means to support research into code clones.},
+  language = {en},
+  author = {Chen, Xiliang and Wang, Alice Yuchen and Tempero, Ewan},
+  pages = {10},
+  file = {/Users/luigi/work/zotero/storage/S5YLARIC/Chen et al. - A Replication and Reproduction of Code Clone Detec.pdf}
+}
+
+@inproceedings{yuanCMCDCountMatrix2011,
+  title = {{{CMCD}}: {{Count}} Matrix Based Code Clone Detection},
+  shorttitle = {{{CMCD}}},
+  doi = {10.1109/APSEC.2011.13},
+  abstract = {This paper introduces CMCD, a Count Matrix based technique to detect clones in program code. The key concept behind CMCD is Count Matrix, which is created while counting the occurrence frequencies of every variable in situations specified by pre-determined counting conditions. Because the characteristics of the count matrix do not change due to variable name replacements or even switching of statements, CMCD works well on many hard-to-detect code clones, such as swapping statements or deleting a few lines, which are dfficult for other state-of-the-art detection techniques. We have obtained the following interesting results using CMCD: (1) we successfully detected all 16 clone scenarios proposed by C. Roy et al., (2) we discovered two clone clusters with three copies each from 29 student-submitted compiler lab projects, (3) we identified 174 code clone clusters and a potential bug from JDK 1.6 source files.},
+  booktitle = {Proceedings - {{Asia}}-{{Pacific Software Engineering Conference}}, {{APSEC}}},
+  author = {Yuan, Yang and Guo, Yao},
+  month = dec,
+  year = {2011},
+  pages = {250-257},
+  file = {/Users/luigi/work/zotero/storage/MAKXIQ44/Yuan and Guo - 2011 - CMCD Count matrix based code clone detection.pdf}
+}
+
+@article{riegerVisualDetectionDuplicated,
+  title = {Visual {{Detection}} of {{Duplicated Code}}},
+  abstract = {Code duplication is considered as bad practice that complicates the maintenance and evolution of software. Detecting duplicated code is a difficult task because of the large amount of data to be checked and the fact that a priori it is unknown which code part has been duplicated. In this paper, we present a tool called DUPLOC that supports code duplication detection in a visual and exploratory or an automatic way.},
+  language = {en},
+  author = {Rieger, Matthias and Ducasse, Stephane},
+  pages = {6},
+  file = {/Users/luigi/work/zotero/storage/FR5BHYTG/Rieger and Ducasse - Visual Detection of Duplicated Code.pdf}
 }
 
 

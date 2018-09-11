@@ -48,9 +48,10 @@ Similar empirical studies were done for \php{}~\cite{hillsEmpiricalStudyPHP2013,
 
 Going one step forward, \cite{rayLargescaleStudyProgramming2017} studied the correlation between programming languages and defects. 
 One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
-We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}. 
+% We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
+
 \cite{gorlaCheckingAppBehavior2014} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage.
-Grechanik et. al.~\cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
+\cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
 
 For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}\footnote{\url{http://central.sonatype.org/}}.
 \cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
@@ -124,7 +125,7 @@ The most common being downloading, storing, parsing, analyzing and properly extr
 In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
 
 \cite{dyerBoaLanguageInfrastructure2013,dyerDeclarativeVisitorsEase2013} built \boa{}, both a domain-specific language and an online platform\footnote{\url{http://boa.cs.iastate.edu/}}. 
-It is used to query software repositories on two popular hosting services, \github \footnote{\url{https://github.com/}} and \sourceforge \footnote{\url{https://sourceforge.net/}}.
+It is used to query software repositories on two popular hosting services, \github{} and \sourceforge{}.
 The same authors of \boa{} made a study on how new features in \java{} were adopted by developers~\cite{dyerMiningBillionsAST2014} over time.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
@@ -137,17 +138,16 @@ It works by querying repositories from \github{}.
 But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
 Unlike \boa{}, \lgtm{} is based on \ql{} --- before named \emph{.QL} as mentioned in \S\ref{sec:lr:patterns} ---, an object-oriented domain-specific language to query recursive data structures~\cite{avgustinovQLObjectorientedQueries2016}.
 
-On top of \boa{},~\cite{tiwariCandoiaPlatformBuilding2017} built \candoia \footnote{\url{http://candoia.github.io/}}. 
-Although it is not a mining software repository \perse{}, it eases the creation of mining applications. 
+% On top of \boa{},~\cite{tiwariCandoiaPlatformBuilding2017} built \candoia \footnote{\url{http://candoia.github.io/}}. 
+% Although it is not a mining software repository \perse{}, it eases the creation of mining applications. 
 
 Another tool to analyze large software repositories is presented in~\cite{brandauerSpencerInteractiveHeap2017}.
 In this case, the analysis is dynamic, based on program traces. 
 At the time of this writing, the service\footnote{\url{http://www.spencer-t.racing/datasets}} was unavailable for testing. 
 
 \cite{bajracharyaSourcererInternetscaleSoftware2009} provide a tool to query large code bases by extracting the source code into a relational model.
-
 Sourcegraph\footnote{\url{https://sourcegraph.com}} is a tool that allows regular expression and diff searches.
-It integrates with source repositories.
+It integrates with source repositories to ease navigate software projects.
 
 \section{Selecting Good Representatives}
 \label{sec:lr:selection}
@@ -156,6 +156,10 @@ Another dimension to consider when analyzing large codebases, is how relevant th
 \cite{lopesDeJaVuMapCode2017} made a study to measure code duplication in \github{}.
 They found out that much of the code there is actually duplicated.
 This raises a flag when consider which projects analyze when doing mining software repositories.
+
+\cite{baxterCloneDetectionUsing1998} propose a clone detection algorithm using Abstract Syntax Trees,
+while \cite{riegerVisualDetectionDuplicated} propose a visual detection for clones.
+\cite{yuanCMCDCountMatrix2011,chenReplicationReproductionCode} instead propose Count Matrix-based approach to detect code clones.
 
 \cite{nagappanDiversitySoftwareEngineering2013} have developed the Software Projects Sampling (SPS) tool.
 SPS tries to find a maximal set of projects based on representativeness and diversity.
@@ -172,6 +176,7 @@ The survey consists of 7 questions\footnote{\url{http://www.infoq.com/news/2014/
 that help to understand what pieces of \smu{} should be mainstreamed.
 We go beyond Sandoz' work
 by performing a comprehensive study of the \mavencentral{} software repository to analyze how and why \smu{} is being used.
+This study is summarized in Chapter \ref{cha:unsafe}.
 
 Oracle provides the \smu{} class for low-level programming, e.g, synchronization primitives, direct memory access methods, array manipulation and memory usage.
 Although the \smu{} class is not officially documented, there is literature based on it.
@@ -186,7 +191,10 @@ It is a Java-in-Java virtual machine because is itself built in Java, a style of
 The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework.
 \cite{framptonDemystifyingMagicHighlevel2009} proposed \code{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
 
-The Java Native Interface already has been studied in~\cite{tanSafeJavaNative2006,tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008,sunNativeGuardProtectingAndroid2014,liFindingBugsExceptional2009}.
+\cite{tanSafeJavaNative2006} propose a safe variant of \jni{}.
+\cite{tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008} carried out an empirical security study to describe a taxonomy to classify bugs when using JNI.
+\cite{sunNativeGuardProtectingAndroid2014} develop a method to isolate native components in Android applications.
+\cite{liFindingBugsExceptional2009} analyze the discrepancy between how exceptions are handled in native code and \java{}.
 
 
 \section{Casting}
@@ -194,19 +202,19 @@ The Java Native Interface already has been studied in~\cite{tanSafeJavaNative200
 
 \cite{wintherGuardedTypePromotion2011} has implemented a path sensitive analysis that allows the developer to avoid casting once a guarded \code{instanceof} is provided.
 He proposes four cast categorizations according to their run-time type safety: \emph{Guarded Casts}, \emph{Semi-Guarded Casts}, \emph{Unguarded Casts}, and \emph{Safe Casts}.
-We propose (in Chapter \ref{cha:casts}) to refine this categorization, according to semantic patterns.
+In Chapter \ref{cha:casts}, we propose to refine this categorization according to semantic patterns.
 
 \cite{livshitsImprovingSoftwareSecurity2006,livshitsReflectionAnalysisJava2005} ``describes an approach to call graph construction for \java{} programs in the presence of reflection.''
-He has devised some (seven) common usage patterns for reflection.
+He has devised some common usage patterns for reflection.
 Most of the patterns use casts.
 We plan to categorize all cast usages, not only where reflection is used.
 
 \cite{tsantalisJDeodorantIdentificationRemoval2008} present an Eclipse plug-in that identifies type-checking bad smells.
 They provide refactoring analysis to remove the detected smells.
 
+% \textbf{Controlled Experiments on Subjects.}
 \subsection*{Controlled Experiments on Subjects}
-\label{sec:lr:experiments}
-
+% \label{sec:lr:experiments}
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
 For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand the how expert programmers face problem solving.
 \cite{buddTheoreticalEmpiricalStudies1980} made a empirical study on how effective is mutation testing.
