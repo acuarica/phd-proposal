@@ -4,7 +4,6 @@ pages:
   script:
     - latexmk -pdf -bibtex phd-proposal.tex
     - cp phd-proposal.pdf public/
-    - cp phd-proposal.pdf public/phd-proposal-`git tag --list | tail -n 1`.pdf
   artifacts:
     paths:
       - public/phd-proposal.pdf
