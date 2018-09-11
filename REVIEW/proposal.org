@@ -71,23 +71,7 @@ When reflection and metaprogramming can be used.
 Related Work
 
 * DRAFT Literature Review <<cha:literature-review>> :patterns:
-:LOGBOOK:
-- State "DRAFT"      from              [2017-12-10 Sun 17:33] \\
-  let's start
-:END:
 
-Understanding how language features and \api{}s are being used is a broad topic.
-There is plenty of research in computer science literature about empirical studies of programs; which involves several directions directly or indirecly related.
-Along the last decades, researchers always has been interested in understanding what kind of programs programmers write.
-The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has shifted to the needs of researchers.
-
-The organization of this chapter is as follows:
-In \S{}[[sec:compilers-writers]] we present empirical studies regarding compilers writers.
-How benchmarks and corpuses relate to this kind of studies is presented in \S{}[[sec:benchmarks]].
-\S[[sec:large-scale]] gives an overview of other large-scale studies either in \java{} or in other languages.
-Related to our cast study, in \S{}[[sec:controlled-experiments]] we show studies on how static type systems impact on programmers productivity.
-Code Patterns discovery is presented in \S{}[[sec:pattern-discovery]].
-Finally, \S{}[[sec:msr]] gives an overview of what tools are available to extract information from a software repository, while \S{}[[sec:selection]] of how to select good candidates projects.
 
 cite:meyerovich_empirical_2013
 

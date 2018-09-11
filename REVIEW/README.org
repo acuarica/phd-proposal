@@ -246,49 +246,9 @@ Might impose a problem,
 What are related problem?
 Why do we care?
 
-* DRAFT Study Overview
-:LOGBOOK:
-- State "DRAFT"      from              [2018-01-19 Fri 13:46] \\
-  Imported
-:END:
-<<sec:studyoverview>>
 
-We believe we should care about how the casting operations are used in the wild if we want to properly support empirical studies related to static type systems.
-Therefore, we want to answer the following questions: 
  
-- $Q1:$ :: *Are casting operations used in common application code?* 
-We want to understand to what extent third-party code actually uses casting operations. 
  
-- $Q2:$ :: *Which features of  are used?* 
-As provides many features, we want to understand which ones are actually used, and which ones can be ignored. 
- 
-- $Q3:$ :: *Why are features used?* 
-We want to investigate what functionality third-party libraries require from. 
-This could point out ways in which the \java{} language and/or the \jvm{} need to be evolved to provide the same functionality, but in a safer way.   
- 
-To answer the above questions, we need to determine whether and how casting operations are actually used in real-world third-party \java{} libraries. 
-To achieve our goal, several elements are needed. 
- 
-*Code Repository.* 
-As a code base representative of the ``real world'', we have chosen the \mavencentral [fn::http://central.sonatype.org/] software repository. 
-The rationale behind this decision is that a large number of well-known \java{} projects deploy to \mavencentral{} using Apache Maven[fn::http://maven.apache.org/]. 
-Besides code written in \java{}, projects written in \scala{} are also deployed to \mavencentral{} using the Scala Build Tool (sbt)[fn::http://www.scala-sbt.org/]. 
-Moreover, \mavencentral{} is the largest \java{} repository[fn::http://www.modulecounts.com/], and it contains projects from the most popular source code management repositories, like \github [fn::https://github.com/] and \sourceforge [fn::http://sourceforge.net/]. 
- 
-*Artifacts.* 
-In Maven terminology, an artifact is the output of the build procedure of a project. 
-An artifact can be any type of file, ranging from a \ext{pdf} to a \ext{zip} file. 
-However, artifacts are usually \ext{jar} files, which archive compiled \java{} bytecode stored in \ext{class} files. 
- 
-*Bytecode Analysis.* 
-We examine these kinds of artifacts to analyze how they use casting operations. 
-We use a bytecode analysis library to search for method call sites and field accesses of the \smu{} class. 
- 
-*Usage Pattern Detection.* 
-After all call sites and field accesses are found, we analyze this information to discover usage patterns. 
-It is common that an artifact exhibits more than one pattern. 
-Our list of patterns is not exhaustive.  
-We have manually investigated the source code of the 100 highest-impact artifacts using \smu{} to understand why and how they are using it. 
 
 * DRAFT Are they casts operator used?
 :LOGBOOK:

@@ -111,17 +111,23 @@ To achieve our goal, several elements are needed.
 \textbf{Source Code Analysis.}
 We have implemented our study using the \ql{} query language:
 ``a declarative, object-oriented logic programming language for querying complex, potentially recursive data structures encoded in a relational data model''~\cite{avgustinovQLObjectorientedQueries2016}.
-\ql{} allows us to analyze programs at the source code level by abstracting the code sources into a relational data model.
+\ql{} allows us to analyze programs at the source code level by abstracting the code sources into a Datalog model.
 Besides providing structural data for programs, \ie{}, ASTs, \ql{} has the ability to query static types and data-flow analysis.
 To run our \ql{} queries, we have used the service provided by Semmle.\footnote{\url{https://lgtm.com/}} 
 
 \textbf{Projects.} 
 As a code base representative of the ``real world'',
-we have chosen open-source projects hosted in the most popular source code management repositories, \ie{},
-\github{}\footnote{\url{https://github.com/}},
-\gitlab{}\footnote{\url{https://gitlab.com/}},
-\bitbucket{}\footnote{\url{https://bitbucket.org/}}.
-So far, we have analyzed \nproject{} \java{} projects hosted in \lgtm{}.
+we have chosen open-source projects hosted in 
+\github{},
+the world-most popular source code management repository.
+% , \ie{},
+% \github{},
+%\footnote{\url{https://github.com/}},
+% \gitlab{},
+%\footnote{\url{https://gitlab.com/}},
+% \bitbucket{},
+%\footnote{\url{https://bitbucket.org/}}.
+So far, we have analyzed \nproject{} \java{} projects in \lgtm{}.
 We plan to scale up our analysis to the whole \lgtm{} project database.
 
 \textbf{Usage Pattern Detection.}
