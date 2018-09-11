@@ -1,0 +1,11 @@
+
+pages:
+  image: tianon/latex
+  script:
+    - latexmk -pdf -bibtex phd-proposal.tex
+    - cp phd-proposal.pdf public/
+  artifacts:
+    paths:
+      - public/phd-proposal.pdf
+  only:
+    - master
