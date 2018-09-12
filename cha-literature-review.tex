@@ -54,9 +54,6 @@ One important note is that they choose relevant project by popularity, measured 
 \cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
 
 For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}\footnote{\url{http://central.sonatype.org/}}.
-\cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
-They made an empirical study to check how often the reflection \api{} is used in real-world code.
-They argue that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
 \cite{dietrichBrokenPromisesEmpirical2014} have studied how changes in \api{} library impact in \java{} programs.
 Notice that they have used the Qualitas Corpus~\cite{temperoQualitasCorpusCurated2010} mentioned above for their study.
 
@@ -204,13 +201,19 @@ The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framewo
 He proposes four cast categorizations according to their run-time type safety: \emph{Guarded Casts}, \emph{Semi-Guarded Casts}, \emph{Unguarded Casts}, and \emph{Safe Casts}.
 In Chapter \ref{cha:casts}, we propose to refine this categorization according to semantic patterns.
 
+\cite{tsantalisJDeodorantIdentificationRemoval2008} present an Eclipse plug-in that identifies type-checking bad smells.
+They provide refactoring analysis to remove the detected smells.
+
 \cite{livshitsImprovingSoftwareSecurity2006,livshitsReflectionAnalysisJava2005} ``describes an approach to call graph construction for \java{} programs in the presence of reflection.''
 He has devised some common usage patterns for reflection.
 Most of the patterns use casts.
 We plan to categorize all cast usages, not only where reflection is used.
 
-\cite{tsantalisJDeodorantIdentificationRemoval2008} present an Eclipse plug-in that identifies type-checking bad smells.
-They provide refactoring analysis to remove the detected smells.
+\cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
+They made an empirical study to check how often the reflection \api{} is used in real-world code.
+They have devised reflection AST patterns, which often involve the use of casts.
+Finally, they argue that programming controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
+
 
 % \textbf{Controlled Experiments on Subjects.}
 \subsection*{Controlled Experiments on Subjects}
@@ -232,7 +235,7 @@ Having artificial problems may lead to invalid conclusions.
 The work by~\cite{wuHowTypeErrors2017,wuLearningUserFriendly2017} goes towards this direction. 
 They have examined programs written by students to understand real debugging conditions. 
 Their focus is on ill-typed programs written in \haskell{}.
-Unfortunately, these dataset does not correspond to real-world code. 
 
+% Unfortunately, these dataset does not correspond to real-world code.
 % Therefore, it is important to study how casts are used in real-world code. 
 % This can led to informed decisions when designing these kind of experiments. 

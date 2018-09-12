@@ -2,8 +2,7 @@
 pages:
   image: tianon/latex
   script:
-    - latexmk -pdf -bibtex phd-proposal.tex
-    - cp phd-proposal.pdf public/
+    - latexmk -pdf -bibtex phd-proposal.tex -output-directory=public/
   artifacts:
     paths:
       - public/phd-proposal.pdf
