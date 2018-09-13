@@ -9,7 +9,10 @@ Thus, any program not satisfying the constraints stated within a type system is 
 
 Nevertheless, often the static approximation provided by a type system is not precise enough.
 Being static, the analysis done by the type-checker needs to be conservative:
-It is preferably to reject programs that are valid, but their validity cannot be ensured by the type-checker,
+It is
+% REVIEW: underline
+\cancel{preferably}
+to reject programs that are valid, but their validity cannot be ensured by the type-checker,
 rather than accept some invalid programs.
 However, there are situations when the developer has more information about the program that is too complex to explain in terms of the typing constraints.
 To that end, programming languages often provide \emph{mechanisms} that 
@@ -73,11 +76,13 @@ This triggers our \textbf{main research question}:
 
 % \rquestion{Are there \emph{unexpected usages of language features} in-the-wild that can give new insights to language designers, tools builders, researchers and developers?}
 % \rquestion{How do developers circumvent the static type system's constraints?}
-\rquestion{What do developers circumvent the static type system's constraints for?}
+% \rquestion{What do developers circumvent the static type system's constraints for?}
+% DONE: New research question
+\rquestion{For what purpose do developers circumvent static type systems?}
 
-% TODO: REMOVE THIS SENTENCE ON JAVA.
+% DONE: Remove this sentence on Java.
+% We want to understand to what degree \java{}'s type system is useful.
 % TODO: ADD examples with other languages
-We want to understand to what degree \java{}'s type system is useful.
 We have confidence that this knowledge can be:
 \begin{inparaenum}[a)]
 \item useful to make informed decisions for current \& future language designers,
@@ -88,33 +93,43 @@ We have confidence that this knowledge can be:
 \item a guide for developers for best or better practices.
 \end{inparaenum}
 
-\section{Proposal Plan}
+% DONE: Change section "Proposal Plan" -> "Plan"
+\section{Plan}
 
 To answer our question above,
 we plan to empirically study how the two aforementioned mechanisms
 --- unsafe intrinsics and casting ---
 are used by developers.
 Since any kind of language study must be language-specific,
-our plan is to focus on \java{} given its wide usage and relevance for both research and industry.
+our plan is to focus on \java{} given its wide usage and relevance for both
+% DONE: Cite Tiobe ,... (PS / PF2 slides)
+research and industry.\footnote{\url{https://www.tiobe.com/tiobe-index/}}
 Moreover, we focus on the \java{} Unsafe API to study unsafe intrinsics,
 given than the Java Native Interface already has been studied in~\cite{tanSafeJavaNative2006,tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008,sunNativeGuardProtectingAndroid2014,liFindingBugsExceptional2009}.
 In Chapter~\ref{cha:literature-review} we give a review of the literature in empirical studies of programming languages features.
 Sections~\ref{sec:lr:unsafe} and~\ref{sec:lr:casting} reviews the \emph{state-of-the-art} of the different aspects related to the two proposed studies.
 
-To better drive our \emph{main research question}, we propose to answer the following set of research sub-questions.
-To answer these research sub-questions, we already have devised (for the Unsafe \api{}) and we plan to devise (for casting) usage patterns.
+To better drive our \emph{main research question},
+we propose to answer the following set of research sub-questions.
+To answer these research sub-questions,
+we already have devised (for the Unsafe \api{}) and
+we plan to devise (for casting)
+% REVIEW: underline
+\underline{usage patterns}.
 We believe that having usage patterns can help us to better categorize use cases and thus understanding how those mechanisms are used.
 These patterns can provide an insight on how the language is being used by developers in real-world applications.
 Overall these sub-questions will help us to answer our MRQ:
 
-\textbf{Unsafe API.}
+% TODO: Make this subsection.
+\textbf{\todo{Make this subsection} Unsafe API.}
 \begin{enumerate}[label=$URQ\arabic*:$,ref=$URQ\arabic*$,leftmargin=3.4\parindent]
 \item\label{unsafe:rq1}
 {\bf Does Unsafe impact common application code?}
 We want to understand to what extent third-party code actually uses Unsafe.
 
+% REVIEW: Why underlined
 \item\label{unsafe:rq2}
-{\bf Why are Unsafe features used?}
+{\bf \underline{Why} are Unsafe features used?}
 We want to investigate what functionality third-party libraries require from Unsafe.
 This could point out ways in which the \java{} language and/or the JVM need to be evolved to provide the same functionality, but in a safer way.
 \end{enumerate}
@@ -122,14 +137,15 @@ This could point out ways in which the \java{} language and/or the JVM need to b
 These questions have been already answered in our previous published study on the Unsafe API in \java{}~\cite{mastrangeloUseYourOwn2015}.
 In Chapter~\ref{cha:unsafe} we present a summary of this study.
 
-\textbf{Casting.}
+% TODO: Make this subsection.
+\textbf{\todo{Make this subsection} Casting.}
 \begin{enumerate}[label=$CRQ\arabic*:$,ref=$CRQ\arabic*$,leftmargin=3.4\parindent]
 \item\label{casts:rq1}
 {\bf Is casting used in common application code?}
 We want to understand to what extent application code actually uses casting operations.
 
 \item\label{casts:rq2}
-{\bf How and why casts are used?}
+{\bf How and \underline{why} casts are used?}
 If casts are actually used in application code,
 we want to know how and why developers need to escape the type system.
 
@@ -139,10 +155,8 @@ In addition to understand how and why casts are used,
 we want to measure how often developers need to resort to certain idioms to solve a particular problem.
 \end{enumerate}
 
-
-
-
-
-Finally, in Chapter \ref{cha:casts} we present our proposal plan for the \emph{casting} study, showing the results we have so far.
+Finally, in Chapter \ref{cha:casts} we present our
+% TODO: strikeout proposal
+\cancel{proposal} plan for the \emph{casting} study, showing the results we have so far.
 
 % The rest of this proposal is organized as follows:

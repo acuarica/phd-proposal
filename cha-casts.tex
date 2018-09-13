@@ -1,4 +1,7 @@
 
+
+% TODO: Third example, explain better
+
 \newcommand{\ctag}[1]{\textsl{#1}}
 \newcommand{\cpattern}[1]{\textsc{#1}}
 
@@ -14,7 +17,8 @@ including the term \code{ClassCastException} on \github{} returns \circa{} $150K
 % $72K$
 results.
 % respectively.
-We have included here a few source code results.
+We have included here
+\todo{a few source code results -> Are these really the best motivating/illustrative examples?}.
 This illustrates the sort of problems developers have when applying casting conversions.
 To easily spot what the developer has changed to fix the \code{ClassCastException},
 we present each source code excerpt using the Git commit \emph{diff} as reported by \github{}.
@@ -56,7 +60,8 @@ But the developer has used the outer --- wrong --- class to cast to.
 \textbf{Generic Type Inference Mismatch.}
 In the following listing\footnote{\url{https://github.com/ethereum/ethereumj/commit/224e65b9b4ddcb46198a6f8faf69edc65d34d382}}
 the \code{getProperty} method obtains a dynamic property. If it founds a value, returns it. Otherwise, returns the default value (second argument).
-In this case, the property \code{"peer.p2p.pingInterval"} has type \code{int}.
+\todo{In this case -> I don't see the cast here},
+the property \code{"peer.p2p.pingInterval"} has type \code{int}.
 But the return type of \code{getProperty} is a generic type inferred by the type of the default value, \code{long}.
 That is why the developer has only changed the type of the literal: from \code{long} to \code{int}.
 
@@ -87,7 +92,8 @@ Finally, \S\ref{sec:casts:methodology} introduces the methodology we plan to use
 \section{Overview of our Study}
 \label{sec:casts:overview}
 
-Our proposal tries to answer the following question: \emph{Why developers need to escape the type system?}
+\todo{Our proposal tries -> We propose to}
+to answer the following question: \emph{\todo{Why} developers need to escape the type system?}
 The cast operator in \java{} provides the means to view a reference as a different type as it was defined.
 Upcasts conversions are done automatically by the compiler.
 Nevertheless, if some situations a developer is forced to insert upcasts.
@@ -97,7 +103,7 @@ Therefore, we believe we should care about how the casting operations are used i
 Specifically, we want to answer the following research questions:
 
 \begin{enumerate}[label=$CRQ\arabic*:$,ref=$CRQ\arabic*$,leftmargin=3.4\parindent]
-\item\label{enum:rq1}{\bf Is casting used in common application code?}
+\item\label{enum:rq1}{\bf \todo{Is -> How frequently} casting used in common application code?}
 We want to understand to what extent application code actually uses casting operations.
 \item\label{enum:rq2}{\bf How and why casts are used?}
 If casts are actually used in application code, we want to know how and why developers need to escape the type system.
@@ -105,7 +111,10 @@ If casts are actually used in application code, we want to know how and why deve
 In addition to understand how and why casts are used, we want to measure how often developers need to resort to certain idioms to solve a particular problem.
 \end{enumerate}
 
-To answer the above questions, we need to determine whether and how casting operations are actually used in real-world third-party \java{} applications.
+To answer the above questions,
+we need to determine whether and how casting operations are actually used in real-world
+\cancel{third-party}
+\java{} applications.
 To achieve our goal, several elements are needed.
 
 \textbf{Source Code Analysis.}
@@ -135,7 +144,7 @@ After all cast instances are found, we analyze this information to discover usag
 \ql{} allows us to automatically categorize cast use cases into patterns.
 This methodology is described in section~\ref{sec:casts:methodology}.
 
-It is common that a project exhibits more than one pattern.
+\todo{It is common that a project exhibits more than one pattern -> Weird statement}.
 Our list of patterns is not exhaustive.
 Due to the nature of the cast operator, some casts were uncategorized as they would need a whole program analysis, \eg{}, including libraries in the analysis.
 
