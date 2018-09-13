@@ -61,7 +61,7 @@
   to: }
 \typeout{*** Domenico Bianculli <domenico.bianculli@usi.ch>}
 %%% package loading
-\LoadClass[a4paper,11pt,twoside,onecolumn,final,openright,titlepage]{book}
+\LoadClass[a4paper,11pt,twoside,onecolumn,final,openany,titlepage]{book}
 %%% main code
 
 %font settings
