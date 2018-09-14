@@ -102,7 +102,7 @@ Thus, Unsafe usage is particularly prevalent in high-impact artifacts, artifacts
 
 Moreover, we found that $21,297$ artifacts ($47\%$ of the $47,127$ artifacts with dependency information, or $25\%$ of the $86,479$ artifacts we downloaded) directly or indirectly depend on \code{sun.misc.Unsafe}.
 Excluding language artifacts, numbers do not change much:
-Instead of $21,297$ artifacts, we found $19,173$ artifacts.
+Instead of $21,297$ artifacts, we found $19,173$ artifacts,
 $41\%$ of the artifacts with dependency information, or $22\%$ of artifacts downloaded.
 Thus, \code{sun.misc.Unsafe} usage in third-party code indeed impacts a large fraction of projects.
 
@@ -181,6 +181,7 @@ to improve performance versus volatile variables.
 The accepted proposal JEP 193 (Enhanced Volatiles~\cite{jep193}) introduces \emph{variable handles}, which allow
 atomic operations on fields and array elements.
 
+\marginpar{\todo{How many of these proposals have been adopted since 2015?}}
 Many of the patterns can be implemented using the reflection API, albeit
 with lower performance than with \unsafe{}~\cite{korlandNoninvasiveConcurrencyJava2010}.
 For example,

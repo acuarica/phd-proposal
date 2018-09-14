@@ -20,22 +20,28 @@
 \label{cha:literature-review}
 
 Understanding how developers use language features and \api{}s is a broad topic.
-There is plenty of research in computer science literature about empirical studies of programs;
-which involves several directions directly or indirectly related to our topic.
-Along the last decades, researchers always has been interested in understanding what kind of programs developers write.
+There is plenty of research in
+\todo{the}
+computer science literature about empirical studies of programs\todo{; -> grammar}
+\underline{which involves several directions directly or indirectly} related to our topic.
+\underline{Along} the last decades, researchers always ha\todo{s -> ve} been interested in understanding what kind of programs developers write.
 The motivation behind these studies is quite broad and --- together with the evolution of computer science itself --- has
 \todo{?}
-shifted to the needs of researchers.
+shifted \todo{to} the needs of researchers.
 
-For instance, already~\cite{knuthEmpiricalStudyFORTRAN1971} started to study \fortran{} programs.
-By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammondBASICEvaluationProcessing1977} has studied a representative dataset of programs.
-Adding to Knuth's work, \cite{shenEmpiricalStudyFortran1990} made an empirical study for parallelizing compilers.
+For instance, \cancel{already}~\cite{knuthEmpiricalStudyFORTRAN1971} started to study \fortran{} programs.
+By knowing what kind of programs arise in practice,
+a compiler optimizer can focus in those cases,
+and therefore can be more effective.
+\marginpar{\todo{Basic, move earlier}}
+Alternatively, to measure the advantages between compilation and interpretation in \basic{}, \cite{hammondBASICEvaluationProcessing1977} \cancel{has} studied a representative dataset of programs.
+Adding to Knuth's work, \cite{shenEmpiricalStudyFortran1990} \todo{made} an empirical study for parallelizing compilers.
 Similar works have been done for \cobol{}~\cite{salvadoriStaticProfileCOBOL1975,chevanceStaticProfileDynamic1978}, \pascal{}~\cite{cookContextualAnalysisPascal1982}, and \apl{}~\cite{saalPropertiesAPLPrograms1975,saalEmpiricalStudyAPL1977} programs. 
 \todo{At least add a statement here acknowledging all the MSR work.}
+\marginpar{\todo{Nothing after 1990?}}
 
 The organization of the rest of this chapter is as follows: 
-How benchmarks and corpora relate to this kind of studies is presented in \S\ref{sec:lr:benchmarks}.
+How benchmarks and corpora relate to this kind of stud\todo{ies->y} is presented in \S\ref{sec:lr:benchmarks}.
 In \S\ref{sec:lr:largescale} we give an overview of other large-scale studies either in \java{} or in other languages.
 Code Patterns discovery is presented in \S\ref{sec:lr:patterns}.
 An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining},
@@ -47,9 +53,11 @@ Finally in \S\ref{sec:lr:unsafe} and \S\ref{sec:lr:casting} we present the relat
 \section{Benchmarks and Corpora}
 \label{sec:lr:benchmarks}
 
+\marginpar{OOPSLA'17 code duplicates in GitHub}
+\marginpar{SPEC, etc}
 Benchmarks are crucial to properly evaluate and measure product development.
 This is key for both research and industry.
-One popular benchmark suite for \java{} is DaCapo~\cite{blackburnDaCapoBenchmarksJava2006}.
+One popular benchmark suite for \java{} is \todo{the} DaCapo~\citep{blackburnDaCapoBenchmarksJava2006}.
 This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
 
 Another suite has been developed by~\cite{temperoQualitasCorpusCurated2010}.
@@ -60,24 +68,28 @@ This allows any researcher to experiment with both static and dynamic analysis.
 For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
 Along these lines, \cite{allamanisMiningSourceCode2013} go one step further and provide a large-scale (14,807) curated corpus of open source \java{} projects.
 \todo{Acknowledge here that open source repositories, while not curated corpora, are very commonly used (might be a forward pointer, but necessary here)}
+\marginpar{\todo{Some discussion of the representativeness of the corpora}}
 
 \section{Large-scale Codebase Empirical Studies}
 \label{sec:lr:largescale}
 
-In the same direction to our plan, \cite{callauHowWhyDevelopers2013} performed an empirical study to assess how much the dynamic and reflective features of \smalltalk{} are actually used in practice.
+In the same direction as our plan, \cite{callauHowWhyDevelopers2013} performed an empirical study to assess how much the dynamic and reflective features of \smalltalk{} are actually used in practice.
 Analogously, \cite{richardsAnalysisDynamicBehavior2010,richardsEvalThatMen2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \code{eval} function. 
 Also for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed how fields are accessed via strings, while~\cite{jangEmpiricalStudyPrivacyviolating2010} analyzed privacy violations. 
 Similar empirical studies were done for \php{}~\cite{hillsEmpiricalStudyPHP2013,dahseExperienceReportEmpirical2015,doyleEmpiricalStudyEvolution2011} and \swift{}~\cite{reboucasEmpiricalStudyUsage2016}.  
 
 Going one step forward, \cite{rayLargescaleStudyProgramming2017} studied the correlation between programming languages and defects. 
-One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
+One important note is that they choose relevant project\todo{s} by popularity,
+\underline{measured} \emph{stars} in \github{}.
+\todo{Why is this important?}
 % We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
 
 \cite{gorlaCheckingAppBehavior2014} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage.
 \cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
 
 For \java{},~\cite{dietrichContractsWildStudy2017a} made a study about how programmers use contracts in \mavencentral{}\footnote{\url{http://central.sonatype.org/}}.
-\cite{dietrichBrokenPromisesEmpirical2014} have studied how changes in \api{} library impact in \java{} programs.
+\cite{dietrichBrokenPromisesEmpirical2014} have studied how changes \underline{in} \api{} library impact \underline{in} \java{} programs.
+\marginpar{\todo{Avoid "note that", "notice that"}}
 Notice that they have used the Qualitas Corpus~\cite{temperoQualitasCorpusCurated2010} mentioned above for their study.
 
 \cite{tufanoWhenWhyYour2015,tufanoWhenWhyYour2017} studied when code smells are introduced in source code.
@@ -89,7 +101,7 @@ contribute a dataset of five types of code smells together with a systematic pro
 
 \cite{keryExaminingProgrammerPractices2016,asaduzzamanHowDevelopersUse2016} focus on exceptions.
 They made empirical studies on how programmers handle exceptions in \java{} code.
-The work done by~\cite{nakshatriAnalysisExceptionHandling2016} categorized them in patterns.
+The work done by~\cite{nakshatriAnalysisExceptionHandling2016} categorized them in\todo{to} patterns.
 \cancel{Whether}
 \cite{coelhoUnveilingExceptionHandling2015} used a more dynamic approach by analysing stack traces and code issues in \github{}.
 
@@ -97,14 +109,18 @@ The work done by~\cite{nakshatriAnalysisExceptionHandling2016} categorized them 
 unchecked exceptions cause most of the exceptions in
 Android applications.
 
-\subsection*{Functional Programming Features}
+\subsection*{\cancel{Functional} Programming \todo{Language} Features}
 
 \todo{Instead of this, add an intro sentence motivating this section by connecting it to your focus on type safety (if possible).
 Generics is not just a functional language feature, no?}
 Programming language design has been always a hot topic in computer science literature.
 It has been extensively studied in the past decades.
 \cancel{For instance,}
-there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg, lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}}, \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}}; or parametric polymorphism --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
+there is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg,
+lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}},
+\cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and
+\cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}};
+or \underline{parametric polymorphism} \todo{not strictly functional}  --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
 
 \cite{mazinanianUnderstandingUseLambda2017} and \cite{uesbeckEmpiricalStudyImpact2016} studied how developers use lambdas in \java{} and \cpp{} respectively.
 The inclusion of generics in \java{} is closely related to collections. 
@@ -121,22 +137,26 @@ This kind of studies give an insight of the adoption of lambdas and generics; wh
 \section{Code Patterns Discovery \todo{Body of this section seems to be on tools, not on pattern discovery}}
 \label{sec:lr:patterns}
 
-\cite{posnettTHEXMiningMetapatterns2010} have extended \asm{}~\cite{brunetonASMCodeManipulation2002,kuleshovUsingASMFramework2007} to implement symbolic execution and recognize call sites.
+\cite{posnettTHEXMiningMetapatterns2010} have extended \asm{}~\citep{brunetonASMCodeManipulation2002,kuleshovUsingASMFramework2007} to implement symbolic execution and recognize call sites.
 However, this is only a meta-pattern detector, and not a pattern discovery.\todo{Why?}
+\marginpar{\todo{What's a pattern?}}
 \cite{huDynamicAnalysisDesign2008} used both dynamic and static analysis to discover design patterns, while \cite{arcelliDesignPatternDetection2008} used only dynamic.
 
+\marginpar{\todo{Redundant}}
+\marginpar{\todo{Why is Rascal relevant?}}
 Trying to unify analysis and transformation tools~\cite{vinjuHowMakeBridge2006}, \cite{klintRASCALDomainSpecific2009} built \rascal, a DSL that aims to bring them together.
 
 As mentioned above, \cite{dietrichContractsWildStudy2017a} \todo{made a study} about how programmers use contracts in \mavencentral{}.
-For their analysis\footnote{\url{https://bitbucket.org/jensdietrich/contractstudy}}, they have use JavaParser\footnote{\url{http://javaparser.org/}}.
-The main issue with JavaParser is the lack to do symbol resolution integrated with the project dependencies.
+For their analysis\footnote{\url{https://bitbucket.org/jensdietrich/contractstudy}},
+they \cancel{have} use\todo{d} JavaParser\footnote{\url{http://javaparser.org/}}.
+The main issue with JavaParser is the lack \underline{\todo{to do}} symbol resolution integrated with the project dependencies.
 
 \cite{urmaProgrammingLanguageEvolution2012} evaluates seven source code query languages\footnote{\url{https://wiki.openjdk.java.net/display/Compiler/Java+Corpus+Tools}}:
 \emph{Java Tools Language} \cite{cohenJTLJavaTools},
 \emph{Browse-By-Query} \footnote{\url{http://browsebyquery.sourceforge.net/}},
 \emph{SOUL} \cite{derooverSOULToolSuite2011},
 \emph{JQuery} \cite{volderJqueryGenericCode2006},
-\emph{.QL} \cite{moorKeynoteAddressQL2007},
+\emph{.QL} \cite{moorKeynoteAddressQL2007} \todo{Fix citation},
 \emph{Jackpot} \footnote{\url{http://wiki.netbeans.org/Jackpot}}, and
 \emph{PMD} \footnote{\url{https://pmd.github.io/}}.
 They have implemented --- whenever possible --- four use cases using the tools mentioned above.
@@ -145,7 +165,10 @@ They concluded that only \emph{SOUL} and \emph{.QL} have the minimal features to
 \section{Tools for Mining Software Repositories}
 \label{sec:lr:mining}
 
-When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories. 
+When talking about mining software repositories,
+\marginpar{too general}
+\marginpar{Should be statistical information?}
+we refer to \underline{extracting any kind} of information from large-scale codebase repositories. 
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
 In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
@@ -184,7 +207,8 @@ It integrates with source repositories to ease navigate software projects.
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 \cite{lopesDeJaVuMapCode2017} \todo{made a study} to measure code duplication in \github{}.
 They found out that much of the code there is actually duplicated.
-This raises a flag when consider which projects analyze when doing mining software repositories.
+This raises a flag when consider\todo{ing} which projects \todo{to} analyze when \cancel{doing} mining software repositories.
+\marginpar{\todo{Related to Lopes}}
 
 \cite{baxterCloneDetectionUsing1998} propose a clone detection algorithm using Abstract Syntax Trees,
 \todo{How do clones fit in this section?}
@@ -193,7 +217,9 @@ while \cite{riegerVisualDetectionDuplicated} propose a visual detection for clon
 
 \cite{nagappanDiversitySoftwareEngineering2013} have developed the Software Projects Sampling (SPS) tool.
 SPS tries to find a maximal set of projects based on representativeness and diversity.
-Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
+Diversity dimensions considered include total lines of code,
+project age, activity, and \underline{of the last 12 months}\todo{?}, number of contributors, total code churn, and number of commits.
+\marginpar{Move to 2.1}
 
 
 \section{Unsafe API}
@@ -202,8 +228,8 @@ Diversity dimensions considered include total lines of code, project age, activi
 Oracle software engineer Paul Sandoz 
 performed
 \todo{some -> an}
-informal analysis of Maven artifacts and usages in Grepcode~\cite{sandoz-personal-communication}
-and conducted a survey to study how \unsafe{} is used~\cite{psandoz14}.
+informal analysis of Maven artifacts and usages in Grepcode~\citep{sandoz-personal-communication}
+and conducted a \todo{unscientific user} survey to study how \unsafe{} is used~\citep{psandoz14}.
 The survey consists of 7 questions\footnote{\url{http://www.infoq.com/news/2014/02/Unsafe-Survey}} 
 that help to understand what pieces of \smu{} should be mainstreamed.
 \todo{We go -> Sounds wrong here. This wording fits in a paper, not a proposal.}
@@ -215,6 +241,8 @@ by performing a comprehensive study of the \mavencentral{} software repository t
 Although the \smu{} class is not officially documented,
 \todo{there is literature based on it -> Who cares that there is literature. Motivate the contents of that literature by putting a better glue sentence here.}.
 
+\marginpar{Relevant?}
+\marginpar{These are users of Unsafe, not studies of it}
 \cite{korlandNoninvasiveConcurrencyJava2010} presented a Java STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms.
 They chose to use \smu{} to implement fast reflection, as it proved to be vastly more efficient than the standard Java reflection mechanisms.
 \cite{pukallFlexibleDynamicSoftware} introduced a runtime update approach based on Java that offers flexible dynamic software updates with minimal performance overhead.
@@ -258,7 +286,7 @@ Finally, they argue that programming controlled experiments on subjects need to 
 \subsection*{Controlled Experiments on Subjects \todo{Shouldn't that 2.8?}}
 % \label{sec:lr:experiments}
 There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
-For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand the how expert programmers face problem solving.
+For instance, \cite{solowayEmpiricalStudiesProgramming1984} tried to understand \cancel{the} how expert programmers face problem solving.
 \cite{buddTheoreticalEmpiricalStudies1980} made a empirical study on how effective is mutation testing.
 \cite{precheltEmpiricalComparisonSeven2000} compared how a given --- fixed --- task was implemented in several programming languages.
 %
