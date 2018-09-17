@@ -41,16 +41,19 @@ Our long-term goal is to provide a foundation for the design of new language fea
 
 We have already published our work on how developers use the \code{sun.misc.Unsafe} API.
 For a detailed description of the methodology used to find patterns and the patterns we found please refer to~\cite{mastrangeloUseYourOwn2015}.
-In this proposal we present the answer to \ref{unsafe:rq1}
+% In this proposal 
+Here we answer \ref{unsafe:rq1}
 in \S\ref{sec:unsafe:overview},
-followed by how the patterns we found could be implemented in a safer way \S\ref{sec:unsafe:discussion} in response to \ref{unsafe:rq2}.
+followed by how the patterns we found could be implemented in a safer way \S\ref{sec:unsafe:discussion}
+in response to \ref{unsafe:rq2}.
 
 
 % \section{Overview of Our Study}
 \section{Is Unsafe Used?}
 \label{sec:unsafe:overview}
 
-We need to determine whether and how Unsafe is actually used in real-world third-party \java{} libraries,
+To answer~\ref{unsafe:rq1} (\emph{\urqA})
+we need to determine whether and how Unsafe is actually used in real-world third-party \java{} libraries,
 and to what degree real-world applications directly and indirectly depend on such unsafe libraries.
 To achieve our goal, several elements are needed.
 
@@ -110,7 +113,8 @@ Thus, \code{sun.misc.Unsafe} usage in third-party code indeed impacts a large fr
 \section{What is the Unsafe API Used for?}
 \label{sec:unsafe:discussion}
 
-Many of the patterns we found indicate that \unsafe{} is used to achieve 
+In response to \ref{unsafe:rq2} (\emph{\urqB}),
+many of the patterns we found indicate that \unsafe{} is used to achieve 
 better performance or to implement functionality not otherwise available in the \java{} language or standard library.
 
 However, many of the patterns described can be implemented using APIs
@@ -178,12 +182,13 @@ Indeed, the \unsafe{} \smugroup{Put Ordered}
 and \smugroup{Fence} methods were likely introduced
 to improve performance versus volatile variables.
 % There is currently a proposal for enhanced volatile support in the JVM (JEP 193 Enhanced Volatiles~\cite{jep193}).
-The accepted proposal JEP 193 (Enhanced Volatiles~\cite{jep193}) introduces \emph{variable handles}, which allow
+The accepted proposal JEP 193 (Enhanced Volatiles~\citep{jep193}) introduces \emph{variable handles}, which allow
 atomic operations on fields and array elements.
 
-\marginpar{\todo{How many of these proposals have been adopted since 2015?}}
-Many of the patterns can be implemented using the reflection API, albeit
-with lower performance than with \unsafe{}~\cite{korlandNoninvasiveConcurrencyJava2010}.
+% DONE: How many of these proposals have been adopted since 2015? For the thesis.
+
+Many of the patterns can be implemented using the reflection API,
+albeit with lower performance than with \unsafe{}~\citep{korlandNoninvasiveConcurrencyJava2010}.
 For example,
 reflection can be used for accessing object fields to implement serialization.
 Similarly, reflection can be used
@@ -193,8 +198,7 @@ data marshaling.
 The reflection API can also be used to write to final fields.
 However, this feature of the reflection API 
 makes sense only during deserialization or during object construction and may have
-unpredictable behavior in other
-cases.
+unpredictable behavior in other cases.
 
 % \footnote{\url{http://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Field.html\#set(java.lang.Object,\%20java.lang.Object)}}
 
@@ -208,13 +212,14 @@ Using \code{struct}s or packed objects can reduce memory overhead by eliminating
 \java{} has no native support for \code{struct}s,
 but they can be implemented with byte buffers or with \jni{}.\footnote{\url{http://www.oracle.com/technetwork/java/jvmls2013sciam-2013525.pdf}}
 
-The Arrays 2.0 proposal~\cite{arrays20} and the value types proposal~\cite{valuetypes} address the large arrays pattern.
-Project Sumatra~\cite{layouts} proposes features for accessing GPUs
+The Arrays 2.0 proposal~\citep{arrays20} and
+the value types proposal~\citep{valuetypes} address the large arrays pattern.
+Project Sumatra~\citep{layouts} proposes features for accessing GPUs
 and other accelerators,
 one of the use cases for foreign data access.
-Related proposals include JEP 191~\cite{jep191},
+Related proposals include JEP 191~\citep{jep191},
 which proposes a new foreign function interface for \java{},
-and Project Panama~\cite{panama}, which supports native data access from the \jvm{}.
+and Project Panama~\citep{panama}, which supports native data access from the \jvm{}.
 
 A \member{sizeof} feature could be introduced into the language or into the standard library.
 A use case for this feature includes cache management implementations.
@@ -242,7 +247,7 @@ features must be done carefully to ensure object invariants
 are properly maintained.
 In particular, supporting arbitrary unconstructed
 objects can require type system changes to prevent usage of the object 
-before initialization~\cite{qiMaskedTypesSound2009}.
+before initialization~\citep{qiMaskedTypesSound2009}.
 Limiting the scope of this feature to support deserialization only may be a good compromise and
 has been suggested in the JEP 187 Serialization 2.0 proposal.
 
@@ -253,4 +258,4 @@ eliminating the motivation to use \unsafe{} to process byte arrays.
 Many patterns use \unsafe{} to use memory more efficiently.
 This could be ameliorated with lower GC overhead.
 There are proposals for this, for instance JEP 189 Shenandoah:
-Low Pause GC~\cite{jep189}.
+Low Pause GC~\citep{jep189}.
