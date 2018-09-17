@@ -1,6 +1,7 @@
 
 
 % TODO: made a study -> conducted a study
+% TODO: Avoid "note that", "notice that"
 
 % TODO:
 % Static vs. Dynamic analysis in the literature review
@@ -97,20 +98,22 @@ project age, activity, and \underline{of the last 12 months}\todo{?}, number of 
 \section{Tools for Mining Software Repositories}
 \label{sec:lr:mining}
 
+% DONE: Too general, should be statistical information?
 When talking about mining software repositories,
-\marginpar{too general}
-\marginpar{Should be statistical information?}
-we refer to \underline{extracting any kind} of information from large-scale codebase repositories. 
+we refer to extracting any kind of information from large-scale codebase repositories. 
 Usually doing so requires several engineering but challenging tasks.
 The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
 In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
 
+% DONE: Which features? Any relevant for your work?
 \cite{dyerBoaLanguageInfrastructure2013,dyerDeclarativeVisitorsEase2013} built \boa{}, both a domain-specific language and an online platform\footnote{\url{http://boa.cs.iastate.edu/}}. 
 It is used to query software repositories on two popular hosting services, \github{} and \sourceforge{}.
 The same authors of \boa{} conducted a study on
-how new features
-\todo{Which features? Any relevant for your work?}
-in \java{} were adopted by developers~\cite{dyerMiningBillionsAST2014} over time.
+how new \java{} features, \eg,
+\emph{Assertions},
+\emph{Enhanced-For Loop},
+\emph{Extends Wildcard},
+were adopted by developers over time~\citep{dyerMiningBillionsAST2014}.
 This study is based \sourceforge{} data.
 The current problem with \sourceforge{} is that is outdated.
 
@@ -143,7 +146,7 @@ However, this is only a meta-pattern detector, and not a pattern discovery.\todo
 
 \marginpar{\todo{Redundant}}
 \marginpar{\todo{Why is Rascal relevant?}}
-Trying to unify analysis and transformation tools~\cite{vinjuHowMakeBridge2006}, \cite{klintRASCALDomainSpecific2009} built \rascal, a DSL that aims to bring them together.
+Trying to unify analysis and transformation tools,~\cite{vinjuHowMakeBridge2006}, \cite{klintRASCALDomainSpecific2009} built \rascal, a DSL that aims to bring them together.
 
 As mentioned above,
 \cite{dietrichContractsWildStudy2017a} conducted a study about how programmers use contracts in \mavencentral{}.
@@ -151,14 +154,15 @@ For their analysis\footnote{\url{https://bitbucket.org/jensdietrich/contractstud
 they used JavaParser\footnote{\url{http://javaparser.org/}}.
 The main issue with JavaParser is the lack to do symbol resolution integrated with the project dependencies.
 
+% DONE: Fix .QL citation
 \cite{urmaProgrammingLanguageEvolution2012} evaluated seven source code query languages\footnote{\url{https://wiki.openjdk.java.net/display/Compiler/Java+Corpus+Tools}}:
-\emph{Java Tools Language} \cite{cohenJTLJavaTools},
-\emph{Browse-By-Query} \footnote{\url{http://browsebyquery.sourceforge.net/}},
-\emph{SOUL} \cite{derooverSOULToolSuite2011},
-\emph{JQuery} \cite{volderJqueryGenericCode2006},
-\emph{.QL} \cite{moorKeynoteAddressQL2007} \todo{Fix citation},
-\emph{Jackpot} \footnote{\url{http://wiki.netbeans.org/Jackpot}}, and
-\emph{PMD} \footnote{\url{https://pmd.github.io/}}.
+\emph{Java Tools Language} \citep{cohenJTLJavaTools},
+\emph{Browse-By-Query}\footnote{\url{http://browsebyquery.sourceforge.net/}},
+\emph{SOUL} \citep{derooverSOULToolSuite2011},
+\emph{JQuery} \citep{volderJqueryGenericCode2006},
+\emph{.QL} \citep{moorKeynoteAddressQL2007},
+\emph{Jackpot}\footnote{\url{http://wiki.netbeans.org/Jackpot}}, and
+\emph{PMD}\footnote{\url{https://pmd.github.io/}}.
 They have implemented --- whenever possible --- four use cases using the tools mentioned above.
 They concluded that only \emph{SOUL} and \emph{.QL} have the minimal features to implement all their use cases.
 
@@ -184,7 +188,6 @@ For \java{},~\cite{dietrichContractsWildStudy2017a} conducted a study
 about how programmers use contracts in \mavencentral{}\footnote{\url{http://central.sonatype.org/}}.
 \cite{dietrichBrokenPromisesEmpirical2014} have studied how
 \api{} changes impact \java{} programs.
-\marginpar{\todo{Avoid "note that", "notice that"}}
 They have used the Qualitas Corpus~\citep{temperoQualitasCorpusCurated2010} mentioned above for their study.
 
 \cite{tufanoWhenWhyYour2015,tufanoWhenWhyYour2017} studied when code smells are introduced in source code.
@@ -220,39 +223,48 @@ The inclusion of generics in \java{} is closely related to collections.
 \cite{parninJavaGenericsAdoption2011,parninAdoptionUseJava2013} studied how generics were adopted by \java{} developers.
 They found that the use of generics do not significantly reduce the number of type casts.
 
-\cite{costaEmpiricalStudyUsage2017} have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
-They have found
-\cancel{out}
-that in most cases there is an alternative usage that improves performance.
+\cite{costaEmpiricalStudyUsage2017} have mined \github{} corpus to study the use and performance of collections,
+and how these usages can be improved.
+They found that in most cases there is an alternative usage that
+improves performance.
 
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
 \subsection*{Unsafe API}
 \label{sec:lr:unsafe}
 
+% DONE: This paragraph should go first, no? 
+Oracle provides the \smu{} class for low-level programming,
+\eg, synchronization primitives, direct memory access methods,
+array manipulation and memory usage.
+Although the \smu{} class is not officially documented,
+it is being used in industrial applications outside the JDK, compromising the safety of the \java{} ecosystem.
+
 Oracle software engineer Paul Sandoz performed an informal analysis of
 Maven artifacts and usages in Grepcode~\citep{sandoz-personal-communication}
 and conducted a unscientific user survey to study how \unsafe{} is used~\citep{psandoz14}.
 The survey consists of 7 questions\footnote{\url{http://www.infoq.com/news/2014/02/Unsafe-Survey}} 
 that help to understand what pieces of \smu{} should be mainstreamed.
-\todo{We go -> Sounds wrong here. This wording fits in a paper, not a proposal.}
-beyond Sandoz' work
-by performing a comprehensive study of the \mavencentral{} software repository to analyze how and why \smu{} is being used.
+% DONE: Sounds wrong here. This wording fits in a paper, not a proposal.
+In our work~\citep{mastrangeloUseYourOwn2015} we extend Sandoz' work
+by performing a comprehensive study of the \mavencentral{}
+software repository to analyze how and when \smu{} is being used.
 This study is summarized in Chapter \ref{cha:unsafe}.
 
-\todo{Oracle provides -> This para should go first, no?} the \smu{} class for low-level programming, e.g, synchronization primitives, direct memory access methods, array manipulation and memory usage.
-Although the \smu{} class is not officially documented,
-\todo{there is literature based on it -> Who cares that there is literature. Motivate the contents of that literature by putting a better glue sentence here.}.
+% TODO: Who cares that there is literature. Motivate the contents of that literature by putting a better glue sentence here..
+% TODO: Relevant? These are users of Unsafe, not studies of it
 
-\marginpar{Relevant?}
-\marginpar{These are users of Unsafe, not studies of it}
-\cite{korlandNoninvasiveConcurrencyJava2010} presented a Java STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms.
-They chose to use \smu{} to implement fast reflection, as it proved to be vastly more efficient than the standard Java reflection mechanisms.
+The use of \smu{} is not limited to industrial applications.
+Researchers have used \smu{} as well.
+\cite{korlandNoninvasiveConcurrencyJava2010} presented a \java{} STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms.
+They chose to use \smu{} to implement fast reflection,
+as it proved to be vastly more efficient than the standard \java{} reflection mechanisms.
 \cite{pukallFlexibleDynamicSoftware} introduced a runtime update approach based on Java that offers flexible dynamic software updates with minimal performance overhead.
-They used the \code{allocateInstance} method, because it eases the creation of instances even if the class has no default constructor.
+They used the \code{allocateInstance} method,
+because it eases the creation of instances even if the class has no default constructor.
 \cite{gligoricCoDeSeFastDeserialization2011} proposed a new approach to serialization/deserialization via code generation, using \smu{} to allocate instances and to set the fields.
 The Jikes RVM~\cite{alpernJikesResearchVirtual2005} is a Java Virtual Machine targeting researchers in runtime systems.
-It is a Java-in-Java virtual machine because is itself built in Java, a style of implementation termed meta-circular.
+It is a Java-in-Java virtual machine because is itself built in \java{}, a style of implementation termed meta-circular.
 The Jikes RVM provides an implementation of \smu{} with the \emph{magic} framework.
 \cite{framptonDemystifyingMagicHighlevel2009} proposed \code{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
 
