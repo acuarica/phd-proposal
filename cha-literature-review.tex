@@ -3,8 +3,8 @@
 % TODO: made a study -> conducted a study
 % TODO: Avoid "note that", "notice that"
 % TODO: Static vs. Dynamic analysis in the literature review
-% Add discussion or static vs. dynamic analyses for these kinds of studies.
-% Why static, why not dynamic? where static is OK, where is reasonable, feasible?
+% TODO: Add discussion or static vs. dynamic analyses for these kinds of studies.
+% TODO: Why static, why not dynamic? where static is OK, where is reasonable, feasible?
 
 % Refactor this chapter into four subsections:
 % Which projects: Repositories - what is out there
@@ -57,14 +57,22 @@ in 2004.
 % The organization of the rest of this chapter is as follows: 
 When conducting empirical studies about programs,
 multiple dimensions are involved.
-The first question when conducting empirical stu of programs is 
-what to analyze?
-How benchmarks and corpora relate to this kind of study is presented in \S\ref{sec:lr:benchmarks}.
-In \S\ref{sec:lr:largescale} we give an overview of other large-scale studies either in \java{} or in other languages.
-Code Patterns discovery is presented in \S\ref{sec:lr:patterns}.
-An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining},
-while \S\ref{sec:lr:selection} shows how to select good candidates projects from a large-base software repository.
-Finally in \S\ref{sec:lr:unsafe} and \S\ref{sec:lr:casting} we present the related work more specific to the Unsafe API and Casting respectively.
+The first question when conducting empirical studies of programs is 
+\emph{What to analyze?}
+Benchmarks and corpora are used as a source of programs to analyze.
+Another aspect is how to select good candidates projects from a large-base software repository.
+This is presented in \S\ref{sec:lr:benchmarks}.
+After the selection of programs to analyze is set,
+comes the question \emph{How to analyze them?}
+An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining}.
+With this infrastructure, \emph{What questions do researchers ask?}
+In \S\ref{sec:lr:largescale} we give an overview of large-scale studies
+either in \java{} or in other languages that show what
+kind of questions researchers ask.
+We end up this chapter presenting the related work more specific to
+the Unsafe API and Casting in
+\S\ref{sec:lr:unsafe} and \S\ref{sec:lr:casting}
+respectively.
 
 
 \section{Benchmarks and Corpora}
@@ -256,7 +264,8 @@ improves performance.
 
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
-\subsection*{Unsafe API}
+% DONE: Removed numbered section
+\subsection{Unsafe API}
 \label{sec:lr:unsafe}
 
 % DONE: This paragraph should go first, no? 
@@ -298,7 +307,8 @@ This study is summarized in Chapter \ref{cha:unsafe}.
 \cite{sunNativeGuardProtectingAndroid2014} develop a method to isolate native components in Android applications.
 \cite{liFindingBugsExceptional2009} analyze the discrepancy between how exceptions are handled in native code and \java{}.
 
-\subsection*{Casting}
+% DONE: Removed numbered section
+\subsection{Casting}
 \label{sec:lr:casting}
 
 \todo{Intro sentence needed}
