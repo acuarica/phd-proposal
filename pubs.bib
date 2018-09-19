@@ -11741,7 +11741,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {de Moor, Oege and Verbaere, M. and Hajiyev, E. and Avgustinov, P. and Ekman, T. and Ongkingco, N. and Sereni, D. and Tibble, J.},
   month = sep,
   year = {2007},
-  keywords = {.QL object-oriented query language,bug finding,code navigation,object-oriented languages,program debugging,query languages,query metrics specification,relational code representation,software metrics,source code analysis},
+  keywords = {software metrics,program debugging,code navigation,object-oriented languages,source code analysis,query languages,bug finding,.QL object-oriented query language,query metrics specification,relational code representation},
   pages = {3-16},
   file = {/Users/luigi/work/zotero/storage/HYT97E8F/Moor et al. - 2007 - Keynote Address .QL for Source Code Analysis.pdf;/Users/luigi/work/zotero/storage/KEPDRBMD/4362893.html}
 }
@@ -12090,6 +12090,86 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Rieger, Matthias and Ducasse, Stephane},
   pages = {6},
   file = {/Users/luigi/work/zotero/storage/FR5BHYTG/Rieger and Ducasse - Visual Detection of Duplicated Code.pdf}
+}
+
+@incollection{demeyerReengineeringPatterns2003,
+  title = {Reengineering {{Patterns}}},
+  isbn = {978-1-55860-639-5},
+  language = {en},
+  booktitle = {Object-{{Oriented Reengineering Patterns}}},
+  publisher = {{Elsevier}},
+  author = {Demeyer, Serge and Ducasse, St\'ephane and Nierstrasz, Oscar},
+  year = {2003},
+  pages = {1-14},
+  file = {/Users/luigi/work/zotero/storage/324UD3I9/Demeyer et al. - 2003 - Reengineering Patterns.pdf},
+  doi = {10.1016/B978-155860639-5/50006-7}
+}
+
+@article{baconCompilerTransformationsHighperformance1994a,
+  title = {Compiler {{Transformations}} for {{High}}-Performance {{Computing}}},
+  volume = {26},
+  issn = {0360-0300},
+  doi = {10.1145/197405.197406},
+  abstract = {In the last three decades a large number of compiler transformations for optimizing programs have been implemented. Most optimizations for uniprocessors reduce the number of instructions executed by the program using transformations based on the analysis of scalar quantities and data-flow techniques. In contrast, optimizations for high-performance superscalar, vector, and parallel processors maximize parallelism and memory locality with transformations that rely on tracking the properties of arrays using loop dependence analysis.This survey is a comprehensive overview of the important high-level program restructuring techniques for imperative languages, such as C and Fortran. Transformations for both sequential and various types of parallel architectures are covered in depth. We describe the purpose of each transformation, explain how to determine if it is legal, and give an example of its application.Programmers wishing to enhance the performance of their code can use this survey to improve their understanding of the optimizations that compilers can perform, or as a reference for techniques to be applied manually. Students can obtain an overview of optimizing compiler technology. Compiler writers can use this survey as a reference for most of the important optimizations developed to date, and as bibliographic reference for the details of each optimization. Readers are expected to be familiar with modern computer architecture and basic program compilation techniques.},
+  number = {4},
+  journal = {ACM Comput. Surv.},
+  author = {Bacon, David F. and Graham, Susan L. and Sharp, Oliver J.},
+  month = dec,
+  year = {1994},
+  keywords = {compilation,dependence analysis,locality,multiprocessors,optimization,parallelism,superscalar processors,vectorization},
+  pages = {345--420},
+  file = {/Users/luigi/work/zotero/storage/2JLED8QP/Bacon et al. - 1994 - Compiler Transformations for High-performance Comp.pdf}
+}
+
+@inproceedings{dieckmannStudyAllocationBehavior1999,
+  series = {Lecture Notes in Computer Science},
+  title = {A Study of the {{Allocation Behavior}} of the {{SPECjvm98 Java Benchmarks}}},
+  isbn = {978-3-540-48743-2},
+  abstract = {We present an analysis of the memory usage for six of the Java programs in the SPECjvm98 benchmark suite. Most of the programs are realworld applications with high demands on the memory system. For each program, we measured as much low level data as possible, including age and size distribution, type distribution, and the overhead of object alignment. Among other things, we found that non-pointer data usually represents more than 50\% of the allocated space for instance objects, that Java objects tend to live longer than objects in Smalltalk or ML, and that they are fairly small.},
+  language = {en},
+  booktitle = {{{ECOOP}}' 99 \textemdash{} {{Object}}-{{Oriented Programming}}},
+  publisher = {{Springer Berlin Heidelberg}},
+  author = {Dieckmann, Sylvia and H\"olzle, Urs},
+  editor = {Guerraoui, Rachid},
+  year = {1999},
+  keywords = {Class Pointer,Garbage Collection,Garbage Collector,Instance Object,Reference Array},
+  pages = {92-115},
+  file = {/Users/luigi/work/zotero/storage/V6L6LDMF/Dieckmann and Hölzle - 1999 - A study of the Allocation Behavior of the SPECjvm9.pdf}
+}
+
+@article{forresterEmpiricalStudyRobustness2000,
+  title = {An {{Empirical Study}} of the {{Robustness}} of {{Windows NT Applications Using Random Testing}}},
+  abstract = {We report on the third in a series of studies on the reliability of application programs in the face of random input. In 1990 and 1995, we studied the reliability of UNIX application programs, both command line and X-Window based (GUI). In this study, we apply our testing techniques to applications running on the Windows NT operating system. Our testing is simple black-box random input testing; by any measure, it is a crude technique, but it seems to be effective at locating bugs in real programs.},
+  language = {en},
+  author = {Forrester, Justin E and Miller, Barton P},
+  year = {2000},
+  pages = {10},
+  file = {/Users/luigi/work/zotero/storage/GDWB8JGN/Forrester and Miller - 2000 - An Empirical Study of the Robustness of Windows NT.pdf}
+}
+
+@techreport{millerFuzzRevisitedReexamination1995,
+  title = {Fuzz Revisited: {{A}} Re-Examination of the Reliability of {{UNIX}} Utilities and Services},
+  shorttitle = {Fuzz Revisited},
+  abstract = {We have tested the reliability of a large collection of basic UNIX utility programs, X-Window applications and servers, and network services. We used a simple testing method of subjecting these programs to a random input stream. Our testing methods and tools are largely automatic and simple to use. We tested programs on nine versions of the UNIX operating system, including seven commercial systems and the freely-available GNU utilities and Linux. We report which programs failed on which systems, and identify and categorize the causes of these failures. The result of our testing is that we can crash (with core dump) or hang (infinite loop) over 40 \% (in the worst case) of the basic programs and over 25 \% of the X-Window applications. We were not able to crash any of the network services that we tested nor any of X-Window servers. This study parallels our 1990 study (that tested only the basic UNIX utilities); all systems that we compared between 1990 and 1995 noticeably improved in reliability, but still had significant rates of failure. The reliability of the basic utilities from GNU and Linux were noticeably better than those of the commercial systems. We also tested how utility programs checked their return codes from the memory allocation library routines by simulating the unavailability of virtual memory. We could crash almost half of the programs that we tested in this way.},
+  author = {Miller, Barton P. and Koski, David and Pheow, Cjin and Maganty, Lee Vivekananda and Murthy, Ravi and Natarajan, Ajitkumar and Steidl, Jeff},
+  year = {1995},
+  file = {/Users/luigi/work/zotero/storage/JQQ357QR/Miller et al. - 1995 - Fuzz revisited A re-examination of the reliabilit.pdf;/Users/luigi/work/zotero/storage/Z3ZN42MZ/summary.html}
+}
+
+@article{millerEmpiricalStudyReliability1990,
+  title = {An Empirical Study of the Reliability of {{UNIX}} Utilities},
+  volume = {33},
+  issn = {00010782},
+  doi = {10.1145/96267.96279},
+  abstract = {Operating system facilities, such as the kernel and utility programs, are typically assumed to be reliable. In our recent experiments, we have been able to crash 25-33\% of the utility programs on any version of UNIX that was tested. This report describes these tests and an analysis of the program bugs that caused the crashes.},
+  language = {en},
+  number = {12},
+  journal = {Communications of the ACM},
+  author = {Miller, Barton P. and Fredriksen, Louis and So, Bryan},
+  month = dec,
+  year = {1990},
+  pages = {32-44},
+  file = {/Users/luigi/work/zotero/storage/BIMXP8I2/fuzz.pdf}
 }
 
 
