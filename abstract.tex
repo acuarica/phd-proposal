@@ -1,17 +1,26 @@
 
 % DONE: Reverse the argument, we want to help, and this is how.
-
 \abstract{
 The main goal of a static type system is to prevent certain kind of errors from happening at run-time.
 A type system is formulated as a set of constraints that gives any expression or term in a program a well-defined type.
-Yet they provide the means to circumvent their constraints through the \emph{unsafe intrinsics} and \emph{casting} mechanisms.
+Yet
+% DONE: "they" means all type systems, need to be more precise
+% they
+mainstream programming languages are endowed with type systems that
+provide the means to circumvent their constraints through the \emph{unsafe intrinsics} and \emph{casting} mechanisms.
 
 We want to understand how and when developers circumvent these constraints.
 This knowledge can be:
 \begin{inparaenum}[a)]
-\item useful to make informed decisions for current and future language designers,
-\item a reference for tool builders, \eg{}, by providing more precise or new refactoring analyses,
-\item a guide for researchers to test new language features, or to carry out programming controlled experiments, and
+% DONE: Make a) a noun, "a ..."
+% \item useful to make informed decisions for current and
+% future language designers,
+\item a recommendation for current and future language designers
+to make informed decisions
+\item a reference for tool builders, \eg{},
+by providing more precise or new refactoring analyses,
+\item a guide for researchers to test new language features,
+or to carry out controlled programming experiments, and
 \item a guide for developers for better practices.
 \end{inparaenum}
 
@@ -24,7 +33,8 @@ We have devised (%
 % for the \java{}'s Unsafe \api{}
 for a subset of unsafe intrinsics%
 ) and
-we plan to devise (for casting)
+% DONE: Make continuous
+we are devising (for casting)
 % DONE: Explain what "usage patterns" are
 usage patterns,
 recurrent programming idioms to solve a specific issue.
