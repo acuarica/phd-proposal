@@ -174,12 +174,12 @@
 \end{flushright}
 \vspace{1mm}
 \hfill {\today}\\
-\vspace{12mm}
+\vspace{10mm}
 
 \noindent {\Huge {\textbf{\@title}}}
  \ifthenelse{\boolean{@subtitle}}{%
-      \noindent{\Large \\[0.5em]\textbf{\@subtitle}}\\[10mm]
-    }{\\[10mm]}
+      \noindent{\Large \\[0.5em]\textbf{\@subtitle}}\\[8mm]
+    }{\\[8mm]}
 \hfill { \Large {\textbf{\@author}}}\\
 
 \hrule height 0.2pt  \vspace{4mm}
