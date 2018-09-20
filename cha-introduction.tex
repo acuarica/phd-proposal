@@ -22,7 +22,7 @@ at the expense of causing more errors at run-time.
 % Within a type system,
 These mechanisms are essentially two:
 \emph{Unsafe Intrinsics} and \emph{Casting}.
-% REVIEW: Reflection?
+% DONE: Reflection?
 % DONE: FFI comes later.
 
 \textbf{Unsafe Intrinsics.}
@@ -80,7 +80,8 @@ This triggers our \textbf{main research question}:
 
 We have confidence that this knowledge can be:
 \begin{inparaenum}[a)]
-\item useful to make informed decisions for current and future language designers,
+\item a reference for current and future language designers
+to make informed decisions about programming languages,
 \eg{}, the adoption of \emph{Variable Handles} in \java{} 9~\citep{jep193},
 or the addition of \emph{Smart Casts} in \lang{Kotlin},\footnote{\url{https://kotlinlang.org/docs/reference/typecasts.html\#smart-casts}}
 \item a reference for tool builders, \eg{}, by providing more precise or new refactoring analyses,
@@ -120,7 +121,7 @@ Overall these sub-questions will help us to answer our MRQ:
 \newcommand{\urqA}{To what extent does the Unsafe API impact common application code?}
 \newcommand{\urqB}{How and when are Unsafe features used?}
 
-% TODO: Make this subsection.
+% DONE: Make this subsection.
 \subsection*{Unsafe API}
 
 \begin{enumerate}[label=$URQ\arabic*:$,ref=$URQ\arabic*$,leftmargin=3.4\parindent]
@@ -147,7 +148,7 @@ Chapter~\ref{cha:unsafe} presents a summary of this study.
 \newcommand{\crqB}{How and when casts are used?}
 \newcommand{\crqC}{How recurrent are the patterns for which casts are used?}
 
-% TODO: Make this subsection.
+% DONE: Make this subsection.
 \subsection*{Casting}
 \begin{enumerate}[label=$CRQ\arabic*:$,ref=$CRQ\arabic*$,leftmargin=3.4\parindent]
 \item\label{casts:rq1} {\bf \crqA}
