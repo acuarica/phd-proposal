@@ -1,12 +1,12 @@
 
+% DONE: made a study -> conducted a study
+% DONE: Avoid "note that", "notice that"
 
-% TODO: made a study -> conducted a study
-% TODO: Avoid "note that", "notice that"
-% TODO: Static vs. Dynamic analysis in the literature review
-% TODO: Add discussion or static vs. dynamic analyses for these kinds of studies.
-% TODO: Why static, why not dynamic? where static is OK, where is reasonable, feasible?
+% DONE: Static vs. Dynamic analysis in the literature review
+% DONE: Add discussion or static vs. dynamic analyses for these kinds of studies
+% DONE: Why static, why not dynamic? where static is OK, where is reasonable, feasible?
 
-% Refactor this chapter into four subsections:
+% DONE: Refactor this chapter into four subsections:
 % Which projects: Repositories - what is out there
 % Selection of projects: Corpora - what to analyze
 % Tools - how to analyze (static/dynamic, BOA, QL, ...)
@@ -57,7 +57,9 @@ in 2004.
 % The organization of the rest of this chapter is as follows: 
 When conducting empirical studies about programs,
 multiple dimensions are involved.
-The first question when conducting empirical studies of programs is 
+The first one
+% when conducting empirical studies of programs
+is 
 \emph{What to analyze?}
 Benchmarks and corpora are used as a source of programs to analyze.
 Another aspect is how to select good candidates projects from a large-base software repository.
@@ -66,10 +68,12 @@ After the selection of programs to analyze is set,
 comes the question \emph{How to analyze them?}
 An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining}.
 With this infrastructure, \emph{What questions do researchers ask?}
-In \S\ref{sec:lr:largescale} we give an overview of large-scale studies
-either in \java{} or in other languages that show what
+In \S\ref{sec:lr:largescale}, we give an overview of large-scale
+empirical studies
+% either in \java{} or other languages
+that show what
 kind of questions researchers ask.
-We end up this chapter presenting the related work more specific to
+This chapter ends by presenting the related work more specific to
 the Unsafe API and Casting in
 \S\ref{sec:lr:unsafe} and \S\ref{sec:lr:casting}
 respectively.
@@ -78,35 +82,57 @@ respectively.
 \section{Benchmarks and Corpora}
 \label{sec:lr:benchmarks}
 
-% TODO: OOPSLA'17 code duplicates in GitHub
-% TODO: SPEC, etc
+% DONE: OOPSLA'17 code duplicates in GitHub
+% DONE: SPEC, etc
 Benchmarks are crucial to properly evaluate and measure product development.
 This is key for both research and industry.
 One popular benchmark suite for \java{} is the DaCapo Benchmark~\citep{blackburnDaCapoBenchmarksJava2006}.
 This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
+The SPECjvm2008\footnote{\url{https://www.spec.org/jvm2008/}}
+(Java Virtual Machine Benchmark)
+and
+SPECjbb2000\footnote{\url{https://www.spec.org/jbb2000/}}
+(Java Business Benchmark)
+are another popular \java{} benchmark suite.
 
 Another suite has been developed by~\cite{temperoQualitasCorpusCurated2010}.
 They provide a corpus of curated open source systems to facilitate empirical studies on source code.
 On top of Qualitas Corpus,~\cite{dietrichXCorpusExecutableCorpus2017} provide an executable corpus of \java{} programs.
 This allows any researcher to experiment with both static and dynamic analysis.
 
-% TODO: Some discussion of the representativeness of the corpora
-For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
+% DONE: Some discussion of the representativeness of the corpora
+For any benchmark or corpus to be useful and reliable,
+it must faithfully represent real world code.
+For instance,
+DaCapo applications were selected to be diverse real applications and
+ease of use, but they ``excluded GUI applications since they are difficult
+to benchmark systematically.''
 Along these lines, \cite{allamanisMiningSourceCode2013} go one step further and provide a large-scale (14,807) curated corpus of open source \java{} projects.
-\todo{Acknowledge here that open source repositories, while not curated corpora, are very commonly used (might be a forward pointer, but necessary here)}
+
+% DONE: Acknowledge here that open source repositories, while not curated corpora, are very commonly used.
+With the advent of cloud computing,
+several source code management (SCM) hosting services have emerged, \eg,
+\github, \gitlab, \bitbucket, and \sourceforge.
+These services allows the developer to work with different SCMs, \eg,
+Git, Mercurial, Subversion to host their open source projects.
+These projects are usually taken as a representation of
+real-world applications.
+Thus, while not curated corpora, these hosting services are
+commonly used to conduct empirical studies.
 
 % DONE: Remove subsection
 % \subsection*{Selecting Good Representatives}
 % \label{sec:lr:selection}
 
-% TODO: Related to Lopes
+% DONE: Related to Lopes
 Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
 \cite{lopesDeJaVuMapCode2017} conducted a study to measure code duplication in \github{}.
 They found out that much of the code there is actually duplicated.
 This raises a flag when considering which projects to analyze when mining software repositories.
 
+% DONE: How do clones fit in this section?
+% to code duplication detection is code 
 \cite{baxterCloneDetectionUsing1998} propose a clone detection algorithm using Abstract Syntax Trees,
-\todo{How do clones fit in this section?}
 while \cite{riegerVisualDetectionDuplicated} propose a visual detection for clones.
 \cite{yuanCMCDCountMatrix2011,chenReplicationReproductionCode} instead propose Count Matrix-based approach to detect code clones.
 
@@ -204,16 +230,26 @@ The main issue with JavaParser is the lack to do symbol resolution integrated wi
 \section{Large-scale Codebase Empirical Studies}
 \label{sec:lr:largescale}
 
-In the same direction as our plan, \cite{callauHowWhyDevelopers2013} performed an empirical study to assess how much the dynamic and reflective features of \smalltalk{} are actually used in practice.
-Analogously, \cite{richardsAnalysisDynamicBehavior2010,richardsEvalThatMen2011} made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \code{eval} function. 
-Also for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed how fields are accessed via strings, while~\cite{jangEmpiricalStudyPrivacyviolating2010} analyzed privacy violations. 
-Similar empirical studies were done for \php{}~\cite{hillsEmpiricalStudyPHP2013,dahseExperienceReportEmpirical2015,doyleEmpiricalStudyEvolution2011} and \swift{}~\cite{reboucasEmpiricalStudyUsage2016}.  
+In the same direction as our plan,
+\cite{callauHowWhyDevelopers2013} performed an empirical study to assess
+how much the dynamic and reflective features of \smalltalk{} are actually
+used in practice.
+Analogously, \cite{richardsAnalysisDynamicBehavior2010,richardsEvalThatMen2011,weiEmpiricalStudyDynamic2016}
+conducted a similar study, but in this case targeting \javascript's dynamic
+behavior and in particular the \code{eval} function.
+Also for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed
+how fields are accessed via strings,
+while~\cite{jangEmpiricalStudyPrivacyviolating2010}
+analyzed privacy violations.
+Similar empirical studies were done for
+\php~\citep{hillsEmpiricalStudyPHP2013,dahseExperienceReportEmpirical2015,doyleEmpiricalStudyEvolution2011}
+and \swift~\citep{reboucasEmpiricalStudyUsage2016}.  
 
+% DONE: Why is this important?
 Going one step forward, \cite{rayLargescaleStudyProgramming2017} studied the correlation between programming languages and defects. 
 One important note is that they choose relevant projects by popularity,
-\underline{measured} \emph{stars} in \github{}.
-\todo{Why is this important?}
-% We argue that it is more important to analyse projects that are \emph{representative}, not \emph{popular}.
+measured by how many times was \emph{starred} in \github.
+We argue that it is more important to analyze projects that are \emph{representative}, not \emph{popular}.
 
 \cite{gorlaCheckingAppBehavior2014} mined a large set of Android applications, clustering applications by their description topics and identifying outliers in each cluster with respect to their API usage.
 \cite{grechanikEmpiricalInvestigationLargescale2010} also mined large scale software repositories to obtain several statistics on how source code is actually written.
@@ -224,10 +260,29 @@ about how programmers use contracts in \mavencentral{}\footnote{\url{http://cent
 \api{} changes impact \java{} programs.
 They have used the Qualitas Corpus~\citep{temperoQualitasCorpusCurated2010} mentioned above for their study.
 
-\cite{tufanoWhenWhyYour2015,tufanoWhenWhyYour2017} studied when code smells are introduced in source code.
+\cite{tufanoWhenWhyYour2015,tufanoWhenWhyYour2017} studied when code
+smells are introduced in source code.
 \cite{palombaLandfillOpenDataset2015}
 contribute a dataset of five types of code smells together with a systematic procedure for validating code smell datasets.
 \cite{palombaDetectingBadSmells2013} propose to detect code smells using change history information.
+
+\cite{nagappanEmpiricalStudyGoto2015} conducted a study on how the
+\code{goto} statement is used in \cc.
+They used \github{} as a data source for \cc{} programs.
+They concluded that \code{goto} statements are most used for
+\emph{handling errors} and \emph{cleaning up resources}.
+
+\textbf{Static vs. Dynamic Analysis.}
+Given the dynamic nature of \javascript, most of the studies mentioned
+above for \javascript perform dynamic analysis.
+However, \cite{callauHowWhyDevelopers2013} uses static analysis to study
+a dynamically typed language.
+For \java, most empirical studies use static analysis.
+This is due the fact of the availability of input data.
+Finding valid input data for test cases is not a trivial task,
+even less to make it scale.
+For \javascript, having a big corpus of web-site generating valid
+input data is more feasible.
 
 \subsection*{Exceptions}
 
@@ -242,15 +297,25 @@ Android applications.
 
 \subsection*{Programming Language Features}
 
-\todo{Instead of this, add an intro sentence motivating this section by connecting it to your focus on type safety (if possible).
-Generics is not just a functional language feature, no?}
+% DONE: Instead of this, add an intro sentence motivating this section by connecting it to your focus on type safety (if possible).
+% DONE: Generics is not just a functional language feature, no?
 Programming language design has been always a hot topic in computer science literature.
 It has been extensively studied in the past decades.
-There is a trend in incorporating functional programming features into mainstream object-oriented languages, \eg,
+There is a trend in incorporating
+% functional
+programming features into mainstream object-oriented languages, \eg,
 lambdas in \java{} 8\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.27}},
 \cpp{}11\footnote{\url{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2006/n1968.pdf}} and
 \cs{} 3.0\footnote{\url{https://msdn.microsoft.com/en-us/library/bb308966.aspx\#csharp3.0overview\_topic7}};
-or \underline{parametric polymorphism} \todo{not strictly functional}  --- \ie{}, generics --- in \java{} 5\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}.
+% DONE: not strictly functional
+or parametric polymorphism, \ie{}, generics, in \java{} 5.%
+\footnote{\url{https://docs.oracle.com/javase/1.5.0/docs/guide/language/generics.html}}\(^{,}\)\footnote{\url{http://www.oracle.com/technetwork/java/javase/generics-tutorial-159168.pdf}}
+For instance, \java{} generics were designed to extend
+\java's type system to allow
+``a type or method to operate on objects of various types while
+providing compile-time type safety''.\citep{goslingJavaLanguageSpecification}
+However, it was later shown~\citep{aminJavaScalaType2016} that 
+compile-time type safety was not fully achieved.
 
 \cite{mazinanianUnderstandingUseLambda2017} and \cite{uesbeckEmpiricalStudyImpact2016} studied how developers use lambdas in \java{} and \cpp{} respectively.
 The inclusion of generics in \java{} is closely related to collections. 
@@ -264,6 +329,7 @@ improves performance.
 
 This kind of studies give an insight of the adoption of lambdas and generics; which can drive future direction for language designers and tool builders, while providing developers with best practices.
 
+
 % DONE: Removed numbered section
 \subsection{Unsafe API}
 \label{sec:lr:unsafe}
@@ -273,7 +339,9 @@ Oracle provides the \smu{} class for low-level programming,
 \eg, synchronization primitives, direct memory access methods,
 array manipulation and memory usage.
 Although the \smu{} class is not officially documented,
-it is being used in industrial applications outside the JDK, compromising the safety of the \java{} ecosystem.
+it is being used in both industrial applications
+and research projects~\citep{korlandNoninvasiveConcurrencyJava2010,pukallFlexibleDynamicSoftware,gligoricCoDeSeFastDeserialization2011}
+outside the JDK, compromising the safety of the \java{} ecosystem.
 
 Oracle software engineer Paul Sandoz performed an informal analysis of
 Maven artifacts and usages in Grepcode~\citep{sandoz-personal-communication}
@@ -288,6 +356,7 @@ This study is summarized in Chapter \ref{cha:unsafe}.
 
 % DONE: Who cares that there is literature. Motivate the contents of that literature by putting a better glue sentence here..
 % DONE: Relevant? These are users of Unsafe, not studies of it
+% DONE: Moved above to show only that there is work using Unsafe.
 % The use of \smu{} is not limited to industrial applications.
 % Researchers have used \smu{} as well.
 % \cite{korlandNoninvasiveConcurrencyJava2010} presented a \java{} STM framework, intended as a development platform for scalable concurrent applications and as a research tool for designing STM algorithms.
@@ -311,7 +380,14 @@ This study is summarized in Chapter \ref{cha:unsafe}.
 \subsection{Casting}
 \label{sec:lr:casting}
 
-\todo{Intro sentence needed}
+% DONE: Intro sentence needed
+Casting operations in \java
+\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.16}}
+allows the developer to view a reference at a different type as it was declared.
+The related \code{instanceof} operator%
+\footnote{\url{https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html\#jls-15.20.2}}
+tests whether a reference could be cast to a different type without
+throwing \code{ClassCastException}.
 
 % DONE: Makes it sound like "semantic patterns" was a well-known concept. Don't start with terms like this, start with description instead.
 \cite{wintherGuardedTypePromotion2011} has implemented a
@@ -345,7 +421,7 @@ They made an empirical study to check how often the reflection \api{} is used in
 They have devised reflection AST patterns, which often involve the use of casts.
 Finally, they argue that programming controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
 
-% TODO: Shouldn't that 2.8?
+% DONE: Shouldn't that 2.8?
 % \subsection*{Controlled Experiments on Subjects}
 % \label{sec:lr:experiments}
 \textbf{Controlled Experiments on Subjects.}
