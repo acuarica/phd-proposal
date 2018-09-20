@@ -79,7 +79,7 @@ To fix the error, the developer only changed the type of the literal $5$: from \
 Looking at the definition of the \code{getProperty} method below,%
 \footnote{\url{https://github.com/ethereum/ethereumj/blob/224e65b9b4ddcb46198a6f8faf69edc65d34d382/ethereumj-core/src/main/java/org/ethereum/config/SystemProperties.java\#L312}}
 it obtains a dynamic property given a property name.
-If it find a value, return it.
+If it finds a value, return it.
 Otherwise, returns the default value (second argument).
 But the return type of \code{getProperty}
 is a generic type inferred by the type of the default value, in this case, \code{long}.
@@ -178,7 +178,7 @@ To answer \ref{casts:rq1} (\emph{\crqA}) we want to know how many cast instances
 To this end, we gather the following statistics using \ql{}.
 We show them here to give an estimation of the size of the code base being analized.
 % DONE: Why only 24 project? Should say this is preliminary?
-As mentioned above, this results are preliminary.
+As mentioned above, these results are preliminary.
 We plan to scale up our analysis to the whole \lgtm{} project database.
 
 \begin{center}
@@ -305,7 +305,7 @@ After a new tag is added, the query is run again to iterate over the new results
 % Whenever we observe that those tags do not appear randomly,
 Whenever we detect that those tags appear often,
 we further inspect the source code to check that is indeed a pattern.
-We have formalize the structure of each pattern as a \ql{} predicate based on those tags.
+We have formalized the structure of each pattern as a \ql{} predicate based on those tags.
 Similarly with tags, after a new pattern is added, the query is run again to inspect the casts without pattern.
 To sum up, our methodology iterates over the results until no \emph{more} patterns can be detected.
 % These patterns are presented in the following section.

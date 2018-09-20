@@ -65,9 +65,9 @@ Benchmarks and corpora are used as a source of programs to analyze.
 Another aspect is how to select good candidates projects from a large-base software repository.
 This is presented in \S\ref{sec:lr:benchmarks}.
 After the selection of programs to analyze is set,
-comes the question \emph{How to analyze them?}
+comes the question \emph{how to analyze them?}
 An overview of what tools are available to extract information from software repositories is given in \S\ref{sec:lr:mining}.
-With this infrastructure, \emph{What questions do researchers ask?}
+With this infrastructure, \emph{what questions do researchers ask?}
 In \S\ref{sec:lr:largescale}, we give an overview of large-scale
 empirical studies
 % either in \java{} or other languages
@@ -113,7 +113,7 @@ Along these lines, \cite{allamanisMiningSourceCode2013} go one step further and 
 With the advent of cloud computing,
 several source code management (SCM) hosting services have emerged, \eg,
 \github, \gitlab, \bitbucket, and \sourceforge.
-These services allows the developer to work with different SCMs, \eg,
+These services allow the developer to work with different SCMs, \eg,
 Git, Mercurial, Subversion to host their open source projects.
 These projects are usually taken as a representation of
 real-world applications.
@@ -237,7 +237,7 @@ used in practice.
 Analogously, \cite{richardsAnalysisDynamicBehavior2010,richardsEvalThatMen2011,weiEmpiricalStudyDynamic2016}
 conducted a similar study, but in this case targeting \javascript's dynamic
 behavior and in particular the \code{eval} function.
-Also for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed
+Also, for \javascript{}, \cite{madsenStringAnalysisDynamic2014} analyzed
 how fields are accessed via strings,
 while~\cite{jangEmpiricalStudyPrivacyviolating2010}
 analyzed privacy violations.
@@ -274,7 +274,7 @@ They concluded that \code{goto} statements are most used for
 
 \textbf{Static vs. Dynamic Analysis.}
 Given the dynamic nature of \javascript, most of the studies mentioned
-above for \javascript perform dynamic analysis.
+above for \javascript{} perform dynamic analysis.
 However, \cite{callauHowWhyDevelopers2013} uses static analysis to study
 a dynamically typed language.
 For \java, most empirical studies use static analysis.
@@ -320,7 +320,7 @@ compile-time type safety was not fully achieved.
 \cite{mazinanianUnderstandingUseLambda2017} and \cite{uesbeckEmpiricalStudyImpact2016} studied how developers use lambdas in \java{} and \cpp{} respectively.
 The inclusion of generics in \java{} is closely related to collections. 
 \cite{parninJavaGenericsAdoption2011,parninAdoptionUseJava2013} studied how generics were adopted by \java{} developers.
-They found that the use of generics do not significantly reduce the number of type casts.
+They found that the use of generics does not significantly reduce the number of type casts.
 
 \cite{costaEmpiricalStudyUsage2017} have mined \github{} corpus to study the use and performance of collections,
 and how these usages can be improved.
@@ -419,7 +419,7 @@ We plan to categorize all cast usages, not only where reflection is used.
 \cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
 They made an empirical study to check how often the reflection \api{} is used in real-world code.
 They have devised reflection AST patterns, which often involve the use of casts.
-Finally, they argue that programming controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
+Finally, they argue that controlled programming experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
 
 % DONE: Shouldn't that 2.8?
 % \subsection*{Controlled Experiments on Subjects}
@@ -437,7 +437,7 @@ They compare how a static and a dynamic type system impact on productivity.
 The common setting for these studies is to have a set of programming problems.
 Then, let a group of developers solve them in both a static and dynamic languages.
 %
-For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
+For this kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
 Having artificial problems may lead to invalid conclusions.
 The work by~\cite{wuHowTypeErrors2017,wuLearningUserFriendly2017} goes towards this direction. 
 They have examined programs written by students to understand real debugging conditions. 
