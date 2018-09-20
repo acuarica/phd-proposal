@@ -3884,7 +3884,7 @@ Associated with the functional style of programming is an algebra of programs wh
   year = {1994},
   keywords = {parallelism,compilation,dependence analysis,locality,multiprocessors,optimization,superscalar processors,vectorization},
   pages = {345--420},
-  file = {/Users/luigi/work/zotero/storage/BSG4B7IS/Bacon et al. - 1994 - Compiler Transformations for High-performance Comp.pdf}
+  file = {/Users/luigi/work/zotero/storage/2JLED8QP/Bacon et al. - 1994 - Compiler Transformations for High-performance Comp.pdf;/Users/luigi/work/zotero/storage/BSG4B7IS/Bacon et al. - 1994 - Compiler Transformations for High-performance Comp.pdf}
 }
 
 @inproceedings{baxterUnderstandingShapeJava2006,
@@ -12105,22 +12105,6 @@ Experimental results using the tool and manually rewriting code show average spa
   doi = {10.1016/B978-155860639-5/50006-7}
 }
 
-@article{baconCompilerTransformationsHighperformance1994a,
-  title = {Compiler {{Transformations}} for {{High}}-Performance {{Computing}}},
-  volume = {26},
-  issn = {0360-0300},
-  doi = {10.1145/197405.197406},
-  abstract = {In the last three decades a large number of compiler transformations for optimizing programs have been implemented. Most optimizations for uniprocessors reduce the number of instructions executed by the program using transformations based on the analysis of scalar quantities and data-flow techniques. In contrast, optimizations for high-performance superscalar, vector, and parallel processors maximize parallelism and memory locality with transformations that rely on tracking the properties of arrays using loop dependence analysis.This survey is a comprehensive overview of the important high-level program restructuring techniques for imperative languages, such as C and Fortran. Transformations for both sequential and various types of parallel architectures are covered in depth. We describe the purpose of each transformation, explain how to determine if it is legal, and give an example of its application.Programmers wishing to enhance the performance of their code can use this survey to improve their understanding of the optimizations that compilers can perform, or as a reference for techniques to be applied manually. Students can obtain an overview of optimizing compiler technology. Compiler writers can use this survey as a reference for most of the important optimizations developed to date, and as bibliographic reference for the details of each optimization. Readers are expected to be familiar with modern computer architecture and basic program compilation techniques.},
-  number = {4},
-  journal = {ACM Comput. Surv.},
-  author = {Bacon, David F. and Graham, Susan L. and Sharp, Oliver J.},
-  month = dec,
-  year = {1994},
-  keywords = {compilation,dependence analysis,locality,multiprocessors,optimization,parallelism,superscalar processors,vectorization},
-  pages = {345--420},
-  file = {/Users/luigi/work/zotero/storage/2JLED8QP/Bacon et al. - 1994 - Compiler Transformations for High-performance Comp.pdf}
-}
-
 @inproceedings{dieckmannStudyAllocationBehavior1999,
   series = {Lecture Notes in Computer Science},
   title = {A Study of the {{Allocation Behavior}} of the {{SPECjvm98 Java Benchmarks}}},
@@ -12169,7 +12153,41 @@ Experimental results using the tool and manually rewriting code show average spa
   month = dec,
   year = {1990},
   pages = {32-44},
-  file = {/Users/luigi/work/zotero/storage/BIMXP8I2/fuzz.pdf}
+  file = {/Users/luigi/work/zotero/storage/BIMXP8I2/Miller et al. - 1990 - An empirical study of the reliability of UNIX util.pdf}
+}
+
+@inproceedings{nagappanEmpiricalStudyGoto2015,
+  address = {New York, NY, USA},
+  series = {ESEC/FSE 2015},
+  title = {An {{Empirical Study}} of {{Goto}} in {{C Code}} from {{GitHub Repositories}}},
+  isbn = {978-1-4503-3675-8},
+  doi = {10.1145/2786805.2786834},
+  abstract = {It is nearly 50 years since Dijkstra argued that goto obscures the flow of control in program execution and urged programmers to abandon the goto statement. While past research has shown that goto is still in use, little is known about whether goto is used in the unrestricted manner that Dijkstra feared, and if it is `harmful' enough to be a part of a post-release bug. We, therefore, conduct a two part empirical study - (1) qualitatively analyze a statistically rep- resentative sample of 384 files from a population of almost 250K C programming language files collected from over 11K GitHub repositories and find that developers use goto in C files for error handling (80.21$\pm$5\%) and cleaning up resources at the end of a procedure (40.36 $\pm$ 5\%); and (2) quantitatively analyze the commit history from the release branches of six OSS projects and find that no goto statement was re- moved/modified in the post-release phase of four of the six projects. We conclude that developers limit themselves to using goto appropriately in most cases, and not in an unrestricted manner like Dijkstra feared, thus suggesting that goto does not appear to be harmful in practice.},
+  booktitle = {Proceedings of the 2015 10th {{Joint Meeting}} on {{Foundations}} of {{Software Engineering}}},
+  publisher = {{ACM}},
+  author = {Nagappan, Meiyappan and Robbes, Romain and Kamei, Yasutaka and Tanter, \'Eric and McIntosh, Shane and Mockus, Audris and Hassan, Ahmed E.},
+  year = {2015},
+  keywords = {Dijkstra,Empirical SE,Github,Use of goto statements},
+  pages = {404--414},
+  file = {/Users/luigi/work/zotero/storage/EPHCZBXJ/Nagappan et al. - 2015 - An Empirical Study of Goto in C Code from GitHub R.pdf}
+}
+
+@article{weiEmpiricalStudyDynamic2016,
+  title = {Empirical Study of the Dynamic Behavior of {{JavaScript}} Objects},
+  volume = {46},
+  copyright = {Copyright \textcopyright{} 2015\,John Wiley \& Sons, Ltd.},
+  issn = {1097-024X},
+  doi = {10.1002/spe.2334},
+  abstract = {Despite the popularity of JavaScript for client-side web applications, there is a lack of effective software tools supporting JavaScript development and testing. The dynamic characteristics of JavaScript pose software engineering challenges such as program understanding and security. One important feature of JavaScript is that its objects support flexible mechanisms such as property changes at runtime and prototype-based inheritance, making it difficult to reason about object behavior. We have performed an empirical study on real JavaScript applications to understand the dynamic behavior of JavaScript objects. We present metrics to measure behavior of JavaScript objects during execution (e.g., operations associated with an object, object size, and property type changes). We also investigated the behavioral patterns of observed objects to understand the coding or user interaction practices in JavaScript software. Copyright \textcopyright{} 2015 John Wiley \& Sons, Ltd.},
+  language = {en},
+  number = {7},
+  journal = {Software: Practice and Experience},
+  author = {Wei, Shiyi and Xhakaj, Franceska and Ryder, Barbara G.},
+  month = jul,
+  year = {2016},
+  keywords = {JavaScript,object behavioral metrics and patterns,study of websites},
+  pages = {867-889},
+  file = {/Users/luigi/work/zotero/storage/LJ2JZU3V/Wei et al. - 2016 - Empirical study of the dynamic behavior of JavaScr.pdf;/Users/luigi/work/zotero/storage/XGGHUGGG/spe.html}
 }
 
 
