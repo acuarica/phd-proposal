@@ -151,7 +151,8 @@ and number of commits.
 When talking about mining software repositories,
 we refer to extracting any kind of information from large-scale codebase repositories. 
 Usually doing so requires several engineering but challenging tasks.
-The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
+The most common being downloading, storing, parsing, analyzing and
+properly extracting information from different kinds of artifacts.
 In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
 
 % DONE: Fix .QL citation
@@ -276,13 +277,13 @@ They concluded that \code{goto} statements are most used for
 Given the dynamic nature of \javascript, most of the studies mentioned
 above for \javascript{} perform dynamic analysis.
 However, \cite{callauHowWhyDevelopers2013} uses static analysis to study
-a dynamically typed language.
+a dynamically checked language.
 For \java, most empirical studies use static analysis.
 This is due the fact of the availability of input data.
 Finding valid input data for test cases is not a trivial task,
 even less to make it scale.
-For \javascript, having a big corpus of web-site generating valid
-input data is more feasible.
+For \javascript, having a big corpus of web-sites generating valid
+input data makes more feasible to implement dynamic analysis.
 
 \subsection*{Exceptions}
 
@@ -313,7 +314,8 @@ or parametric polymorphism, \ie{}, generics, in \java{} 5.%
 For instance, \java{} generics were designed to extend
 \java's type system to allow
 ``a type or method to operate on objects of various types while
-providing compile-time type safety''.\citep{goslingJavaLanguageSpecification}
+providing compile-time type safety''
+\citep{goslingJavaLanguageSpecification}.
 However, it was later shown~\citep{aminJavaScalaType2016} that 
 compile-time type safety was not fully achieved.
 
