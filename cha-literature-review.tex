@@ -333,7 +333,7 @@ This kind of studies give an insight of the adoption of lambdas and generics; wh
 
 
 % DONE: Removed numbered section
-\subsection{Unsafe API}
+\subsection{Unsafe Intrinsics in \java}
 \label{sec:lr:unsafe}
 
 % DONE: This paragraph should go first, no? 
@@ -374,7 +374,7 @@ This study is summarized in Chapter \ref{cha:unsafe}.
 % \cite{framptonDemystifyingMagicHighlevel2009} proposed \code{org.vmmagic} to provide an escape hatch to low-level alternatives needed to build virtual machines; however, they require compiler support.
 
 \cite{tanSafeJavaNative2006} propose a safe variant of \jni{}.
-\cite{tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008} carried out an empirical security study to describe a taxonomy to classify bugs when using JNI.
+\cite{tanEmpiricalSecurityStudy2008,kondohFindingBugsJava2008} conducted an empirical security study to describe a taxonomy to classify bugs when using JNI.
 \cite{sunNativeGuardProtectingAndroid2014} develop a method to isolate native components in Android applications.
 \cite{liFindingBugsExceptional2009} analyze the discrepancy between how exceptions are handled in native code and \java{}.
 
@@ -416,12 +416,18 @@ the right type of the object.
 \cite{livshitsImprovingSoftwareSecurity2006,livshitsReflectionAnalysisJava2005} ``describes an approach to call graph construction for \java{} programs in the presence of reflection.''
 He has devised some common usage patterns for reflection.
 Most of the patterns use casts.
-We plan to categorize all cast usages, not only where reflection is used.
+We plan to categorize all cast usages,
+not only where reflection is used.
 
-\cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of static analysis tools with respect to reflection.
-They made an empirical study to check how often the reflection \api{} is used in real-world code.
-They have devised reflection AST patterns, which often involve the use of casts.
-Finally, they argue that controlled programming experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
+\cite{landmanChallengesStaticAnalysis2017} have analyzed the relevance of
+static analysis tools with respect to reflection.
+They conducted an empirical study to check how often the reflection
+\api{} is used in real-world code.
+They have devised reflection AST patterns,
+which often involve the use of casts.
+Finally, they argue that controlled programming experiments on
+subjects need to be correlated with real-world use cases,
+\eg, \github{} or \mavencentral{}.
 
 % DONE: Shouldn't that 2.8?
 % \subsection*{Controlled Experiments on Subjects}

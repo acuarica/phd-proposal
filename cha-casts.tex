@@ -20,11 +20,13 @@ $150K$
 results.%
 \footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
 % respectively.
-We have included here a few source code results.
-This illustrates the sort of problem developers have when applying casting conversions.
+We have included here a few source code results%
+\footnote{To easily spot what the developer has changed to fix
+the \code{ClassCastException}, we present each source code excerpt
+using the Git commit \emph{diff} as reported by \github{}.}
+to illustrate the sort of problem developers have when
+applying casting conversions.
 % DONE: Are these really the best motivating/illustrative examples?
-To easily spot what the developer has changed to fix the \code{ClassCastException},
-we present each source code excerpt using the Git commit \emph{diff} as reported by \github{}.
 
 \textbf{Forgotten Guard.}
 The following listing\footnote{\url{https://github.com/jenkinsci/extra-columns-plugin/commit/02d10bd1fcbb2e656da9b1b4ec54208b0cc1cbb2}}
@@ -84,7 +86,7 @@ Otherwise, returns the default value (second argument).
 But the return type of \code{getProperty}
 is a generic type inferred by the type of the default value, in this case, \code{long}.
 The \code{ClassCastException} is then thrown in line $5$, when casting \code{java.lang.Integer} to \code{java.lang.Long}.
-This is why the developer changed the type of the literal: from \code{long} to \code{int}.
+To then fix the bug, the developer changed the type of the literal: from \code{long} to \code{int}.
 
 
 \begin{lstlisting}[style=java]
