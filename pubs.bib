@@ -12116,7 +12116,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Dieckmann, Sylvia and H\"olzle, Urs},
   editor = {Guerraoui, Rachid},
   year = {1999},
-  keywords = {Class Pointer,Garbage Collection,Garbage Collector,Instance Object,Reference Array},
+  keywords = {Garbage Collection,Class Pointer,Garbage Collector,Instance Object,Reference Array},
   pages = {92-115},
   file = {/Users/luigi/work/zotero/storage/V6L6LDMF/Dieckmann and Hölzle - 1999 - A study of the Allocation Behavior of the SPECjvm9.pdf}
 }
@@ -12167,7 +12167,7 @@ Experimental results using the tool and manually rewriting code show average spa
   publisher = {{ACM}},
   author = {Nagappan, Meiyappan and Robbes, Romain and Kamei, Yasutaka and Tanter, \'Eric and McIntosh, Shane and Mockus, Audris and Hassan, Ahmed E.},
   year = {2015},
-  keywords = {Dijkstra,Empirical SE,Github,Use of goto statements},
+  keywords = {Github,Dijkstra,Empirical SE,Use of goto statements},
   pages = {404--414},
   file = {/Users/luigi/work/zotero/storage/EPHCZBXJ/Nagappan et al. - 2015 - An Empirical Study of Goto in C Code from GitHub R.pdf}
 }
@@ -12188,6 +12188,55 @@ Experimental results using the tool and manually rewriting code show average spa
   keywords = {JavaScript,object behavioral metrics and patterns,study of websites},
   pages = {867-889},
   file = {/Users/luigi/work/zotero/storage/LJ2JZU3V/Wei et al. - 2016 - Empirical study of the dynamic behavior of JavaScr.pdf;/Users/luigi/work/zotero/storage/XGGHUGGG/spe.html}
+}
+
+@inproceedings{kiselyovStreamFusionCompleteness2017,
+  address = {New York, NY, USA},
+  series = {POPL 2017},
+  title = {Stream {{Fusion}}, to {{Completeness}}},
+  isbn = {978-1-4503-4660-3},
+  doi = {10.1145/3009837.3009880},
+  abstract = {Stream processing is mainstream (again): Widely-used stream libraries are now available for virtually all modern OO and functional languages, from Java to C\# to Scala to OCaml to Haskell. Yet expressivity and performance are still lacking. For instance, the popular, well-optimized Java 8 streams do not support the zip operator and are still an order of magnitude slower than hand-written loops.   We present the first approach that represents the full generality of stream processing and eliminates overheads, via the use of staging. It is based on an unusually rich semantic model of stream interaction. We support any combination of zipping, nesting (or flat-mapping), sub-ranging, filtering, mapping\textemdash{}of finite or infinite streams. Our model captures idiosyncrasies that a programmer uses in optimizing stream pipelines, such as rate differences and the choice of a ``for'' vs. ``while'' loops. Our approach delivers hand-written\textendash{}like code, but automatically. It explicitly avoids the reliance on black-box optimizers and sufficiently-smart compilers, offering highest, guaranteed and portable performance.   Our approach relies on high-level concepts that are then readily mapped into an implementation. Accordingly, we have two distinct implementations: an OCaml stream library, staged via MetaOCaml, and a Scala library for the JVM, staged via LMS. In both cases, we derive libraries richer and simultaneously many tens of times faster than past work. We greatly exceed in performance the standard stream libraries available in Java, Scala and OCaml, including the well-optimized Java 8 streams.},
+  booktitle = {Proceedings of the 44th {{ACM SIGPLAN Symposium}} on {{Principles}} of {{Programming Languages}}},
+  publisher = {{ACM}},
+  author = {Kiselyov, Oleg and Biboudis, Aggelos and Palladinos, Nick and Smaragdakis, Yannis},
+  year = {2017},
+  keywords = {Code generation,multi-stage programming,optimization,stream fusion,streams},
+  pages = {285--299},
+  file = {/Users/luigi/work/zotero/storage/PAGNQ6M9/Kiselyov et al. - 2017 - Stream Fusion, to Completeness.pdf}
+}
+
+@inproceedings{ohLearningStrategyAdapting2015,
+  address = {New York, NY, USA},
+  series = {OOPSLA 2015},
+  title = {Learning a {{Strategy}} for {{Adapting}} a {{Program Analysis}} via {{Bayesian Optimisation}}},
+  isbn = {978-1-4503-3689-5},
+  doi = {10.1145/2814270.2814309},
+  abstract = {Building a cost-effective static analyser for real-world programs is still regarded an art. One key contributor to this grim reputation is the difficulty in balancing the cost and the precision of an analyser. An ideal analyser should be adaptive to a given analysis task, and avoid using techniques that unnecessarily improve precision and increase analysis cost. However, achieving this ideal is highly nontrivial, and it requires a large amount of engineering efforts. In this paper we present a new approach for building an adaptive static analyser. In our approach, the analyser includes a sophisticated parameterised strategy that decides, for each part of a given program, whether to apply a precision-improving technique to that part or not. We present a method for learning a good parameter for such a strategy from an existing codebase via Bayesian optimisation. The learnt strategy is then used for new, unseen programs. Using our approach, we developed partially flow- and context-sensitive variants of a realistic C static analyser. The experimental results demonstrate that using Bayesian optimisation is crucial for learning from an existing codebase. Also, they show that among all program queries that require flow- or context-sensitivity, our partially flow- and context-sensitive analysis answers the 75\% of them, while increasing the analysis cost only by 3.3x of the baseline flow- and context-insensitive analysis, rather than 40x or more of the fully sensitive version.},
+  booktitle = {Proceedings of the 2015 {{ACM SIGPLAN International Conference}} on {{Object}}-{{Oriented Programming}}, {{Systems}}, {{Languages}}, and {{Applications}}},
+  publisher = {{ACM}},
+  author = {Oh, Hakjoo and Yang, Hongseok and Yi, Kwangkeun},
+  year = {2015},
+  keywords = {Bayesian Optimization,rogram Analysis},
+  pages = {572--588},
+  file = {/Users/luigi/work/zotero/storage/8SIQA4GX/Oh et al. - 2015 - Learning a Strategy for Adapting a Program Analysi.pdf}
+}
+
+@inproceedings{kuutilaReviewingLiteratureTime2017,
+  address = {Piscataway, NJ, USA},
+  series = {SEmotion '17},
+  title = {Reviewing {{Literature}} on {{Time Pressure}} in {{Software Engineering}} and {{Related Professions}}: {{Computer Assisted Interdisciplinary Literature Review}}},
+  isbn = {978-1-5386-2793-8},
+  shorttitle = {Reviewing {{Literature}} on {{Time Pressure}} in {{Software Engineering}} and {{Related Professions}}},
+  doi = {10.1109/SEmotion.2017...11},
+  abstract = {During the past few years, psychological diseases related to unhealthy work environments, such as burnouts, have drawn more and more public attention. One of the known causes of these affective problems is time pressure. In order to form a theoretical background for time pressure detection in software repositories, this paper combines interdisciplinary knowledge by analyzing 1270 papers found on Scopus database and containing terms related to time pressure. By clustering those papers based on their abstract, we show that time pressure has been widely studied across different fields, but relatively little in software engineering. From a literature review of the most relevant papers, we infer a list of testable hypotheses that we want to verify in future studies in order to assess the impact of time pressures on software developers' mental health.},
+  booktitle = {Proceedings of the {{2Nd International Workshop}} on {{Emotion Awareness}} in {{Software Engineering}}},
+  publisher = {{IEEE Press}},
+  author = {Kuutila, Miikka and M\"antyl\"a, Mika V. and Claes, Ma\"elick and Elovainio, Marko},
+  year = {2017},
+  keywords = {deadline pressure,job demands-resources model,software engineering,speed-accuracy tradeoff,time pressure,topic analysis},
+  pages = {54--59},
+  file = {/Users/luigi/work/zotero/storage/9DII9RBW/Kuutila et al. - 2017 - Reviewing Literature on Time Pressure in Software .pdf}
 }
 
 
