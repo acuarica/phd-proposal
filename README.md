@@ -1,11 +1,11 @@
 
 # Ph.D. Proposal
 
-https://acuarica.gitlab.io/phd-proposal/phd-proposal.pdf
+<https://acuarica.gitlab.io/phd-proposal/phd-proposal.pdf>
 
 ## Thesis TODOs
 
-* TODO: Add discussion from https://martinfowler.com/bliki/DynamicTyping.html
+* TODO: Add discussion from <https://martinfowler.com/bliki/DynamicTyping.html>
 * TODO: Discuss "Static Typing of Complex Presence Constraints in Interfaces" \cite{oostvogelsStaticTypingComplex2018a}
 * TODO: Source of information for cast success: Config files, libraries, more complex analysis
 * TODO: What does the compiler need to know to assert that a cast won't fail at runtime?
@@ -17,3 +17,4 @@ https://acuarica.gitlab.io/phd-proposal/phd-proposal.pdf
 * TODO: What conclusions did they draw on JNI usage?
 * TODO: Expand discussion on static vs. dynamic analyses for these kinds of studies
 * TODO: How many JEPs have been adopted since 2015?
+* TODO: Discuss "static vs. dynamic" over "staging-time vs. compile-time vs. link-time vs. load-time vs. run-time"
