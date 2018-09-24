@@ -208,13 +208,15 @@ Thus, we \emph{exclude} primitive conversions in our study
 ).
 The \emph{Number of Casts} value shown above include only reference conversions.
 Primitive conversions are always safe (in terms of throwing \code{ClassCastException}.
-A primitive conversion happens when both the type of the expression to be casted to and the type to cast to are primitive types.
+A primitive conversion happens when both the type of the expression to be casted to and
+the type to cast to are primitive types.
 Note that with this definition, we include in our study \emph{boxed} types.
 Since boxed types are reference types (and therefore not necessarily safe)
 we want to include them in our analysis.
 
 We want to know how many cast instances there are across projects.
-Thus, we have computed the ratio between methods containing at least a cast over total number of methods --- with implementation --- in a given project.
+Thus, we have computed the ratio between methods containing
+at least a cast over total number of methods --- with implementation --- in a given project.
 The following chart shows this ratio for all analyzed projects:
 
 \includegraphics[width=\columnwidth]{stats-methodwcast.pdf}
@@ -225,7 +227,8 @@ This means there is a low density of casts.
 Given the fact that generics were introduced \java{} 5, this can explain this low density.
 
 Nevertheless, casts are still used.
-We want to understand why there are casts instances (\ref{casts:rq2}) and how often the use cases that leads to casts are used (\ref{casts:rq3}).
+We want to understand why there are casts instances (\ref{casts:rq2}) and
+how often the use cases that leads to casts are used (\ref{casts:rq3}).
 The following sections give an answer to these questions.
 
 % DONE: cut
@@ -236,7 +239,8 @@ The following sections give an answer to these questions.
 \label{sec:casts:methodology}
 
 To answer both research questions
-\ref{casts:rq2} (\emph{\crqB}) and \ref{casts:rq3} (\emph{\crqC}) we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
+\ref{casts:rq2} (\emph{\crqB}) and \ref{casts:rq3} (\emph{\crqC})
+we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
 As mentioned in section \ref{sec:casts:stats}, \ql{} treats primitive conversions as casts.
 Thus, a preliminary step is to exclude them as cast instances.
 The following \ql{} query shows how to retrieve all relevant cast expressions:
@@ -291,15 +295,18 @@ ce.getTypeExpr().getType() instanceof PrimitiveType
 \caption{Process to discover cast tags and patterns.} \label{fig:process}
 \end{wrapfigure}
 
-
 Figure~\ref{fig:process} depicts our methodology.
 We have used this initial result as a starting point for our analysis.
 Afterwards, we select a random sample for manual inspection.
-We manually inspected the mentioned casts trying to understand why and how they were used.
+We manually inspected the mentioned casts trying to understand
+why and how they were used.
 
-By manually inspecting several casts instances, we observe that certain characteristics appear often, \eg{}, a cast in a overridden method, or a cast guarded by an \code{instanceof}.
+By manually inspecting several casts instances,
+we observe that certain characteristics appear often, \eg,
+a cast in a overridden method, or a cast guarded by an \code{instanceof}.
 We then \emph{tag} cast instances based on these observations.
-We implement a \ql{} predicate that detects them and proceed to refine our query with this new tag predicate.
+We implement a \ql{} predicate that detects them and proceed
+to refine our query with this new tag predicate.
 % The table of tags is presented in table~\ref{table:tags}.
 After a new tag is added, the query is run again to iterate over the new results.
 
@@ -308,19 +315,25 @@ After a new tag is added, the query is run again to iterate over the new results
 Whenever we detect that those tags appear often,
 we further inspect the source code to check that is indeed a pattern.
 We have formalized the structure of each pattern as a \ql{} predicate based on those tags.
-Similarly with tags, after a new pattern is added, the query is run again to inspect the casts without pattern.
-To sum up, our methodology iterates over the results until no \emph{more} patterns can be detected.
+Similarly with tags, after a new pattern is added,
+the query is run again to inspect the casts without pattern.
+To sum up, our methodology iterates over the results until
+no \emph{more} patterns can be detected.
 % These patterns are presented in the following section.
-The final \ql{} query is available online.\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/ql/obs.ql}}
+The final \ql{} query is available online.%
+\footnote{\url{https://gitlab.com/acuarica/java-cast-queries/blob/master/obs.ql}}
 
 
 % DONE: What about patterns we can't write queries for?
 \subsection*{Manual Categorization of Patterns}
 
-Some code patterns might be too difficult to express in terms of \ql{} queries.
-This situation arises when the knowledge to determine the pattern is outside the source code,
+Some code patterns might be too difficult to
+express in terms of \ql{} queries.
+This situation arises when the knowledge to determine
+the pattern is outside the source code,
 \eg, in configuration files or library call sites.
-Thus, in those cases we can only acknowledge that a pattern exists, but not how recurrent it is.
+Thus, in those cases we can only acknowledge that a pattern exists,
+but not how recurrent it is.
 
 % \begin{table*}[t!]
 % \centering
