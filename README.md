@@ -18,3 +18,11 @@
 * TODO: Expand discussion on static vs. dynamic analyses for these kinds of studies
 * TODO: How many JEPs have been adopted since 2015?
 * TODO: Discuss "static vs. dynamic" over "staging-time vs. compile-time vs. link-time vs. load-time vs. run-time"
+* TODO: Preliminary discussion about `checkcast` and `instanceof` bytecodes
+
+### Literature Review: Add to introduction
+
+But there is more than empirical studies at the source code level.
+A machine instruction set is effectively another kind of language.
+Therefore, its design can be affected by how compilers generate machine code.
+Several studies targeted the \jvm{}~\cite{collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998}; while~\cite{cook_empirical_1989} did a similar study for \lilith{} in the past.
