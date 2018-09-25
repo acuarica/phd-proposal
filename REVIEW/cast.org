@@ -7,6 +7,7 @@
 # face/faith? based casting
 # Faith vs. evidence: How to know a cast won't fail?
 
+* TODOs
 ** TODO Would TAPL's Benjamin Pierce agree with this introduction?
 *** Would he agree with every statement you make here?
 *** Would he agree that you use the terminology 100% accurately?

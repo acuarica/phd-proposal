@@ -1,9 +1,5 @@
 
 * DRAFT Understanding How \java{} Language Features Are Used
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-20 Wed 17:32] \\
-  What do we want to do?
-:END:
 
 Understanding the Use of Language Features in Java.
 To understand patterns.Mining language features thesis.
@@ -20,16 +16,7 @@ We begin this chapter presenting our already published work on the Unsafe API in
 
 With the Unsafe API we answer the sub-research question:
 
-* Reflection Patterns <<cha:reflection>>                           :patterns:
-
-This list of patterns are more of semantic patterns.
-
-When reflection and metaprogramming can be used.
-
-Related Work
-
 * DRAFT Literature Review <<cha:literature-review>> :patterns:
-
 
 cite:meyerovich_empirical_2013
 
@@ -413,183 +400,8 @@ Calendar copy = (Calendar)calendar.clone();
 :Citation: cite:landman_challenges_2017 
 :END:
 
-** DRAFT Compilers Writers <<sec:compilers-writers>>
-:LOGBOOK:
-- State "DRAFT"      from              [2018-01-15 Mon 16:25]
-:END:
 
-Already cite:knuth_empirical_1971 started to study \fortran{} programs.
-By knowing what kind of programs arise in practice, a compiler optimizer can focus in those cases, and therefore can be more effective.
-Alternatively, to measure the advantages between compilation and interpretation in \basic{}, cite:hammond_basic_1977 has studied a representative dataset of programs.
-Adding to Knuth's work, cite:shen_empirical_1990 made an empirical study for parallelizing compilers.
-Similar works have been done for \cobol{}\nbsp{}cite:salvadori_static_1975,chevance_static_1978, \pascal{}\nbsp{}cite:cook_contextual_1982, and \apl{}\nbsp{}cite:saal_properties_1975,saal_empirical_1977 programs.
 
-But there is more than empirical studies at the source code level.
-A machine instruction set is effectively another kind of language.
-Therefore, its design can be affected by how compilers generate machine code.
-Several studies targeted the \jvm{}\nbsp{}cite:collberg_empirical_2007,odonoghue_bigram_2002,antonioli_analysis_1998; while\nbsp{}cite:cook_empirical_1989 did a similar study for \lilith{} in the past.
-
-** TODO Benchmarks and Corpuses <<sec:benchmarks>>
-
-Benchmarks are crucial to properly evaluate and measure product developement.
-This is key for both research and industry.
-One popular benchmark suite for \java{} is DaCapo\nbsp{}cite:blackburn_dacapo_2006.
-This suite has been already cited in more than thousand publications, showing how important is to have reliable benchmark suites.
-
-Another suite is given in\nbsp{}cite:tempero_qualitas_2010.
-They provide a corpus of curated open source systems to facilitate empirical studies on source code.
-
-For any benchmark or corpus to be useful and reliable, it must faithfully represent real world code.
-Therefore, we argue how important it is to make empirical studies about what programmers write.
-
-** TODO Large-scale Codebase Empirical Studies <<sec:large-scale>>
-
-In the same direction to our plan, cite:callau_how_2013 perform a study of the dynamic features of \smalltalk{}.
-Analogously, cite:richards_analysis_2010,richards_eval_2011 made a similar study, but in this case targeting \javascript{}'s dynamic behavior and in particular the \eval{} function.
-Also for \javascript{}, cite:madsen_string_2014 analyzed how fields are accessed via strings, while\nbsp{}cite:jang_empirical_2010 analyzed privacy violations.
-Similar empirical studies were done for \php{}\nbsp{}cite:hills_empirical_2013,dahse_experience_2015,doyle_empirical_2011 and \swift{}\nbsp{}cite:reboucas_empirical_2016. 
-
-Going one step forward, cite:ray_large-scale_2017 studied the correlation between programming languages and defects.
-One important note is that they choose relevant project by popularity, measured \emph{stars} in \github{}.
-We argue that it is more important to analyse projects that are /representative/, not /popular/.
-
-For \java{}, cite:dietrich_contracts_2017-1 made a study about how programmers use contracts in \mavencentral{}.
-cite:landman_challenges_2017 have analyzed the relevance of static analysis tools with respect to reflection.
-They made an empirical study to check how often the reflection \api{} is used in real-world code.
-They argue, as we do, that controlled experiments on subjects need to be correlated with real-world use cases, \eg{}, \github{} or \mavencentral{}.
-cite:winther_guarded_2011 \nbsp{}have implemented a flow-sensitive analysis that allows to avoid manually casting once a guarded \instanceof{} is provided.
-cite:dietrich_broken_2014 have studied how changes in \api{} library impact in \java{} programs.
-Notice that they have used the Qualitas Corpus\nbsp{}cite:tempero_qualitas_2010 mentioned above for their study.
-
-*** Exceptions
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
-
-cite:kery_examining_2016,asaduzzaman_how_2016 focus on exceptions.
-They made empirical studies on how programmers handle exceptions in \java{} code.
-The work done by\nbsp{}cite:nakshatri_analysis_2016 categorized them in patterns.
-Whether\nbsp{}cite:coelho_unveiling_2015 used a more dynamic approach by analysing stack traces and code issues in \github{}.
-
-*** Collections and Generics
-:PROPERTIES:
-:UNNUMBERED: t
-:END:
-
-The inclusion of generics in \java{} is closely related to collections.
-cite:parnin_java_2011,parnin_adoption_2013 studied how generics were adopted by \java{} developers.
-They found that the use of generics do not significantly reduce the number of type casts.
-
-cite:costa_empirical_2017 have mined \github{} corpus to study the use and performance of collections, and how these usages can be improved.
-They have found out that in most cases there is an alternative usage that improves performance.
-
-** DRAFT Controlled Experiments on Subjects <<sec:controlled-experiments>>
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-15 Fri 16:58] \\
-  Removed "Impact of using Static Type systems" sub-headline
-:END:
-
-There is an extensive literature \perse{} in controlled experiments on subjects to understand several aspects in programming, and programming languages.
-For instance, cite:soloway_empirical_1984 tried to understand the how expert programmers face problem solving.
-cite:budd_theoretical_1980 made a empirical study on how effective is mutation testing.
-cite:prechelt_empirical_2000 compared how a given --- fixed --- task was implemented in several programming languages.
-
-cite:latoza_developers_2010 realize that, in essence, programmers need to answer reachability questions to understand large codebases.
-
-Several authors\nbsp{}cite:stuchlik_static_2011,mayer_empirical_2012,harlin_impact_2017 measure whether using a static-type system improves programmers productivity.
-They compare how a static and a dynamic type system impact on productivity.
-The common setting for these studies is to have a set of programming problems.
-Then, let a group of developers solve them in both a static and dynamic languages.
-
-For these kind of studies to reflect reality, the problems to be solved need to be representative of the real-world code.
-Having artificial problems may lead to invalid conclusions.
-
-The work by\nbsp{}cite:wu_how_2017,wu_learning_2017 goes towards this direction.
-They have examined programs written by students to understand real debugging conditions.
-Their focus is on ill-typed programs written in \haskell{}.
-Unfortunately, these dataset does not correspond to real-world code.
-Our focus is to analyze code by experienced programmers.
-
-Therefore, it is important to study how casts are used in real-world code.
-Having a deep understanding of actual usage of casts can led to
-Informed decisions when designing these kind of experiments.
-
-** DRAFT Code Patterns Discovery <<sec:pattern-discovery>>
-:LOGBOOK:
-- State "DRAFT"      from "DRAFT"      [2017-12-06 Wed 16:12] \\
-  Rascal implements backtracking & fixed point (used by dataflow analysis)
-- State "DRAFT"      from "DRAFT"      [2017-12-05 Tue 15:18] \\
-  How the pattern discovery relate to static analysis, how powerful they are?
-- State "DRAFT"      from "TODO"       [2017-12-05 Tue 15:17] \\
-  Need to add Rascal
-:END:
-
-cite:posnett_thex:_2010 have extended \asm{}\nbsp{}cite:bruneton_asm:_2002,kuleshov_using_2007 to implement symbolic execution and recognize call sites.
-However, this is only a meta-pattern detector, and not a pattern discovery.
-cite:hu_dynamic_2008 used both dynamic and static analysis to discover design patterns, while cite:arcelli_design_2008 used only dynamic.
-
-Trying to unify analysis and transformation tools\nbsp{}cite:vinju_how_2006, cite:klint_rascal:_2009 built \rascal, a DSL that aims to bring them together. 
-
-** DRAFT Tools for Mining Software Repositories <<sec:msr>> :boa:lgtm:candoia:
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-15 Fri 17:02] \\
-  Removed title ``A Platform for Building and Sharing Mining Software Repositories Tools as Apps'' (already in the citation)
-:END:
-
-When talking about mining software repositories, we refer to extracting any kind of information from large-scale codebase repositories.
-Usually doing so requires several engineering but challenging tasks.
-The most common being downloading, storing, parsing, analyzing and properly extracting different kinds of artifacts.
-In this scenario, there are several tools that allows a researcher or developer to query information about software repositories.
-
-cite:dyer_boa:_2013,dyer_declarative_2013 built \boa{}, both a domain-specific language and an online platform[fn::http://boa.cs.iastate.edu/].
-It is used to query software repositories on two popular hosting services, \github [fn::https://github.com/] and \sourceforge [fn::https://sourceforge.net/].
-The same authors of \boa{} made a study on how new features in \java{} were adopted by developers\nbsp{}cite:dyer_mining_2014.
-This study is based \sourceforge{} data.
-The current problem with \sourceforge{} is that is outdated.
-
-To this end, cite:gousios_ghtorent_2013 provides an offline mirror of \github{} that allows researchers to query any kind of that data.
-Later on, cite:gousios_lean_2014 published the dataset construction process of \github{}.
-
-Similar to \boa{}, \lgtm [fn::https://lgtm.com/] is a platform to query software projects properties.
-It works by querying repositories from \github{}.
-But it does not work at a large-scale, \ie{}, \lgtm{} allows the user to query just a few projects.
-Unlike \boa{}, \lgtm{} is based on \ql{}, an object-oriented domain-specific language to query recursive data structures\nbsp{}cite:avgustinov_ql:_2016.
-
-On top of \boa{}, cite:tiwari_candoia:_2017 built \candoia [fn::http://candoia.github.io/].
-Although it is not a mining software repository \perse{}, it eases the creation of mining applications.
-
-Another tool to analyze large software repositories is presented in\nbsp{}cite:brandauer_spencer:_2017.
-In this case, the analysis is dynamic, based on program traces.
-At the time of this writing, the service[fn::http://www.spencer-t.racing/datasets] was unavailable for testing.
-
-** DRAFT Selecting Good Representatives <<sec:selection>>
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-06 Wed 17:42] \\
-  Added SPS for project sampling, and promote good representatives selection to section.
-:END:
-
-Another dimension to consider when analyzing large codebases, is how relevant the repositories are.
-cite:lopes_dejavu:_2017 made a study to measure code duplication in \github{}.
-They found out that much of the code there is actually duplicated.
-This raises a flag when consider which projects analyze when doing mining software repositories. 
-
-cite:nagappan_diversity_2013 have developed the Software Projects Sampling (SPS) tool.
-SPS tries to find a maximal set of projects based on representativeness and diversity.
-Diversity dimensions considered include total lines of code, project age, activity, and of the last 12 months, number of contributors, total code churn, and number of commits.
-
-# Implicits in Scala
-# Users/Compilers Java/Scala generated bytecode
-# Jurgen Vinju paper: http://homepages.cwi.nl/~storm/publications/visitor.pdf
-
-** DRAFT Code Recommenders Systems :noexport:
-:LOGBOOK:
-- State "DRAFT"      from "TODO"       [2017-12-15 Fri 16:08] \\
-  Shall I add this Code Recommenders systems section?
-:END:
-
-Codota
-
-https://www.codota.com/
 
 
 * DRAFT Casts <<cha:casts>>                                        :patterns:
@@ -1713,18 +1525,3 @@ Unguarded pattern
     } 
 #+END_SRC 
 
-* Exceptions <<cha:exceptions>>                                    :patterns:
-
-Here we talk about exception, maybe?
-
-* DONE Bibliography                                                  :ignore:
-CLOSED: [2017-12-23 Sat 20:29]
-:LOGBOOK:
-- State "DONE"       from "IN-THE-BOOK" [2017-12-23 Sat 20:29]
-- State "IN-THE-BOOK" from "DRAFT"      [2017-12-23 Sat 20:29]
-- State "DRAFT"      from "TODO"       [2017-12-23 Sat 20:28] \\
-  Added ignore tag to have it in its own subtree
-:END:
-
-bibliographystyle:plainnat
-bibliography:proposal.bib
