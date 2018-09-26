@@ -9,23 +9,28 @@
 
 Casting operations provide the means to escape the static type system.
 \emph{But do they pose a problem for developers?}
-A simple search for
+Several studies
+\citep{kechagiaUndocumentedUncheckedExceptions2014,coelhoUnveilingExceptionHandling2015,zhitnitskyTop10Exception2016}
+show that \code{ClassCastException} is in top 10 of exceptions being
+thrown when analysing stack traces.
+%
+To illustrate the sort of problem developers have when applying casting
+conversions, we performed a simple search for
 commits
 % and
 % issues\footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Issues}}
-including the term \code{ClassCastException} on \github{} returns about
+including the term \code{ClassCastException} on \github.
+The search returns about
 $150K$
 % and
 % $72K$
 results.%
 \footnote{\url{https://github.com/search?l=Java&q=ClassCastException&type=Commits}}
 % respectively.
-We have included here a few source code results%
+We have included here a few source code results as an example%
 \footnote{To easily spot what the developer has changed to fix
 the \code{ClassCastException}, we present each source code excerpt
 using the Git commit \emph{diff} as reported by \github{}.}
-to illustrate the sort of problem developers have when
-applying casting conversions.
 % DONE: Are these really the best motivating/illustrative examples?
 
 \textbf{Forgotten Guard.}
@@ -183,6 +188,7 @@ We show them here to give an estimation of the size of the code base being anali
 As mentioned above, these results are preliminary.
 We plan to scale up our analysis to the whole \lgtm{} project database.
 
+\begin{wrapfigure}{r}{7.0cm}
 \begin{center}
 \begin{tabular}{lr}
 	Description & Value\\
@@ -195,6 +201,7 @@ We plan to scale up our analysis to the whole \lgtm{} project database.
 	Number of Casts & \ncast{} \\
 \end{tabular}
 \end{center}
+\end{wrapfigure}
 
 The \emph{Number of Methods} and \emph{Number of Methods w/Cast} values includes only methods with a body, \ie{}, not abstract, nor native.
 The \emph{Number of Exprs} value show how many expressions there are in the ASTs of all source code analyzed.
@@ -219,7 +226,7 @@ Thus, we have computed the ratio between methods containing
 at least a cast over total number of methods --- with implementation --- in a given project.
 The following chart shows this ratio for all analyzed projects:
 
-\includegraphics[width=\columnwidth]{stats-methodwcast.pdf}
+\includegraphics[width=\columnwidth,height=3.8cm]{stats-methodwcast.pdf}
 
 All projects have less than $10\%$ of methods with at least a cast.
 Overall, around a~$\castratio{}$ of methods contain at least one cast operation. 
@@ -241,6 +248,7 @@ The following sections give an answer to these questions.
 To answer both research questions
 \ref{casts:rq2} (\emph{\crqB}) and \ref{casts:rq3} (\emph{\crqC})
 we have used the \ql{} query language within the \lgtm{} service to look for cast instances.
+%
 As mentioned in section \ref{sec:casts:stats}, \ql{} treats primitive conversions as casts.
 Thus, a preliminary step is to exclude them as cast instances.
 The following \ql{} query shows how to retrieve all relevant cast expressions:
