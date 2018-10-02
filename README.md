@@ -28,6 +28,9 @@
 * TODO: Address Antonio's comment on casting is not circumventing the static type system: Dynamically recovery information
 * TODO: Make a case for the complexity of Engineering for compiling/dependencies for static analysis
 * TODO: Expand on study about the source of exceptions, showing CCE being a problem for developers
+* TODO: Pattern Dynamic Proxy: Paper "Static Analysis of Java Dynamic Proxies"
+* TODO: Literature Review: Article "Static Typing Where Possible, Dynamic Typing When Needed: The End of the Cold War Between Programming Languages"
+* TODO: Discussion about *strong typing* in "On understanding types, data abstraction, and polymorphism"
 
 ### Literature Review: Add to introduction
 
