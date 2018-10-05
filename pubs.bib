@@ -12326,7 +12326,7 @@ Experimental results using the tool and manually rewriting code show average spa
   publisher = {{ACM}},
   author = {Fourtounis, George and Kastrinis, George and Smaragdakis, Yannis},
   year = {2018},
-  keywords = {dynamic proxy,reflection,static analysis},
+  keywords = {static analysis,reflection,dynamic proxy},
   pages = {209--220},
   file = {/Users/luigi/work/zotero/storage/IBFZ5JWH/Fourtounis et al. - 2018 - Static Analysis of Java Dynamic Proxies.pdf}
 }
@@ -12354,6 +12354,97 @@ Experimental results using the tool and manually rewriting code show average spa
   year = {1985},
   pages = {471-523},
   file = {/Users/luigi/work/zotero/storage/4BA5Q6Q9/Cardelli and Wegner - 1985 - On understanding types, data abstraction, and poly.pdf}
+}
+
+@inproceedings{doJustintimeStaticAnalysis2017,
+  address = {New York, NY, USA},
+  series = {ISSTA 2017},
+  title = {Just-in-Time {{Static Analysis}}},
+  isbn = {978-1-4503-5076-1},
+  doi = {10.1145/3092703.3092705},
+  abstract = {We present the concept of Just-In-Time (JIT) static analysis that interleaves code development and bug fixing in an integrated development environment. Unlike traditional batch-style analysis tools, a JIT analysis tool presents warnings to code developers over time, providing the most relevant results quickly, and computing less relevant results incrementally later. In this paper, we describe general guidelines for designing JIT analyses. We also present a general recipe for transforming static data-flow analyses to JIT analyses through a concept of layered analysis execution. We illustrate this transformation through CHEETAH, a JIT taint analysis for Android applications. Our empirical evaluation of CHEETAH on real-world applications shows that our approach returns warnings quickly enough to avoid disrupting the normal workflow of developers. This result is confirmed by our user study, in which developers fixed data leaks twice as fast when using CHEETAH compared to an equivalent batch-style analysis.},
+  booktitle = {Proceedings of the 26th {{ACM SIGSOFT International Symposium}} on {{Software Testing}} and {{Analysis}}},
+  publisher = {{ACM}},
+  author = {Do, Lisa Nguyen Quang and Ali, Karim and Livshits, Benjamin and Bodden, Eric and Smith, Justin and {Murphy-Hill}, Emerson},
+  year = {2017},
+  keywords = {Just-in-Time,Layered analysis,Static analysis},
+  pages = {307--317},
+  file = {/Users/luigi/work/zotero/storage/4HWV7YU4/Do et al. - 2017 - Just-in-time Static Analysis.pdf}
+}
+
+@inproceedings{inostrozaModularInterpretersMasses2015,
+  address = {New York, NY, USA},
+  series = {GPCE 2015},
+  title = {Modular {{Interpreters}} for the {{Masses}}: {{Implicit Context Propagation Using Object Algebras}}},
+  isbn = {978-1-4503-3687-1},
+  shorttitle = {Modular {{Interpreters}} for the {{Masses}}},
+  doi = {10.1145/2814204.2814209},
+  abstract = {Modular interpreters have the potential to achieve component-based language development: instead of writing language interpreters from scratch, they can be assembled from reusable, semantic building blocks. Unfortunately, traditional language interpreters are hard to extend because different language constructs may require different interpreter signatures. For instance, arithmetic interpreters produce a value without any context information, whereas binding constructs require an additional environment. In this paper, we present a practical solution to this problem based on implicit context propagation. By structuring denotational-style interpreters as Object Algebras, base interpreters can be retroactively lifted into new interpreters that have an extended signature. The additional parameters are implicitly propagated behind the scenes, through the evaluation of the base interpreter. Interpreter lifting enables a flexible style of component-based language development. The technique works in mainstream object-oriented languages, does not sacrifice type safety or separate compilation, and can be easily automated. We illustrate implicit context propagation using a modular definition of Featherweight Java and its extension to support side-effects.},
+  booktitle = {Proceedings of the 2015 {{ACM SIGPLAN International Conference}} on {{Generative Programming}}: {{Concepts}} and {{Experiences}}},
+  publisher = {{ACM}},
+  author = {Inostroza, Pablo and van der Storm, Tijs},
+  year = {2015},
+  keywords = {implicit propagation,Modular interpreters,object algebras},
+  pages = {171--180},
+  file = {/Users/luigi/work/zotero/storage/PEFTLIKZ/Inostroza and Storm - 2015 - Modular Interpreters for the Masses Implicit Cont.pdf}
+}
+
+@inproceedings{saiedCouldWeInfer2015,
+  title = {Could {{We Infer Unordered API Usage Patterns Only Using}} the {{Library Source Code}}?},
+  doi = {10.1109/ICPC.2015.16},
+  abstract = {Learning to use existing or new software libraries is a difficult task for software developers, which would impede their productivity. Much existing work has provided different techniques to mine API usage patterns from client programs in order to help developers on understanding and using existing libraries. However, considering only client programs to identify API usage patterns is a strong constraint as the client programs source code is not always available or the clients themselves do not exist yet for newly released APIs. In this paper, we propose a technique for mining Non Client-based Usage Patterns (NCBUP miner). We detect unordered API usage patterns as distinct groups of API methods that are structurally and semantically related and thus may contribute together to the implementation of a particular functionality for potential client programs. We evaluated our technique through four APIs. The obtained results are comparable to those of client-based approaches in terms of usage-patterns cohesion.},
+  booktitle = {2015 {{IEEE}} 23rd {{International Conference}} on {{Program Comprehension}}},
+  author = {Saied, M. A. and Abdeen, H. and Benomar, O. and Sahraoui, H.},
+  month = may,
+  year = {2015},
+  keywords = {API Documentation,API Usage,application program interfaces,client programs,Clustering algorithms,Context,data mining,Java,library source code,Matrix decomposition,Measurement,NCBUP miner,non client-based usage patterns,Security,Semantics,Software Clustering,software libraries,source code (software),unordered API usage patterns,Usage Pattern},
+  pages = {71-81},
+  file = {/Users/luigi/work/zotero/storage/ZAYHZ4WW/Saied et al. - 2015 - Could We Infer Unordered API Usage Patterns Only U.pdf;/Users/luigi/work/zotero/storage/LN2PVC53/7181434.html}
+}
+
+@inproceedings{gurfinkelSeaHornVerificationFramework2015,
+  series = {Lecture Notes in Computer Science},
+  title = {The {{SeaHorn Verification Framework}}},
+  isbn = {978-3-319-21690-4},
+  abstract = {In this paper, we present SeaHorn, a software verification framework. The key distinguishing feature of SeaHorn is its modular design that separates the concerns of the syntax of the programming language, its operational semantics, and the verification semantics. SeaHorn encompasses several novelties: it (a) encodes verification conditions using an efficient yet precise inter-procedural technique, (b) provides flexibility in the verification semantics to allow different levels of precision, (c) leverages the state-of-the-art in software model checking and abstract interpretation for verification, and (d) uses Horn-clauses as an intermediate language to represent verification conditions which simplifies interfacing with multiple verification tools based on Horn-clauses. SeaHorn provides users with a powerful verification tool and researchers with an extensible and customizable framework for experimenting with new software verification techniques. The effectiveness and scalability of SeaHorn are demonstrated by an extensive experimental evaluation using benchmarks from SV-COMP 2015 and real avionics code.},
+  language = {en},
+  booktitle = {Computer {{Aided Verification}}},
+  publisher = {{Springer International Publishing}},
+  author = {Gurfinkel, Arie and Kahsai, Temesghen and Komuravelli, Anvesh and Navas, Jorge A.},
+  editor = {Kroening, Daniel and P{\u a}s{\u a}reanu, Corina S.},
+  year = {2015},
+  keywords = {Abstract Domain,Abstract Interpretation,Buffer Overflow,Operational Semantic,Proof Obligation},
+  pages = {343-361},
+  file = {/Users/luigi/work/zotero/storage/25CJ6S9Y/Gurfinkel et al. - 2015 - The SeaHorn Verification Framework.pdf}
+}
+
+@article{mantylaEvolutionSentimentAnalysis2018,
+  title = {The Evolution of Sentiment Analysis\textemdash{{A}} Review of Research Topics, Venues, and Top Cited Papers},
+  volume = {27},
+  issn = {1574-0137},
+  doi = {10.1016/j.cosrev.2017.10.002},
+  abstract = {Sentiment analysis is one of the fastest growing research areas in computer science, making it challenging to keep track of all the activities in the area. We present a computer-assisted literature review, where we utilize both text mining and qualitative coding, and analyze 6996 papers from Scopus. We find that the roots of sentiment analysis are in the studies on public opinion analysis at the beginning of 20th century and in the text subjectivity analysis performed by the computational linguistics community in 1990's. However, the outbreak of computer-based sentiment analysis only occurred with the availability of subjective texts on the Web. Consequently, 99\% of the papers have been published after 2004. Sentiment analysis papers are scattered to multiple publication venues, and the combined number of papers in the top-15 venues only represent ca. 30\% of the papers in total. We present the top-20 cited papers from Google Scholar and Scopus and a taxonomy of research topics. In recent years, sentiment analysis has shifted from analyzing online product reviews to social media texts from Twitter and Facebook. Many topics beyond product reviews like stock markets, elections, disasters, medicine, software engineering and cyberbullying extend the utilization of sentiment analysis.},
+  journal = {Computer Science Review},
+  author = {M\"antyl\"a, Mika V. and Graziotin, Daniel and Kuutila, Miikka},
+  month = feb,
+  year = {2018},
+  keywords = {Bibliometric study,Latent Dirichlet Allocation,Literature review,Opinion mining,Qualitative analysis,Sentiment analysis,Text mining,Topic modeling},
+  pages = {16-32},
+  file = {/Users/luigi/work/zotero/storage/H6X5ZZD4/Mäntylä et al. - 2018 - The evolution of sentiment analysis—A review of re.pdf;/Users/luigi/work/zotero/storage/J5AAEPEE/S1574013717300606.html}
+}
+
+@inproceedings{huppeMiningComplexTemporal2017,
+  title = {Mining {{Complex Temporal API Usage Patterns}}: {{An Evolutionary Approach}}},
+  shorttitle = {Mining {{Complex Temporal API Usage Patterns}}},
+  doi = {10.1109/ICSE-C.2017.147},
+  abstract = {Learning to use existing or new software libraries is a difficult task for software developers, which would impede their productivity. Much existing work has provided different techniques to mine API usage patterns from client programs inorder to help developers on understanding and using existinglibraries. However, these techniques produce incomplete patterns, i.e., without temporal properties, or simple ones. In this paper, we propose a new formulation of the problem of API temporal pattern mining and a new approach to solve it. Indeed, we learn complex temporal patterns using a genetic programming approach. Our preliminary results show that across a considerable variability of client programs, our approach has been able to infer non-trivial patterns that reflect informative temporal properties.},
+  booktitle = {2017 {{IEEE}}/{{ACM}} 39th {{International Conference}} on {{Software Engineering Companion}} ({{ICSE}}-{{C}})},
+  author = {Huppe, S. and Saied, M. A. and Sahraoui, H.},
+  month = may,
+  year = {2017},
+  keywords = {API documentation,API usage pattern,application program interfaces,client program variability,complex temporal API usage pattern mining,Conferences,data mining,Data mining,evolutionary approach,genetic algorithms,Genetic programming,genetic programming approach,incomplete patterns,informative temporal properties,Libraries,Linear temporal logic,Software,Software engineering,software libraries},
+  pages = {274-276},
+  file = {/Users/luigi/work/zotero/storage/M895YF8C/Huppe et al. - 2017 - Mining Complex Temporal API Usage Patterns An Evo.pdf;/Users/luigi/work/zotero/storage/FBLXIUPY/7965328.html}
 }
 
 
