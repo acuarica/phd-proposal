@@ -31,6 +31,8 @@
 * TODO: Pattern Dynamic Proxy: Paper "Static Analysis of Java Dynamic Proxies"
 * TODO: Literature Review: Article "Static Typing Where Possible, Dynamic Typing When Needed: The End of the Cold War Between Programming Languages"
 * TODO: Discussion about *strong typing* in "On understanding types, data abstraction, and polymorphism"
+* TODO: Discuss why `classInstanceValue` (square/leakcanary) is not analyzable, deserialization pattern
+* TODO: Discuss about `findViewById`: Partial solutions in other languages
 
 ### Literature Review: Add to introduction
 
