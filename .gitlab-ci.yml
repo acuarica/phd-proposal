@@ -3,10 +3,8 @@ pages:
   image: tianon/latex
   script:
     - latexmk -pdf -bibtex phd-proposal.tex -output-directory=public/
-    - cp phd-proposal.html public/
   artifacts:
     paths:
-      - public/phd-proposal.pdf
-      - public/phd-proposal.html
+      - public
   only:
     - master
