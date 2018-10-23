@@ -5,6 +5,6 @@ pages:
     - latexmk -pdf -bibtex phd-proposal.tex -output-directory=public/
   artifacts:
     paths:
-      - public
+      - public/phd-proposal.pdf
   only:
     - master
