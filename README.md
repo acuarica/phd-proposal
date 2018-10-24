@@ -89,3 +89,19 @@ use static analysis.  Have you thought about measuring how often
 /Unsafe/ is actually used, meaning /dynamically/?  Another, perhaps
 more interesting question is how often those uses are identified as
 the root cause of failures.
+
+## Gabriele's comments on the proposal
+
+* Chapter 3, only 1% of the projects (817 out of 86k) use the Unsafe API, but they use it a lot (48k usages). Why?
+
+* Is the usage of the Unsafe API a form of technical debt? If yes, do you expect developers to refactor the code using the Usafe API?
+
+* Comment on the limitation of the study in Chapter 3 related to the selection of the subject systems (libraries only)
+
+* Clarify the manual process used to define the taxonomy in Chapter 3 (e.g., what is the confidence level/interval of the manually analyzed sample? how many evaluators have been involved in the process? how did you solve conflicts between evaluators? etc.)
+
+* It would be interesting to look not only to commits fixing a ClassCastException, but also in code review repositories/issue trackers to analyze the developers’ discussion and extract the rationale behind some implementation choices.
+
+* Consider using the explicit link existing in GitHub between commits and issues to only analyze bug-fixing commits related to ClassCastException (and automatically exclude commits unrelated to bug-fixing activities).
+
+* Look at the 2019 MSR challenge dataset. It reports discussions on Stack Overflow including their code snippets linked to projects in GitHub. You can see whether a given code snippet in SO has been reused in GitHub projects and this can give you some hints on why developers use the Unsafe API or some type cast patterns.
