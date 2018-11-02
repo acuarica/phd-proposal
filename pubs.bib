@@ -2357,6 +2357,7 @@ metrics can provide an interesting and informative
 qualitative analysis of a program and complement existing
 static cohesion metrics.},
   language = {en},
+  booktitle = {International {{Conference}} on {{Software Engineering Research}} and {{Practice}}},
   author = {Mitchell, Aine and Power, James F.},
   year = {2004},
   pages = {532-537},
@@ -4345,6 +4346,7 @@ Associated with the functional style of programming is an algebra of programs wh
   copyright = {Open Access},
   shorttitle = {Java Instrumentation Suite},
   language = {eng},
+  booktitle = {Proceedings of the {{Second Annual Workshop}} on {{Java}} for {{High}}-{{Performance Computing}}},
   author = {Guitart Fern\'andez, Jordi and Torres Vi\~nals, Jordi and Ayguad\'e Parra, Eduard and Oliver, Jose and Mancho, Labarta and Jos\'e, Jes\'us},
   year = {2000},
   keywords = {Àrees temàtiques de la UPC::Informàtica::Llenguatges de programació,Java (Computer program language),Java (Llenguatge de programació)},
@@ -5060,6 +5062,7 @@ Associated with the functional style of programming is an algebra of programs wh
   doi = {10.1145/2577080.2577085},
   abstract = {Multiparty session types allow the definition of distributed processes with strong communication safety properties. A global type is a choreographic specification of the interactions between peers, which is then projected locally in each peer. Well-typed processes behave accordingly to the global protocol specification. Multiparty session types are however monolithic entities that are not amenable to modular extensions. Also, session types impose conservative requirements to prevent any race condition, which prohibit the uni- form application of extensions at different points in a protocol. In this paper, we describe a means to support modular extensions with aspectual session types, a static pointcut/advice mechanism at the session type level. To support the modular definition of crosscut- ting concerns, we augment the expressivity of session types to al- low harmless race conditions. We formally prove that well-formed aspectual session types entail communication safety. As a result, aspectual session types make multiparty session types more flexible, modular, and extensible.},
   language = {en},
+  booktitle = {Modularity - 13th {{International Conference}} on {{Modularity}}},
   author = {Tabareau, Nicolas and S\"udholt, Mario and Tanter, \'Eric},
   month = apr,
   year = {2014},
@@ -12367,7 +12370,7 @@ Experimental results using the tool and manually rewriting code show average spa
   publisher = {{ACM}},
   author = {Do, Lisa Nguyen Quang and Ali, Karim and Livshits, Benjamin and Bodden, Eric and Smith, Justin and {Murphy-Hill}, Emerson},
   year = {2017},
-  keywords = {Just-in-Time,Layered analysis,Static analysis},
+  keywords = {Static analysis,Just-in-Time,Layered analysis},
   pages = {307--317},
   file = {/Users/luigi/work/zotero/storage/4HWV7YU4/Do et al. - 2017 - Just-in-time Static Analysis.pdf}
 }
@@ -12397,7 +12400,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Saied, M. A. and Abdeen, H. and Benomar, O. and Sahraoui, H.},
   month = may,
   year = {2015},
-  keywords = {API Documentation,API Usage,application program interfaces,client programs,Clustering algorithms,Context,data mining,Java,library source code,Matrix decomposition,Measurement,NCBUP miner,non client-based usage patterns,Security,Semantics,Software Clustering,software libraries,source code (software),unordered API usage patterns,Usage Pattern},
+  keywords = {Java,software libraries,data mining,application program interfaces,Measurement,Security,Semantics,source code (software),API Usage,API Documentation,client programs,Context,library source code,Software Clustering,Usage Pattern,Clustering algorithms,Matrix decomposition,NCBUP miner,non client-based usage patterns,unordered API usage patterns},
   pages = {71-81},
   file = {/Users/luigi/work/zotero/storage/ZAYHZ4WW/Saied et al. - 2015 - Could We Infer Unordered API Usage Patterns Only U.pdf;/Users/luigi/work/zotero/storage/LN2PVC53/7181434.html}
 }
@@ -12413,7 +12416,7 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Gurfinkel, Arie and Kahsai, Temesghen and Komuravelli, Anvesh and Navas, Jorge A.},
   editor = {Kroening, Daniel and P{\u a}s{\u a}reanu, Corina S.},
   year = {2015},
-  keywords = {Abstract Domain,Abstract Interpretation,Buffer Overflow,Operational Semantic,Proof Obligation},
+  keywords = {Operational Semantic,Proof Obligation,Abstract Domain,Abstract Interpretation,Buffer Overflow},
   pages = {343-361},
   file = {/Users/luigi/work/zotero/storage/25CJ6S9Y/Gurfinkel et al. - 2015 - The SeaHorn Verification Framework.pdf}
 }
@@ -12442,9 +12445,50 @@ Experimental results using the tool and manually rewriting code show average spa
   author = {Huppe, S. and Saied, M. A. and Sahraoui, H.},
   month = may,
   year = {2017},
-  keywords = {API documentation,API usage pattern,application program interfaces,client program variability,complex temporal API usage pattern mining,Conferences,data mining,Data mining,evolutionary approach,genetic algorithms,Genetic programming,genetic programming approach,incomplete patterns,informative temporal properties,Libraries,Linear temporal logic,Software,Software engineering,software libraries},
+  keywords = {Data mining,Libraries,software libraries,data mining,application program interfaces,Software,Software engineering,Conferences,API documentation,API usage pattern,client program variability,complex temporal API usage pattern mining,evolutionary approach,genetic algorithms,Genetic programming,genetic programming approach,incomplete patterns,informative temporal properties,Linear temporal logic},
   pages = {274-276},
   file = {/Users/luigi/work/zotero/storage/M895YF8C/Huppe et al. - 2017 - Mining Complex Temporal API Usage Patterns An Evo.pdf;/Users/luigi/work/zotero/storage/FBLXIUPY/7965328.html}
+}
+
+@inproceedings{madsenDatalogFlixDeclarative2016,
+  address = {New York, NY, USA},
+  series = {PLDI '16},
+  title = {From {{Datalog}} to {{Flix}}: {{A Declarative Language}} for {{Fixed Points}} on {{Lattices}}},
+  isbn = {978-1-4503-4261-2},
+  shorttitle = {From {{Datalog}} to {{Flix}}},
+  doi = {10.1145/2908080.2908096},
+  abstract = {We present Flix, a declarative programming language for specifying and solving least fixed point problems, particularly static program analyses. Flix is inspired by Datalog and extends it with lattices and monotone functions. Using Flix, implementors of static analyses can express a broader range of analyses than is currently possible in pure Datalog, while retaining its familiar rule-based syntax. We define a model-theoretic semantics of Flix as a natural extension of the Datalog semantics. This semantics captures the declarative meaning of Flix programs without imposing any specific evaluation strategy. An efficient strategy is semi-naive evaluation which we adapt for Flix. We have implemented a compiler and runtime for Flix, and used it to express several well-known static analyses, including the IFDS and IDE algorithms. The declarative nature of Flix clearly exposes the similarity between these two algorithms.},
+  booktitle = {Proceedings of the 37th {{ACM SIGPLAN Conference}} on {{Programming Language Design}} and {{Implementation}}},
+  publisher = {{ACM}},
+  author = {Madsen, Magnus and Yee, Ming-Ho and Lhot\'ak, Ond{\v r}ej},
+  year = {2016},
+  keywords = {static analysis,Datalog,logic programming},
+  pages = {194--208},
+  file = {/Users/luigi/work/zotero/storage/8BKYCP6Z/Madsen et al. - 2016 - From Datalog to Flix A Declarative Language for F.pdf}
+}
+
+@article{ujhelyiPerformanceComparisonQuerybased2015,
+  title = {Performance Comparison of Query-Based Techniques for Anti-Pattern Detection},
+  volume = {65},
+  issn = {0950-5849},
+  doi = {10.1016/j.infsof.2015.01.003},
+  abstract = {Context
+Program queries play an important role in several software evolution tasks like program comprehension, impact analysis, or the automated identification of anti-patterns for complex refactoring operations. A central artifact of these tasks is the reverse engineered program model built up from the source code (usually an Abstract Semantic Graph, ASG), which is traditionally post-processed by dedicated, hand-coded queries.
+Objective
+Our paper investigates the costs and benefits of using the popular industrial Eclipse Modeling Framework (EMF) as an underlying representation of program models processed by four different general-purpose model query techniques based on native Java code, OCL evaluation and (incremental) graph pattern matching.
+Method
+We provide in-depth comparison of these techniques on the source code of 28 Java projects using anti-pattern queries taken from refactoring operations in different usage profiles.
+Results
+Our results show that general purpose model queries can outperform hand-coded queries by 2\textendash{}3 orders of magnitude, with the trade-off of an increased in memory consumption and model load time of up to an order of magnitude.
+Conclusion
+The measurement results of usage profiles can be used as guidelines for selecting the appropriate query technologies in concrete scenarios.},
+  journal = {Information and Software Technology},
+  author = {Ujhelyi, Zolt\'an and Sz{\H o}ke, G\'abor and Horv\'ath, \'Akos and Csisz\'ar, Norbert Istv\'an and Vid\'acs, L\'aszl\'o and Varr\'o, D\'aniel and Ferenc, Rudolf},
+  month = sep,
+  year = {2015},
+  keywords = {Anti-patterns,Columbus,EMF-IncQuery,OCL,Performance measurements,Refactoring},
+  pages = {147-165},
+  file = {/Users/luigi/work/zotero/storage/U9MFI4NZ/Ujhelyi et al. - 2015 - Performance comparison of query-based techniques f.pdf;/Users/luigi/work/zotero/storage/FLHJ4ZM7/S0950584915000051.html}
 }
 
 
